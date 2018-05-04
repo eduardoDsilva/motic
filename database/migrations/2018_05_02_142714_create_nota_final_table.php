@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateNotaFinalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('nota_final', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('username')->nullable()->unique();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->double('notaTotal',5,4);
+
+            $table->unsignedInteger('projeto_id');
+            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('nota_final');
     }
 }
