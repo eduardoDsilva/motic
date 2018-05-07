@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
+use App\Usuario;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -26,7 +29,24 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        $idUsuarioLogado = auth()->user()->id;
+        $usuarios = DB::table('users')->select('tipo')->where('id', $idUsuarioLogado)->get();
+        foreach ($usuarios as $key => $value) {
+            if ($value->tipo == "admin") {
+                return 'Admin/home';
+            } else if ($value->tipo == "avaliador") {
+                return 'Avaliador/home';
+            } else if ($value->tipo == "escola") {
+                return 'Escola/home';
+            } else if ($value->tipo == "projeto") {
+                return 'Projeto/home';
+            } else {
+                return 'Erro/home';
+            }
+        }
+    }
 
     /**
      * Create a new controller instance.
