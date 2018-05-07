@@ -57,7 +57,11 @@ Route::post('register', [
 ]);
 Route::get('admin/home', 'Admin\HomeController@index')->name('admin/home');
 
-Route::get('admin/cadastrar/escola', 'Admin\HomeController@cadastarEscola')->name('admin/cadastrar/escola');
+Route::get('admin/escola/home', 'Admin\escola\EscolaController@escola')->name('admin/escola/home');
+
+Route::get('admin/escola/cadastrar', 'Admin\escola\EscolaController@cadastraEscola')->name('admin/escola/cadastrar');
+
+Route::post('admin/escola/salvar', 'Admin\escola\EscolaController@salvar')->name('admin/escola/salvar');
 
 Route::get('admin/home', 'Admin\HomeController@index')->name('admin/home');
 

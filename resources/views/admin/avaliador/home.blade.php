@@ -20,7 +20,7 @@
     <div class="col s12 m4 l8">
 
         <div class="row">
-            <a href="{{route ('admin/escola/home')}}">
+            <a href="{{route ('admin/cadastrar/escola')}}">
                 <div class="col s12 m4">
                     <div class="card red darken-2">
                         <div class="card-content black-text center-align">
@@ -35,7 +35,7 @@
                 </div>
             </a>
 
-            <a href="">
+            <a href="{{route ('admin/cadastrar/escola')}}">
                 <div class="col s12 m4">
                     <div class="card blue darken-2">
                         <div class="card-content black-text center-align">
@@ -51,7 +51,7 @@
             </a>
 
 
-            <a href="">
+            <a href="{{route ('admin/cadastrar/escola')}}">
                 <div class="col s12 m4">
                     <div class="card orange darken-2">
                         <div class="card-content black-text center-align">

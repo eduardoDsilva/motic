@@ -17,6 +17,15 @@
                     <input type="text" name="username">
                     <label>Usuário</label>
                 </div>
+                <div class="input-field col s12">
+                        <select name="tipo" class="browser-default">
+                            <option value="" disabled selected>Tipo</option>
+                            <option value="admin">Admin</option>
+                            <option value="avaliador">Avaliador</option>
+                            <option value="escola">Escola</option>
+                            <option value="projeto">Projeto</option>
+                        </select>
+                </div>
                 <div class="input-field">
                     <input type="email" name="email">
                     <label>E-mail</label>

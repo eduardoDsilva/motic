@@ -15,8 +15,9 @@ class CreateInstituicaoTable extends Migration
     {
         Schema::create('instituicao', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nome');
             $table->enum('tipo',['publica','privada'])->default('publica');
-
+            $table->string('telefone');
             //criando a FK do usuario dessa escola
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
