@@ -55,4 +55,9 @@ Route::post('register', [
     'as' => '',
     'uses' => 'Auth\RegisterController@register'
 ]);
-Route::get('admin/home', 'admin\HomeController@index')->name('admin/home');
+Route::get('admin/home', 'Admin\HomeController@index')->name('admin/home');
+
+Route::get('admin/cadastrar/escola', 'Admin\HomeController@cadastarEscola')->name('admin/cadastrar/escola');
+
+Route::get('admin/home', 'Admin\HomeController@index')->name('admin/home');
+

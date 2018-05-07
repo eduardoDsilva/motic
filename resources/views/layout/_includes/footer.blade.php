@@ -34,15 +34,24 @@
     </div>
   </div>
 </footer>
-<!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.js"></script><style type="text/css"></style>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script type="text/javascript">
-      $(document).ready(function() {
-          $('select').material_select();
+    <!--JavaScript at end of body for optimized loading-->
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.dropdown-trigger');
+          var instances = M.Dropdown.init(elems, options);
       });
+
+      // Or with jQuery
+
+      $('.dropdown-trigger').dropdown();
+
       </script>
 
 
+<script src="{{ asset('js/app.js') }}"></script>
     </body>
   </html>

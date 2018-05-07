@@ -37,13 +37,13 @@ class LoginController extends Controller
             if ($value->tipo == "admin") {
                 return 'admin/home';
             } else if ($value->tipo == "avaliador") {
-                return 'Avaliador/home';
+                return 'avaliador/home';
             } else if ($value->tipo == "escola") {
-                return 'Escola/home';
+                return 'escola/home';
             } else if ($value->tipo == "projeto") {
-                return 'Projeto/home';
+                return 'projeto/home';
             } else {
-                return 'Erro/home';
+                return 'erro/home';
             }
         }
     }

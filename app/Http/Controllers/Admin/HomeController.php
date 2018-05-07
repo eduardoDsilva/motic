@@ -26,4 +26,9 @@ class HomeController extends Controller
     {
         return view('admin/home');
     }
+
+    public function cadastarEscola()
+    {
+        return view('admin/cadastrar/escola');
+    }
 }
