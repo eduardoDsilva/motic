@@ -55,4 +55,4 @@ Route::post('register', [
     'as' => '',
     'uses' => 'Auth\RegisterController@register'
 ]);
-Route::get('Admin/home', 'Admin\HomeController@index')->name('Admin/home');
+Route::get('admin/home', 'admin\HomeController@index')->name('admin/home');

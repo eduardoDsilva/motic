@@ -35,7 +35,7 @@ class LoginController extends Controller
         $usuarios = DB::table('users')->select('tipo')->where('id', $idUsuarioLogado)->get();
         foreach ($usuarios as $key => $value) {
             if ($value->tipo == "admin") {
-                return 'Admin/home';
+                return 'admin/home';
             } else if ($value->tipo == "avaliador") {
                 return 'Avaliador/home';
             } else if ($value->tipo == "escola") {
