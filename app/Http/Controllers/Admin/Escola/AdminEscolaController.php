@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Escola;
 
+use App\Endereco;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Escola;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -34,7 +36,27 @@ class AdminEscolaController extends Controller
             'email' => $dados['email'],
             'password' => bcrypt($dados['password']),
             'tipoUser' => $dados['tipoUser'],]);
-        session(['idEscola' => $teste->id]);
+
+        Escola::create([
+            'name' => $dados['name'],
+            'tipoEscola' => $dados['tipoEscola'],
+            'telefone' => $dados['telefone'],
+            'user_id' => $teste->id,
+        ]);
+
+        Endereco::create([
+            'rua' => $dados['rua'],
+            'numero' => $dados['numero'],
+            'complemento' => $dados['complemento'],
+            'bairro' => $dados['bairro'],
+            'cep' => $dados['cep'],
+            'cidade' => $dados['cidade'],
+            'estado' => $dados['estado'],
+            'pais' => $dados['pais'],
+        ]);
+
+        $teste = "passou";
+
         dd($teste);
     }
 
