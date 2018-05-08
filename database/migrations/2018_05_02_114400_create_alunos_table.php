@@ -17,8 +17,8 @@ class CreateAlunosTable extends Migration
             $table->increments('id');
             $table->string('turma', 50);
 
-            $table->unsignedInteger('instituicao_id');
-            $table->foreign('instituicao_id')->references('id')->on('instituicao')->onDelete('cascade');
+            $table->unsignedInteger('escola_id');
+            $table->foreign('escola_id')->references('id')->on('escola')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -25,8 +25,8 @@ class CreateEnderecosTable extends Migration
           $table->string('pais');
 
           //criando FK da instituicao pra atribuir um endereco a mesma
-          $table->unsignedInteger('instituicao_id')->unique();
-          $table->foreign('instituicao_id')->references('id')->on('instituicao')->onDelete('cascade');
+          $table->unsignedInteger('escola_id')->unique();
+          $table->foreign('escola_id')->references('id')->on('escola')->onDelete('cascade');
 
           //criando FK dos professores pra atribuir um endereco a mesma
           $table->unsignedInteger('professor_id')->unique();
