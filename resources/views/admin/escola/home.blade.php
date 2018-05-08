@@ -20,7 +20,7 @@
     <div class="col s12 m4 l8">
 
         <div class="row">
-            <a href="{{route ('admin/escola/cadastrar')}}">
+            <a href="{{route ('admin/escola/cadastro/usuario')}}">
                 <div class="col s12 m6">
                     <div class="card red darken-2">
                         <div class="card-content black-text center-align">
@@ -44,12 +44,11 @@
                         <div class="card-action white-text">
                             <span class="card-title">Verificar escolas</span>
 
-                            <p>Clique aqui para entrar nas opções dos projetos no sistema.</p>
+                            <p>Clique aqui para verificar as escolas cadastradas no sistema.</p>
                         </div>
                     </div>
                 </div>
             </a>
-
         </div>
     </div>
 </div>

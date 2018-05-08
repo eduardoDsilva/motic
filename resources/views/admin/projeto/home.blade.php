@@ -27,9 +27,9 @@
                             <i class="large material-icons">school</i>
                         </div>
                         <div class="card-action white-text">
-                            <span class="card-title">Escolas</span>
+                            <span class="card-title">Cadastrar projeto</span>
 
-                            <p>Clique aqui para entrar nas opções da escola no sistema.</p>
+                            <p>Clique aqui para cadastrar projetos no sistema.</p>
                         </div>
                     </div>
                 </div>

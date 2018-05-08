@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\escola;
 
-use App\Escola;
+use App\Instituicao;
 use App\Usuario;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,26 +16,17 @@ class EscolaController extends Controller
         return view('admin/escola/home');
     }
 
-    public function cadastraEscola(){
-        return view('admin/escola/cadastrar');
+    public function cadastra(){
+        return view('admin/escola/cadastro/escola');
     }
 
     public function salvar(Request $req)
     {
-        $dados = $req->all();
+        $dados = $req->all() + ['user_id' => session()->get('idEscola')];
 
-        $array = [
-            'name'  => $dados['nome'],
-            'username' => $dados['username'],
-            'email' => $dados['email'],
-            'password' => $dados['password'],
-            'tipo' => $dados['tipo']
-    ];
-        User::create($array);
-        dd($dados);
-        //Escola::create($dados);
+        Instituicao::create($dados);
 
-        return redirect()->route('admin.cursos');
+        return redirect()->route('admin.escola.cadastro.endereco');
 
     }
 }

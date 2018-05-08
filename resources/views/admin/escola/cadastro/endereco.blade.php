@@ -12,34 +12,6 @@
                     {{ csrf_field() }}
                     <h5>Dados básicos</h5>
 
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Nome da escola</label>
-                            <input type="text" name="name" required>
-                        </div>
-                        <div class="input-field col s6">
-                            <select name="tipo" class="browser-default">
-                                <option value="" disabled selected>Tipo</option>
-                                <option value="publica">Pública</option>
-                                <option value="privada">Privada</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">email</i>
-                            <label for="email">Email</label>
-                            <input type="email" name="email" required>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">local_phone</i>
-                            <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" required>
-                        </div>
-                    </div>
-
                     <h5>Endereço</h5>
 
                     <div class="row">
@@ -93,28 +65,6 @@
                             <i class="material-icons prefix">location_city</i>
                             <label for="pais">País</label>
                             <input type="text" name="pais" required>
-                        </div>
-                    </div>
-
-                    <h5>Usuário</h5>
-
-                    <div class="input-field">
-                        <i class="material-icons prefix">person</i>
-                        <label for="usuario">Usuário</label>
-                        <input type="text" name="username" required>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <label for="password">Senha</label>
-                            <input type="text" name="password" required>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">person_pin</i>
-                            <label for="password_confirmation">Confirmar senha</label>
-                            <input type="text" name="password_confirmation" required>
                         </div>
                     </div>
 
