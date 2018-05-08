@@ -19,7 +19,7 @@
           <li>
               <a href="{{ route('logout') }}"
                  onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                  document.getElementById('logout-form').submit();">
                   Logout
               </a>
 
@@ -30,8 +30,9 @@
       </ul>
       <nav class="light-blue lighten-1">
           <div class="nav-wrapper">
-              <a href="#!" class="brand-logo">MOTIC</a>
-              @if (Auth::guest())
+              <a href="#" class="brand-logo">MOTIC</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          @if (Auth::guest())
                   <ul class="right hide-on-med-and-down">
                       <li><a href="{{ route('register') }}">Registrar</a></li>
                       <li><a href="{{ route('login') }}">Login</a></li>
@@ -44,5 +45,26 @@
               @endif
           </div>
       </nav>
+      @if (Auth::guest())
+          <ul class="sidenav" id="mobile-demo">
+              <li><a href="{{ route('register') }}">Registrar</a></li>
+              <li><a href="{{ route('login') }}">Login</a></li>
+          </ul>
+      @else
+          <ul class="sidenav" id="mobile-demo">
+              <li>
+                  <a href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                      Logout
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
+              </li>
+          </ul>
+      @endif
+
 
   </header>

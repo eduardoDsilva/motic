@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin\user;
+namespace App\Http\Controllers\Admin\Escola;
 
 use App\User;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class UserController extends Controller
+class AdminUsuarioController extends Controller
 {
 
     use RegistersUsers;
@@ -18,14 +17,18 @@ class UserController extends Controller
         return view('admin/escola/cadastro/usuario');
     }
 
-    public function salvar(Request $req)
+    public function salvarUsuario(Request $req)
     {
-        $dados = $req->all() + ['tipo' => 'escola'];
-        $user = User::create($dados);
-
-        session(['idEscola' => $user->id]);
-
-        return view('admin.escola.cadastro.escola');
+        $dados = $req->all() + ['tipoUser' => 'escola'];
+        dd($dados);
+        $this->validator($req->all())->validate();
+        User::create([
+            'name' => $dados['name'],
+            'username' => $dados['username'],
+            'email' => $dados['email'],
+            'password' => bcrypt($dados['password']),
+            'tipoUser' => $dados['tipoUser'],]);
+        session(['idEscola' => $dados->id]);
     }
 
     /**
@@ -41,7 +44,7 @@ class UserController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'tipo' => 'required|string|max:255',
+            'tipoUser' => 'required|string|max:255',
         ]);
     }
 
@@ -51,15 +54,5 @@ class UserController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'tipo' => $data['tipo'],
-        ]);
-    }
 
 }

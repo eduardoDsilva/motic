@@ -20,7 +20,7 @@
     <div class="col s12 m4 l8">
 
         <div class="row">
-            <a href="{{route ('admin/escola/cadastro/usuario')}}">
+            <a href="{{route ('admin/escola/cadastro/registro')}}">
                 <div class="col s12 m6">
                     <div class="card red darken-2">
                         <div class="card-content black-text center-align">

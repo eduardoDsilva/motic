@@ -16,7 +16,7 @@ class CreateEscolaTable extends Migration
         Schema::create('escola', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->enum('tipo',['publica','privada'])->default('publica');
+            $table->enum('tipoEscola',['publica','privada'])->default('publica');
             $table->string('telefone');
             //criando a FK do usuario dessa escola
             $table->unsignedInteger('user_id')->unique();

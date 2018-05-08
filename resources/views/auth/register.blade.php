@@ -17,7 +17,7 @@
                     <input type="text" name="username">
                     <label>Usuário</label>
                 </div>
-                <select name="tipo" class="browser-default">
+                <select name="tipoUser" class="browser-default">
                     <option value="" disabled selected>Tipo</option>
                     <option value="admin">Admin</option>
                     <option value="avaliador">Avaliador</option>

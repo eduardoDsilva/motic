@@ -34,9 +34,9 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         $idUsuarioLogado = auth()->user()->id;
-        $usuarios = DB::table('users')->select('tipo')->where('id', $idUsuarioLogado)->get();
+        $usuarios = DB::table('users')->select('tipoUser')->where('id', $idUsuarioLogado)->get();
         foreach ($usuarios as $key => $value) {
-            if ($value->tipo == "admin") {
+            if ($value->tipoUser == "admin") {
                 return 'admin/home';
             } else if ($value->tipo == "avaliador") {
                 return 'avaliador/home';
@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'tipo' => 'required|string|max:255',
+            'tipoUser' => 'required|string|max:255',
         ]);
     }
 
@@ -90,7 +90,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'tipo' => $data['tipo'],
+            'tipoUser' => $data['tipoUser'],
         ]);
     }
 }

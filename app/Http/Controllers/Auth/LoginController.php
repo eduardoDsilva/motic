@@ -32,9 +32,9 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         $idUsuarioLogado = auth()->user()->id;
-        $usuarios = DB::table('users')->select('tipo')->where('id', $idUsuarioLogado)->get();
+        $usuarios = DB::table('users')->select('tipoUser')->where('id', $idUsuarioLogado)->get();
         foreach ($usuarios as $key => $value) {
-            if ($value->tipo == "admin") {
+            if ($value->tipoUser == "admin") {
                 return 'admin/home';
             } else if ($value->tipo == "avaliador") {
                 return 'avaliador/home';

@@ -8,7 +8,7 @@
         <div class="row">
             <h3 class="center-align">Cadastrar escola</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/salvar') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/cadastro/registro') }}">
                     {{ csrf_field() }}
                     <h5>Dados básicos</h5>
 
@@ -19,7 +19,7 @@
                             <input type="text" name="name" required>
                         </div>
                         <div class="input-field col s6">
-                            <select name="tipo" class="browser-default">
+                            <select name="tipoEscola" class="browser-default">
                                 <option value="" disabled selected>Tipo</option>
                                 <option value="publica">Pública</option>
                                 <option value="privada">Privada</option>
