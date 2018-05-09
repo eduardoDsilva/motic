@@ -18,11 +18,11 @@ class CreateAlunosTable extends Migration
             $table->string('turma', 50);
 
             $table->unsignedInteger('escola_id');
-            $table->foreign('escola_id')->references('id')->on('escola')->onDelete('cascade');
+            $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
             //criando FK de endereco
-            $table->unsignedInteger('endereco_id')->unique();
-            $table->foreign('endereco_id')->references('id')->on('endereco')->onDelete('cascade');
+            $table->unsignedInteger('endereco_id')->nullable()->unique();
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
 
             $table->timestamps();
         });

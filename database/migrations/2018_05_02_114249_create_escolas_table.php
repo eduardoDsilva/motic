@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEscolaTable extends Migration
+class CreateEscolasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEscolaTable extends Migration
      */
     public function up()
     {
-        Schema::create('escola', function (Blueprint $table) {
+        Schema::create('escolas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->enum('tipoEscola',['publica','privada'])->default('publica');
@@ -23,8 +23,8 @@ class CreateEscolaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             //criando FK de endereco
-            $table->unsignedInteger('endereco_id')->unique();
-            $table->foreign('endereco_id')->references('id')->on('endereco')->onDelete('cascade');
+            $table->unsignedInteger('endereco_id')->nullable()->unique();
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
 
             $table->timestamps();
         });
