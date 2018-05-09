@@ -18,6 +18,10 @@ class CreateProfessoresTable extends Migration
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escola')->onDelete('cascade');
 
+            //criando FK de endereco
+            $table->unsignedInteger('endereco_id')->unique();
+            $table->foreign('endereco_id')->references('id')->on('endereco')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
