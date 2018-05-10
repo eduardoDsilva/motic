@@ -4,6 +4,10 @@
 
 @section('conteudo')
 
+    @if(session('success'))
+        {{session('success')}}
+    @endif
+
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
@@ -35,7 +39,7 @@
                 </div>
             </a>
 
-            <a href="">
+            <a href="{{route ('admin/escola/busca/buscar')}}">
                 <div class="col s12 m6">
                     <div class="card blue darken-2">
                         <div class="card-content black-text center-align">

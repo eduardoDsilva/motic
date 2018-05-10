@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Escola extends Model
 {
-    protected $table = "escola";
 
     protected $fillable = [
-        'name', 'tipoEscola', 'telefone', 'user_id', 'endereco_id'
+        'name', 'tipoEscola', 'telefone', 'user_id',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class,'user_id');
     }
 
 }

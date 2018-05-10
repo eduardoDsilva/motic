@@ -29,21 +29,17 @@ class User extends Authenticatable
 
     public function escola()
     {
-        return $this->hasOne(Escola::class, 'user_id','id');
+        return $this->hasOne(Escola::class, 'user_id');
     }
 
-    public function projeto()
+    public function endereco()
     {
-        return $this->hasOne(Projeto::class, 'user_id','id');
+        return $this->hasOne(Endereco::class, 'user_id');
     }
-
-    public function avaliador()
-    {
-        return $this->hasOne(Avaliador::class, 'user_id','id');
-    }
-
-    public function admin()
-    {
-        return $this->hasOne(Admin::class, 'user_id','id');
-    }
+    /*
+        public function dados_pessoais()
+        {
+            return $this->hasOne(Dados_Pessoais::class, 'user_id','id');
+        }
+    */
 }

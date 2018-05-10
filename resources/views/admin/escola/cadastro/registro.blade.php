@@ -4,6 +4,12 @@
 
 @section('conteudo')
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <section class="container">
         <div class="row">
             <h3 class="center-align">Cadastrar escola</h3>

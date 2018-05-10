@@ -14,6 +14,8 @@ Route::get('admin/escola/cadastro/registro', 'Admin\Escola\EscolaController@pagi
 //encaminha o post para AdminEscolaController. Lá é feita a mágica de cadastrar no banco de dados.
 Route::post('admin/escola/cadastro/registro', 'Admin\Escola\EscolaController@store')->name('admin/escola/cadastro/registro');
 
+Route::get('admin/escola/busca/buscar', 'Admin\Escola\EscolaController@busca')->name("admin/escola/busca/buscar");
+
 Route::get('admin/escola/cadastra', 'Admin\Escola\AdminEscolaController@cadastra');
 
 Route::post('admin/escola/salvar', 'AdminEscola\AdminEscolaController@salvaAluno');

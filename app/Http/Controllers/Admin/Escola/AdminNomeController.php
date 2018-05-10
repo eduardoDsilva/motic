@@ -11,8 +11,8 @@ class AdminNomeController extends Controller
     public function store($request)
     {
         try {
-            $teste = Escola::create($request);
-            return $teste->id;
+             $escola = Escola::create($request);
+             return $escola;
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -3,6 +3,7 @@
 @section('titulo','Registrar')
 
 @section('conteudo')
+
     <div class="container">
         <h3 class="center">Registrar</h3>
         <div class="row">

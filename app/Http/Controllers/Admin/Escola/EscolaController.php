@@ -44,24 +44,47 @@ class EscolaController extends Controller
         $request = $req->all() + ['tipoUser' => 'escola'];
 
         //cadastra o usuario da escola
-        $request = $request + ['user_id' => $this->adminUserController->store($request)];
+        $idUser = $this->adminUserController->store($request);
+        if(empty($idUser)) {
+            return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao inserir');
+        }
+
+        $request += ['user_id' => $idUser];
 
         //cadastra a escola em si
-        $idEscola = $this->adminNomeController->store($request);
+        $escola = $this->adminNomeController->store($request);
+        if (!$escola){
+            return redirect()
+                ->back()
+                ->with('error', 'Falha ao inserir');
+        }
 
         //cadastra o endereço da escola
-        $idEndereco = $this->adminEnderecoEscolaController->store($request);
+        $create = $this->adminEnderecoEscolaController->store($request);
+        if (!$create){
+            return redirect()
+                ->back()
+                ->with('error', 'Falha ao inserir');
+        }
 
-        $teste = DB::table('escolas')
-            ->where('id', $idEscola)
-            ->update(['endereco_id' => $idEndereco]);
 
-        //dd($teste);
 
-       // $pessoa->update($request->all());
-
-       // Escola::where('id', $idEscola)->update($endereco_id	);
+        //se tudo for cadastrado
+        return redirect()
+            ->route('admin/escola/home')
+            ->with('success', 'Escola cadastrada com sucesso!');
 
     }
+
+
+    public function busca()
+    {
+        $escolas = Escola::all();
+        return view('admin/escola/busca/buscar', compact('escolas'));
+
+    }
+
 
 }
