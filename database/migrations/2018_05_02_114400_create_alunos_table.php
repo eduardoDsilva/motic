@@ -20,9 +20,9 @@ class CreateAlunosTable extends Migration
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
-            //criando FK de endereco
-            $table->unsignedInteger('endereco_id')->nullable()->unique();
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+            //criando a FK do usuario desse aluno
+            $table->unsignedInteger('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

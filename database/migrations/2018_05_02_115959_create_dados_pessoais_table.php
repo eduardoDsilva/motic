@@ -23,17 +23,9 @@ class CreateDadosPessoaisTable extends Migration
             $table->string('grauDeInstrucao');
             $table->string('cpf')->nullable();
 
-            //criando FK dos professores pra atribuir dados pessoais da mesma
-            $table->unsignedInteger('professor_id')->unique();
-            $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
-
-            //criando FK dos alunos pra atribuir dados pessoais da mesma
-            $table->unsignedInteger('aluno_id')->unique();
-            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
-
-            //criando FK dos avaliadores pra atribuir dados pessoais da mesma
-            $table->unsignedInteger('avaliador_id')->unique();
-            $table->foreign('avaliador_id')->references('id')->on('avaliadores')->onDelete('cascade');
+            //criando FK de user
+            $table->unsignedInteger('user_id')->nullable()->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

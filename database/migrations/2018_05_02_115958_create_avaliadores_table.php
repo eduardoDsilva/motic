@@ -24,10 +24,6 @@ class CreateAvaliadoresTable extends Migration
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            //criando FK de endereco
-            $table->unsignedInteger('endereco_id')->nullable()->unique();
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
