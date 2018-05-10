@@ -15,6 +15,7 @@ class CreateAuditoriaTable extends Migration
     {
         Schema::create('auditoria', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('descricao');
             $table->enum('tipo',['create','update', 'delete'])->default('update');
             $table->integer('user');
             $table->timestamps();

@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Projeto extends Model
 {
-    //
+
+    protected $fillable = [
+        'titulo', 'area', 'estande', 'resumo','nota',
+    ];
 
     public function user()
     {

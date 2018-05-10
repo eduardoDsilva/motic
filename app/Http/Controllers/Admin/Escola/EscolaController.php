@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Usuario;
 use App\Escola;
 use App\Endereco;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auditoria;
 
 class EscolaController extends Controller
 {
@@ -16,15 +16,19 @@ class EscolaController extends Controller
     private $adminNomeController;
     private $adminUserController;
     private $adminEnderecoEscolaController;
+    private $auditoriaController;
+    private $auditoria;
     private $user;
     private $escola;
     private $endereco;
 
-    public function __construct(AdminUserController $adminUserController, AdminNomeController $adminNomeController, AdminEnderecoEscolaController $adminEnderecoEscolaController)
+    public function __construct(AuditoriaController $auditoriaController, AdminUserController $adminUserController, AdminNomeController $adminNomeController, AdminEnderecoEscolaController $adminEnderecoEscolaController)
     {
+        $this->auditoriaController = $auditoriaController;
         $this->adminUserController = $adminUserController;
         $this->adminNomeController = $adminNomeController;
         $this->adminEnderecoEscolaController = $adminEnderecoEscolaController;
+        $this->auditoria = new AuditoriaController();
         $this->user = new User();
         $this->escola = new Escola();
         $this->endereco = new Endereco();
@@ -50,6 +54,8 @@ class EscolaController extends Controller
                     ->back()
                     ->with('error', 'Falha ao inserir');
         }
+        $dados = ['descricao' => 'Criado o usuário da escola pelo usuário'.auth()->username(), 'tipo' => 'create', 'user' => auth()->id()];
+        $this->auditoria.create();
 
         $request += ['user_id' => $idUser];
 
@@ -60,6 +66,8 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
+        $dados = ['descricao' => 'Criada a conta da escola pelo usuário'.auth()->username(), 'tipo' => 'create', 'user' => auth()->id()];
+        $this->auditoria.create();
 
         //cadastra o endereço da escola
         $create = $this->adminEnderecoEscolaController->store($request);
@@ -68,6 +76,9 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
+
+        $dados = ['descricao' => 'Criado o endereço da escola pelo usuário'.auth()->username(), 'tipo' => 'create', 'user' => auth()->id()];
+        $this->auditoria.create();
 
 
 
@@ -85,6 +96,5 @@ class EscolaController extends Controller
         return view('admin/escola/busca/buscar', compact('escolas'));
 
     }
-
 
 }
