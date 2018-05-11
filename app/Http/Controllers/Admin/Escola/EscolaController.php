@@ -44,6 +44,16 @@ class EscolaController extends Controller
         return view('admin/escola/cadastro/registro');
     }
 
+    public function editar($id){
+        $user = User::find($id);
+        return view('admin/escola/editar/editar', compact('user'));
+    }
+
+    public function busca()
+    {
+        $escolas = Escola::all();
+        return view('admin/escola/busca/buscar', compact('escolas'));
+    }
 
     public function store(Request $req)
     {
@@ -72,12 +82,10 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir o usuário');
         }
+
         $this->request += ['user_id' => $idUser];
-        $descricao = 'Criado o usuário da escola pelo usuário = '.auth()->user()->username;
-        $tipo = 'create';
-        $user = auth()->id();
-        $id_action = $idUser;
-        $this->salvaAuditoria($descricao, $tipo, $user, $id_action);
+        $this->salvaAuditoria("Criado o usuário pelo ".auth()->user()->username, 'create', auth()->id(), $idUser);
+
     }
 
     private function salvaEscola($request){
@@ -87,11 +95,7 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
-        $descricao = 'Adicionada a escola pelo usuário = '.auth()->user()->username;
-        $tipo = 'create';
-        $user = auth()->id();
-        $id_action = $idEscola;
-        $this->salvaAuditoria($descricao, $tipo, $user, $id_action);
+        $this->salvaAuditoria("Escola cadastrada pelo ".auth()->user()->username, 'create', auth()->id(), $idEscola);
     }
 
     private function salvaEndereco($request){
@@ -101,11 +105,39 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
-        $descricao = 'Adicionado o endereço da escola pelo usuário = '.auth()->user()->username;
-        $tipo = 'create';
-        $user = auth()->id();
-        $id_action = $idEndereco;
-        $this->salvaAuditoria($descricao, $tipo, $user, $id_action);
+        $this->salvaAuditoria("Endereço cadastrado pelo ".auth()->user()->username, 'create', auth()->id(), $idEndereco);
+    }
+
+    public function delete($id){
+        $user = User::find($id);
+        $user->delete();
+
+        $this->salvaAuditoria("Exclusão do usuário realizada pelo ".auth()->user()->username, 'delete', auth()->id(), $user->id);
+
+        $escolas = Escola::all();
+        return view('admin/escola/busca/buscar', compact('escolas'));
+    }
+
+    public function update(Request $req, $id){
+        $this->request = $req->all() + ['tipoUser' => 'escola'];
+        $user = $this->getUser($id);
+
+        $user->update($this->request);
+        $this->salvaAuditoria("Feito a edição dos dados do usuário pelo ".auth()->user()->username, 'update', auth()->id(), $user->id);
+        $user->escola->update($this->request);
+        $this->salvaAuditoria("Feito a edição dos dados da escola pelo ".auth()->user()->username, 'update', auth()->id(), $user->escola->id);
+        $user->endereco->update($this->request);
+        $this->salvaAuditoria("Feito a edição dos dados do endereço da escola pelo ".auth()->user()->username, 'update', auth()->id(), $user->endereco->id);
+
+        //se tudo for cadastrado
+        return redirect()
+            ->route('admin/escola/home')
+            ->with('success', 'Escola editada com sucesso!');
+    }
+
+    protected function getUser($id)
+    {
+        return $this->user->find($id);
     }
 
     private function salvaAuditoria($descricao, $tipo, $user, $id_action){
@@ -117,10 +149,6 @@ class EscolaController extends Controller
         $this->auditoriaController->store($auditoria);
     }
 
-    public function busca()
-    {
-        $escolas = Escola::all();
-        return view('admin/escola/busca/buscar', compact('escolas'));
-    }
+
 
 }

@@ -16,7 +16,6 @@
             <h5 class="header col s12 light">Bem vindo ao menu de escolas!</h5>
         </div>
         <br>
-
     </div>
 </div>
 

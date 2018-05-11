@@ -29,6 +29,7 @@
           </li>
       </ul>
       <nav class="light-blue lighten-1">
+          <div class="container">
           <div class="nav-wrapper">
               <a href="#" class="brand-logo">MOTIC</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -44,7 +45,9 @@
               </ul>
               @endif
           </div>
+          </div>
       </nav>
+
       @if (Auth::guest())
           <ul class="sidenav" id="mobile-demo">
               <li><a href="{{ route('register') }}">Registrar</a></li>

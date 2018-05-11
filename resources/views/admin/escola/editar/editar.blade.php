@@ -14,35 +14,46 @@
         <div class="row">
             <h3 class="center-align">Cadastrar escola</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("/update/".$user->id) }}">
                     {{ csrf_field() }}
+
                     <h5>Dados básicos</h5>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Nome da escola</label>
-                            <input type="text" name="name" required>
+                            <input type="text" name="name" required value="{{$user->name}}">
                         </div>
-                        <div class="input-field col s6">
-                            <select name="tipoEscola" class="browser-default">
-                                <option value="" disabled selected>Tipo</option>
-                                <option value="publica">Pública</option>
-                                <option value="privada">Privada</option>
-                            </select>
-                        </div>
+                        @if($user->tipoEsola=='publica')
+                            <div class="input-field col s6">
+                                <select name="tipoEscola" class="browser-default">
+                                    <option value="" disabled selected>Tipo</option>
+                                    <option value="publica" selected>Pública</option>
+                                    <option value="privada">Privada</option>
+                                </select>
+                            </div>
+                        @else
+                            <div class="input-field col s6">
+                                <select name="tipoEscola" class="browser-default">
+                                    <option value="" disabled selected>Tipo</option>
+                                    <option value="publica">Pública</option>
+                                    <option value="privada" selected>Privada</option>
+                                </select>
+                            </div>
+                        @endif
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">email</i>
                             <label for="email">Email</label>
-                            <input type="email" name="email" required>
+                            <input type="email" name="email" required value="{{$user->email}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" required>
+                            <input type="text" name="telefone" required value="{{$user->escola->telefone}}">
                         </div>
                     </div>
 
@@ -52,13 +63,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <label for="cep">CEP</label>
-                            <input type="number" name="cep" required>
+                            <input type="number" name="cep" required value="{{$user->endereco->cep}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">business</i>
                             <label for="bairro">Bairro</label>
-                            <input type="text" name="bairro" required>
+                            <input type="text" name="bairro" value="{{$user->endereco->bairro}}">
                         </div>
                     </div>
 
@@ -66,19 +77,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <label for="rua">Rua</label>
-                            <input type="text" name="rua" required>
+                            <input type="text" name="rua" required value="{{$user->endereco->rua}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">filter_1</i>
                             <label for="numero">N°</label>
-                            <input type="number" name="numero" required>
+                            <input type="number" name="numero" required value="{{$user->endereco->numero}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" required>
+                            <input type="text" name="complemento" required value="{{$user->endereco->complemento}}">
                         </div>
                     </div>
 
@@ -86,19 +97,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="cidade">Cidade</label>
-                            <input type="text" name="cidade" required>
+                            <input type="text" name="cidade" required value="{{$user->endereco->cidade}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="estado">Estado</label>
-                            <input type="text" name="estado" required>
-                        </div>
+                            <input type="text" name="estado" required value="{{$user->endereco->estado}}">
+                    </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="pais">País</label>
-                            <input type="text" name="pais" required>
+                            <input type="text" name="pais" required value="{{$user->endereco->pais}}">
                         </div>
                     </div>
 
@@ -107,20 +118,20 @@
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
                         <label for="usuario">Usuário</label>
-                        <input type="text" name="username" required>
+                        <input type="text" name="username" required value="{{$user->username}}">
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" required>
+                            <input type="password" name="password" required value="{{$user->password}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" required>
+                            <input type="password" name="password_confirmation" required value="{{$user->password}}">
                         </div>
                     </div>
 

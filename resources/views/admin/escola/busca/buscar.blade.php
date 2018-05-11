@@ -1,4 +1,3 @@
-
 @extends('layout.site')
 
 @section('titulo','Motic Admin')
@@ -41,14 +40,15 @@
                     <td>{{$escola->telefone}}</td>
                     <td>{{$escola->users->endereco->rua}}</td>
                     <td>
-                        <a class="btn deep-orange" href="">Editar</a>
-                        <a class="btn red" href="">Deletar</a>
+                        <a data-target="modal1" class="btn deep-orange modal-trigger" href="{{ url("/update/".$escola->users->id."/editar") }}">Editar</a>
+                        <a data-target="modal2" class="btn red modal-trigger" href="{{ url("/deletar/".$escola->users->id."/excluir") }}">Deletar</a>
                     </td>
                 </tr>
                 </tbody>
             @empty
                 <tbody>
                 <tr>
+                    <td>Nenhuma escola encontrada</td>
                     <td>Nenhuma escola encontrada</td>
                     <td>Nenhuma escola encontrada</td>
                     <td>Nenhuma escola encontrada</td>
@@ -60,12 +60,11 @@
 
         <br><br>
 
-        <a class="btn blue" href="">Adicionar Escola</a>
-
+        <a class="btn blue" href="{{route ('admin/escola/cadastro/registro')}}">Adicionar Escola</a>
         <br><br>
 
         <br><br>
-        
+
     </div>
 </div>
 
