@@ -36,6 +36,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Endereco::class, 'user_id');
     }
+
+    public function auditoria()
+    {
+        return $this->hasOne(Auditoria::class, 'user_id');
+    }
     /*
         public function dados_pessoais()
         {

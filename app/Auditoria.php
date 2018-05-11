@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Auditoria extends Model
 {
     protected $fillable = [
-        'descricao', 'tipo', 'user', 'id_action',
+        'tipo', 'descricao', 'nome_usuario', 'id_acao', 'user_id',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

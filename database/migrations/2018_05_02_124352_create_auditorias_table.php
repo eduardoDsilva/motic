@@ -15,10 +15,12 @@ class CreateAuditoriasTable extends Migration
     {
         Schema::create('auditorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao');
             $table->enum('tipo',['create','update', 'delete'])->default('update');
-            $table->integer('user');
-            $table->integer('id_action');
+            $table->string('descricao');
+            $table->string('nome_usuario');
+            $table->integer('id_acao');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

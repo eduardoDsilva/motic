@@ -84,8 +84,11 @@ class EscolaController extends Controller
         }
 
         $this->request += ['user_id' => $idUser];
-        $this->salvaAuditoria("Criado o usuário pelo ".auth()->user()->username, 'create', auth()->id(), $idUser);
-
+        $this->salvaAuditoria("create",
+            "Criado o usuário pelo ".auth()->user()->username,
+            auth()->name(),
+            $idUser,
+            auth()->id());
     }
 
     private function salvaEscola($request){
@@ -95,7 +98,12 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
-        $this->salvaAuditoria("Escola cadastrada pelo ".auth()->user()->username, 'create', auth()->id(), $idEscola);
+        $this->salvaAuditoria("create",
+            "Escola cadastrada pelo ".auth()->user()->username,
+            auth()->name(),
+            $idEscola,
+            auth()->id());
+
     }
 
     private function salvaEndereco($request){
@@ -105,29 +113,50 @@ class EscolaController extends Controller
                 ->back()
                 ->with('error', 'Falha ao inserir');
         }
-        $this->salvaAuditoria("Endereço cadastrado pelo ".auth()->user()->username, 'create', auth()->id(), $idEndereco);
+        $this->salvaAuditoria("create",
+            "Endereço cadastrado pelo ".auth()->user()->username,
+            auth()->name(),
+            $idEndereco,
+            auth()->id());
     }
 
     public function delete($id){
         $user = User::find($id);
         $user->delete();
 
-        $this->salvaAuditoria("Exclusão do usuário realizada pelo ".auth()->user()->username, 'delete', auth()->id(), $user->id);
+        $this->salvaAuditoria("create",
+            "Exclusão do usuário realizada pelo ".auth()->user()->username,
+            auth()->name(),
+            $user->id,
+            auth()->id());
 
         $escolas = Escola::all();
         return view('admin/escola/busca/buscar', compact('escolas'));
     }
 
-    public function update(Request $req, $id){
+    public function update(Request $req, $id)
+    {
         $this->request = $req->all() + ['tipoUser' => 'escola'];
         $user = $this->getUser($id);
 
         $user->update($this->request);
-        $this->salvaAuditoria("Feito a edição dos dados do usuário pelo ".auth()->user()->username, 'update', auth()->id(), $user->id);
+        $this->salvaAuditoria("create",
+            "Feito a edição dos dados do usuário pelo " . auth()->user()->username,
+            auth()->name(),
+            $user->id,
+            auth()->id());
         $user->escola->update($this->request);
-        $this->salvaAuditoria("Feito a edição dos dados da escola pelo ".auth()->user()->username, 'update', auth()->id(), $user->escola->id);
+        $this->salvaAuditoria("create",
+            "Feito a edição dos dados da escola pelo " . auth()->user()->username,
+            auth()->name(),
+            $user->id,
+            auth()->id());
         $user->endereco->update($this->request);
-        $this->salvaAuditoria("Feito a edição dos dados do endereço da escola pelo ".auth()->user()->username, 'update', auth()->id(), $user->endereco->id);
+        $this->salvaAuditoria("create",
+            "Feito a edição dos dados do endereço da escola pelo " . auth()->user()->username,
+            auth()->name(),
+            $user->id,
+            auth()->id());
 
         //se tudo for cadastrado
         return redirect()
@@ -140,12 +169,13 @@ class EscolaController extends Controller
         return $this->user->find($id);
     }
 
-    private function salvaAuditoria($descricao, $tipo, $user, $id_action){
+    private function salvaAuditoria($tipo, $descricao, $nome_usuario, $id_acao, $user_id){
         $auditoria = new Auditoria();
-        $auditoria->descricao = $descricao;
         $auditoria->tipo = $tipo;
-        $auditoria->user = $user;
-        $auditoria->id_action = $id_action;
+        $auditoria->descricao = $descricao;
+        $auditoria->nome_usuario= $nome_usuario;
+        $auditoria->id_acao = $id_acao;
+        $auditoria->user_id = $user_id;
         $this->auditoriaController->store($auditoria);
     }
 
