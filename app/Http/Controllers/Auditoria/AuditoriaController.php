@@ -8,15 +8,12 @@ use App\Http\Controllers\Controller;
 class AuditoriaController extends Controller
 {
 
-    public function create($request){
+    public function store(Auditoria $auditoria)
     {
         try {
-            $auditoria = Auditoria::create[$request];
-            return $auditoria;
+            $auditoria->save();
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
-
-}
 }

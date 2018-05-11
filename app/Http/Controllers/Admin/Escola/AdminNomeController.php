@@ -12,7 +12,7 @@ class AdminNomeController extends Controller
     {
         try {
              $escola = Escola::create($request);
-             return $escola;
+             return $escola->id;
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

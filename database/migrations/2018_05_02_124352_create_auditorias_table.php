@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuditoriaTable extends Migration
+class CreateAuditoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAuditoriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('auditoria', function (Blueprint $table) {
+        Schema::create('auditorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
             $table->enum('tipo',['create','update', 'delete'])->default('update');
             $table->integer('user');
+            $table->integer('id_action');
             $table->timestamps();
         });
     }

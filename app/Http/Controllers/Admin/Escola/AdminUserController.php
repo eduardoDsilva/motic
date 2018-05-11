@@ -11,8 +11,8 @@ class AdminUserController extends Controller
     public function store($request)
     {
         try {
-            $teste = User::create($request);
-            return $teste->id;
+            $user = User::create($request);
+            return $user->id;
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

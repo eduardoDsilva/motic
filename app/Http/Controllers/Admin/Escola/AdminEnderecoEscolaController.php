@@ -15,8 +15,8 @@ class AdminEnderecoEscolaController extends Controller
     public function store($request)
     {
         try {
-            $cadastroEndereco = Endereco::create($request);
-            return $cadastroEndereco;
+            $endereco = Endereco::create($request);
+            return $endereco->id;
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
