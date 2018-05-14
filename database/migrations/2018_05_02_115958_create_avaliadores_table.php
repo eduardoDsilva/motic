@@ -16,10 +16,6 @@ class CreateAvaliadoresTable extends Migration
         Schema::create('avaliadores', function (Blueprint $table) {
             $table->increments('id');
 
-            //criando a FK dos projetos desse avaliador
-            $table->unsignedInteger('projeto_id')->unique();
-            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
-
             //criando a FK do usuario desse avaliador
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

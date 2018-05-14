@@ -29,6 +29,8 @@
                 <th>Tipo Escola</th>
                 <th>Telefone</th>
                 <th>Endereço</th>
+                <th>E-mail</th>
+                <th>Usuário</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -39,12 +41,25 @@
                     <td>{{$escola->tipoEscola}}</td>
                     <td>{{$escola->telefone}}</td>
                     <td>{{$escola->users->endereco->rua}}</td>
+                    <td>{{$escola->users->email}}</td>
+                    <td>{{$escola->users->username}}</td>
                     <td>
-                        <a data-target="modal1" class="btn deep-orange modal-trigger" href="{{ url("/update/".$escola->users->id."/editar") }}">Editar</a>
-                        <a data-target="modal2" class="btn red modal-trigger" href="{{ url("/deletar/".$escola->users->id."/excluir") }}">Deletar</a>
+                        <a class="btn deep-orange modal-trigger" href="{{ url("/admin/escola//update/".$escola->users->id."/editar") }}">Editar</a>
+                        <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
                     </td>
                 </tr>
                 </tbody>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Deletar</h4>
+                        <p>Você tem certeza que deseja deletar essa escola?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url("admin/escola/deletar/".$escola->user->id."/excluir") }}" class="btn red">Sim</a>
+                    </div>
+                </div>
             @empty
                 <tbody>
                 <tr>

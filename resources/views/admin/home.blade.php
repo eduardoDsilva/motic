@@ -51,7 +51,7 @@
             </a>
 
 
-            <a href="">
+            <a href={{route ('admin/avaliador/home')}}>
                 <div class="col s12 m4">
                     <div class="card orange darken-2">
                         <div class="card-content black-text center-align">

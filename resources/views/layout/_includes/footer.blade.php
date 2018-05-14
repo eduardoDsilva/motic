@@ -35,56 +35,52 @@
   </div>
 </footer>
     <!--JavaScript at end of body for optimized loading-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script type="text/javascript">
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems, options);
+        $(document).ready(function() {
+            $('select').material_select();
         });
-
-        // Or with jQuery
 
         $(document).ready(function(){
             $('.modal').modal();
         });
 
-      document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.dropdown-trigger');
-          var instances = M.Dropdown.init(elems, options);
-      });
+        $(".button-collapse").sideNav();
 
-      // Or with jQuery
+        $(".dropdown-button").dropdown();
 
-      $('.dropdown-trigger').dropdown();
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
 
-      document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('select');
-          var instances = M.FormSelect.init(elems, options);
-      });
+        $('.datepicker').pickadate({
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            today: 'Hoje',
+            clear: 'Limpar',
+            close: 'Pronto',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês anterior',
+            labelMonthSelect: 'Selecione um mês',
+            labelYearSelect: 'Selecione um ano',
+            selectMonths: true,
+            selectYears: 100,
+            max: new Date(2018,7,14),
+            format: 'dd-mm-yyyy'
+        });
 
-      // Or with jQuery
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
 
-      $(document).ready(function(){
-          $('select').formSelect();
-      });
 
-      document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.sidenav');
-          var instances = M.Sidenav.init(elems, options);
-      });
-
-      // Or with jQuery
-
-      $(document).ready(function(){
-          $('.sidenav').sidenav();
-      });
       </script>
-
-
-<script src="{{ asset('js/app.js') }}"></script>
     </body>
   </html>

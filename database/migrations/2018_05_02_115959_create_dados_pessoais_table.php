@@ -16,7 +16,7 @@ class CreateDadosPessoaisTable extends Migration
         Schema::create('dados_pessoais', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('nascimento');
+            $table->string('nascimento');
             $table->enum('sexo',['masculino','feminino', "nao especificado"])->default('nao especificado');
             $table->string('email')->unique();
             $table->string('telefone');

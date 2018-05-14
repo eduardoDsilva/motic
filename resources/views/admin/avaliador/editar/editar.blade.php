@@ -12,39 +12,65 @@
 
     <section class="container">
         <div class="row">
-            <h3 class="center-align">Editar escola</h3>
+            <h3 class="center-align">Editar Avaliador</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/escola/".$user->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$user->id) }}">
                     {{ csrf_field() }}
                     <h5>Dados básicos</h5>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Nome da escola</label>
+                            <label for="nome">Nome</label>
                             <input type="text" name="name" required value="{{$user->name}}">
                         </div>
                         <div class="input-field col s6">
-                            @if($user->tipoEsola=='publica')
-                                <select name="tipoEscola" class="browser-default">
-                                    <option value="" disabled>Tipo</option>
-                                    <option value="publica" @if($user->tipoEsola=='publica') selected @endif>Pública</option>
-                                    <option value="privada" @if($user->tipoEsola=='publica') selected @endif>Privada</option>
-                                </select>
-                                <label>Tipo da escola</label>
+                            <i class="material-icons prefix">today</i>
+                            <label for="nascimento">Nascimento</label>
+                            <input type="text" class="datepicker" name="nascimento" required value="{{$user->dados_pessoais->nascimento}}">>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">email</i>
-                            <label for="email">Email</label>
-                            <input type="email" name="email" required value="{{$user->email}}">
+                            <i class="material-icons prefix">people</i>
+                            <select name="sexo">
+                                <option value="" disabled>Sexo</option>
+                                <option value="masculino" @if($user->dados_pessoais->sexo=='masculino') selected @endif>Masculino</option>
+                                <option value="feminino" @if($user->dados_pessoais->sexo=='feminino') selected @endif>Feminino</option>
+                            </select>
+                            <label>Sexo</label>
                         </div>
 
                         <div class="input-field col s6">
+                            <i class="material-icons prefix">book</i>
+                            <select name="grauDeInstrucao">
+                                <option value="" disabled>Grau de Instrução</option>
+                                <option value="Ensino Fundamental" @if($user->dados_pessoais->grauDeInstrucao=='Ensino Fundamental') selected @endif>Ensino Fundamental</option>
+                                <option value="Ensino Médio" @if ($user->dados_pessoais->grauDeInstrucao=='Ensino Médio') selected @endif>Ensino Médio</option>
+                                <option value="Ensino Superior"  @if($user->dados_pessoais->grauDeInstrucao=='Ensino Superior') selected @endif>Ensino Superior</option>
+                            </select>
+                            <label>Grau de Instrução</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">email</i>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" required  value="{{$user->email}}">
+                        </div>
+
+                        <div class="input-field col s4">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" required value="{{$user->escola->telefone}}">
+                            <input type="text" name="telefone" required  value="{{$user->dados_pessoais->telefone}}">
+                        </div>
+
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">perm_identity</i>
+                            <label for="cpf">CPF</label>
+                            <input type="number" name="cpf" value="{{$user->dados_pessoais->cpf}}">
                         </div>
                     </div>
 
@@ -54,13 +80,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <label for="cep">CEP</label>
-                            <input type="number" name="cep" required value="{{$user->endereco->cep}}">
+                            <input type="number" name="cep" required  value="{{$user->endereco->cep}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">business</i>
                             <label for="bairro">Bairro</label>
-                            <input type="text" name="bairro" value="{{$user->endereco->bairro}}">
+                            <input type="text" name="bairro" required  value="{{$user->endereco->bairro}}">
                         </div>
                     </div>
 
@@ -95,7 +121,7 @@
                             <i class="material-icons prefix">location_city</i>
                             <label for="estado">Estado</label>
                             <input type="text" name="estado" required value="{{$user->endereco->estado}}">
-                    </div>
+                        </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
@@ -114,13 +140,13 @@
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">person_pin</i>
+                            <i class="material-icons prefix">lock</i>
                             <label for="password">Senha</label>
                             <input type="password" name="password" required value="{{$user->password}}">
                         </div>
 
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">person_pin</i>
+                            <i class="material-icons prefix">lock</i>
                             <label for="password_confirmation">Confirmar senha</label>
                             <input type="password" name="password_confirmation" required value="{{$user->password}}">
                         </div>

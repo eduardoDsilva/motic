@@ -12,39 +12,65 @@
 
     <section class="container">
         <div class="row">
-            <h3 class="center-align">Cadastrar escola</h3>
+            <h3 class="center-align">Cadastrar Avaliador</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/avaliador/cadastro/registro') }}">
                     {{ csrf_field() }}
                     <h5>Dados básicos</h5>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Nome da escola</label>
+                            <label for="nome">Nome</label>
                             <input type="text" name="name" required>
                         </div>
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">school</i>
-                            <select name="tipoEscola">
-                                <option value="" disabled selected>Tipo</option>
-                                <option value="publica">Pública</option>
-                                <option value="privada">Privada</option>
-                            </select>
-                            <label>Tipo Escola</label>
+                            <i class="material-icons prefix">today</i>
+                            <label for="nascimento">Nascimento</label>
+                            <input type="text" class="datepicker" name="nascimento" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
+                            <i class="material-icons prefix">people</i>
+                            <select name="sexo">
+                                <option value="" disabled selected>Sexo</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                            </select>
+                            <label>Sexo</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">book</i>
+                            <select name="grauDeInstrucao">
+                                <option value="" disabled selected>Grau de Instrução</option>
+                                <option value="Ensino Fundamental">Ensino Fundamental</option>
+                                <option value="Ensino Médio">Ensino Médio</option>
+                                <option value="Ensino Superior">Ensino Superior</option>
+                            </select>
+                            <label>Grau de Instrição</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="input-field col s4">
                             <i class="material-icons prefix">email</i>
                             <label for="email">Email</label>
                             <input type="email" name="email" required>
                         </div>
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s4">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
                             <input type="text" name="telefone" required>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">perm_identity</i>
+                            <label for="cpf">CPF</label>
+                            <input type="number" name="cpf">
                         </div>
                     </div>
 
@@ -114,13 +140,13 @@
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">person_pin</i>
+                            <i class="material-icons prefix">lock</i>
                             <label for="password">Senha</label>
                             <input type="password" name="password" required>
                         </div>
 
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">person_pin</i>
+                            <i class="material-icons prefix">lock</i>
                             <label for="password_confirmation">Confirmar senha</label>
                             <input type="password" name="password_confirmation" required>
                         </div>

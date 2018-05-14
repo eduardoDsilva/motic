@@ -27,24 +27,29 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function endereco()
+    {
+        return $this->hasOne(Endereco::class, 'user_id');
+    }
+
     public function escola()
     {
         return $this->hasOne(Escola::class, 'user_id');
     }
 
-    public function endereco()
+    public function avaliador()
     {
-        return $this->hasOne(Endereco::class, 'user_id');
+        return $this->hasOne(Avaliador::class, 'user_id');
     }
 
     public function auditoria()
     {
         return $this->hasOne(Auditoria::class, 'user_id');
     }
-    /*
-        public function dados_pessoais()
+
+    public function dados_pessoais()
         {
             return $this->hasOne(Dados_Pessoais::class, 'user_id','id');
         }
-    */
+
 }
