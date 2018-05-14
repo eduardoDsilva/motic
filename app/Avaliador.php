@@ -20,8 +20,6 @@ class Avaliador extends Model
 
     public function projeto()
     {
-        return $this->belongsToMany(Projeto::class,'avaliador_projeto', 'avaliador_id','projeto_id')
-            ->withTimestamps();
+        return $this->belongsToMany(Projeto::class);
     }
-
 }
