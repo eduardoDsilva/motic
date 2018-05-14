@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAvaliadoresHasProjetosTable extends Migration
+class ProjetosHasDisciplinas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateAvaliadoresHasProjetosTable extends Migration
      */
     public function up()
     {
-        Schema::create('avaliadores_has_projetos', function (Blueprint $table) {
-            $table->integer('avaliador_id')->unsigned();
-            $table->foreign('avaliador_id')->references('id')->on('avaliadores')->onDelete('cascade');
-
+        Schema::create('projetos_has_disciplinas', function (Blueprint $table) {
             $table->integer('projeto_id')->unsigned();
             $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
+
+            $table->integer('disciplinas_id')->unsigned();
+            $table->foreign('disciplinas_id')->references('id')->on('disciplinas')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -29,6 +28,7 @@ class CreateAvaliadoresHasProjetosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliadores_has_projetos');
+        Schema::dropIfExists('projetos_has_disciplinas');
+
     }
 }

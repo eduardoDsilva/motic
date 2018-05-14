@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('DisciplinaTableSeeder');
+        $this->call('UserTableSeeder');
     }
 }
 
@@ -40,6 +41,22 @@ class DisciplinaTableSeeder extends Seeder {
         Disciplina::create([
             'nome' => 'Química',
             'descricao'  => 'Descrição da disciplina de Química',
+        ]);
+    }
+}
+
+class UserTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('users')->delete();
+
+        \App\User::create([
+            'name' => 'Eduardo da Silva',
+            'username' => 'admin',
+            'email' => 'eduardo.2599@hotmail.com',
+            'password' => bcrypt('123456'),
+            'tipoUser' => 'admin',
         ]);
     }
 

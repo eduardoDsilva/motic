@@ -33,10 +33,6 @@ class CreateProjetosTable extends Migration
             $table->unsignedInteger('escola_id')->unique();
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
-            //criando o fk de disciplinas
-            $table->unsignedInteger('disciplina_id')->unique();
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
-
             $table->timestamps();
         });
     }
