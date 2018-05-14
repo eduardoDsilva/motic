@@ -8,7 +8,9 @@
         {{session('success')}}
     @endif
 
-<div class="section no-pad-bot" id="index-banner">
+    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
+
+    <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
         <h1 class="header center orange-text">Escolas</h1>

@@ -76,7 +76,7 @@ class EscolaController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        $this->salvaAuditoria("create",
+        $this->salvaAuditoria("delete",
             "Exclusão do usuário realizada pelo ".auth()->user()->username,
             auth()->user()->name,
             $user->id,
@@ -92,21 +92,21 @@ class EscolaController extends Controller
         $user = $this->getUser($id);
 
         $user->update($this->request);
-        $this->salvaAuditoria("create",
+        $this->salvaAuditoria("update",
             "Feito a edição dos dados do usuário pelo " . auth()->user()->username,
             auth()->user()->name,
             $user->id,
             auth()->id());
 
         $user->escola->update($this->request);
-        $this->salvaAuditoria("create",
+        $this->salvaAuditoria("update",
             "Feito a edição dos dados da escola pelo " . auth()->user()->username,
             auth()->user()->name,
             $user->id,
             auth()->id());
 
         $user->endereco->update($this->request);
-        $this->salvaAuditoria("create",
+        $this->salvaAuditoria("update",
             "Feito a edição dos dados do endereço da escola pelo " . auth()->user()->username,
             auth()->user()->name,
             $user->id,

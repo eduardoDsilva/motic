@@ -35,7 +35,7 @@
                 </div>
             </a>
 
-            <a href="">
+            <a href="{{route ('admin/projeto/home')}}">
                 <div class="col s12 m4">
                     <div class="card blue darken-2">
                         <div class="card-content black-text center-align">
@@ -51,7 +51,7 @@
             </a>
 
 
-            <a href={{route ('admin/avaliador/home')}}>
+            <a href="{{route ('admin/avaliador/home')}}">
                 <div class="col s12 m4">
                     <div class="card orange darken-2">
                         <div class="card-content black-text center-align">
@@ -61,6 +61,21 @@
                             <span class="card-title">Avaliadores</span>
 
                             <p>Clique aqui para entrar nas opções dos avaliadores no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{{route ('admin/disciplinas/home')}}">
+                <div class="col s12 m4">
+                    <div class="card green darken-2">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">archive</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Disciplinas</span>
+
+                            <p>Clique aqui para entrar nas opções de disciplinas no sistema.</p>
                         </div>
                     </div>
                 </div>

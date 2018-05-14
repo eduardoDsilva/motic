@@ -10,6 +10,9 @@
         </div>
     @endif
 
+    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
+
+
     <section class="container">
         <div class="row">
             <h3 class="center-align">Cadastrar Avaliador</h3>
@@ -153,7 +156,7 @@
                     </div>
 
                     <p class="center-align">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>próximo</button>
+                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>
 
                 </form>

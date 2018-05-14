@@ -18,7 +18,11 @@
       <nav class="light-blue lighten-1">
           <div class="container">
               <div class="nav-wrapper">
-                  <a href="#!" class="brand-logo">MOTIC</a>
+                  @if (Auth::guest())
+                  <a href="{{ route('home-inicio') }}" class="brand-logo">MOTIC</a>
+                  @else
+                  <a href="{{ route(Auth::user()->tipoUser.'/home') }}" class="brand-logo">MOTIC</a>
+                  @endif
                   <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
                   @if (Auth::guest())
@@ -28,8 +32,18 @@
                       </ul>
                   @else
                       <ul class="right hide-on-med-and-down">
-                          @yield('menu')
-                          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                          @if (Auth::user()->tipoUser == 'admin')
+                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Home</a></li>
+                              <li><a href="{{route ('admin/avaliador/home')}}">Avaliadores</a></li>
+                              <li><a href="{{route ('admin/disciplinas/home')}}">Disciplinas</a></li>
+                              <li><a href="{{route ('admin/escola/home')}}">Escolas</a></li>
+                              <li><a href="{{route ('admin/projeto/home')}}">Projetos</a></li>
+                              @yield('menu')
+                              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                          @elseif (Auth::user()->tipoUser == 'avaliador')
+                              @yield('menu')
+                              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                          @endif
                       </ul>
                   @endif
 

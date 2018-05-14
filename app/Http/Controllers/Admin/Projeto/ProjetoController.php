@@ -1,79 +1,94 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: eduardo.dgi
+ * Date: 14/05/2018
+ * Time: 09:32
+ */
 
-namespace App\Http\Controllers\Admin\Avaliador;
+namespace App\Http\Controllers\Admin\Projeto;
 
-use App\Avaliador;
-use App\Dados_Pessoais;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use App\Usuario;
+use App\Escola;
 use App\Endereco;
 use App\Auditoria;
 
-class AvaliadorController extends Controller
+class ProjetoController
 {
-
     private $auditoriaController;
+    private $auditoria;
     private $user;
-    private $avaliador;
+    private $escola;
     private $endereco;
-    private $dados_pessoais;
     private $request;
 
     public function __construct(AuditoriaController $auditoriaController)
     {
         $this->auditoriaController = $auditoriaController;
         $this->auditoria = new Auditoria();
-        $this->avaliador = new Avaliador();
         $this->user = new User();
+        $this->escola = new Escola();
         $this->endereco = new Endereco();
-        $this->dados_pessoais = new Dados_Pessoais();
     }
 
     public function index(){
-        return view('admin/avaliador/home');
+        return view('admin/projeto/home');
     }
 
-    public function paginaCadastrarAvaliador(){
-        return view('admin/avaliador/cadastro/registro');
+    public function paginaCadastrarEscola(){
+        return view('admin/projeto/cadastro/registro');
     }
 
     public function editar($id){
         $user = User::find($id);
-        return view('admin/avaliador/editar/editar', compact('user'));
+        return view('admin/escola/editar/editar', compact('user'));
+    }
+
+    public function busca()
+    {
+        $escolas = Escola::all();
+        return view('admin/escola/busca/buscar', compact('escolas'));
     }
 
     public function store(Request $req)
     {
-        $this->request = $req->all() + ['tipoUser' => 'avaliador'];
+        $this->request = $req->all() + ['tipoUser' => 'escola'];
 
-        //dd($this->request);
-
-        //cadastra o usuario do avaliador
+        //cadastra o usuario da escola
         $user = $this->createUser();
 
         //pega o id do usuario
         $this->request += ['user_id' => $user->id];
 
-        //cadastra os dados do avaliador
-        $this->createAvaliador();
+        //cadastra a escola em si
+        $escola = $this->createEscola();
 
         //cadastra o endereço da escola
         $this->createEndereco();
 
         //se tudo for cadastrado
         return redirect()
-            ->route('admin/avaliador/home')
-            ->with('success', 'Avaliador cadastrado com sucesso!');
+            ->route('admin/escola/home')
+            ->with('success', 'Escola cadastrada com sucesso!');
 
     }
 
-    public function busca()
-    {
-        $avaliadores = Avaliador::all();
-        return view('admin/avaliador/busca/buscar', compact('avaliadores'));
+    public function delete($id){
+        $user = User::find($id);
+        $user->delete();
+
+        $this->salvaAuditoria("delete",
+            "Exclusão do usuário realizada pelo ".auth()->user()->username,
+            auth()->user()->name,
+            $user->id,
+            auth()->id());
+
+        $escolas = Escola::all();
+        return view('admin/escola/busca/buscar', compact('escolas'));
     }
 
     public function update(Request $req, $id)
@@ -88,9 +103,9 @@ class AvaliadorController extends Controller
             $user->id,
             auth()->id());
 
-        $user->avaliador->update($this->request);
+        $user->escola->update($this->request);
         $this->salvaAuditoria("update",
-            "Feito a edição dos dados do avaliador pelo " . auth()->user()->username,
+            "Feito a edição dos dados da escola pelo " . auth()->user()->username,
             auth()->user()->name,
             $user->id,
             auth()->id());
@@ -102,31 +117,10 @@ class AvaliadorController extends Controller
             $user->id,
             auth()->id());
 
-        $user->dados_pessoais->update($this->request);
-        $this->salvaAuditoria("update",
-            "Feito a edição dos dados pessoais pelo " . auth()->user()->username,
-            auth()->user()->name,
-            $user->id,
-            auth()->id());
-
         //se tudo for cadastrado
         return redirect()
-            ->route('admin/avaliador/home')
-            ->with('success', 'Avaliador editado com sucesso!');
-    }
-
-    public function delete($id){
-        $user = User::find($id);
-        $user->delete();
-
-        $this->salvaAuditoria("delete",
-            "Exclusão do avaliador realizada pelo ".auth()->user()->username,
-            auth()->user()->name,
-            $user->id,
-            auth()->id());
-
-        $avaliadores = Avaliador::all();
-        return view('admin/avaliador/busca/buscar', compact('avaliadores'));
+            ->route('admin/escola/home')
+            ->with('success', 'Escola editada com sucesso!');
     }
 
     private function getUser($id)
@@ -148,25 +142,24 @@ class AvaliadorController extends Controller
         return $user;
     }
 
-    private function createAvaliador()
+    private function createEscola()
     {
-        $avaliador = Avaliador::create($this->request);
-        $dados_pessoais = Dados_Pessoais::create($this->request);
-        $this->statusCreate($avaliador, "avaliador");
-        $this->statusCreate($dados_pessoais, "dados pessoais");
-
+        $escola = Escola::create($this->request);
+        $this->statusCreate($escola, "escola");
 
         $this->salvaAuditoria("create",
-            "Avaliador cadastrado pelo ".auth()->user()->username,
+            "Escola cadastrada pelo ".auth()->user()->username,
             auth()->user()->name,
-            $avaliador->id,
+            $escola->id,
             auth()->id());
+
+        return $escola;
     }
 
     private function createEndereco()
     {
         $endereco = Endereco::create($this->request);
-        $this->statusCreate($endereco, "endereço");
+        $this->statusCreate($endereco, "endereco");
 
         $this->salvaAuditoria("create",
             "Endereço cadastrado pelo ".auth()->user()->username,

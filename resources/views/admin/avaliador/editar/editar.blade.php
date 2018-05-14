@@ -10,6 +10,8 @@
         </div>
     @endif
 
+    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
+
     <section class="container">
         <div class="row">
             <h3 class="center-align">Editar Avaliador</h3>
@@ -27,7 +29,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">today</i>
                             <label for="nascimento">Nascimento</label>
-                            <input type="text" class="datepicker" name="nascimento" required value="{{$user->dados_pessoais->nascimento}}">>
+                            <input type="text" class="datepicker" name="nascimento" required value="{{$user->dados_pessoais->nascimento}}">
                         </div>
                     </div>
                     <div class="row">
@@ -153,7 +155,7 @@
                     </div>
 
                     <p class="center-align">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>próximo</button>
+                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>
 
                 </form>

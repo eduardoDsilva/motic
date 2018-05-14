@@ -20,47 +20,31 @@
     <div class="col s12 m4 l8">
 
         <div class="row">
-            <a href="{{route ('admin/cadastrar/escola')}}">
-                <div class="col s12 m4">
+            <a href="{{route ('admin/projeto/cadastro/registro')}}">
+                <div class="col s12 m6">
                     <div class="card red darken-2">
                         <div class="card-content black-text center-align">
-                            <i class="large material-icons">school</i>
+                            <i class="large material-icons">border_color</i>
                         </div>
                         <div class="card-action white-text">
                             <span class="card-title">Cadastrar projeto</span>
 
-                            <p>Clique aqui para cadastrar projetos no sistema.</p>
+                            <p>Clique aqui para cadastrar um projeto no sistema.</p>
                         </div>
                     </div>
                 </div>
             </a>
 
-            <a href="{{route ('admin/cadastrar/escola')}}">
-                <div class="col s12 m4">
+            <a href="{{route ('admin/projeto/busca/buscar')}}">
+                <div class="col s12 m6">
                     <div class="card blue darken-2">
                         <div class="card-content black-text center-align">
-                            <i class="large material-icons">library_add</i>
+                            <i class="large material-icons">bookmark_border</i>
                         </div>
                         <div class="card-action white-text">
-                            <span class="card-title">Projetos</span>
+                            <span class="card-title">Verificar projetos</span>
 
-                            <p>Clique aqui para entrar nas opções dos projetos no sistema.</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-
-            <a href="{{route ('admin/cadastrar/escola')}}">
-                <div class="col s12 m4">
-                    <div class="card orange darken-2">
-                        <div class="card-content black-text center-align">
-                            <i class="large material-icons">contacts</i>
-                        </div>
-                        <div class="card-action white-text">
-                            <span class="card-title">Avaliadores</span>
-
-                            <p>Clique aqui para entrar nas opções dos avaliadores no sistema.</p>
+                            <p>Clique aqui para verificar os projetos.</p>
                         </div>
                     </div>
                 </div>
@@ -70,3 +54,4 @@
 </div>
 
 @endsection
+
