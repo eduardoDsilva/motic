@@ -26,7 +26,7 @@ class CreateProjetosTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             //criando o FK de equipes
-            $table->unsignedInteger('equipe_id')->unique();
+            $table->unsignedInteger('equipe_id')->nullable()->unique();
             $table->foreign('equipe_id')->references('id')->on('equipes')->onDelete('cascade');
 
             //criando o FK de instituicao

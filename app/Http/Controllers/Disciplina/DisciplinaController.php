@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Escola;
+namespace App\Http\Controllers\Disciplina;
 
+use App\Disciplina;
 use App\Http\Controllers\Auditoria\AuditoriaController;
-use App\Http\Controllers\Controller;
-use App\Escola;
-use App\User;
-use Illuminate\Support\Facades\Auth;
 
-class EscolaController extends Controller
+class DisciplinaController
 {
 
     private $auditoriaController;
@@ -20,19 +17,18 @@ class EscolaController extends Controller
 
     public function buscar()
     {
-        $escolas = Escola::all();
+        $disciplinas = Disciplina::all();
         try{
-            return $escolas;
+            return $disciplinas;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
     public function editar($id){
-
-        $escola = Escola::find($id);
+        $disciplina = Disciplina::find($id);
         try{
-            return $escola;
+            return $disciplina;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -40,12 +36,12 @@ class EscolaController extends Controller
 
     public function store($request)
     {
-        $escola = Escola::create($request);
+        $disciplina = Disciplina::create($request);
         $this->auditoriaController->storeCreate(
-            'Criada a escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Criada a disciplina '.$disciplina->name.' pelo usuário '.auth()->name,
+            $disciplina->id);
         try{
-            return $escola;
+            return $disciplina;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -53,15 +49,14 @@ class EscolaController extends Controller
 
     public function delete($id){
 
-        $escola = Escola::find($id);
-        $usuario = User::find($escola->users->id);
-        $escolas = $usuario->delete();
+        $disciplina = Disciplina::find($id);
+        $disciplina = $disciplina->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletada a Escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Deletada a disciplina '.$disciplina->name.' pelo usuário '.auth()->name,
+            $disciplina->id);
         try{
-            return $escolas;
+            return $disciplina;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -69,18 +64,24 @@ class EscolaController extends Controller
 
     public function update($req, $id)
     {
-        $escola = Escola::find($id);
-
-        $escola->update($req->all());
+        $disciplina = $this->getDisciplina($id);
+        $disciplina->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editada a escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Editada a disciplina '.$disciplina->name.' pelo usuário '.auth()->name,
+            $disciplina->id);
+
         try{
-            return $escola;
+            return $disciplina;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
+
+    private function getDisciplina($id)
+    {
+        return $this->disciplina->find($id);
+    }
+
 
 
 }

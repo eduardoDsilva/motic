@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Escola;
+namespace App\Http\Controllers\Usuario;
 
 use App\Http\Controllers\Auditoria\AuditoriaController;
-use App\Http\Controllers\Controller;
-use App\Escola;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class EscolaController extends Controller
+class UsuarioController
 {
 
     private $auditoriaController;
+    private $user;
 
     public function __construct(AuditoriaController $auditoriaController)
     {
@@ -20,9 +19,9 @@ class EscolaController extends Controller
 
     public function buscar()
     {
-        $escolas = Escola::all();
+        $users = User::all();
         try{
-            return $escolas;
+            return $users;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -30,9 +29,9 @@ class EscolaController extends Controller
 
     public function editar($id){
 
-        $escola = Escola::find($id);
+        $user = User::find($id);
         try{
-            return $escola;
+            return $user;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -40,12 +39,12 @@ class EscolaController extends Controller
 
     public function store($request)
     {
-        $escola = Escola::create($request);
+        $user = User::create($request);
         $this->auditoriaController->storeCreate(
-            'Criada a escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Criado o usuário '.$user.' pelo usuário '.Auth::user()->name,
+            $user->id);
         try{
-            return $escola;
+            return $user;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -53,15 +52,14 @@ class EscolaController extends Controller
 
     public function delete($id){
 
-        $escola = Escola::find($id);
-        $usuario = User::find($escola->users->id);
-        $escolas = $usuario->delete();
+        $user = User::find($id);
+        $user = $user->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletada a Escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Deletado o usuário '.$user.' pelo usuário '.Auth::user()->name,
+            $user->id);
         try{
-            return $escolas;
+            return $user;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -69,18 +67,22 @@ class EscolaController extends Controller
 
     public function update($req, $id)
     {
-        $escola = Escola::find($id);
-
-        $escola->update($req->all());
+        $user = $this->getUser($id);
+        $user->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editada a escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Editado o usuário '.$user.' pelo usuário '.Auth::user()->name,
+            $user->id);
+
         try{
-            return $escola;
+            return $user;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
+    private function getUser($id)
+    {
+        return $this->user->find($id);
+    }
 
 }

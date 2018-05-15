@@ -44,7 +44,7 @@
                         <td>{{$avaliador->user->dados_pessoais->telefone}}</td>
                         <td>{{$avaliador->user->endereco->rua}}</td>
                         <td>
-                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/avaliador/update/".$avaliador->user->id."/editar") }}">Editar</a>
+                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/avaliador/update/".$avaliador->id."/editar") }}">Editar</a>
                             <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
                             <p>Você tem certeza que deseja deletar o avaliador?</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ url("/admin/avaliador/deletar/".$avaliador->user->id."/excluir") }}" class="btn red">Sim</a>
+                            <a href="{{ url("/admin/avaliador/deletar/".$avaliador->id."/excluir") }}" class="btn red">Sim</a>
                         </div>
                     </div>
                 @empty

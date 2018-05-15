@@ -16,7 +16,7 @@
         <div class="row">
             <h3 class="center-align">Editar Avaliador</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/disciplinas/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/disciplinas/".$disciplina->id) }}">
                         <h4>Editar disciplina</h4>
                         {{ csrf_field() }}
                         <div class="row">

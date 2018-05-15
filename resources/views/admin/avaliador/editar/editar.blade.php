@@ -16,7 +16,7 @@
         <div class="row">
             <h3 class="center-align">Editar Avaliador</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$user->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$avaliador->id) }}">
                     {{ csrf_field() }}
                     <h5>Dados básicos</h5>
 
@@ -24,12 +24,12 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Nome</label>
-                            <input type="text" name="name" required value="{{$user->name}}">
+                            <input type="text" name="name" required value="{{$avaliador->user->dados_pessoais->name}}">
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">today</i>
                             <label for="nascimento">Nascimento</label>
-                            <input type="text" class="datepicker" name="nascimento" required value="{{$user->dados_pessoais->nascimento}}">
+                            <input type="text" class="datepicker" name="nascimento" required value="{{$avaliador->user->dados_pessoais->nascimento}}">
                         </div>
                     </div>
                     <div class="row">
@@ -37,8 +37,8 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
-                                <option value="masculino" @if($user->dados_pessoais->sexo=='masculino') selected @endif>Masculino</option>
-                                <option value="feminino" @if($user->dados_pessoais->sexo=='feminino') selected @endif>Feminino</option>
+                                <option value="masculino" @if($avaliador->user->dados_pessoais->sexo=='masculino') selected @endif>Masculino</option>
+                                <option value="feminino" @if($avaliador->user->dados_pessoais->sexo=='feminino') selected @endif>Feminino</option>
                             </select>
                             <label>Sexo</label>
                         </div>
@@ -47,9 +47,9 @@
                             <i class="material-icons prefix">book</i>
                             <select name="grauDeInstrucao">
                                 <option value="" disabled>Grau de Instrução</option>
-                                <option value="Ensino Fundamental" @if($user->dados_pessoais->grauDeInstrucao=='Ensino Fundamental') selected @endif>Ensino Fundamental</option>
-                                <option value="Ensino Médio" @if ($user->dados_pessoais->grauDeInstrucao=='Ensino Médio') selected @endif>Ensino Médio</option>
-                                <option value="Ensino Superior"  @if($user->dados_pessoais->grauDeInstrucao=='Ensino Superior') selected @endif>Ensino Superior</option>
+                                <option value="Ensino Fundamental" @if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Fundamental') selected @endif>Ensino Fundamental</option>
+                                <option value="Ensino Médio" @if ($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Médio') selected @endif>Ensino Médio</option>
+                                <option value="Ensino Superior"  @if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Superior') selected @endif>Ensino Superior</option>
                             </select>
                             <label>Grau de Instrução</label>
                         </div>
@@ -60,19 +60,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">email</i>
                             <label for="email">Email</label>
-                            <input type="email" name="email" required  value="{{$user->email}}">
+                            <input type="email" name="email" required  value="{{$avaliador->user->email}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" required  value="{{$user->dados_pessoais->telefone}}">
+                            <input type="text" name="telefone" required  value="{{$avaliador->user->dados_pessoais->telefone}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF</label>
-                            <input type="number" name="cpf" value="{{$user->dados_pessoais->cpf}}">
+                            <input type="number" name="cpf" value="{{$avaliador->user->dados_pessoais->cpf}}">
                         </div>
                     </div>
 
@@ -82,13 +82,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <label for="cep">CEP</label>
-                            <input type="number" name="cep" required  value="{{$user->endereco->cep}}">
+                            <input type="number" name="cep" required  value="{{$avaliador->user->endereco->cep}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">business</i>
                             <label for="bairro">Bairro</label>
-                            <input type="text" name="bairro" required  value="{{$user->endereco->bairro}}">
+                            <input type="text" name="bairro" required  value="{{$avaliador->user->endereco->bairro}}">
                         </div>
                     </div>
 
@@ -96,19 +96,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <label for="rua">Rua</label>
-                            <input type="text" name="rua" required value="{{$user->endereco->rua}}">
+                            <input type="text" name="rua" required value="{{$avaliador->user->endereco->rua}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">filter_1</i>
                             <label for="numero">N°</label>
-                            <input type="number" name="numero" required value="{{$user->endereco->numero}}">
+                            <input type="number" name="numero" required value="{{$avaliador->user->endereco->numero}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" required value="{{$user->endereco->complemento}}">
+                            <input type="text" name="complemento" required value="{{$avaliador->user->endereco->complemento}}">
                         </div>
                     </div>
 
@@ -116,19 +116,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="cidade">Cidade</label>
-                            <input type="text" name="cidade" required value="{{$user->endereco->cidade}}">
+                            <input type="text" name="cidade" required value="{{$avaliador->user->endereco->cidade}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="estado">Estado</label>
-                            <input type="text" name="estado" required value="{{$user->endereco->estado}}">
+                            <input type="text" name="estado" required value="{{$avaliador->user->endereco->estado}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="pais">País</label>
-                            <input type="text" name="pais" required value="{{$user->endereco->pais}}">
+                            <input type="text" name="pais" required value="{{$avaliador->user->endereco->pais}}">
                         </div>
                     </div>
 
@@ -137,20 +137,20 @@
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
                         <label for="usuario">Usuário</label>
-                        <input type="text" name="username" required value="{{$user->username}}">
+                        <input type="text" name="username" required value="{{$avaliador->user->username}}">
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" required value="{{$user->password}}">
+                            <input type="password" name="password" required value="{{$avaliador->user->password}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" required value="{{$user->password}}">
+                            <input type="password" name="password_confirmation" required value="{{$avaliador->user->password}}">
                         </div>
                     </div>
 

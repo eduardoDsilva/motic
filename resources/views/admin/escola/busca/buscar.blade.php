@@ -28,6 +28,7 @@
         <table>
             <thead>
             <tr>
+                <th>id</th>
                 <th>Nome</th>
                 <th>Tipo Escola</th>
                 <th>Telefone</th>
@@ -40,6 +41,7 @@
             @forelse ($escolas as $escola)
                 <tbody>
                 <tr>
+                    <td>{{$escola->id}}</td>
                     <td>{{$escola->name}}</td>
                     <td>{{$escola->tipoEscola}}</td>
                     <td>{{$escola->telefone}}</td>
@@ -47,7 +49,7 @@
                     <td>{{$escola->users->email}}</td>
                     <td>{{$escola->users->username}}</td>
                     <td>
-                        <a class="btn deep-orange modal-trigger" href="{{ url("/admin/escola/update/".$escola->users->id."/editar") }}">Editar</a>
+                        <a class="btn deep-orange modal-trigger" href="{{ url("/admin/escola/update/".$escola->id."/editar") }}">Editar</a>
                         <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
                     </td>
                 </tr>
@@ -60,7 +62,7 @@
                         <p>Você tem certeza que deseja deletar essa escola?</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ url("admin/escola/deletar/".$escola->users->id."/excluir") }}" class="btn red">Sim</a>
+                        <a href="{{ url("admin/escola/deletar/".$escola->id."/excluir") }}" class="btn red">Sim</a>
                     </div>
                 </div>
             @empty

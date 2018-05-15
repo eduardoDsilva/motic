@@ -23,23 +23,23 @@ class DisciplinaTableSeeder extends Seeder {
         DB::table('disciplinas')->delete();
 
         Disciplina::create([
-            'nome' => 'História',
+            'name' => 'História',
             'descricao'  => 'Descrição da disciplina de história',
         ]);
         Disciplina::create([
-            'nome' => 'Matemática',
+            'name' => 'Matemática',
             'descricao'  => 'Descrição da disciplina de Matemáticas',
         ]);
         Disciplina::create([
-            'nome' => 'Geografia',
+            'name' => 'Geografia',
             'descricao'  => 'Descrição da disciplina de Geografia',
         ]);
         Disciplina::create([
-            'nome' => 'Filosofia',
+            'name' => 'Filosofia',
             'descricao'  => 'Descrição da disciplina de Filosofia',
         ]);
         Disciplina::create([
-            'nome' => 'Química',
+            'name' => 'Química',
             'descricao'  => 'Descrição da disciplina de Química',
         ]);
     }
@@ -61,6 +61,5 @@ class UserTableSeeder extends Seeder {
     }
 
 }
-
 
 

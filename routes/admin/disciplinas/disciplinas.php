@@ -12,7 +12,7 @@ Route::post('admin/disciplinas/cadastro/registro', 'Admin\Disciplinas\Disciplina
 Route::post("/admin/disciplinas/{id}", 'Admin\Disciplinas\DisciplinasController@update');
 
 //encaminha para a tela de listar disciplinas
-Route::get('admin/disciplinas/busca/buscar', 'Admin\Disciplinas\DisciplinasController@busca')->name("admin/disciplinas/busca/buscar");
+Route::get('admin/disciplinas/busca/buscar', 'Admin\Disciplinas\DisciplinasController@buscar')->name("admin/disciplinas/busca/buscar");
 
 //encaminha para o controller, aonde a disciplina é deletada
 Route::get("admin/disciplinas/deletar/{id}/excluir", "Admin\Disciplinas\DisciplinasController@delete");

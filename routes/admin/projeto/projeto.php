@@ -6,7 +6,7 @@
 Route::get('admin/projeto/home', 'Admin\Projeto\ProjetoController@index')->name('admin/projeto/home');
 
 //tela de cadastro de escolas pelo admin
-Route::get('admin/projeto/cadastro/registro', 'Admin\projeto\ProjetoController@paginaCadastrarEscola')->name('admin/projeto/cadastro/registro');
+Route::get('admin/projeto/cadastro/registro', 'Admin\projeto\ProjetoController@paginaCadastrarProjeto')->name('admin/projeto/cadastro/registro');
 
 //encaminha o post para EscolaController. Lá é feita a mágica de cadastrar no banco de dados.
 Route::post('admin/projeto/cadastro/registro', 'Admin\projeto\ProjetoController@store')->name('admin/projeto/cadastro/registro');
@@ -15,7 +15,7 @@ Route::post('admin/projeto/cadastro/registro', 'Admin\projeto\ProjetoController@
 Route::post("/admin/projeto/{id}", 'Admin\projeto\ProjetoController@update');
 
 //encaminha para a tela de listar escolas
-Route::get('admin/projeto/busca/buscar', 'Admin\projeto\ProjetoController@busca')->name("admin/projeto/busca/buscar");
+Route::get('admin/projeto/busca/buscar', 'Admin\projeto\ProjetoController@buscar')->name("admin/projeto/busca/buscar");
 
 //encaminha para o controller, aonde a escola é deletada
 Route::get("admin/projeto/deletar/{id}/excluir", "Admin\projeto\ProjetoController@delete");

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Escola;
+namespace App\Http\Controllers\DadosPessoais;
 
+use App\Dados_Pessoais;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Escola;
+use App\Avaliador;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class EscolaController extends Controller
+class DadosPessoaisController extends Controller
 {
 
     private $auditoriaController;
@@ -20,9 +21,9 @@ class EscolaController extends Controller
 
     public function buscar()
     {
-        $escolas = Escola::all();
+        $dados = Dados_Pessoais::all();
         try{
-            return $escolas;
+            return $dados;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -30,9 +31,9 @@ class EscolaController extends Controller
 
     public function editar($id){
 
-        $escola = Escola::find($id);
+        $dado = Dados_Pessoais::find($id);
         try{
-            return $escola;
+            return $dado;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -40,12 +41,12 @@ class EscolaController extends Controller
 
     public function store($request)
     {
-        $escola = Escola::create($request);
+        $dado = Dados_Pessoais::create($request);
         $this->auditoriaController->storeCreate(
-            'Criada a escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Criado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
+            $dado->id);
         try{
-            return $escola;
+            return $dado;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -53,15 +54,15 @@ class EscolaController extends Controller
 
     public function delete($id){
 
-        $escola = Escola::find($id);
-        $usuario = User::find($escola->users->id);
-        $escolas = $usuario->delete();
+        $dado = Dados_Pessoais::find($id);
+        $usuario = User::find($dado->users->id);
+        $dado = $usuario->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletada a Escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Deletado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
+            $dado->id);
         try{
-            return $escolas;
+            return $dado;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -69,14 +70,14 @@ class EscolaController extends Controller
 
     public function update($req, $id)
     {
-        $escola = Escola::find($id);
+        $dado = Avaliador::find($id);
 
-        $escola->update($req->all());
+        $dado->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editada a escola '.$escola.' pelo usuário '.Auth::user()->name,
-            $escola->id);
+            'Editado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
+            $dado->id);
         try{
-            return $escola;
+            return $dado;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

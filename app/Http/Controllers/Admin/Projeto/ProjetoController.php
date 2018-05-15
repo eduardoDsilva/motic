@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Admin\Projeto;
 
+use App\Disciplina;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -39,8 +40,9 @@ class ProjetoController
         return view('admin/projeto/home');
     }
 
-    public function paginaCadastrarEscola(){
-        return view('admin/projeto/cadastro/registro');
+    public function paginaCadastrarProjeto(){
+        $disciplinas = Disciplina::all();
+        return view('admin/projeto/cadastro/registro', compact('disciplinas'));
     }
 
     public function editar($id){

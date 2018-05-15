@@ -40,21 +40,10 @@
                         <td>{{$disciplina->descricao}}</td>
                         <td>
                             <a class="btn deep-orange modal-trigger" href="{{ url("/admin/disciplinas/update/".$disciplina->id."/editar") }}">Editar</a>
-                            <a data-target="modal2" class="btn red modal-trigger" href="#modal2">Deletar</a>
+                            <a {{session()->put('id', $disciplina->id)}}data-target="modal2" class="btn red modal-trigger" href="#modal2">Deletar</a>
                         </td>
                     </tr>
                     </tbody>
-
-                    <!-- Modal Structure -->
-                    <div id="modal2" class="modal">
-                        <div class="modal-content">
-                            <h4>Deletar</h4>
-                            <p>Você tem certeza que deseja deletar essa disciplina?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url("admin/disciplinas/deletar/".$disciplina->id."/excluir") }}" class="btn red">Sim</a>
-                        </div>
-                    </div>
                 @empty
                     <tbody>
                     <tr>
@@ -68,6 +57,17 @@
             </table>
 
             <br><br>
+
+            <!-- Modal Structure -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <h4>Deletar</h4>
+                    <p>Você tem certeza que deseja deletar essa disciplina?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url("admin/disciplinas/deletar/".session()->get('id')."/excluir") }}" class="btn red">Sim</a>
+                </div>
+            </div>
 
             <a data-target="modal3"  class="btn blue modal-trigger" href="#modal3">Adicionar disciplina</a>
 
