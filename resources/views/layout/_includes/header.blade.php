@@ -33,12 +33,12 @@
                   @else
                       <ul class="right hide-on-med-and-down">
                           @if (Auth::user()->tipoUser == 'admin')
-                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Professores</a></li>
                               <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Alunos</a></li>
-                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Equipes</a></li>
                               <li><a href="{{route ('admin/avaliador/home')}}">Avaliadores</a></li>
                               <li><a href="{{route ('admin/disciplinas/home')}}">Disciplinas</a></li>
+                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Equipes</a></li>
                               <li><a href="{{route ('admin/escola/home')}}">Escolas</a></li>
+                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Professores</a></li>
                               <li><a href="{{route ('admin/projeto/home')}}">Projetos</a></li>
                               @yield('menu')
                               <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -63,6 +63,7 @@
                                   {{ csrf_field() }}
                               </form>
                           </li>
+
                       @endif
                   </ul>
               </div>

@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: eduardo.dgi
- * Date: 15/05/2018
- * Time: 10:38
+ * Date: 16/05/2018
+ * Time: 08:34
  */
 
-namespace App\Http\Controllers\Endereco;
+namespace App\Http\Controllers\Aluno;
 
+
+use App\Aluno;
 use App\Http\Controllers\Auditoria\AuditoriaController;
-use App\Endereco;
 use App\Http\Controllers\Controller;
-use App\User;
-use Illuminate\Support\Facades\Auth;
 
-class EnderecoController extends Controller
+class AlunoController extends Controller
+
 {
 
     private $auditoriaController;
@@ -26,9 +26,9 @@ class EnderecoController extends Controller
 
     public function buscar()
     {
-        $enderecos = Endereco::all();
+        $alunos = Aluno::all();
         try{
-            return $enderecos;
+            return $alunos;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -36,9 +36,9 @@ class EnderecoController extends Controller
 
     public function editar($id){
 
-        $endereco = Endereco::find($id);
+        $aluno = Aluno::find($id);
         try{
-            return $endereco;
+            return $aluno;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -46,13 +46,12 @@ class EnderecoController extends Controller
 
     public function store($request)
     {
-        $endereco = Endereco::create($request);
+        $aluno = Aluno::create($request);
         $this->auditoriaController->storeCreate(
-            'Criado o endereço '.$endereco.' pelo usuário '.Auth::user()->name,
-            $endereco->id);
-
+            'Criado o aluno '.$aluno.' pelo usuário '.Auth::user()->name,
+            $aluno->id);
         try{
-            return $endereco;
+            return $aluno;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -60,14 +59,15 @@ class EnderecoController extends Controller
 
     public function delete($id){
 
-        $endereco = Endereco::find($id);
-        $endereco->delete();
+        $aluno = Aluno::find($id);
+        $usuario = User::find($aluno->users->id);
+        $usuario->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletado o endereço '.$endereco.' pelo usuário '.Auth::user()->name,
-            $endereco->id);
+            'Deletado o aluno '.$aluno.' pelo usuário '.Auth::user()->name,
+            $aluno->id);
         try{
-            return $endereco;
+            return $aluno;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -75,17 +75,18 @@ class EnderecoController extends Controller
 
     public function update($req, $id)
     {
-        $endereco = User::find($id);
-        $endereco->update($req->all());
-        $this->auditoriaController->storeUpdate(
-            'Editado o endereço '.$endereco.' pelo usuário '.Auth::user()->name,
-            $endereco->id);
+        $aluno = Aluno::find($id);
 
+        $aluno->update($req->all());
+        $this->auditoriaController->storeUpdate(
+            'Editado o aluno '.$aluno.' pelo usuário '.Auth::user()->name,
+            $aluno->id);
         try{
-            return $endereco;
+            return $aluno;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
+
 
 }

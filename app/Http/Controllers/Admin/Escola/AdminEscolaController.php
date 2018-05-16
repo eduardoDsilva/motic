@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Escola;
 
+use App\Escola;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Usuario\UsuarioController;
@@ -15,12 +16,14 @@ class AdminEscolaController extends Controller
     private $escolaController;
     private $enderecoController;
     private $request;
+    private $escola;
 
     public function __construct(UsuarioController $usuarioController, EscolaController $escolaController, EnderecoController $enderecoController)
     {
         $this->usuarioController = $usuarioController;
         $this->escolaController = $escolaController;
         $this->enderecoController = $enderecoController;
+        $this->escola = new Escola();
     }
 
     public function index(){
@@ -33,7 +36,6 @@ class AdminEscolaController extends Controller
 
     public function editar($id){
         $escola = $this->escolaController->editar($id);
-       // dd($escola->tipoEscola);
         return view('admin/escola/editar/editar', compact('escola'));
     }
 
@@ -75,9 +77,13 @@ class AdminEscolaController extends Controller
 
         $this->escolaController->update($req, $id);
 
-        $this->enderecoController->update($req, $id);
+        $teste = $this->escola->find($id);
 
-        $this->usuarioController->update($req, $id);
+        $idUser = $teste->users->id;
+
+        $this->enderecoController->update($req, $idUser);
+
+        $this->usuarioController->update($req, $idUser);
 
         $escolas = $this->escolaController->buscar();
         return redirect()

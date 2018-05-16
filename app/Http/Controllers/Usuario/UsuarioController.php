@@ -69,7 +69,6 @@ class UsuarioController extends Controller
     public function update($req, $id)
     {
         $user = User::find($id);
-        dd($user);
         $user->update($req->all());
         $this->auditoriaController->storeUpdate(
             'Editado o usuário '.$user.' pelo usuário '.Auth::user()->name,

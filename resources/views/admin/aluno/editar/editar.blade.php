@@ -38,7 +38,7 @@
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
                                 <option value="masculino"  <?php if($avaliador->user->dados_pessoais->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
-                                <option value="feminino" <?php if($avaliador->user->dados_pessoais->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
+                                <option value="feminino" <?php if($avaliador->user->dados_pessoais->sexo=='masculino'){ echo 'selected';} ?>>masculino</option>
                             </select>
                             <label>Sexo</label>
                         </div>

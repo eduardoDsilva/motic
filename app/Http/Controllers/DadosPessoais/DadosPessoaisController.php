@@ -41,6 +41,7 @@ class DadosPessoaisController extends Controller
 
     public function store($request)
     {
+       // dd($request);
         $dado = Dados_Pessoais::create($request);
         $this->auditoriaController->storeCreate(
             'Criado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
@@ -70,7 +71,7 @@ class DadosPessoaisController extends Controller
 
     public function update($req, $id)
     {
-        $dado = Avaliador::find($id);
+        $dado = User::find($id);
 
         $dado->update($req->all());
         $this->auditoriaController->storeUpdate(

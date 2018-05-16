@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Avaliador;
 
+use App\Avaliador;
 use App\Http\Controllers\Avaliador\AvaliadorController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DadosPessoais\DadosPessoaisController;
@@ -16,6 +17,7 @@ class AdminAvaliadorController extends Controller
     private $usuarioController;
     private $avaliadorController;
     private $enderecoController;
+    private $avaliador;
     private $request;
 
     public function __construct(DadosPessoaisController $dadosPessoaisController, UsuarioController $usuarioController, AvaliadorController $avaliadorController, EnderecoController $enderecoController)
@@ -24,6 +26,7 @@ class AdminAvaliadorController extends Controller
         $this->usuarioController = $usuarioController;
         $this->avaliadorController = $avaliadorController;
         $this->enderecoController = $enderecoController;
+        $this->avaliador = new Avaliador();
     }
 
     public function index(){
@@ -37,8 +40,6 @@ class AdminAvaliadorController extends Controller
     public function editar($id){
         $avaliador = $this->avaliadorController->editar($id);
 
-//        dd($avaliador->user->dados_pessoais->nascimento);
-
         return view('admin/avaliador/editar/editar', compact('avaliador'));
     }
 
@@ -50,7 +51,7 @@ class AdminAvaliadorController extends Controller
 
     public function store(Request $req)
     {
-        $this->request = $req->all() + ['tipoUser' => 'escola'] ;
+        $this->request = $req->all() + ['tipoUser' => 'avaliador'] ;
 
         $usuario = $this->usuarioController->store($this->request);
         $this->request += ['user_id' => $usuario->id];
@@ -80,13 +81,15 @@ class AdminAvaliadorController extends Controller
     {
         $this->request = $req->all() + ['tipoUser' => 'avaliador'] ;
 
-        $this->usuarioController->update($req, $id);
+        $teste = $this->avaliador->find($id);
 
-        $this->avaliadorController->update($req, $id);
+        $idUser = $teste->user->id;
 
-        $this->dadosPessoaisController->update($req, $id);
+        $this->usuarioController->update($req, $idUser);
 
-        $this->enderecoController->update($req, $id);
+        $this->dadosPessoaisController->update($req, $idUser);
+
+        $this->enderecoController->update($req, $idUser);
 
         $avaliadores = $this->avaliadorController->buscar();
         return redirect()

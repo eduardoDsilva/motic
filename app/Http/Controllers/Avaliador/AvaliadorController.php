@@ -67,20 +67,4 @@ class AvaliadorController extends Controller
         }
     }
 
-    public function update($req, $id)
-    {
-        $avaliador = Avaliador::find($id);
-
-        $avaliador->update($req->all());
-        $this->auditoriaController->storeUpdate(
-            'Editada a escola '.$avaliador.' pelo usuário '.Auth::user()->name,
-            $avaliador->id);
-        try{
-            return $avaliador;
-        }catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
-        }
-    }
-
-
 }

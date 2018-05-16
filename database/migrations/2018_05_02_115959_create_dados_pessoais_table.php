@@ -19,7 +19,7 @@ class CreateDadosPessoaisTable extends Migration
             $table->string('nascimento');
             $table->enum('sexo',['masculino','feminino', "nao especificado"])->default('nao especificado');
             $table->string('email')->unique();
-            $table->string('telefone');
+            $table->string('telefone')->nullable();
             $table->string('grauDeInstrucao');
             $table->string('cpf')->nullable();
 

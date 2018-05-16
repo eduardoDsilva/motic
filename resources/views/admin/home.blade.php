@@ -70,12 +70,82 @@
                 <div class="col s12 m4">
                     <div class="card green darken-2">
                         <div class="card-content black-text center-align">
-                            <i class="large material-icons">archive</i>
+                            <i class="large material-icons">note</i>
                         </div>
                         <div class="card-action white-text">
                             <span class="card-title">Disciplinas</span>
 
                             <p>Clique aqui para entrar nas opções de disciplinas no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{route ('admin/aluno/home')}}">
+                <div class="col s12 m4">
+                    <div class="card pink darken-2">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">person</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Alunos</span>
+
+                            <p>Clique aqui para entrar nas opções de disciplinas no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{route ('admin/disciplinas/home')}}">
+                <div class="col s12 m4">
+                    <div class="card amber darken-2">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">person</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Professores</span>
+
+                            <p>Clique aqui para entrar nas opções de professores no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{route ('admin/disciplinas/home')}}">
+                <div class="col s12 m4">
+                    <div class="card cyan darken-2">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">people</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Equipes</span>
+
+                            <p>Clique aqui para entrar nas opções de equipes no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{route ('admin/disciplinas/home')}}">
+                <div class="col s12 m4">
+                    <div class="card blue-grey darken-2">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">format_list_bulleted</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Auditoria</span>
+
+                            <p>Clique aqui para entrar nas opções de auditoria do sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{route ('admin/disciplinas/home')}}">
+                <div class="col s12 m4">
+                    <div class="card teal darken-2">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">supervisor_account</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Usuários</span>
+
+                            <p>Clique aqui para entrar nas opções dos usuários no sistema.</p>
                         </div>
                     </div>
                 </div>
