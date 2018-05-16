@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Professor extends Model
 {
+    protected $table = "professores";
+
     protected $fillable = [
-        'name', 'escola_id', 'user_id'
+        'escola_id', 'user_id'
     ];
 
     public function user()
@@ -23,5 +25,10 @@ class Professor extends Model
     public function coorientador()
     {
         return $this->belongsTo(Coorientador::class,'professor_id');
+    }
+
+    public function escola()
+    {
+        return $this->belongsTo(Escola::class, 'escola_id', 'id');
     }
 }

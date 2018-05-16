@@ -68,7 +68,7 @@ class DisciplinaController extends Controller
 
     public function update($req, $id)
     {
-        $disciplina = $this->getDisciplina($id);
+        $disciplina = Disciplina::find($id);
         $disciplina->update($req->all());
         $this->auditoriaController->storeUpdate(
             'Editada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
@@ -79,11 +79,6 @@ class DisciplinaController extends Controller
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
-    }
-
-    private function getDisciplina($id)
-    {
-        return $this->disciplina->find($id);
     }
 
 

@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </a>
-            <a href="{{route ('admin/disciplinas/home')}}">
+            <a href="{{route ('admin/professor/home')}}">
                 <div class="col s12 m4">
                     <div class="card amber darken-2">
                         <div class="card-content black-text center-align">

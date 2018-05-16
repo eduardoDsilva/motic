@@ -16,7 +16,6 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
-
 {
 
     private $auditoriaController;
