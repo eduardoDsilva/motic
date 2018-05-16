@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Aluno;
 use App\Aluno;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
 

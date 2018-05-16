@@ -41,8 +41,8 @@
                         <td>{{$aluno->user->dados_pessoais->name}}</td>
                         <td>{{$aluno->user->username}}</td>
                         <td>{{$aluno->escola->name}}</td>
-                        <td>{{"Equipe ".$aluno->equipe->id}}</td>
-                        <td>{{$aluno->equipe->projeto->titulo}}</td>
+                        <td>{{( $aluno->equipe ? $aluno->equipe->id : "Aluno ainda sem equipe" )}}</td>
+                        <td>{{( $aluno->equipe ? $aluno->equipe->projeto->id ? $aluno->equipe->projeto->titulo : "Aluno ainda sem projeto" : "Aluno ainda sem projeto" )}}</td>
                         <td>
                             <a class="btn deep-orange modal-trigger" href="{{ url("/admin/avaliador/update/".$aluno->id."/editar") }}">Editar</a>
                             <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
@@ -56,7 +56,7 @@
                             <p>Você tem certeza que deseja deletar o aluno?</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ url("/admin/avaliador/deletar/".$avaliador->id."/excluir") }}" class="btn red">Sim</a>
+                            <a href="{{ url("/admin/avaliador/deletar/".$aluno->id."/excluir") }}" class="btn red">Sim</a>
                         </div>
                     </div>
                 @empty

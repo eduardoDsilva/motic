@@ -8,6 +8,7 @@ use App\Http\Controllers\DadosPessoais\DadosPessoaisController;
 use App\Http\Controllers\Escola\EscolaController;
 use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Endereco\EnderecoController;
+use Illuminate\Http\Request;
 
 class AdminAlunoController extends Controller
 {
@@ -48,7 +49,8 @@ class AdminAlunoController extends Controller
     public function buscar()
     {
         $alunos = $this->alunoController->buscar();
-        return view("admin/avaliador/busca/buscar", compact('alunos'));
+
+        return view("admin/aluno/busca/buscar", compact('alunos'));
     }
 
     public function store(Request $req)

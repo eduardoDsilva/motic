@@ -17,7 +17,7 @@ class Aluno extends Model
 
     public function equipe()
     {
-        return $this->belongsTo(Equipe::class, 'aluno_id', 'id');
+        return $this->belongsTo(Equipe::class, 'id');
     }
 
     public function escola()

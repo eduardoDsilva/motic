@@ -17,7 +17,7 @@
         <div class="row">
             <h3 class="center-align">Cadastrar Aluno</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/avaliador/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/aluno/cadastro/registro') }}">
                     {{ csrf_field() }}
                     <h5>Dados básicos</h5>
 

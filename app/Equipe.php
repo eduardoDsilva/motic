@@ -13,7 +13,7 @@ class Equipe extends Model
 
     public function aluno()
     {
-        return $this->belongsTo(Aluno::class, 'aluno_id', 'id');
+        return $this->belongsTo(Aluno::class, 'id');
     }
 
     public function projeto()

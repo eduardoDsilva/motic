@@ -46,6 +46,7 @@ class AdminAvaliadorController extends Controller
     public function buscar()
     {
         $avaliadores = $this->avaliadorController->buscar();
+
         return view("admin/avaliador/busca/buscar", compact('avaliadores'));
     }
 

@@ -40,7 +40,7 @@
                     </div>
                 </a>
 
-                <a href="{{route ('admin/avaliador/busca/buscar')}}">
+                <a href="{{route ('admin/aluno/busca/buscar')}}">
                     <div class="col s12 m4">
                         <div class="card blue darken-2">
                             <div class="card-content black-text center-align">
