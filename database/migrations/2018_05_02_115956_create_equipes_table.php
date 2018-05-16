@@ -16,9 +16,13 @@ class CreateEquipesTable extends Migration
         Schema::create('equipes', function (Blueprint $table) {
             $table->increments('id');
 
+            //criando o fk de equipe
+            $table->string('equipe')->default('não');
+
             //criando o fk de professores
             $table->unsignedInteger('professor_id')->unique();
             $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
+
 
             //criando o FK de alunos
             $table->unsignedInteger('aluno_id')->unique();
