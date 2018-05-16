@@ -79,7 +79,15 @@ class AvaliadorrController extends Controller
     public function update(Request $req, $id)
     {
         $this->request = $req->all() + ['tipoUser' => 'avaliador'] ;
+
+        $this->usuarioController->update($req, $id);
+
         $this->avaliadorController->update($req, $id);
+
+        $this->dadosPessoaisController->update($req, $id);
+
+        $this->enderecoController->update($req, $id);
+
         $avaliadores = $this->avaliadorController->buscar();
         return redirect()
             ->route("admin/avaliador/busca/buscar")

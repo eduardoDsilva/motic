@@ -37,8 +37,8 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
-                                <option value="masculino" @if($avaliador->user->dados_pessoais->sexo=='masculino') selected @endif>Masculino</option>
-                                <option value="feminino" @if($avaliador->user->dados_pessoais->sexo=='feminino') selected @endif>Feminino</option>
+                                <option value="masculino"  <?php if($avaliador->user->dados_pessoais->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
+                                <option value="feminino" <?php if($avaliador->user->dados_pessoais->sexo=='masculino'){ echo 'selected';} ?>>masculino</option>
                             </select>
                             <label>Sexo</label>
                         </div>
@@ -47,9 +47,9 @@
                             <i class="material-icons prefix">book</i>
                             <select name="grauDeInstrucao">
                                 <option value="" disabled>Grau de Instrução</option>
-                                <option value="Ensino Fundamental" @if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Fundamental') selected @endif>Ensino Fundamental</option>
-                                <option value="Ensino Médio" @if ($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Médio') selected @endif>Ensino Médio</option>
-                                <option value="Ensino Superior"  @if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Superior') selected @endif>Ensino Superior</option>
+                                <option value="Ensino Fundamental" <?php if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Fundamental'){ echo 'selected';} ?>>Ensino Fundamental</option>
+                                <option value="Ensino Médio" <?php if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Médio'){ echo 'selected';}?>>Ensino Médio</option>
+                                <option value="Ensino Superior"  <?php if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Superior'){ echo 'selected';}?>>Ensino Superior</option>
                             </select>
                             <label>Grau de Instrução</label>
                         </div>

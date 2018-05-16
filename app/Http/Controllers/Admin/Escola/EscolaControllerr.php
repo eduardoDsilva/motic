@@ -72,7 +72,13 @@ class EscolaControllerr extends Controller
     public function update(Request $req, $id)
     {
         $this->request = $req->all() + ['tipoUser' => 'escola'] ;
+
         $this->escolaController->update($req, $id);
+
+        $this->enderecoController->update($req, $id);
+
+        $this->usuarioController->update($req, $id);
+
         $escolas = $this->escolaController->buscar();
         return redirect()
             ->route("admin/escola/busca/buscar")

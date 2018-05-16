@@ -67,7 +67,8 @@ class UsuarioController
 
     public function update($req, $id)
     {
-        $user = $this->getUser($id);
+        $user = User::find($id);
+        dd($user);
         $user->update($req->all());
         $this->auditoriaController->storeUpdate(
             'Editado o usuário '.$user.' pelo usuário '.Auth::user()->name,
@@ -78,11 +79,6 @@ class UsuarioController
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
-    }
-
-    private function getUser($id)
-    {
-        return $this->user->find($id);
     }
 
 }

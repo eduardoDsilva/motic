@@ -30,8 +30,8 @@
                             <i class="material-icons prefix">school</i>
                             <select name="tipoEscola">
                                 <option value="" disabled>Tipo</option>
-                                <option value="publica" @if($escola->tipoEsola=="publica") selected @endif>Pública</option>
-                                <option value="privada" @if($escola->tipoEsola=="privada") selected @endif>Privada</option>
+                                    <option value="publica" <?php if($escola->tipoEscola == "publica"){ echo 'selected';} ?>>Pública</option>
+                                    <option value="privada" <?php if($escola->tipoEscola == "privada"){ echo 'selected';} ?>>Privada</option>
                             </select>
                             <label>Tipo Escola</label>
                         </div>

@@ -74,7 +74,7 @@ class EnderecoController
 
     public function update($req, $id)
     {
-        $endereco = $this->getEndereco($id);
+        $endereco = Endereco::find($id);
         $endereco->update($req->all());
         $this->auditoriaController->storeUpdate(
             'Editado o endereço '.$endereco->name.' pelo usuário '.Auth::user()->name,
@@ -85,11 +85,6 @@ class EnderecoController
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
-    }
-
-    private function getEndereco($id)
-    {
-        return $this->endereco->find($id);
     }
 
 }
