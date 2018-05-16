@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Admin\Projeto;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Disciplina\DisciplinaController;
 use App\Http\Controllers\Projeto\ProjetoController;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,13 @@ class AdminProjetoController extends Controller
 {
 
     private $projetoController;
+    private $disciplinaController;
     private $request;
 
-    public function __construct(ProjetoController $projetoController)
+    public function __construct(ProjetoController $projetoController, DisciplinaController $disciplinaController)
     {
         $this->projetoController = $projetoController;
+        $this->disciplinaController = $disciplinaController;
     }
 
     public function index(){
@@ -28,7 +31,8 @@ class AdminProjetoController extends Controller
     }
 
     public function paginaCadastrarProjeto(){
-        return view('admin/projeto/cadastro/registro');
+        $disciplinas = $this->disciplinaController->buscar();
+        return view("admin/projeto/cadastro/registro", compact('disciplinas'));
     }
 
     public function editar($id){

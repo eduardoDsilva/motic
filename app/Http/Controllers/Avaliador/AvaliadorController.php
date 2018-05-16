@@ -55,7 +55,7 @@ class AvaliadorController extends Controller
 
         $avaliador = Avaliador::find($id);
         $usuario = User::find($avaliador->users->id);
-        $avaliadores = $usuario->delete();
+         $usuario->delete();
 
         $this->auditoriaController->storeDelete(
             'Deletado o avaliador '.$avaliador.' pelo usuário '.Auth::user()->name,

@@ -55,13 +55,13 @@ class EscolaController extends Controller
 
         $escola = Escola::find($id);
         $usuario = User::find($escola->users->id);
-        $escolas = $usuario->delete();
+        $usuario->delete();
 
         $this->auditoriaController->storeDelete(
             'Deletada a Escola '.$escola.' pelo usuário '.Auth::user()->name,
             $escola->id);
         try{
-            return $escolas;
+            return $escola;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Disciplina;
 use App\Disciplina;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DisciplinaController extends Controller
 {
@@ -38,8 +39,9 @@ class DisciplinaController extends Controller
     public function store($request)
     {
         $disciplina = Disciplina::create($request);
+        //dd($disciplina->name);
         $this->auditoriaController->storeCreate(
-            'Criada a disciplina '.$disciplina->name.' pelo usuário '.auth()->name,
+            'Criada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
             $disciplina->id);
         try{
             return $disciplina;
@@ -51,10 +53,11 @@ class DisciplinaController extends Controller
     public function delete($id){
 
         $disciplina = Disciplina::find($id);
-        $disciplina = $disciplina->delete();
+        $disciplina->delete();
+
 
         $this->auditoriaController->storeDelete(
-            'Deletada a disciplina '.$disciplina->name.' pelo usuário '.auth()->name,
+            'Deletada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
             $disciplina->id);
         try{
             return $disciplina;
@@ -68,7 +71,7 @@ class DisciplinaController extends Controller
         $disciplina = $this->getDisciplina($id);
         $disciplina->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editada a disciplina '.$disciplina->name.' pelo usuário '.auth()->name,
+            'Editada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
             $disciplina->id);
 
         try{

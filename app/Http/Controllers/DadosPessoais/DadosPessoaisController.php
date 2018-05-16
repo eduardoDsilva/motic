@@ -56,7 +56,7 @@ class DadosPessoaisController extends Controller
 
         $dado = Dados_Pessoais::find($id);
         $usuario = User::find($dado->users->id);
-        $dado = $usuario->delete();
+        $usuario->delete();
 
         $this->auditoriaController->storeDelete(
             'Deletado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,

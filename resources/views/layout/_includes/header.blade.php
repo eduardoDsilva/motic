@@ -33,7 +33,9 @@
                   @else
                       <ul class="right hide-on-med-and-down">
                           @if (Auth::user()->tipoUser == 'admin')
-                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Home</a></li>
+                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Professores</a></li>
+                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Alunos</a></li>
+                              <li><a href="{{ route(Auth::user()->tipoUser.'/home') }}">Equipes</a></li>
                               <li><a href="{{route ('admin/avaliador/home')}}">Avaliadores</a></li>
                               <li><a href="{{route ('admin/disciplinas/home')}}">Disciplinas</a></li>
                               <li><a href="{{route ('admin/escola/home')}}">Escolas</a></li>

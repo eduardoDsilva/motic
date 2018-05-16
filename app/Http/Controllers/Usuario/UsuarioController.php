@@ -54,7 +54,7 @@ class UsuarioController extends Controller
     public function delete($id){
 
         $user = User::find($id);
-        $user = $user->delete();
+         $user->delete();
 
         $this->auditoriaController->storeDelete(
             'Deletado o usuário '.$user.' pelo usuário '.Auth::user()->name,

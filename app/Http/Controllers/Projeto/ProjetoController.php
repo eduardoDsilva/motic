@@ -52,7 +52,7 @@ class ProjetoController extends Controller
     public function delete($id){
 
         $projeto = Projeto::find($id);
-        $projeto = $projeto->delete();
+        $projeto->delete();
 
         $this->auditoriaController->storeDelete(
             'Deletado o usuário '.$projeto.' pelo usuário '.Auth::user()->name,

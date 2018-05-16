@@ -61,7 +61,7 @@ class EnderecoController extends Controller
     public function delete($id){
 
         $endereco = Endereco::find($id);
-        $endereco = $endereco->delete();
+        $endereco->delete();
 
         $this->auditoriaController->storeDelete(
             'Deletado o endereço '.$endereco->name.' pelo usuário '.Auth::user()->name,
