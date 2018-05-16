@@ -44,7 +44,7 @@
                         <td>{{( $aluno->equipe ? $aluno->equipe->id : "Aluno ainda sem equipe" )}}</td>
                         <td>{{( $aluno->equipe ? $aluno->equipe->projeto->id ? $aluno->equipe->projeto->titulo : "Aluno ainda sem projeto" : "Aluno ainda sem projeto" )}}</td>
                         <td>
-                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/avaliador/update/".$aluno->id."/editar") }}">Editar</a>
+                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/aluno/update/".$aluno->id."/editar") }}">Editar</a>
                             <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
                             <p>Você tem certeza que deseja deletar o aluno?</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ url("/admin/avaliador/deletar/".$aluno->id."/excluir") }}" class="btn red">Sim</a>
+                            <a href="{{ url("/admin/aluno/deletar/".$aluno->id."/excluir") }}" class="btn red">Sim</a>
                         </div>
                     </div>
                 @empty
@@ -75,7 +75,7 @@
 
             <br><br>
 
-            <a class="btn blue" href="{{route ('admin/avaliador/cadastro/registro')}}">Adicionar Aluno</a>
+            <a class="btn blue" href="{{route ('admin/aluno/cadastro/registro')}}">Adicionar Aluno</a>
             <br><br>
 
             <br><br>

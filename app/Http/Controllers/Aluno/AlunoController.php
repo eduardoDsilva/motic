@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Aluno;
 use App\Aluno;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
@@ -61,7 +62,7 @@ class AlunoController extends Controller
     public function delete($id){
 
         $aluno = Aluno::find($id);
-        $usuario = User::find($aluno->users->id);
+        $usuario = User::find($aluno->user->id);
         $usuario->delete();
 
         $this->auditoriaController->storeDelete(

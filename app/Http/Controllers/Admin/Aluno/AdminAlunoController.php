@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Aluno;
 
+use App\Aluno;
 use App\Http\Controllers\Aluno\AlunoController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DadosPessoais\DadosPessoaisController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Escola\EscolaController;
 use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Endereco\EnderecoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminAlunoController extends Controller
 {
@@ -19,6 +21,7 @@ class AdminAlunoController extends Controller
     private $enderecoController;
     private $escolaController;
     private $request;
+    private $aluno;
 
     public function __construct(DadosPessoaisController $dadosPessoaisController, UsuarioController $usuarioController, AlunoController $alunoController, EnderecoController $enderecoController, EscolaController $escolaController)
     {
@@ -27,6 +30,7 @@ class AdminAlunoController extends Controller
         $this->alunoController = $alunoController;
         $this->enderecoController = $enderecoController;
         $this->escolaController = $escolaController;
+        $this->aluno = new Aluno();
     }
 
     public function index()
@@ -49,6 +53,9 @@ class AdminAlunoController extends Controller
     public function buscar()
     {
         $alunos = $this->alunoController->buscar();
+        $escolas = $this->escolaController->buscar();
+
+        Session::put('escolas',  $escolas);
 
         return view("admin/aluno/busca/buscar", compact('alunos'));
     }
@@ -85,17 +92,21 @@ class AdminAlunoController extends Controller
     {
         $this->request = $req->all() + ['tipoUser' => 'aluno'] ;
 
-        $this->usuarioController->update($req, $id);
+        $teste = $this->aluno->find($id);
+
+        $idUser = $teste->user->id;
+
+        $this->usuarioController->update($req, $idUser);
+
+        $this->dadosPessoaisController->update($req, $idUser);
+
+        $this->enderecoController->update($req, $idUser);
 
         $this->alunoController->update($req, $id);
 
-        $this->dadosPessoaisController->update($req, $id);
-
-        $this->enderecoController->update($req, $id);
-
         $alunos = $this->alunoController->buscar();
         return redirect()
-            ->route("admin/avaliador/busca/buscar")
+            ->route("admin/aluno/busca/buscar")
             ->with(compact('alunos'));
     }
 

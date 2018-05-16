@@ -73,7 +73,7 @@ class DadosPessoaisController extends Controller
     {
         $dado = User::find($id);
 
-        $dado->update($req->all());
+        $dado->dados_pessoais->update($req->all());
         $this->auditoriaController->storeUpdate(
             'Editado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
             $dado->id);
