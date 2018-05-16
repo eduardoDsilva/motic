@@ -21,12 +21,12 @@ class CreateEquipesTable extends Migration
 
             //criando o fk de professores
             $table->unsignedInteger('professor_id')->unique();
-            $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
+            $table->foreign('professor_id')->references('id')->on('professores');
 
 
             //criando o FK de alunos
             $table->unsignedInteger('aluno_id')->unique();
-            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
+            $table->foreign('aluno_id')->references('id')->on('alunos');
 
             $table->timestamps();
         });

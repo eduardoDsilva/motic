@@ -10,56 +10,56 @@ namespace App\Http\Controllers\Admin\Equipe;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Disciplina\DisciplinaController;
+use App\Http\Controllers\equipe\equipeController;
 
 class AdminEquipeController extends Controller
 {
 
-    private $disciplinaController;
+    private $equipeController;
     private $request;
 
-    public function __construct(DisciplinaController $disciplinaController)
+    public function __construct(equipeController $equipeController)
     {
-        $this->disciplinaController = $disciplinaController;
+        $this->equipeController = $equipeController;
     }
 
     public function index()
     {
-        $disciplinas = $this->disciplinaController->buscar();
-        return view('admin/disciplinas/home', compact('disciplinas'));
+        $equipe = $this->equipeController->buscar();
+        return view('admin/equipe/home', compact('equipe'));
     }
 
     public function editar($id)
     {
-        $disciplina = $this->disciplinaController->editar($id);
+        $equipe = $this->equipeController->editar($id);
 
-        return view('admin/disciplinas/editar/editar', compact('disciplina'));
+        return view('admin/equipe/editar/editar', compact('equipe'));
     }
 
     public function store(Request $req)
     {
         $this->request = $req->all();
-        $this->disciplinaController->store($this->request);
+        $this->equipeController->store($this->request);
 
         return redirect()
-            ->route("admin/disciplinas/home")
-            ->with("sucess", "Disciplina cadastrada com sucesso!");
+            ->route("admin/equipe/home")
+            ->with("sucess", "equipe cadastrada com sucesso!");
     }
 
     public function delete($id){
-        $this->disciplinaController->delete($id);
-        $disciplinas = $this->disciplinaController->buscar();
+        $this->equipeController->delete($id);
+        $equipe = $this->equipeController->buscar();
 
         return redirect()
-            ->route("admin/disciplinas/home")
-            ->with(compact('disciplinas'));
+            ->route("admin/equipe/home")
+            ->with(compact('equipe'));
     }
 
     public function update(Request $req, $id)
     {
-        $this->disciplinaController->update($req, $id);
-        $disciplinas = $this->disciplinaController->buscar();
-        return view('admin/disciplinas/home', compact('disciplinas'));
+        $this->equipeController->update($req, $id);
+        $equipe = $this->equipeController->buscar();
+        return view('admin/equipe/home', compact('equipe'));
     }
 
 
