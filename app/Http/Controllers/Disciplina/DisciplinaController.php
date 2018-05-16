@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Disciplina;
 
 use App\Disciplina;
 use App\Http\Controllers\Auditoria\AuditoriaController;
+use App\Http\Controllers\Controller;
 
-class DisciplinaController
+class DisciplinaController extends Controller
 {
 
     private $auditoriaController;

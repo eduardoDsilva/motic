@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Usuario;
 
 use App\Http\Controllers\Auditoria\AuditoriaController;
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class UsuarioController
+class UsuarioController extends Controller
 {
 
     private $auditoriaController;

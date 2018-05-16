@@ -10,9 +10,10 @@ namespace App\Http\Controllers\Endereco;
 
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Endereco;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class EnderecoController
+class EnderecoController extends Controller
 {
 
     private $auditoriaController;

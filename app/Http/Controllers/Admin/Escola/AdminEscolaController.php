@@ -8,7 +8,7 @@ use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Endereco\EnderecoController;
 use App\Http\Controllers\Escola\EscolaController;
 
-class EscolaControllerr extends Controller
+class AdminEscolaController extends Controller
 {
 
     private $usuarioController;

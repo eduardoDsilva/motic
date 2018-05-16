@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Endereco\EnderecoController;
 
-class AvaliadorrController extends Controller
+class AdminAvaliadorController extends Controller
 {
 
     private $dadosPessoaisController;

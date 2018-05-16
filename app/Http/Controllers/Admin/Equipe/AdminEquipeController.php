@@ -6,12 +6,13 @@
  * Time: 09:49
  */
 
-namespace App\Http\Controllers\Admin\Disciplinas;
+namespace App\Http\Controllers\Admin\Equipe;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Disciplina\DisciplinaController;
 
-class DisciplinasController
+class AdminEquipeController extends Controller
 {
 
     private $disciplinaController;
