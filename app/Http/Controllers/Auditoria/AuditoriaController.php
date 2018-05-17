@@ -1,13 +1,23 @@
 <?php
-
 namespace App\Http\Controllers\Auditoria;
 
+use \ForceUTF8\Encoding;
 use App\Auditoria;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AuditoriaController extends Controller
 {
+
+    public function buscar()
+    {
+        $auditorias = Auditoria::all();
+        try{
+            return $auditorias;
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
 
     public function storeCreate($descricao, $id_acao){
         $auditoria = new Auditoria();

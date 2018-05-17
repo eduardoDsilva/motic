@@ -16,6 +16,7 @@ class CreateAlunosTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('turma', 50);
+            $table->enum('possuiEquipe', ['sim', 'não'])->default('não');
 
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');

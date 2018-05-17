@@ -42,7 +42,9 @@ class EscolaController extends Controller
     {
         $escola = Escola::create($request);
         $this->auditoriaController->storeCreate(
-            'Criada a escola '.$escola.' pelo usuário '.Auth::user()->name,
+            'Criada a escola '.$escola->name.
+            'tipoEscola: '.$escola->tipoEscola, ', telefone: '.$escola->telefone,
+            ', pelo usuário '.Auth::user()->name,
             $escola->id);
         try{
             return $escola;
@@ -58,7 +60,9 @@ class EscolaController extends Controller
         $usuario->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletada a Escola '.$escola.' pelo usuário '.Auth::user()->name,
+            'Deletada a escola '.$escola->name.
+            'tipoEscola: '.$escola->tipoEscola, ', telefone: '.$escola->telefone,
+            ', pelo usuário '.Auth::user()->name,
             $escola->id);
         try{
             return $escola;
@@ -73,7 +77,9 @@ class EscolaController extends Controller
 
         $escola->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editada a escola '.$escola.' pelo usuário '.Auth::user()->name,
+            'Editada a escola '.$escola->name.
+            'tipoEscola: '.$escola->tipoEscola, ', telefone: '.$escola->telefone,
+            ', pelo usuário '.Auth::user()->name,
             $escola->id);
         try{
             return $escola;

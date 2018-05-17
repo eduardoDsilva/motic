@@ -42,7 +42,7 @@ class AvaliadorController extends Controller
     {
         $avaliador = Avaliador::create($request);
         $this->auditoriaController->storeCreate(
-            'Criado o avaliador '.$avaliador.' pelo usuário '.Auth::user()->name,
+            $descricao = "Criado o avaliador: ".$avaliador->id.", Criação: ".$avaliador->created_at.', pelo usuário: '.Auth::user()->name,
             $avaliador->id);
         try{
             return $avaliador;
@@ -58,7 +58,7 @@ class AvaliadorController extends Controller
          $usuario->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletado o avaliador '.$avaliador.' pelo usuário '.Auth::user()->name,
+            $descricao = "Deletado o avaliador: ".$avaliador->id.", Criação: ".$avaliador->created_at.', pelo usuário: '.Auth::user()->name,
             $avaliador->id);
         try{
             return $avaliador;

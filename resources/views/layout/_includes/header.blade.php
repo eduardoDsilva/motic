@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
   <title>@yield('titulo')</title>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

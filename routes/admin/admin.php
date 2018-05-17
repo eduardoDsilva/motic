@@ -5,6 +5,8 @@
 //tela principal admin
 Route::get('admin/home', 'Admin\AdminController@index')->name('admin/home');
 
+require_once ('auditoria/auditoria.php');
+
 require_once ('aluno/aluno.php');
 
 require_once ('professor/professor.php');

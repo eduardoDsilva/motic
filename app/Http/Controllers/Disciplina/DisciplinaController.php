@@ -39,9 +39,8 @@ class DisciplinaController extends Controller
     public function store($request)
     {
         $disciplina = Disciplina::create($request);
-        //dd($disciplina->name);
         $this->auditoriaController->storeCreate(
-            'Criada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
+            $descricao = "Criada a Disciplina: ".$disciplina->name.", Descrição: ".$disciplina->descricao.", Criação: ".$disciplina->created_at.', pelo usuário: '.Auth::user()->name,
             $disciplina->id);
         try{
             return $disciplina;
@@ -57,7 +56,7 @@ class DisciplinaController extends Controller
 
 
         $this->auditoriaController->storeDelete(
-            'Deletada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
+            $descricao = "Deletada a Disciplina: ".$disciplina->name.", Descrição: ".$disciplina->descricao.", Criação: ".$disciplina->created_at.', pelo usuário: '.Auth::user()->name,
             $disciplina->id);
         try{
             return $disciplina;
@@ -71,7 +70,7 @@ class DisciplinaController extends Controller
         $disciplina = Disciplina::find($id);
         $disciplina->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editada a disciplina '.$disciplina.' pelo usuário '.Auth::user()->name,
+            $descricao = "Editada a Disciplina: ".$disciplina->name.", Descrição: ".$disciplina->descricao.", Criação: ".$disciplina->created_at.', pelo usuário: '.Auth::user()->name,
             $disciplina->id);
 
         try{

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\DadosPessoais;
 use App\Dados_Pessoais;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Avaliador;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,10 +40,13 @@ class DadosPessoaisController extends Controller
 
     public function store($request)
     {
-       // dd($request);
         $dado = Dados_Pessoais::create($request);
         $this->auditoriaController->storeCreate(
-            'Criado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
+            $descricao = "Criado os dados pessoais do: ".$dado->nome.
+                ", nascimento: ".$dado->nascimento.
+                ", sexo: ".$dado->sexo.", email: ".$dado->email.
+                ", telefone: ".$dado->telefone. ", grau de instrucao: ".$dado->grauDeInstrucao.
+                ", Criação: ".$dado->created_at.', pelo usuário: '.Auth::user()->name,
             $dado->id);
         try{
             return $dado;
@@ -60,7 +62,11 @@ class DadosPessoaisController extends Controller
         $usuario->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
+            $descricao = "Deletado os dados pessoais do: ".$dado->nome.
+                ", nascimento: ".$dado->nascimento.
+                ", sexo: ".$dado->sexo.", email: ".$dado->email.
+                ", telefone: ".$dado->telefone. ", grau de instrucao: ".$dado->grauDeInstrucao.
+                ", Criação: ".$dado->created_at.', pelo usuário: '.Auth::user()->name, $dado->id,
             $dado->id);
         try{
             return $dado;
@@ -75,7 +81,11 @@ class DadosPessoaisController extends Controller
 
         $dado->dados_pessoais->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editado os dados pessoais do '.$dado.' pelo usuário '.Auth::user()->name,
+            $descricao = "Editado os dados pessoais do: ".$dado->nome.
+                ", nascimento: ".$dado->nascimento.
+                ", sexo: ".$dado->sexo.", email: ".$dado->email.
+                ", telefone: ".$dado->telefone. ", grau de instrucao: ".$dado->grauDeInstrucao.
+                ", Criação: ".$dado->created_at.', pelo usuário: '.Auth::user()->name, $dado->id,
             $dado->id);
         try{
             return $dado;

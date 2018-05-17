@@ -42,7 +42,11 @@ class UsuarioController extends Controller
     {
         $user = User::create($request);
         $this->auditoriaController->storeCreate(
-            'Criado o usuário '.$user.' pelo usuário '.Auth::user()->name,
+            'Criado o usuário '.$user->name.
+            ', username: '.$user->username.
+            ', email:'.$user->email.
+            ', password'.$user->password.
+            ', pelo usuário '.Auth::user()->name,
             $user->id);
         try{
             return $user;
@@ -57,7 +61,11 @@ class UsuarioController extends Controller
          $user->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletado o usuário '.$user.' pelo usuário '.Auth::user()->name,
+            'Deletado o usuário '.$user->name.
+            ', username: '.$user->username.
+            ', email:'.$user->email.
+            ', password'.$user->password.
+            ', pelo usuário '.Auth::user()->name,
             $user->id);
         try{
             return $user;
@@ -71,7 +79,11 @@ class UsuarioController extends Controller
         $user = User::find($id);
         $user->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editado o usuário '.$user.' pelo usuário '.Auth::user()->name,
+            'Editado o usuário '.$user->name.
+            ', username: '.$user->username.
+            ', email:'.$user->email.
+            ', password'.$user->password.
+            ', pelo usuário '.Auth::user()->name,
             $user->id);
 
         try{

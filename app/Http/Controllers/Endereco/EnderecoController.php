@@ -48,7 +48,13 @@ class EnderecoController extends Controller
     {
         $endereco = Endereco::create($request);
         $this->auditoriaController->storeCreate(
-            'Criado o endereço '.$endereco.' pelo usuário '.Auth::user()->name,
+            $descricao = "Criado o endereco do: ".$endereco->user->nome.
+                ", rua: ".$endereco->rua.
+                ", numero: ".$endereco->numero.", complemento: ".$endereco->complemento.
+                ", bairro: ".$endereco->bairro. ", cep: ".$endereco->cep.
+                ", cidade: ".$endereco->cidade. ", estado: ".$endereco->estado.
+                ", pais: ".$endereco->pais."user_id: ".$endereco->user_id.
+                ", Criação: ".$endereco->created_at.', pelo usuário: '.Auth::user()->name,
             $endereco->id);
 
         try{
@@ -64,7 +70,13 @@ class EnderecoController extends Controller
         $endereco->delete();
 
         $this->auditoriaController->storeDelete(
-            'Deletado o endereço '.$endereco.' pelo usuário '.Auth::user()->name,
+            $descricao = "Deletado o endereco do: ".$endereco->user->nome.
+                ", rua: ".$endereco->rua.
+                ", numero: ".$endereco->numero.", complemento: ".$endereco->complemento.
+                ", bairro: ".$endereco->bairro. ", cep: ".$endereco->cep.
+                ", cidade: ".$endereco->cidade. ", estado: ".$endereco->estado.
+                ", pais: ".$endereco->pais."user_id: ".$endereco->user_id.
+                ", Criação: ".$endereco->created_at.', pelo usuário: '.Auth::user()->name,
             $endereco->id);
         try{
             return $endereco;
@@ -78,7 +90,13 @@ class EnderecoController extends Controller
         $endereco = User::find($id);
         $endereco->update($req->all());
         $this->auditoriaController->storeUpdate(
-            'Editado o endereço '.$endereco.' pelo usuário '.Auth::user()->name,
+            $descricao = "Editado o endereco do: ".$endereco->user->nome.
+                ", rua: ".$endereco->rua.
+                ", numero: ".$endereco->numero.", complemento: ".$endereco->complemento.
+                ", bairro: ".$endereco->bairro. ", cep: ".$endereco->cep.
+                ", cidade: ".$endereco->cidade. ", estado: ".$endereco->estado.
+                ", pais: ".$endereco->pais."user_id: ".$endereco->user_id.
+                ", Criação: ".$endereco->created_at.', pelo usuário: '.Auth::user()->name,
             $endereco->id);
 
         try{
