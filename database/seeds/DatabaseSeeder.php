@@ -62,4 +62,33 @@ class UserTableSeeder extends Seeder {
 
 }
 
+class CategoriaTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('categorias')->delete();
+
+        Disciplina::create([
+            'name' => 'Categoria Educação Infantil',
+            'descricao'  => 'Contempla as Emeis e Emefs que têm a classe de Educação Infantil em seu panorama',
+        ]);
+        Disciplina::create([
+            'name' => 'Categoria EMEF 1',
+            'descricao'  => 'Contempla do 1° ano ao 3° ano',
+        ]);
+        Disciplina::create([
+            'name' => 'EMEF 2',
+            'descricao'  => 'Contempla do 4° ao 6°ano',
+        ]);
+        Disciplina::create([
+            'name' => 'EMEF 3',
+            'descricao'  => 'Contempla do 7° ano ao 9° ano',
+        ]);
+        Disciplina::create([
+            'name' => 'EJA',
+            'descricao'  => 'Contempla a Educação de Jovens e Adultos',
+        ]);
+    }
+}
+
 

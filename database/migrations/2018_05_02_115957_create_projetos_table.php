@@ -17,9 +17,14 @@ class CreateProjetosTable extends Migration
             $table->increments('id');
             $table->string('titulo', 100);
             $table->string('area', 100);
-            $table->string('estande', 50);
+            $table->string('estande', 50)->nullable();
             $table->longText('resumo');
+            $table->enum('status', ['aprovado', 'suplente'])->default('suplente');
             $table->double('nota',5,4)->nullable();
+
+            //criando a FK do usuario desse projeto
+            $table->unsignedInteger('categoria_id')->unique();
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
 
             //criando a FK do usuario desse projeto
             $table->unsignedInteger('user_id')->unique();

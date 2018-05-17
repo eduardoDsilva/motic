@@ -8,7 +8,7 @@ class Projeto extends Model
 {
 
     protected $fillable = [
-        'titulo', 'area', 'estande', 'resumo','nota',
+        'titulo', 'area', 'estande', 'resumo', 'status', 'nota',
     ];
 
 
@@ -20,6 +20,11 @@ class Projeto extends Model
     public function disciplina()
     {
         return $this->belongsToMany(Disciplina::class,  'projetos_disciplinas')->withTimestamps();
+    }
+
+    public function categoria()
+    {
+        return $this->belongsToMany(Categoria::class,  'escolas_categorias')->withTimestamps();
     }
 
     public function user()
