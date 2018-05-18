@@ -38,7 +38,7 @@
                 @forelse ($alunos as $aluno)
                     <tbody>
                     <tr>
-                        <td>{{$aluno->user->dados_pessoais->name}}</td>
+                        <td>{{$aluno->user->dado->name}}</td>
                         <td>{{$aluno->user->username}}</td>
                         <td>{{$aluno->escola->name}}</td>
                         <td>{{( $aluno->equipe ? $aluno->equipe->id : "Aluno ainda sem equipe" )}}</td>

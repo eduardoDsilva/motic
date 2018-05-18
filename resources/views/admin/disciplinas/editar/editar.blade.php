@@ -18,8 +18,10 @@
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/disciplinas/".$disciplina->id) }}">
                         <h4>Editar disciplina</h4>
-                        {{ csrf_field() }}
-                        <div class="row">
+
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
+                    <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">book</i>
                                 <label for="nome">Nome</label>

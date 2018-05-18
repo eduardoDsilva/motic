@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Professor;
 use App\professor;
 use App\Http\Controllers\professor\professorController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\DadosPessoais\DadosPessoaisController;
+use App\Http\Controllers\Dado\DadoController;
 use App\Http\Controllers\Escola\EscolaController;
 use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Endereco\EnderecoController;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
 class AdminProfessorController extends Controller
 {
 
-    private $dadosPessoaisController;
+    private $dadoController;
     private $usuarioController;
     private $professorController;
     private $enderecoController;
@@ -23,9 +23,9 @@ class AdminProfessorController extends Controller
     private $request;
     private $professor;
 
-    public function __construct(DadosPessoaisController $dadosPessoaisController, UsuarioController $usuarioController, professorController $professorController, EnderecoController $enderecoController, EscolaController $escolaController)
+    public function __construct(DadoController $dadoController, UsuarioController $usuarioController, professorController $professorController, EnderecoController $enderecoController, EscolaController $escolaController)
     {
-        $this->dadosPessoaisController = $dadosPessoaisController;
+        $this->dadoController = $dadoController;
         $this->usuarioController = $usuarioController;
         $this->professorController = $professorController;
         $this->enderecoController = $enderecoController;
@@ -69,7 +69,7 @@ class AdminProfessorController extends Controller
 
         $this->professorController->store($this->request);
 
-        $this->dadosPessoaisController->store($this->request);
+        $this->dadoController->store($this->request);
 
         $this->enderecoController->store($this->request);
 
@@ -98,7 +98,7 @@ class AdminProfessorController extends Controller
 
         $this->usuarioController->update($req, $idUser);
 
-        $this->dadosPessoaisController->update($req, $idUser);
+        $this->dadoController->update($req, $idUser);
 
         $this->enderecoController->update($req, $idUser);
 

@@ -8,7 +8,7 @@ class Escola extends Model
 {
 
     protected $fillable = [
-        'name', 'tipoEscola', 'telefone', 'user_id',
+        'name', 'telefone', 'user_id',
     ];
 
     public function users()

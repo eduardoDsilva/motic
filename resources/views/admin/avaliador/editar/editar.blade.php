@@ -17,19 +17,21 @@
             <h3 class="center-align">Editar Avaliador</h3>
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$avaliador->id) }}">
-                    {{ csrf_field() }}
+
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
                     <h5>Dados básicos</h5>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Nome</label>
-                            <input type="text" name="name" required value="{{$avaliador->user->dados_pessoais->name}}">
+                            <input type="text" name="name" required value="{{$avaliador->user->dado->name}}">
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">today</i>
                             <label for="nascimento">Nascimento</label>
-                            <input type="text" class="datepicker" name="nascimento" required value="{{$avaliador->user->dados_pessoais->nascimento}}">
+                            <input type="text" class="datepicker" name="nascimento" required value="{{$avaliador->user->dado->nascimento}}">
                         </div>
                     </div>
                     <div class="row">
@@ -37,8 +39,8 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
-                                <option value="masculino"  <?php if($avaliador->user->dados_pessoais->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
-                                <option value="feminino" <?php if($avaliador->user->dados_pessoais->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
+                                <option value="masculino"  <?php if($avaliador->user->dado->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
+                                <option value="feminino" <?php if($avaliador->user->dado->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
                             </select>
                             <label>Sexo</label>
                         </div>
@@ -47,9 +49,9 @@
                             <i class="material-icons prefix">book</i>
                             <select name="grauDeInstrucao">
                                 <option value="" disabled>Grau de Instrução</option>
-                                <option value="Ensino Fundamental" <?php if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Fundamental'){ echo 'selected';} ?>>Ensino Fundamental</option>
-                                <option value="Ensino Médio" <?php if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Médio'){ echo 'selected';}?>>Ensino Médio</option>
-                                <option value="Ensino Superior"  <?php if($avaliador->user->dados_pessoais->grauDeInstrucao=='Ensino Superior'){ echo 'selected';}?>>Ensino Superior</option>
+                                <option value="Ensino Fundamental" <?php if($avaliador->user->dado->grauDeInstrucao=='Ensino Fundamental'){ echo 'selected';} ?>>Ensino Fundamental</option>
+                                <option value="Ensino Médio" <?php if($avaliador->user->dado->grauDeInstrucao=='Ensino Médio'){ echo 'selected';}?>>Ensino Médio</option>
+                                <option value="Ensino Superior"  <?php if($avaliador->user->dado->grauDeInstrucao=='Ensino Superior'){ echo 'selected';}?>>Ensino Superior</option>
                             </select>
                             <label>Grau de Instrução</label>
                         </div>
@@ -66,13 +68,13 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" required  value="{{$avaliador->user->dados_pessoais->telefone}}">
+                            <input type="text" name="telefone" required  value="{{$avaliador->user->dado->telefone}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF</label>
-                            <input type="number" name="cpf" value="{{$avaliador->user->dados_pessoais->cpf}}">
+                            <input type="number" name="cpf" value="{{$avaliador->user->dado->cpf}}">
                         </div>
                     </div>
 

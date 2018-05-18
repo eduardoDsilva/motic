@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Escola;
 
 use App\Escola;
+use App\Http\Controllers\Categoria\CategoriaController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Usuario\UsuarioController;
@@ -15,14 +16,16 @@ class AdminEscolaController extends Controller
     private $usuarioController;
     private $escolaController;
     private $enderecoController;
+    private $categoriaController;
     private $request;
     private $escola;
 
-    public function __construct(UsuarioController $usuarioController, EscolaController $escolaController, EnderecoController $enderecoController)
+    public function __construct(UsuarioController $usuarioController, CategoriaController $categoriaController, EscolaController $escolaController, EnderecoController $enderecoController)
     {
         $this->usuarioController = $usuarioController;
         $this->escolaController = $escolaController;
         $this->enderecoController = $enderecoController;
+        $this->categoriaController = $categoriaController;
         $this->escola = new Escola();
     }
 
@@ -31,7 +34,15 @@ class AdminEscolaController extends Controller
         }
 
     public function paginaCadastrarEscola(){
-        return view('admin/escola/cadastro/registro');
+        $categorias = $this->categoriaController->buscar();
+
+        //foreach($categorias as $categoria){
+           // dd($categoria->categoria);
+        //}
+
+
+        return view('admin/escola/cadastro/registro', compact('categorias'));
+
     }
 
     public function editar($id){

@@ -76,8 +76,10 @@
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/disciplinas/cadastro/registro') }}">
                     <div class="modal-content">
                         <h4>Adicionar disciplina</h4>
-                            {{ csrf_field() }}
-                            <div class="row">
+
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
+                        <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">book</i>
                                     <label for="nome">Nome</label>

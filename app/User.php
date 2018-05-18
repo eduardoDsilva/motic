@@ -57,9 +57,9 @@ class User extends Authenticatable
         return $this->hasOne(Auditoria::class, 'user_id');
     }
 
-    public function dados_pessoais()
+    public function dado()
     {
-        return $this->hasOne(Dados_Pessoais::class, 'user_id','id');
+        return $this->hasOne(Dado::class, 'user_id','id');
     }
 
     public function projeto()

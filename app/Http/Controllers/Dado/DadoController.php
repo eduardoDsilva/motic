@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\DadosPessoais;
+namespace App\Http\Controllers\Dado;
 
-use App\Dados_Pessoais;
+use App\Dado;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class DadosPessoaisController extends Controller
+class DadoController extends Controller
 {
 
     private $auditoriaController;
@@ -20,7 +20,7 @@ class DadosPessoaisController extends Controller
 
     public function buscar()
     {
-        $dados = Dados_Pessoais::all();
+        $dados = Dado::all();
         try{
             return $dados;
         }catch (\Exception $e) {
@@ -30,7 +30,7 @@ class DadosPessoaisController extends Controller
 
     public function editar($id){
 
-        $dado = Dados_Pessoais::find($id);
+        $dado = Dado::find($id);
         try{
             return $dado;
         }catch (\Exception $e) {
@@ -40,7 +40,7 @@ class DadosPessoaisController extends Controller
 
     public function store($request)
     {
-        $dado = Dados_Pessoais::create($request);
+        $dado = Dado::create($request);
         $this->auditoriaController->storeCreate(
             $descricao = "Criado os dados pessoais do: ".$dado->nome.
                 ", nascimento: ".$dado->nascimento.
@@ -57,7 +57,7 @@ class DadosPessoaisController extends Controller
 
     public function delete($id){
 
-        $dado = Dados_Pessoais::find($id);
+        $dado = Dado::find($id);
         $usuario = User::find($dado->users->id);
         $usuario->delete();
 
@@ -79,7 +79,8 @@ class DadosPessoaisController extends Controller
     {
         $dado = User::find($id);
 
-        $dado->dados_pessoais->update($req->all());
+        $dado->dado->update($req->all());
+
         $this->auditoriaController->storeUpdate(
             $descricao = "Editado os dados pessoais do: ".$dado->nome.
                 ", nascimento: ".$dado->nascimento.

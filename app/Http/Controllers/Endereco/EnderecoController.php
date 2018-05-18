@@ -48,7 +48,7 @@ class EnderecoController extends Controller
     {
         $endereco = Endereco::create($request);
         $this->auditoriaController->storeCreate(
-            $descricao = "Criado o endereco do: ".$endereco->user->nome.
+            $descricao = "Criado o endereco do: ".$endereco->users->name.
                 ", rua: ".$endereco->rua.
                 ", numero: ".$endereco->numero.", complemento: ".$endereco->complemento.
                 ", bairro: ".$endereco->bairro. ", cep: ".$endereco->cep.
@@ -87,20 +87,20 @@ class EnderecoController extends Controller
 
     public function update($req, $id)
     {
-        $endereco = User::find($id);
-        $endereco->update($req->all());
+        $user = User::find($id);
+        $user->endereco->update($req->all());
         $this->auditoriaController->storeUpdate(
-            $descricao = "Editado o endereco do: ".$endereco->user->nome.
-                ", rua: ".$endereco->rua.
-                ", numero: ".$endereco->numero.", complemento: ".$endereco->complemento.
-                ", bairro: ".$endereco->bairro. ", cep: ".$endereco->cep.
-                ", cidade: ".$endereco->cidade. ", estado: ".$endereco->estado.
-                ", pais: ".$endereco->pais."user_id: ".$endereco->user_id.
-                ", Criação: ".$endereco->created_at.', pelo usuário: '.Auth::user()->name,
-            $endereco->id);
+            $descricao = "Editado o endereco do: ".$user->name.
+                ", rua: ".$user->endereco->rua.
+                ", numero: ".$user->endereco->numero.", complemento: ".$user->endereco->complemento.
+                ", bairro: ".$user->endereco->bairro. ", cep: ".$user->endereco->cep.
+                ", cidade: ".$user->endereco->cidade. ", estado: ".$user->endereco->estado.
+                ", pais: ".$user->endereco->pais."user_id: ".$user->endereco->user_id.
+                ", Criação: ".$user->endereco->created_at.', pelo usuário: '.Auth::user()->name,
+            $user->endereco->id);
 
         try{
-            return $endereco;
+            return $user->endereco;
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

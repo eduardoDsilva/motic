@@ -7,7 +7,8 @@
         <h3 class="center">Entrar</h3>
         <div class="row">
             <form class="" action="{{route('login')}}" method="post">
-                {{ csrf_field() }}
+
+
 
                 <div class="input-field">
                     <input type="text" name="email">
@@ -18,7 +19,12 @@
                     <label>Senha</label>
                 </div>
 
+                {{csrf_field()}}
+
                 <button class="btn deep-orange">Entrar</button>
+
+
+
             </form>
         </div>
     </div>

@@ -38,10 +38,10 @@
                 @forelse ($avaliadores as $avaliador)
                     <tbody>
                     <tr>
-                        <td>{{$avaliador->user->dados_pessoais->name}}</td>
+                        <td>{{$avaliador->user->dado->name}}</td>
                         <td>{{$avaliador->user->username}}</td>
                         <td>{{$avaliador->user->email}}</td>
-                        <td>{{$avaliador->user->dados_pessoais->telefone}}</td>
+                        <td>{{$avaliador->user->dado->telefone}}</td>
                         <td>{{$avaliador->user->endereco->rua}}</td>
                         <td>
                             <a class="btn deep-orange modal-trigger" href="{{ url("/admin/avaliador/update/".$avaliador->id."/editar") }}">Editar</a>

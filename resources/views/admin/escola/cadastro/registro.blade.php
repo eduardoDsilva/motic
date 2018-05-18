@@ -17,23 +17,28 @@
             <h3 class="center-align">Cadastrar escola</h3>
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/cadastro/registro') }}">
-                    {{ csrf_field() }}
+
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
                     <h5>Dados básicos</h5>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Nome da escola</label>
+                            <label for="name">Nome da escola</label>
                             <input type="text" name="name" required>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">school</i>
-                            <select name="tipoEscola">
-                                <option value="" disabled selected>Tipo</option>
-                                <option value="publica">Pública</option>
-                                <option value="privada">Privada</option>
+                            <select multiple name="categoria">
+                                <option value="" disabled selected>Categoria...</option>
+                                <?php
+                                foreach($categorias as $categoria){
+                                 echo "<option value=".$categoria->categoria.">".$categoria->categoria."</option>";
+                                }
+                                ?>
                             </select>
-                            <label>Tipo Escola</label>
+                            <label>Categorias</label>
                         </div>
                     </div>
                     <div class="row">

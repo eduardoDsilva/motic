@@ -18,7 +18,9 @@
             <h3 class="center-align">Cadastrar professor</h3>
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/professor/cadastro/registro') }}">
-                    {{ csrf_field() }}
+
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
                     <h5>Dados básicos</h5>
 
                     <div class="row">

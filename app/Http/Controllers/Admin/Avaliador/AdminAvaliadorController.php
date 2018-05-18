@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Avaliador;
 use App\Avaliador;
 use App\Http\Controllers\Avaliador\AvaliadorController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\DadosPessoais\DadosPessoaisController;
+use App\Http\Controllers\Dado\DadoController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Endereco\EnderecoController;
@@ -13,16 +13,16 @@ use App\Http\Controllers\Endereco\EnderecoController;
 class AdminAvaliadorController extends Controller
 {
 
-    private $dadosPessoaisController;
+    private $dadoController;
     private $usuarioController;
     private $avaliadorController;
     private $enderecoController;
     private $avaliador;
     private $request;
 
-    public function __construct(DadosPessoaisController $dadosPessoaisController, UsuarioController $usuarioController, AvaliadorController $avaliadorController, EnderecoController $enderecoController)
+    public function __construct(DadoController $dadoController, UsuarioController $usuarioController, AvaliadorController $avaliadorController, EnderecoController $enderecoController)
     {
-        $this->dadosPessoaisController = $dadosPessoaisController;
+        $this->dadoController = $dadoController;
         $this->usuarioController = $usuarioController;
         $this->avaliadorController = $avaliadorController;
         $this->enderecoController = $enderecoController;
@@ -59,7 +59,7 @@ class AdminAvaliadorController extends Controller
 
         $this->avaliadorController->store($this->request);
 
-        $this->dadosPessoaisController->store($this->request);
+        $this->dadoController->store($this->request);
 
         $this->enderecoController->store($this->request);
 
@@ -88,7 +88,7 @@ class AdminAvaliadorController extends Controller
 
         $this->usuarioController->update($req, $idUser);
 
-        $this->dadosPessoaisController->update($req, $idUser);
+        $this->dadoController->update($req, $idUser);
 
         $this->enderecoController->update($req, $idUser);
 
