@@ -15,4 +15,10 @@ class Categoria extends Model
         return $this->belongsToMany(Escola::class,  'escolas_categorias')->withTimestamps();
     }
 
+    public function aluno()
+    {
+        return $this->belongsTo(Aluno::class, 'categoria_id', 'id');
+    }
+
+
 }

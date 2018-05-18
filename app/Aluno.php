@@ -17,11 +17,16 @@ class Aluno extends Model
 
     public function equipe()
     {
-        return $this->belongsTo(Equipe::class, 'id');
+        return $this->belongsTo(Equipe::class, 'id_equipe');
     }
 
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id', 'id');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'escola_id', 'id');
     }
 }
