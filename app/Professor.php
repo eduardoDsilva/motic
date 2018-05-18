@@ -9,7 +9,7 @@ class Professor extends Model
     protected $table = "professores";
 
     protected $fillable = [
-        'escola_id', 'user_id'
+        'matricula', 'escola_id', 'user_id'
     ];
 
     public function user()
