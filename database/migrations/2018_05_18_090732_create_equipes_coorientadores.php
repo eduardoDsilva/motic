@@ -29,6 +29,7 @@ class CreateEquipesCoorientadores extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes_coorientadores');
+        Schema::DropIfExists ('equipes_coorientadores');
+
     }
 }

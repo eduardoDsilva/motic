@@ -30,6 +30,6 @@ class CreateOrientadores extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orientadores');
+        Schema::DropIfExists ('orientadores');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDisciplinasTable extends Migration
+class CreateDisciplinas extends Migration
 {
     /**
      * Run the migrations.
@@ -20,9 +20,6 @@ class CreateDisciplinasTable extends Migration
             $table->timestamps();
         });
     }
-
-
-
     /**
      * Reverse the migrations.
      *

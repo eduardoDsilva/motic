@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAvaliadoresTable extends Migration
+class CreateEscolas extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,17 +14,17 @@ class CreateAvaliadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('avaliadores', function (Blueprint $table) {
+        Schema::create('escolas', function (Blueprint $table) {
             $table->increments('id');
-
-            //criando a FK do usuario desse avaliador
+            $table->string('name');
+            $table->enum('tipoEscola',['publica','privada'])->default('publica');
+            $table->string('telefone');
+            //criando a FK do usuario dessa escola
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -31,6 +32,7 @@ class CreateAvaliadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliadores');
+        Schema::dropIfExists('escolas');
     }
+
 }

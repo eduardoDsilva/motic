@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlunosTable extends Migration
+class CreateProfessores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,16 @@ class CreateAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alunos', function (Blueprint $table) {
+        Schema::create('professores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('turma', 50);
-            $table->enum('possuiEquipe', ['sim', 'não'])->default('não');
-
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
-
-            //criando a FK do usuario desse aluno
+            //criando a FK do usuario desse professor
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -36,6 +30,6 @@ class CreateAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('professores');
     }
 }

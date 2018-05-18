@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEscolasTable extends Migration
+class CreateUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreateEscolasTable extends Migration
      */
     public function up()
     {
-        Schema::create('escolas', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('tipoEscola',['publica','privada'])->default('publica');
-            $table->string('telefone');
-
-            //criando a FK do usuario dessa escola
-            $table->unsignedInteger('user_id')->unique();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
+            $table->string('username')->unique();
+            $table->string('email')->nullable()->unique();
+            $table->string('password');
+            $table->enum('tipoUser',['admin','escola', 'avaliador', 'professor', 'aluno', 'erro'])->default('erro');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -34,6 +31,7 @@ class CreateEscolasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('escola');
+        Schema::DropIfExists ('users');
     }
+
 }

@@ -15,7 +15,7 @@ class CreateCategorias extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
+            $table->enum('categoria', ['Educação Infantil', 'EMEF 1', 'EMEF 2', 'EMEF 3', 'EJA']);
             $table->string('descricao', 100);
 
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateCategorias extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('categorias');
     }
 }

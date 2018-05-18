@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use \App\Disciplina;
+use \App\Categoria;
+use \App\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call('DisciplinaTableSeeder');
         $this->call('UserTableSeeder');
+        $this->call('CategoriaTableSeeder');
     }
 }
 
@@ -51,7 +54,7 @@ class UserTableSeeder extends Seeder {
     {
         DB::table('users')->delete();
 
-        \App\User::create([
+        User::create([
             'name' => 'Eduardo da Silva',
             'username' => 'admin',
             'email' => 'eduardo.2599@hotmail.com',
@@ -68,24 +71,24 @@ class CategoriaTableSeeder extends Seeder {
     {
         DB::table('categorias')->delete();
 
-        Disciplina::create([
-            'name' => 'Categoria Educação Infantil',
+        Categoria::create([
+            'categoria' => "Educação Infantil",
             'descricao'  => 'Contempla as Emeis e Emefs que têm a classe de Educação Infantil em seu panorama',
         ]);
-        Disciplina::create([
-            'name' => 'Categoria EMEF 1',
+        Categoria::create([
+            'categoria' => 'EMEF 1',
             'descricao'  => 'Contempla do 1° ano ao 3° ano',
         ]);
-        Disciplina::create([
-            'name' => 'EMEF 2',
+        Categoria::create([
+            'categoria' => 'EMEF 2',
             'descricao'  => 'Contempla do 4° ao 6°ano',
         ]);
-        Disciplina::create([
-            'name' => 'EMEF 3',
+        Categoria::create([
+            'categoria' => 'EMEF 3',
             'descricao'  => 'Contempla do 7° ano ao 9° ano',
         ]);
-        Disciplina::create([
-            'name' => 'EJA',
+        Categoria::create([
+            'categoria' => 'EJA',
             'descricao'  => 'Contempla a Educação de Jovens e Adultos',
         ]);
     }

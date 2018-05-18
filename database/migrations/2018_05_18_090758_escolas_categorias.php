@@ -13,7 +13,7 @@ class EscolasCategorias extends Migration
      */
     public function up()
     {
-        Schema::create('escolas_categorais', function (Blueprint $table) {
+        Schema::create('escolas_categorias', function (Blueprint $table) {
             $table->integer('escola_id')->unsigned();
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
@@ -29,6 +29,6 @@ class EscolasCategorias extends Migration
      */
     public function down()
     {
-        //
+        Schema::DropIfExists ('escolas_categorias');
     }
 }

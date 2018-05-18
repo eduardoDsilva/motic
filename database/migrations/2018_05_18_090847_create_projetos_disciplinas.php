@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotaFinalTable extends Migration
+class CreateProjetosDisciplinas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateNotaFinalTable extends Migration
      */
     public function up()
     {
-        Schema::create('nota_final', function (Blueprint $table) {
-            $table->increments('id');
-            $table->double('notaTotal',5,4);
-
-            $table->unsignedInteger('projeto_id');
+        Schema::create('projetos_disciplinas', function (Blueprint $table) {
+            $table->integer('projeto_id')->unsigned();
             $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
-            
-            $table->timestamps();
+
+            $table->integer('disciplina_id')->unsigned();
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -31,6 +28,7 @@ class CreateNotaFinalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nota_final');
+        Schema::DropIfExists ('projetos_disciplinas');
+
     }
 }
