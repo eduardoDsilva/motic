@@ -15,6 +15,7 @@ class CreateProfessores extends Migration
     {
         Schema::create('professores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('matricula');
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
             //criando a FK do usuario desse professor
