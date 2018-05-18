@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
     protected $fillable = [
-        'turma', 'escola_id', 'user_id'
+        'ano_letivo','turma', 'escola_id', 'user_id'
     ];
 
     public function user()
@@ -28,5 +28,10 @@ class Aluno extends Model
     public function categoria()
     {
         return $this->belongsTo(Categoria::class, 'escola_id', 'id');
+    }
+
+    public function ano()
+    {
+        return $this->belongsTo(Ano::class,'ano_id');
     }
 }
