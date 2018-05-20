@@ -11,7 +11,7 @@ class Escola extends Model
         'name', 'telefone', 'user_id',
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class,'user_id');
     }

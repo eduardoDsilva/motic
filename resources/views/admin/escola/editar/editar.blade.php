@@ -42,7 +42,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">email</i>
                             <label for="email">Email</label>
-                            <input type="email" name="email" required value="{{$escola->users->email}}">
+                            <input type="email" name="email" required value="{{$escola->user->email}}">
                         </div>
 
                         <div class="input-field col s6">
@@ -58,13 +58,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <label for="cep">CEP</label>
-                            <input type="number" name="cep" required value="{{$escola->users->endereco->cep}}">
+                            <input type="number" name="cep" required value="{{$escola->user->endereco->cep}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">business</i>
                             <label for="bairro">Bairro</label>
-                            <input type="text" name="bairro" value="{{$escola->users->endereco->bairro}}">
+                            <input type="text" name="bairro" value="{{$escola->user->endereco->bairro}}">
                         </div>
                     </div>
 
@@ -72,19 +72,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <label for="rua">Rua</label>
-                            <input type="text" name="rua" required value="{{$escola->users->endereco->rua}}">
+                            <input type="text" name="rua" required value="{{$escola->user->endereco->rua}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">filter_1</i>
                             <label for="numero">N°</label>
-                            <input type="number" name="numero" required value="{{$escola->users->endereco->numero}}">
+                            <input type="number" name="numero" required value="{{$escola->user->endereco->numero}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" required value="{{$escola->users->endereco->complemento}}">
+                            <input type="text" name="complemento" required value="{{$escola->user->endereco->complemento}}">
                         </div>
                     </div>
 
@@ -92,19 +92,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="cidade">Cidade</label>
-                            <input type="text" name="cidade" required value="{{$escola->users->endereco->cidade}}">
+                            <input type="text" name="cidade" required value="{{$escola->user->endereco->cidade}}">
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="estado">Estado</label>
-                            <input type="text" name="estado" required value="{{$escola->users->endereco->estado}}">
+                            <input type="text" name="estado" required value="{{$escola->user->endereco->estado}}">
                     </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <label for="pais">País</label>
-                            <input type="text" name="pais" required value="{{$escola->users->endereco->pais}}">
+                            <input type="text" name="pais" required value="{{$escola->user->endereco->pais}}">
                         </div>
                     </div>
 
@@ -113,20 +113,20 @@
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
                         <label for="usuario">Usuário</label>
-                        <input type="text" name="username" required value="{{$escola->users->username}}">
+                        <input type="text" name="username" required value="{{$escola->user->username}}">
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" required value="{{$escola->users->password}}">
+                            <input type="password" name="password" required value="{{$escola->user->password}}">
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" required value="{{$escola->users->password}}">
+                            <input type="password" name="password_confirmation" required value="{{$escola->user->password}}">
                         </div>
                     </div>
 

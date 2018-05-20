@@ -48,7 +48,7 @@ class EnderecoController extends Controller
     {
         $endereco = Endereco::create($request);
         $this->auditoriaController->storeCreate(
-            $descricao = "Criado o endereco do: ".$endereco->users->name.
+            $descricao = "Criado o endereco do: ".$endereco->user->name.
                 ", rua: ".$endereco->rua.
                 ", numero: ".$endereco->numero.", complemento: ".$endereco->complemento.
                 ", bairro: ".$endereco->bairro. ", cep: ".$endereco->cep.

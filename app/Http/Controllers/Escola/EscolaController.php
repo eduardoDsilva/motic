@@ -56,7 +56,7 @@ class EscolaController extends Controller
     public function delete($id){
 
         $escola = Escola::find($id);
-        $usuario = User::find($escola->users->id);
+        $usuario = User::find($escola->user->id);
         $usuario->delete();
 
         $this->auditoriaController->storeDelete(

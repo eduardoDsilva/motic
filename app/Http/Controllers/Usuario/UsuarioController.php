@@ -45,7 +45,6 @@ class UsuarioController extends Controller
             'Criado o usuário '.$user->name.
             ', username: '.$user->username.
             ', email:'.$user->email.
-            ', password'.$user->password.
             ', pelo usuário '.Auth::user()->name,
             $user->id);
         try{

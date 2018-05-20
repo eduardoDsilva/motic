@@ -36,11 +36,6 @@ class AdminEscolaController extends Controller
     public function paginaCadastrarEscola(){
         $categorias = $this->categoriaController->buscar();
 
-        //foreach($categorias as $categoria){
-           // dd($categoria->categoria);
-        //}
-
-
         return view('admin/escola/cadastro/registro', compact('categorias'));
 
     }
@@ -90,7 +85,7 @@ class AdminEscolaController extends Controller
 
         $teste = $this->escola->find($id);
 
-        $idUser = $teste->users->id;
+        $idUser = $teste->user->id;
 
         $this->enderecoController->update($req, $idUser);
 

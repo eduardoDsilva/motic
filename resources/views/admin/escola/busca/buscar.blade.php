@@ -45,9 +45,9 @@
                     <td>{{$escola->name}}</td>
                     <td>{{$escola->tipoEscola}}</td>
                     <td>{{$escola->telefone}}</td>
-                    <td>{{$escola->users->endereco->rua}}</td>
-                    <td>{{$escola->users->email}}</td>
-                    <td>{{$escola->users->username}}</td>
+                    <td>{{$escola->user->endereco->rua}}</td>
+                    <td>{{$escola->user->email}}</td>
+                    <td>{{$escola->user->username}}</td>
                     <td>
                         <a class="btn deep-orange modal-trigger" href="{{ url("/admin/escola/update/".$escola->id."/editar") }}">Editar</a>
                         <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>

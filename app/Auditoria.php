@@ -10,7 +10,7 @@ class Auditoria extends Model
         'tipo', 'descricao', 'nome_usuario', 'id_acao', 'user_id',
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class,'user_id');
     }
