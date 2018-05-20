@@ -8,60 +8,86 @@
 
 namespace App\Http\Controllers\Admin\Disciplinas;
 
-
+use App\Disciplina;
+use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Disciplina\DisciplinaController;
 
 class AdminDisciplinaController extends Controller
 {
 
-    private $disciplinaController;
-    private $request;
+    private $disciplinas;
+    private $auditoriaController;
 
-    public function __construct(DisciplinaController $disciplinaController)
+    public function __construct(Disciplina $disciplina, AuditoriaController $auditoriaController)
     {
-        $this->disciplinaController = $disciplinaController;
+        $this->disciplinas = $disciplina;
+        $this->auditoriaController = $auditoriaController;
     }
 
     public function index()
     {
-        $disciplinas = $this->disciplinaController->buscar();
+        $disciplinas = Disciplina::all();
         return view('admin/disciplinas/home', compact('disciplinas'));
     }
 
-    public function editar($id)
-    {
-        $disciplina = $this->disciplinaController->editar($id);
+    public function store(Request $request){
+        $dataForm = $request->all();
+        try{
+            $disciplinas = Disciplina::create($dataForm);
+            $this->auditoriaController->storeCreate($disciplinas, $disciplinas->id);
 
-        return view('admin/disciplinas/editar/editar', compact('disciplina'));
+            return redirect()
+                ->route("admin/disciplinas/home")
+                ->with("success", "disciplina ".$disciplinas->name." adicionada com sucesso");
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function store(Request $req)
-    {
-        $this->request = $req->all();
-        $this->disciplinaController->store($this->request);
-
-        return redirect()
-            ->route("admin/disciplinas/home")
-            ->with("sucess", "Disciplina cadastrada com sucesso!");
+    public function show(){
+        try{
+            $disciplinas = disciplina::all();
+            return view("admin/disciplinas/busca/buscar", compact('disciplinas'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function delete($id){
-        $this->disciplinaController->delete($id);
-        $disciplinas = $this->disciplinaController->buscar();
-
-        return redirect()
-            ->route("admin/disciplinas/home")
-            ->with(compact('disciplinas'));
+    public function edit($id){
+        try{
+            $disciplina = disciplina::find($id);
+            return view("admin/disciplinas/editar/editar", compact('disciplina'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function update(Request $req, $id)
-    {
-        $this->disciplinaController->update($req, $id);
-        $disciplinas = $this->disciplinaController->buscar();
-        return view('admin/disciplinas/home', compact('disciplinas'));
+    public function update(Request $request, $id){
+        $dataForm = $request->all();
+        try{
+            $disciplinas = Disciplina::find($id);
+            $disciplinas->update($dataForm);
+            $this->auditoriaController->storeUpdate($disciplinas, $disciplinas->id);
+
+            $disciplinas = Disciplina::all();
+            return view('admin/disciplinas/home', compact('disciplinas'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
+    public function destroy($id){
+        try{
+            $disciplina = Disciplina::find($id);
+            $disciplina->delete($id);
+            $this->auditoriaController->storeDelete($disciplina, $disciplina->id);
+
+            $disciplinas = Disciplina::all();
+            return view('admin/disciplinas/home', compact('disciplinas'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
 
 }

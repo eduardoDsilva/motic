@@ -30,11 +30,11 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">school</i>
-                            <select multiple name="categoria">
+                            <select multiple name="categoria_id[]">
                                 <option value="" disabled selected>Categoria...</option>
                                 <?php
                                 foreach($categorias as $categoria){
-                                 echo "<option value=".$categoria->categoria.">".$categoria->categoria."</option>";
+                                 echo "<option value=".$categoria->id.">".$categoria->categoria."</option>";
                                 }
                                 ?>
                             </select>

@@ -56,7 +56,7 @@
                             <p>Você tem certeza que deseja deletar o avaliador?</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ url("/admin/avaliador/deletar/".$avaliador->id."/excluir") }}" class="btn red">Sim</a>
+                            <a href="{{ url("/admin/avaliador/deletar/".$avaliador->user->id."/excluir") }}" class="btn red">Sim</a>
                         </div>
                     </div>
                 @empty

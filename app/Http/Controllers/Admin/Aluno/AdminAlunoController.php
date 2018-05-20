@@ -3,34 +3,21 @@
 namespace App\Http\Controllers\Admin\Aluno;
 
 use App\Aluno;
-use App\Http\Controllers\Aluno\AlunoController;
+use App\Escola;
+use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dado\DadoController;
-use App\Http\Controllers\Escola\EscolaController;
-use App\Http\Controllers\Usuario\UsuarioController;
-use App\Http\Controllers\Endereco\EnderecoController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class AdminAlunoController extends Controller
 {
 
-    private $dadoController;
-    private $usuarioController;
-    private $alunoController;
-    private $enderecoController;
-    private $escolaController;
-    private $request;
     private $aluno;
+    private $auditoriaController;
 
-    public function __construct(DadoController $dadoController, UsuarioController $usuarioController, AlunoController $alunoController, EnderecoController $enderecoController, EscolaController $escolaController)
+    public function __construct(Aluno $aluno, AuditoriaController $auditoriaController)
     {
-        $this->dadoController = $dadoController;
-        $this->usuarioController = $usuarioController;
-        $this->alunoController = $alunoController;
-        $this->enderecoController = $enderecoController;
-        $this->escolaController = $escolaController;
-        $this->aluno = new Aluno();
+        $this->aluno = $aluno;
+        $this->auditoriaController = $auditoriaController;
     }
 
     public function index()
@@ -38,76 +25,89 @@ class AdminAlunoController extends Controller
         return view('admin/aluno/home');
     }
 
-    public function paginaCadastrarAluno()
-    {
-        $escolas = $this->escolaController->buscar();
+    public function create(){
+        $escolas = Escola::all();
         return view('admin/aluno/cadastro/registro', compact('escolas'));
     }
 
-    public function editar($id){
-        $aluno = $this->alunoController->editar($id);
+    public function store(Request $request){
+        $dataForm = $request->all();
+        try{
+            $user = User::create($dataForm + ['tipoUser' => 'aluno']);
+            $this->auditoriaController->storeCreate($user, $user->id);
 
-        return view('admin/aluno/editar/editar', compact('aluno'));
+            $aluno = aluno::create($dataForm + ['user_id' => $user->id]);
+            $this->auditoriaController->storeCreate($aluno, $aluno->id);
+
+            $dado = Dado::create($dataForm + ['user_id' => $user->id]);
+            $this->auditoriaController->storeCreate($dado, $dado->id);
+
+            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
+            $this->auditoriaController->storeCreate($endereco, $endereco->id);
+
+            return redirect()
+                ->route("admin/aluno/home")
+                ->with("success", "aluno ".$aluno->name." adicionado com sucesso");
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function buscar()
-    {
-        $alunos = $this->alunoController->buscar();
-        $escolas = $this->escolaController->buscar();
-
-        Session::put('escolas',  $escolas);
-
-        return view("admin/aluno/busca/buscar", compact('alunos'));
+    public function show(){
+        try{
+            $alunos = aluno::all();
+            return view("admin/aluno/busca/buscar", compact('alunos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function store(Request $req)
-    {
-        $this->request = $req->all() + ['tipoUser' => 'aluno'] ;
-
-        $usuario = $this->usuarioController->store($this->request);
-        $this->request += ['user_id' => $usuario->id];
-
-        $this->alunoController->store($this->request);
-
-        $this->dadoController->store($this->request);
-
-        $this->enderecoController->store($this->request);
-
-        return redirect()
-            ->route("admin/aluno/home")
-            ->with("sucess", "Aluno cadastrado com sucesso!");
-
+    public function edit($id){
+        try{
+            $aluno = aluno::find($id);
+            return view("admin/aluno/editar/editar", compact('aluno'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function delete($id){
-        $this->alunoController->delete($id);
-        $alunos = $this->alunoController->buscar();
+    public function update(Request $request, $id){
+        $dataForm = $request->all();
+        try{
+            $user = User::find($id);
+            $user->update($dataForm + ['tipoUser' => 'aluno']);
+            $this->auditoriaController->storeUpdate($user, $user->id);
 
-        return redirect()
-            ->route("admin/aluno/busca/buscar")
-            ->with(compact('alunos'));
+            $aluno = $user->aluno;
+            $aluno->update($dataForm);
+            $this->auditoriaController->storeUpdate($aluno, $aluno->id);
+
+            $dado = $user->dado;
+            $dado->update($dataForm);
+            $this->auditoriaController->storeUpdate($dado, $dado->id);
+
+            $endereco = $user->endereco;
+            $endereco->update($dataForm);
+            $this->auditoriaController->storeUpdate($endereco, $endereco->id);
+
+            $alunos = $this->aluno->all();
+            return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function update(Request $req, $id)
-    {
-        $this->request = $req->all() + ['tipoUser' => 'aluno'] ;
+    public function destroy($id){
+        try{
+            $aluno = User::find($id);
+            $aluno->delete($id);
+            $this->auditoriaController->storeUpdate($aluno, $aluno->id);
 
-        $teste = $this->aluno->find($id);
-
-        $idUser = $teste->user->id;
-
-        $this->usuarioController->update($req, $idUser);
-
-        $this->dadoController->update($req, $idUser);
-
-        $this->enderecoController->update($req, $idUser);
-
-        $this->alunoController->update($req, $id);
-
-        $alunos = $this->alunoController->buscar();
-        return redirect()
-            ->route("admin/aluno/busca/buscar")
-            ->with(compact('alunos'));
+            $alunos = aluno::all();
+            return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
 }

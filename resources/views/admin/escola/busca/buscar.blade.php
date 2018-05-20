@@ -62,7 +62,7 @@
                         <p>Você tem certeza que deseja deletar essa escola?</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ url("admin/escola/deletar/".$escola->id."/excluir") }}" class="btn red">Sim</a>
+                        <a href="{{ url("admin/escola/deletar/".$escola->user->id."/excluir") }}" class="btn red">Sim</a>
                     </div>
                 </div>
             @empty

@@ -15,8 +15,9 @@ class CreateAlunos extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('anoLetivo', ['	1° ANO', '2° ANO', '3° ANO', '4° ANO', '5° ANO', '6° ANO', '7° ANO', '8° ANO', '9° ANO', 'ERRO' ])->default('ERRO');
             $table->string('turma', 50);
-            $table->enum('possuiEquipe', ['sim', 'não'])->default('não');
+            $table->integer('equipe')->nullable();
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
             //criando a FK do usuario desse aluno

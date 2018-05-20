@@ -16,7 +16,7 @@
         <div class="row">
             <h3 class="center-align">Editar Avaliador</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$avaliador->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$avaliador->user->id) }}">
 
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 

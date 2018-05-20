@@ -3,99 +3,113 @@
 namespace App\Http\Controllers\Admin\Avaliador;
 
 use App\Avaliador;
-use App\Http\Controllers\Avaliador\AvaliadorController;
+use App\Dado;
+use App\Endereco;
+use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dado\DadoController;
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Usuario\UsuarioController;
-use App\Http\Controllers\Endereco\EnderecoController;
+
 
 class AdminAvaliadorController extends Controller
 {
 
-    private $dadoController;
-    private $usuarioController;
-    private $avaliadorController;
-    private $enderecoController;
     private $avaliador;
-    private $request;
+    private $auditoriaController;
 
-    public function __construct(DadoController $dadoController, UsuarioController $usuarioController, AvaliadorController $avaliadorController, EnderecoController $enderecoController)
+    public function __construct(Avaliador $avaliador, AuditoriaController $auditoriaController)
     {
-        $this->dadoController = $dadoController;
-        $this->usuarioController = $usuarioController;
-        $this->avaliadorController = $avaliadorController;
-        $this->enderecoController = $enderecoController;
-        $this->avaliador = new Avaliador();
+        $this->avaliador = $avaliador;
+        $this->auditoriaController = $auditoriaController;
     }
 
-    public function index(){
+    public function index()
+    {
         return view('admin/avaliador/home');
-        }
+    }
 
-    public function paginaCadastrarAvaliador(){
+    public function create(){
         return view('admin/avaliador/cadastro/registro');
     }
 
-    public function editar($id){
-        $avaliador = $this->avaliadorController->editar($id);
+    public function store(Request $request){
+        $dataForm = $request->all();
+        try{
+            $user = User::create($dataForm + ['tipoUser' => 'avaliador']);
+            $this->auditoriaController->storeCreate($user, $user->id);
 
-        return view('admin/avaliador/editar/editar', compact('avaliador'));
+            $avaliador = Avaliador::create($dataForm + ['user_id' => $user->id]);
+            $this->auditoriaController->storeCreate($avaliador, $avaliador->id);
+
+            $dado = Dado::create($dataForm + ['user_id' => $user->id]);
+            $this->auditoriaController->storeCreate($dado, $dado->id);
+
+            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
+            $this->auditoriaController->storeCreate($endereco, $endereco->id);
+
+            return redirect()
+                ->route("admin/avaliador/home")
+                ->with("success", "Avaliador ".$avaliador->name." adicionado com sucesso");
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function buscar()
-    {
-        $avaliadores = $this->avaliadorController->buscar();
-
-        return view("admin/avaliador/busca/buscar", compact('avaliadores'));
+    public function show(){
+        try{
+            $avaliadores = Avaliador::all();
+            return view("admin/avaliador/busca/buscar", compact('avaliadores'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function store(Request $req)
-    {
-        $this->request = $req->all() + ['tipoUser' => 'avaliador'] ;
-
-        $usuario = $this->usuarioController->store($this->request);
-        $this->request += ['user_id' => $usuario->id];
-
-        $this->avaliadorController->store($this->request);
-
-        $this->dadoController->store($this->request);
-
-        $this->enderecoController->store($this->request);
-
-        return redirect()
-            ->route("admin/avaliador/home")
-            ->with("sucess", "Avaliador cadastrada com sucesso!");
-
+    public function edit($id){
+        try{
+            $avaliador = Avaliador::find($id);
+            return view("admin/avaliador/editar/editar", compact('avaliador'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function delete($id){
-        $this->avaliadorController->delete($id);
-        $avaliadores = $this->avaliadorController->buscar();
+    public function update(Request $request, $id){
+        $dataForm = $request->all();
+        try{
+            $user = User::find($id);
+            $user->update($dataForm + ['tipoUser' => 'avaliador']);
+            $this->auditoriaController->storeUpdate($user, $user->id);
 
-        return redirect()
-            ->route("admin/avaliador/busca/buscar")
-            ->with(compact('avaliadores'));
+            $avaliador = $user->avaliador;
+            $avaliador->update($dataForm);
+            $this->auditoriaController->storeUpdate($avaliador, $user->id);
+
+            $dado = $user->dado;
+            $dado->update($dataForm);
+            $this->auditoriaController->storeUpdate($dado, $user->id);
+
+            $endereco = $user->endereco;
+            $endereco->update($dataForm);
+            $this->auditoriaController->storeUpdate($endereco, $user->id);
+
+            $avaliadores = $this->avaliador->all();
+            return redirect()->route("admin/avaliador/busca/buscar", compact('avaliadores'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
-    public function update(Request $req, $id)
-    {
-        $this->request = $req->all() + ['tipoUser' => 'avaliador'] ;
+    public function destroy($id){
+        try{
+            $avaliador = User::find($id);
+            $avaliador->delete($id);
+            $this->auditoriaController->storeUpdate($avaliador, $avaliador->id);
 
-        $teste = $this->avaliador->find($id);
-
-        $idUser = $teste->user->id;
-
-        $this->usuarioController->update($req, $idUser);
-
-        $this->dadoController->update($req, $idUser);
-
-        $this->enderecoController->update($req, $idUser);
-
-        $avaliadores = $this->avaliadorController->buscar();
-        return redirect()
-            ->route("admin/avaliador/busca/buscar")
-            ->with(compact('avaliadores'));
+            $avaliadores = Avaliador::all();
+            return redirect()->route("admin/avaliador/busca/buscar", compact('avaliadores'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
 }

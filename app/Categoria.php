@@ -12,13 +12,12 @@ class Categoria extends Model
 
     public function escola()
     {
-        return $this->belongsToMany(Escola::class,  'escolas_categorias')->withTimestamps();
+        return $this->belongsToMany(Escola::class,  'escolas_categorias', 'escola_id', 'categoria_id');
     }
 
     public function aluno()
     {
         return $this->belongsTo(Aluno::class, 'categoria_id', 'id');
     }
-
 
 }
