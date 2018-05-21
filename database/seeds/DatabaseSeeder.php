@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('DisciplinaTableSeeder');
         $this->call('UserTableSeeder');
+        $this->call('DisciplinaTableSeeder');
         $this->call('CategoriaTableSeeder');
     }
 

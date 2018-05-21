@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers\Admin\Escola;
 
+use App\Categoria;
 use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Escola\EscolaFormRequest;
 use App\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Categoria\CategoriaController;
 
 class AdminEscolaController extends Controller
 {
-
     private $escola;
-    private $categoriaController;
+
     private $auditoriaController;
 
-    public function __construct(Escola $escola, AuditoriaController $auditoriaController, CategoriaController $categoriaController)
+    public function __construct(Escola $escola, AuditoriaController $auditoriaController)
     {
         $this->escola = $escola;
-        $this->categoriaController = $categoriaController;
         $this->auditoriaController = $auditoriaController;
     }
 
@@ -30,11 +28,12 @@ class AdminEscolaController extends Controller
     }
 
     public function create(){
-        $categorias = $this->categoriaController->buscar();
-        return view('admin/escola/cadastro/registro', compact('categorias'));
+        $categorias = Categoria::all();
+        $titulo = 'Cadastrar escola';
+        return view('admin/escola/cadastro/registro', compact('categorias', 'titulo'));
     }
 
-    public function store(Request $request){
+    public function store(EscolaFormRequest $request){
         $dataForm = $request->all();
         try{
             $user = User::create($dataForm + ['tipoUser' => 'escola']);
@@ -70,13 +69,18 @@ class AdminEscolaController extends Controller
     public function edit($id){
         try{
             $escola = Escola::find($id);
-            return view("admin/escola/editar/editar", compact('escola'));
+            $categorias = Categoria::all();
+            $titulo = 'Editar escola :'.$escola->name;
+            foreach ($escola->categoria as $id){
+                $categoria_escola[] = $id->pivot->categoria_id;
+            }
+            return view("admin/escola/cadastro/registro", compact('escola', 'categorias', 'titulo', 'categoria_escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(EscolaFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $user = User::find($id);
