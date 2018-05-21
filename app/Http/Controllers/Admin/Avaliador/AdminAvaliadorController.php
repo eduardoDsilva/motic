@@ -7,6 +7,8 @@ use App\Dado;
 use App\Endereco;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Avaliador\ProfessorCreateFormRequest;
+use App\Http\Requests\Admin\Avaliador\ProfessorUpdateFormRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -29,10 +31,11 @@ class AdminAvaliadorController extends Controller
     }
 
     public function create(){
-        return view('admin/avaliador/cadastro/registro');
+        $titulo = 'Cadastrar avaliador';
+        return view('admin/avaliador/cadastro/registro', 'avaliador');
     }
 
-    public function store(Request $request){
+    public function store(ProfessorCreateFormRequest $request){
         $dataForm = $request->all();
         try{
             $user = User::create($dataForm + ['tipoUser' => 'avaliador']);
@@ -67,13 +70,15 @@ class AdminAvaliadorController extends Controller
     public function edit($id){
         try{
             $avaliador = Avaliador::find($id);
-            return view("admin/avaliador/editar/editar", compact('avaliador'));
+            $titulo = 'Editar avaliador :'.$avaliador->dado->name;
+
+            return view("admin/avaliador/cadastro/registro", compact('avaliador', 'avaliador'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ProfessorUpdateFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $user = User::find($id);

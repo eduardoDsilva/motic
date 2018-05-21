@@ -6,10 +6,11 @@ use App\Dado;
 use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
+use App\Http\Requests\Admin\Professor\ProfessorCreateFormRequest;
+use App\Http\Requests\Admin\Professor\ProfessorUpdateFormRequest;
 use App\professor;
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Http\Request;
 
 class AdminProfessorController extends Controller
 {
@@ -30,10 +31,12 @@ class AdminProfessorController extends Controller
 
     public function create(){
         $escolas = Escola::all();
-        return view('admin/professor/cadastro/registro', compact('escolas'));
+        $titulo = 'Cadastrar professor';
+
+        return view('admin/professor/cadastro/registro', compact('escolas', 'titulo'));
     }
 
-    public function store(Request $request){
+    public function store(ProfessorCreateFormRequest $request){
         $dataForm = $request->all();
         try{
             $user = User::create($dataForm + ['tipoUser' => 'professor']);
@@ -68,13 +71,16 @@ class AdminProfessorController extends Controller
     public function edit($id){
         try{
             $professor = Professor::find($id);
-            return view("admin/professor/editar/editar", compact('professor'));
+            $escolas = Escola::all();
+            $titulo = 'Editar professor :'.$professor->user->dado->name;
+
+            return view("admin/professor/cadastro/registro", compact('professor', 'titulo', 'escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ProfessorUpdateFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $user = User::find($id);

@@ -22,17 +22,17 @@
             <h3 class="center-align">{{$titulo}}</h3>
             <article class="col s12">
             @if(isset($escola))
-                    <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/escola/".$escola->user->id) }}">
-                @else
-                     <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/cadastro/registro') }}">
-                @endif
+                 <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/escola/".$escola->user->id) }}">
+            @else
+                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/escola/cadastro/registro') }}">
+            @endif
                     {{csrf_field()}}
                     <h5>Dados básicos</h5>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="name">Nome da escola</label>
-                            <input type="text" name="name" value="{{$escola->name or old('name')}}"required>
+                            <input type="text" name="name" value="{{$escola->name or old('name')}}" required>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">school</i>
@@ -127,13 +127,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" required>
+                            <input type="password" name="password" value="{{$avaliador->user->password or old('password')}}"required>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" required>
+                            <input type="password" name="password_confirmation" value="{{$avaliador->user->password or old('password')}}"required>
                         </div>
                     </div>
 

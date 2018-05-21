@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Escola;
+namespace App\Http\Requests\Admin\Avaliador;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EscolaFormRequest extends FormRequest
+class AvaliadorUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,18 @@ class EscolaFormRequest extends FormRequest
     {
         return [
             'name'                  => 'required|min:3|string|max:100',
-            'categoria_id'          => 'required',
-            'email'                 => 'required|email|string|unique:users',
-            'telefone'              => 'required|string|min:8|max:15',
+            'nascimento'            => 'required',
+            'sexo'                  => 'required',
+            'grauDeInstrucao'       => 'required',
+            'email'                 => 'required|email|string',
+            'telefone'              => 'required|max:15',
+            'cpf'                   => 'required|string|min:11|max:11',
             'cep'                   => 'required|min:8|max:8',
             'bairro'                => 'required|min:4|string|max:100',
             'rua'                   => 'required|min:4|string|max:100',
             'numero'                => 'required|min:1|max:5',
             'complemento'           => '',
-            'username'              => 'required|string|min:5|max:20|unique:users',
+            'username'              => 'required|string|min:5|max:20',
             'password'              => 'required|string|min:6|confirmed',
         ];
     }
@@ -45,11 +48,21 @@ class EscolaFormRequest extends FormRequest
             'name.min' => 'Insira um nome válido!',
             'name.max' => 'Insira um nome válido!',
 
+            'naacimento.required' => 'O cmapo nascimento é de preencimento obrigatório',
+
+            'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
+
+            'grauDeInstrucao.required' => 'O cmapo grau de instrução é de preencimento obrigatório',
+
             'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
+
+            'cpf.required' => 'O campo cpf é de preenchimento obrigatório!',
+            'cpf.min' => 'Insira um CPF válido!',
+            'cpf.max' => 'Insira um CPF válido!',
+
 
             'email.required' => 'O campo email é de preenchimento obrigatório!',
             'email.email' => 'Insira um e-mail válido!',
-            'email.unique' => 'E-mail já cadastrado no sistema',
 
             'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
             'telefone.numeric' => 'Insira um telefoen válido!',
@@ -77,7 +90,6 @@ class EscolaFormRequest extends FormRequest
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
             'username.min' => 'Insira um némero válido!',
             'username.max' => 'Insira um némero válido!',
-            'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',
