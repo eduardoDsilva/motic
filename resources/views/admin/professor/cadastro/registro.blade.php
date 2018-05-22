@@ -22,7 +22,7 @@
         <div class="row">
             <h3 class="center-align">{{$titulo}}</h3>
             <article class="col s12">
-                @if(isset($escola))
+                @if(isset($professor))
                     <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/professor/".$professor->user->id) }}">
                 @else
                     <form method="POST" enctype="multipart/form-data" action="{{ route('admin/professor/cadastro/registro') }}">
