@@ -36,7 +36,6 @@
             <tr>
                 <th>id</th>
                 <th>Nome</th>
-                <th>Tipo Escola</th>
                 <th>Telefone</th>
                 <th>Endereço</th>
                 <th>E-mail</th>
@@ -49,7 +48,6 @@
                 <tr>
                     <td>{{$escola->id}}</td>
                     <td>{{$escola->name}}</td>
-                    <td>{{$escola->tipoEscola}}</td>
                     <td>{{$escola->telefone}}</td>
                     <td>{{$escola->user->endereco->rua}}</td>
                     <td>{{$escola->user->email}}</td>

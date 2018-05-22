@@ -6,8 +6,8 @@ use App\Dado;
 use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
-use App\Http\Requests\Admin\Professor\ProfessorCreateFormRequest;
-use App\Http\Requests\Admin\Professor\ProfessorUpdateFormRequest;
+use App\Http\Requests\Admin\Professor\AlunoCreateFormRequest;
+use App\Http\Requests\Admin\Professor\AlunoUpdateFormRequest;
 use App\professor;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -18,6 +18,8 @@ class AdminProfessorController extends Controller
 
     private $professor;
     private $auditoriaController;
+
+    use RegistersUsers;
 
     public function __construct(Professor $professor, AuditoriaController $auditoriaController)
     {
@@ -37,10 +39,16 @@ class AdminProfessorController extends Controller
         return view('admin/professor/cadastro/registro', compact('escolas', 'titulo'));
     }
 
-    public function store(ProfessorCreateFormRequest $request){
-        $dataForm = $request->all();
+    public function store(AlunoCreateFormRequest $request){
+        $dataForm = $request->all()+ ['tipoUser' => 'professor'];
         try{
-            $user = User::create($dataForm + ['tipoUser' => 'professor']);
+            $user = User::create([
+                'name' => $dataForm['name'],
+                'username' => $dataForm['username'],
+                'email' => $dataForm['email'],
+                'password' => bcrypt($dataForm['password']),
+                'tipoUser' => $dataForm['tipoUser'],
+            ]);
             $this->auditoriaController->storeCreate($user, $user->id);
 
             $professor = Professor::create($dataForm + ['user_id' => $user->id]);
@@ -82,11 +90,17 @@ class AdminProfessorController extends Controller
         }
     }
 
-    public function update(ProfessorUpdateFormRequest $request, $id){
-        $dataForm = $request->all();
+    public function update(AlunoUpdateFormRequest $request, $id){
+        $dataForm = $request->all() + ['tipoUser' => 'professor'];
         try{
             $user = User::find($id);
-            $user->update($dataForm + ['tipoUser' => 'professor']);
+            $user = $user->update([
+                'name' => $dataForm['name'],
+                'username' => $dataForm['username'],
+                'email' => $dataForm['email'],
+                'password' => bcrypt($dataForm['password']),
+                'tipoUser' => $dataForm['tipoUser'],
+            ]);
             $this->auditoriaController->storeUpdate($user, $user->id);
 
             $professor = $user->professor;
@@ -113,7 +127,7 @@ class AdminProfessorController extends Controller
         try{
             $professor = User::find($id);
             $professor->delete($id);
-            $this->auditoriaController->storeUpdate($professor, $professor->id);
+            $this->auditoriaController->storeDelete($professor, $professor->id);
 
             $professores = Professor::all();
             return redirect()->route("admin/professor/busca/buscar", compact('professores'));

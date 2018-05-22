@@ -8,3 +8,5 @@ Route::get('/', function () {
 require_once('auth/auth.php');
 
 require_once('admin/admin.php');
+
+require_once('escola/escola.php');

@@ -55,7 +55,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="number" name="telefone" maxlength="15" value="{{$escola->telefone or old('telefone')}}" required>
+                            <input type="number" name="telefone" data-length="16" value="{{$escola->telefone or old('telefone')}}" required>
                         </div>
                     </div>
 
@@ -65,7 +65,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <label for="cep">CEP</label>
-                            <input type="number" name="cep" maxlength="8" value="{{$escola->user->endereco->cep or old('cep')}}" required>
+                            <input type="number" name="cep" data-length="8" value="{{$escola->user->endereco->cep or old('cep')}}" required>
                         </div>
 
                         <div class="input-field col s6">
@@ -127,13 +127,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" value="{{$avaliador->user->password or old('password')}}"required>
+                            <input type="password" name="password" value="{{old('password')}}"required>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">person_pin</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" value="{{$avaliador->user->password or old('password')}}"required>
+                            <input type="password" name="password_confirmation" value="{{old('password')}}"required>
                         </div>
                     </div>
 

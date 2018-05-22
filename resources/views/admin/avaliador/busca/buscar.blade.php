@@ -4,8 +4,14 @@
 
 @section('conteudo')
 
-    @if(session('success'))
-        {{session('success')}}
+    @if(Session::get('mensagem'))
+        <div class="center-align">
+            <div class="chip green">
+                {{Session::get('mensagem')}}
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+        {{Session::forget('mensagem')}}
     @endif
 
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>

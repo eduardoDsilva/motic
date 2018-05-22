@@ -77,13 +77,13 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" value="{{$avaliador->user->dado->telefone or old('telefone')}}"required>
+                            <input type="text" name="telefone" data-length="16" value="{{$avaliador->user->dado->telefone or old('telefone')}}"required>
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF</label>
-                            <input type="number" name="cpf" value="{{$avaliador->user->dado->cpf or old('cpf')}}"required>
+                            <input type="number" name="cpf" data-length="11" value="{{$avaliador->user->dado->cpf or old('cpf')}}"required>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <label for="cep">CEP</label>
-                            <input type="number" name="cep" value="{{$avaliador->user->endereco->cep or old('cep')}}"required>
+                            <input type="number" name="cep" data-length="8" value="{{$avaliador->user->endereco->cep or old('cep')}}"required>
                         </div>
 
                         <div class="input-field col s6">
@@ -155,13 +155,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" value="{{$avaliador->user->password or old('password')}}"required>
+                            <input type="password" name="password" value="{{old('password')}}"required>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" value="{{$avaliador->user->password or old('password')}}"required>
+                            <input type="password" name="password_confirmation" value="old('password')}}"required>
                         </div>
                     </div>
 

@@ -31,7 +31,6 @@
 
                   @if (Auth::guest())
                       <ul class="right hide-on-med-and-down">
-                          <li><a href="{{{ route('register') }}}">Registrar</a></li>
                           <li><a href="{{{ route('login') }}}">Login</a></li>
                       </ul>
                   @else
@@ -46,7 +45,7 @@
                               <li><a href="{{{route ('admin/projeto/home')}}}">Projetos</a></li>
                               @yield('menu')
                               <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{{ Auth::user()->name }}}<i class="material-icons right">arrow_drop_down</i></a></li>
-                          @elseif (Auth::user()->tipoUser == 'avaliador')
+                          @elseif (Auth::user()->tipoUser == 'escola')
                               @yield('menu')
                               <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{{ Auth::user()->name }}}<i class="material-icons right">arrow_drop_down</i></a></li>
                           @endif
@@ -55,7 +54,6 @@
 
                   <ul class="side-nav" id="mobile-demo">
                       @if (Auth::guest())
-                          <li><a href="{{{ route('register') }}}">Registrar</a></li>
                           <li><a href="{{{ route('login') }}}">Login</a></li>
                       @else
                           <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>

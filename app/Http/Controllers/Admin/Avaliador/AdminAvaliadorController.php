@@ -7,17 +7,19 @@ use App\Dado;
 use App\Endereco;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Avaliador\ProfessorCreateFormRequest;
-use App\Http\Requests\Admin\Avaliador\ProfessorUpdateFormRequest;
+use App\Http\Requests\Admin\Avaliador\AvaliadorCreateFormRequest;
+use App\Http\Requests\Admin\Avaliador\AvaliadorUpdateFormRequest;
 use App\User;
-use Illuminate\Http\Request;
-
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Session;
 
 class AdminAvaliadorController extends Controller
 {
 
     private $avaliador;
     private $auditoriaController;
+
+    use RegistersUsers;
 
     public function __construct(Avaliador $avaliador, AuditoriaController $auditoriaController)
     {
@@ -32,13 +34,19 @@ class AdminAvaliadorController extends Controller
 
     public function create(){
         $titulo = 'Cadastrar avaliador';
-        return view('admin/avaliador/cadastro/registro', 'avaliador');
+        return view('admin/avaliador/cadastro/registro', compact('titulo'));
     }
 
-    public function store(ProfessorCreateFormRequest $request){
-        $dataForm = $request->all();
+    public function store(AvaliadorCreateFormRequest $request){
+        $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try{
-            $user = User::create($dataForm + ['tipoUser' => 'avaliador']);
+            $user = User::create([
+                'name' => $dataForm['name'],
+                'username' => $dataForm['username'],
+                'email' => $dataForm['email'],
+                'password' => bcrypt($dataForm['password']),
+                'tipoUser' => $dataForm['tipoUser'],
+            ]);
             $this->auditoriaController->storeCreate($user, $user->id);
 
             $avaliador = Avaliador::create($dataForm + ['user_id' => $user->id]);
@@ -50,9 +58,9 @@ class AdminAvaliadorController extends Controller
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
             $this->auditoriaController->storeCreate($endereco, $endereco->id);
 
-            return redirect()
-                ->route("admin/avaliador/home")
-                ->with("success", "Avaliador ".$avaliador->name." adicionado com sucesso");
+            Session::put('mensagem', "O avaliador ".$avaliador->user->dado->name." foi cadastrado com sucesso!");
+
+            return redirect()>route("admin/avaliador/busca/buscar");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -70,7 +78,7 @@ class AdminAvaliadorController extends Controller
     public function edit($id){
         try{
             $avaliador = Avaliador::find($id);
-            $titulo = 'Editar avaliador: '.$avaliador->dado->name;
+            $titulo = 'Editar avaliador: '.$avaliador->user->dado->name;
 
             return view("admin/avaliador/cadastro/registro", compact('avaliador', 'titulo'));
         }catch (\Exception $e) {
@@ -78,11 +86,17 @@ class AdminAvaliadorController extends Controller
         }
     }
 
-    public function update(ProfessorUpdateFormRequest $request, $id){
-        $dataForm = $request->all();
+    public function update(AvaliadorUpdateFormRequest $request, $id){
+        $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try{
             $user = User::find($id);
-            $user->update($dataForm + ['tipoUser' => 'avaliador']);
+            $user->update([
+                'name' => $dataForm['name'],
+                'username' => $dataForm['username'],
+                'email' => $dataForm['email'],
+                'password' => bcrypt($dataForm['password']),
+                'tipoUser' => $dataForm['tipoUser'],
+            ]);
             $this->auditoriaController->storeUpdate($user, $user->id);
 
             $avaliador = $user->avaliador;
@@ -97,6 +111,8 @@ class AdminAvaliadorController extends Controller
             $endereco->update($dataForm);
             $this->auditoriaController->storeUpdate($endereco, $user->id);
 
+            Session::put('mensagem', "O avaliador ".$avaliador->user->dado->name." foi editado com sucesso!");
+
             $avaliadores = $this->avaliador->all();
             return redirect()->route("admin/avaliador/busca/buscar", compact('avaliadores'));
         }catch (\Exception $e) {
@@ -108,7 +124,8 @@ class AdminAvaliadorController extends Controller
         try{
             $avaliador = User::find($id);
             $avaliador->delete($id);
-            $this->auditoriaController->storeUpdate($avaliador, $avaliador->id);
+            $this->auditoriaController->storeDelete($avaliador, $avaliador->id);
+            Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
 
             $avaliadores = Avaliador::all();
             return redirect()->route("admin/avaliador/busca/buscar", compact('avaliadores'));

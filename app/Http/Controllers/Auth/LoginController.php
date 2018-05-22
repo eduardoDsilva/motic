@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Usuario;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
@@ -31,20 +32,21 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        $idUsuarioLogado = auth()->user()->id;
-        $usuarios = DB::table('users')->select('tipoUser')->where('id', $idUsuarioLogado)->get();
-        foreach ($usuarios as $key => $value) {
-            if ($value->tipoUser == "admin") {
-                return 'admin/home';
-            } else if ($value->tipo == "avaliador") {
-                return 'avaliador/home';
-            } else if ($value->tipo == "escola") {
-                return 'escola/home';
-            } else if ($value->tipo == "projeto") {
-                return 'projeto/home';
-            } else {
-                return 'erro/home';
-            }
+        $tipo = Auth::user()->tipoUser;
+        if ($tipo == "admin") {
+            return 'admin/home';}
+        else if ($tipo == "escola") {
+            return 'escola/home';
+        } else if ($tipo == "avaliador") {
+            return 'avaliador/home';
+        } else if ($tipo == "projeto") {
+            return 'projeto/home';
+        } else if ($tipo == "aluno") {
+            return 'aluno/home';
+        } else if ($tipo== "professor") {
+            return 'professor/home';
+        } else {
+            return view('welcome');
         }
     }
 
