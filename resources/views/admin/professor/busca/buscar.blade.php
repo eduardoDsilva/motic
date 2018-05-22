@@ -4,8 +4,14 @@
 
 @section('conteudo')
 
-    @if(session('success'))
-        {{session('success')}}
+    @if(Session::get('mensagem'))
+        <div class="center-align">
+            <div class="chip green">
+                {{Session::get('mensagem')}}
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+        {{Session::forget('mensagem')}}
     @endif
 
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>
@@ -44,8 +50,8 @@
                         <td>{{( $professor->equipe ? $professor->equipe->id : "Professor ainda sem equipe" )}}</td>
                         <td>{{( $professor->equipe ? $professor->equipe->projeto->id ? $professor->equipe->projeto->titulo : "Professor ainda sem projeto" : "Professor ainda sem projeto" )}}</td>
                         <td>
-                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/professor/update/".$professor->id."/editar") }}">Editar</a>
-                            <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/professor/update/".$professor->id."/editar") }}"><i class="small material-icons">edit</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
                     </tbody>

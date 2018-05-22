@@ -4,9 +4,14 @@
 
 @section('conteudo')
 
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
+    @if( isset($errors) && count($errors) > 0 )
+        <div class="center-align">
+            @foreach( $errors->all() as $error )
+                <div class="chip red">
+                    {{$error}}
+                    <i class="close material-icons">close</i>
+                </div>
+            @endforeach
         </div>
     @endif
 
@@ -31,7 +36,7 @@
                         <div class='row'>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">assignment</i>
-                                <textarea name="descricao" id="textarea1" class="materialize-textarea">{{$disciplina->descricao}}</textarea>
+                                <textarea data-length="240" name="descricao" id="textarea1" class="materialize-textarea">{{$disciplina->descricao}}</textarea>
                                 <label for="textarea1">Descrição</label>
                             </div>
                         </div>

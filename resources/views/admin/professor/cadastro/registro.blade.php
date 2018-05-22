@@ -74,7 +74,7 @@
                             <select name="escola_id">
                                 <option value="" disabled selected>Selecione a escola</option>
                             @forelse ($escolas as $escola)
-                                 <option value="{{$escola->id}}" @if ($escola->id == $professor->escola_id) selected @endif>{{$escola->name}}</option>
+                                 <option value="{{$escola->id}}" @if (isset($professor) && $escola->id == $professor->escola_id) selected @endif>{{$escola->name}}</option>
                             @empty
                                  <option value="">Nenhuma escola cadastrada no sistema! Entre em contato com o administrador.</option>
                             @endforelse

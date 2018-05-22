@@ -44,8 +44,8 @@
                         <td>{{$avaliador->user->dado->telefone}}</td>
                         <td>{{$avaliador->user->endereco->rua}}</td>
                         <td>
-                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/avaliador/update/".$avaliador->id."/editar") }}">Editar</a>
-                            <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/avaliador/update/".$avaliador->id."/editar") }}"><i class="small material-icons">edit</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
                     </tbody>

@@ -41,6 +41,10 @@
 
     <script type="text/javascript">
 
+        $(document).ready(function(){
+            $('.tooltipped').tooltip({delay: 50});
+        });
+
         $(document).ready(function() {
             $('select').material_select();
         });

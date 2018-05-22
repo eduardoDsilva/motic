@@ -58,6 +58,13 @@
                           <li><a href="{{{ route('register') }}}">Registrar</a></li>
                           <li><a href="{{{ route('login') }}}">Login</a></li>
                       @else
+                          <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>
+                          <li><a href="{{{route ('admin/avaliador/home')}}}">Avaliadores</a></li>
+                          <li><a href="{{{route ('admin/disciplinas/home')}}}">Disciplinas</a></li>
+                          <li><a href="{{{ route(Auth::user()->tipoUser.'/home') }}}">Equipes</a></li>
+                          <li><a href="{{{route ('admin/escola/home')}}}">Escolas</a></li>
+                          <li><a href="{{{route ('admin/professor/home')}}}">Professores</a></li>
+                          <li><a href="{{{route ('admin/projeto/home')}}}">Projetos</a></li>
                           <li>
                               <a href="{{{ route('logout') }}}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"> Logout

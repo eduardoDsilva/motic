@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\Professor\ProfessorUpdateFormRequest;
 use App\professor;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 class AdminProfessorController extends Controller
 {
@@ -51,9 +52,10 @@ class AdminProfessorController extends Controller
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
             $this->auditoriaController->storeCreate($endereco, $endereco->id);
 
-            return redirect()
-                ->route("admin/professor/home")
-                ->with("success", "professor ".$professor->name." adicionado com sucesso");
+            Session::put('mensagem', "O professor ".$professor->user->dado->name." foi criado com sucesso!");
+
+            return redirect()->route("admin/professor/busca/buscar");
+
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -72,7 +74,7 @@ class AdminProfessorController extends Controller
         try{
             $professor = Professor::find($id);
             $escolas = Escola::all();
-            $titulo = 'Editar professor :'.$professor->user->dado->name;
+            $titulo = 'Editar professor: '.$professor->user->dado->name;
 
             return view("admin/professor/cadastro/registro", compact('professor', 'titulo', 'escolas'));
         }catch (\Exception $e) {
@@ -99,8 +101,9 @@ class AdminProfessorController extends Controller
             $endereco->update($dataForm);
             $this->auditoriaController->storeUpdate($endereco, $endereco->id);
 
-            $professores = $this->professor->all();
-            return redirect()->route("admin/professor/busca/buscar", compact('professores'));
+            Session::put('mensagem', "O professor ".$professor->user->dado->name." foi editado com sucesso!");
+
+            return redirect()->route("admin/professor/busca/buscar");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

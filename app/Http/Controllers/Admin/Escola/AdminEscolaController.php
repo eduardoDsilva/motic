@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Escola\EscolaCreateFormRequest;
 use App\Http\Requests\Admin\Escola\EscolaUpdateFormRequest;
 use App\User;
+use Illuminate\Support\Facades\Session;
+
 class AdminEscolaController extends Controller
 {
 
@@ -44,9 +46,10 @@ class AdminEscolaController extends Controller
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
             $this->auditoriaController->storeCreate($endereco, $endereco->id);
 
-            return redirect()
-                ->route("admin/escola/home")
-                ->with("success", "Escola ".$escola->name." adicionada com sucesso");
+            Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
+
+            return redirect()->route("admin/escola/busca/buscar");
+
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -63,7 +66,7 @@ class AdminEscolaController extends Controller
         try{
             $escola = Escola::find($id);
             $categorias = Categoria::all();
-            $titulo = 'Editar escola :'.$escola->name;
+            $titulo = 'Editar escola: '.$escola->name;
             foreach ($escola->categoria as $id){
                 $categoria_escola[] = $id->pivot->categoria_id;
             }
@@ -84,9 +87,9 @@ class AdminEscolaController extends Controller
             $endereco = $user->endereco;
 
             $endereco->update($dataForm);
-            $escolas = $this->escola->all();
+            Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
 
-            return redirect()->route("admin/escola/busca/buscar", compact('escolas'));
+            return redirect()->route("admin/escola/busca/buscar");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -96,6 +99,7 @@ class AdminEscolaController extends Controller
             $escola = User::find($id);
             $escola->delete($id);
             $escolas = Escola::all();
+            Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
 
             return redirect()->route("admin/escola/busca/buscar", compact('escolas'));
         }catch (\Exception $e) {

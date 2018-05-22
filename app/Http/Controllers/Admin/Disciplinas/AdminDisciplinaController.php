@@ -11,6 +11,8 @@ namespace App\Http\Controllers\Admin\Disciplinas;
 use App\Disciplina;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Disciplina\DisciplinaCreateFormRequest;
+use App\Http\Requests\Admin\Disciplina\DisciplinaUpdateFormRequest;
 use Illuminate\Http\Request;
 
 class AdminDisciplinaController extends Controller
@@ -31,7 +33,7 @@ class AdminDisciplinaController extends Controller
         return view('admin/disciplinas/home', compact('disciplinas'));
     }
 
-    public function store(Request $request){
+    public function store(DisciplinaCreateFormRequest $request){
         $dataForm = $request->all();
         try{
             $disciplinas = Disciplina::create($dataForm);
@@ -63,7 +65,7 @@ class AdminDisciplinaController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(DisciplinaUpdateFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $disciplinas = Disciplina::find($id);

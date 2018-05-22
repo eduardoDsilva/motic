@@ -93,8 +93,8 @@ class ProfessorCreateFormRequest extends FormRequest
             'numero.required' => 'O campo número é de preenchimento obrigatório!',
             'numero.min' => 'Insira um némero válido!',
             'numero.max' => 'Insira um némero válido!',
-            
-            'numero.max' => 'Insira um complemento!',
+
+            'numero.max' => 'Insira o número da residência!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
             'username.min' => 'Insira um némero válido!',

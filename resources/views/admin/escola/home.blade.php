@@ -4,16 +4,6 @@
 
 @section('conteudo')
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-    @if(session('success'))
-        <div class="center-align">
-            <div class="chip green">
-                {{session('success')}}
-                <i class="close material-icons">close</i>
-            </div>
-        </div>
-    @endif
-
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br><br>

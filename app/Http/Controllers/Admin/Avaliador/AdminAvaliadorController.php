@@ -70,9 +70,9 @@ class AdminAvaliadorController extends Controller
     public function edit($id){
         try{
             $avaliador = Avaliador::find($id);
-            $titulo = 'Editar avaliador :'.$avaliador->dado->name;
+            $titulo = 'Editar avaliador: '.$avaliador->dado->name;
 
-            return view("admin/avaliador/cadastro/registro", compact('avaliador', 'avaliador'));
+            return view("admin/avaliador/cadastro/registro", compact('avaliador', 'titulo'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

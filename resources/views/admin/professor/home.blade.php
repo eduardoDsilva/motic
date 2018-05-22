@@ -4,10 +4,6 @@
 
 @section('conteudo')
 
-    @if(session('success'))
-        {{session('success')}}
-    @endif
-
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>
 
     <div class="section no-pad-bot" id="index-banner">

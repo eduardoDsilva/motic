@@ -4,8 +4,15 @@
 
 @section('conteudo')
 
-    @if(session('success'))
-        {{session('success')}}
+    @if( isset($errors) && count($errors) > 0 )
+        <div class="center-align">
+            @foreach( $errors->all() as $error )
+                <div class="chip red">
+                    {{$error}}
+                    <i class="close material-icons">close</i>
+                </div>
+            @endforeach
+        </div>
     @endif
 
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>
@@ -39,8 +46,8 @@
                         <td>{{$disciplina->name}}</td>
                         <td>{{$disciplina->descricao}}</td>
                         <td>
-                            <a class="btn deep-orange modal-trigger" href="{{ url("/admin/disciplinas/update/".$disciplina->id."/editar") }}">Editar</a>
-                            <a {{session()->put('id', $disciplina->id)}}data-target="modal2" class="btn red modal-trigger" href="#modal2">Deletar</a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."/editar") }}"><i class="small material-icons">edit</i></a>
+                            <a {{session()->put('id', $disciplina->id)}}data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2"><i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
                     </tbody>
@@ -89,7 +96,7 @@
                             <div class='row'>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">assignment</i>
-                                    <textarea name="descricao" id="textarea1" class="materialize-textarea"></textarea>
+                                    <textarea name="descricao" data-length="240" id="textarea1" class="materialize-textarea"></textarea>
                                     <label for="textarea1">Descrição</label>
                                 </div>
                             </div>
