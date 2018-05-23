@@ -14,7 +14,7 @@
 
     <section class="container">
         <div class="row">
-            <h3 class="center-align">Cadastrar projeto</h3>
+            <h3 class="center-align">Cadastrar </h3>
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/cadastro/registro') }}">
 

@@ -15,8 +15,9 @@ class CreateCoorientadores extends Migration
     {
         Schema::create('coorientadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('coorientador_id');
-            $table->foreign('coorientador_id')->references('id')->on('professores')->onDelete('cascade');
+
+            $table->unsignedInteger('professor_id');
+            $table->foreign('professor_id')->references('id')->on('professores')->onDelete('cascade');
             $table->timestamps();
         });
     }

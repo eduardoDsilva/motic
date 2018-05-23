@@ -49,13 +49,13 @@ class AdminEscolaController extends Controller
             ]);
             $this->auditoriaController->storeCreate($user, $user->id);
 
-            $escola = $user->escola()->create($dataForm);
+            $escola = Escola::create($dataForm + ['user_id' => $user->id]);
             foreach ($request->only(['categoria_id']) as $categoria){
-                $escola->categoria()->sync($categoria);
+                $escola->categoria()->attach($categoria);
             }
             $this->auditoriaController->storeCreate($escola, $escola->id);
 
-            $endereco = $user->endereco()->create($dataForm);
+            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
             $this->auditoriaController->storeCreate($endereco, $endereco->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
@@ -123,6 +123,7 @@ class AdminEscolaController extends Controller
 
     public function destroy($id){
         try{
+            dd($id);
             $escola = User::find($id);
             $escola->delete($id);
             $this->auditoriaController->storeDelete($escola, $escola->id);

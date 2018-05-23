@@ -8,7 +8,7 @@ class Projeto extends Model
 {
 
     protected $fillable = [
-        'titulo', 'area', 'estande', 'resumo', 'status', 'nota',
+        'titulo', 'area', 'estande', 'resumo', 'status',
     ];
 
 
@@ -27,14 +27,14 @@ class Projeto extends Model
         return $this->belongsToMany(Categoria::class,  'escolas_categorias')->withTimestamps();
     }
 
-    public function user()
+    public function aluno()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Equipe::class, 'aluno_id', 'id');
     }
 
-    public function equipe()
+    public function professor()
     {
-        return $this->belongsTo(Equipe::class, 'equipe_id', 'id');
+        return $this->belongsTo(Equipe::class, 'professor_id', 'id');
     }
 
 

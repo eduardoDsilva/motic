@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEquipesCoorientadores extends Migration
+class CreateProjetosCoorientadores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateEquipesCoorientadores extends Migration
      */
     public function up()
     {
-        Schema::create('equipes_coorientadores', function (Blueprint $table) {
+        Schema::create('projetos_coorientadores', function (Blueprint $table) {
+            $table->integer('projeto_id')->unsigned();
+            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
+
             $table->integer('coorientador_id')->unsigned();
             $table->foreign('coorientador_id')->references('id')->on('coorientadores')->onDelete('cascade');
-
-            $table->integer('equipe_id')->unsigned();
-            $table->foreign('equipe_id')->references('id')->on('equipes')->onDelete('cascade');
         });
     }
 
@@ -29,7 +29,7 @@ class CreateEquipesCoorientadores extends Migration
      */
     public function down()
     {
-        Schema::DropIfExists ('equipes_coorientadores');
+        Schema::DropIfExists ('projetos_coorientadores');
 
     }
 }

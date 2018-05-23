@@ -57,6 +57,7 @@
                             <i class="material-icons prefix">book</i>
                             <select name="anoLetivo">
                                 <option value="" disabled selected>Ano Letivo</option>
+                                <option value="Educação Infantil" <?php if(isset($aluno) && $aluno->user->dado->ANOLetivo=='Educação Infantil'){ echo 'selected';} ?>>1° ANO</option>
                                 <option value="1° ANO" <?php if(isset($aluno) && $aluno->user->dado->ANOLetivo=='1° ANO'){ echo 'selected';} ?>>1° ANO</option>
                                 <option value="2° ANO" <?php if(isset($aluno) && $aluno->user->dado->ANOLetivo=='2° ANO'){ echo 'selected';} ?>>2° ANO</option>
                                 <option value="3° ANO" <?php if(isset($aluno) && $aluno->user->dado->ANOLetivo=='3° ANO'){ echo 'selected';} ?>>3° ANO</option>
