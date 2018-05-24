@@ -38,7 +38,7 @@
                     <div class='row'>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <textarea name="descricao" id="textarea1" class="materialize-textarea"></textarea>
+                            <textarea name="resumo" id="textarea1" class="materialize-textarea"></textarea>
                             <label for="textarea1">Resumo</label>
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="escola">
-                                <option value="" disabled selected>Selecione a escola</option>
+                            <select name="escola_id">
+                                <option disabled selected>Selecione a escola</option>
                                 @forelse ($escolas as $escola)
                                     <option value="{{$escola->id}}">{{$escola->name}}</option>
                                 @empty
@@ -74,7 +74,7 @@
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">school</i>
-                            <select name="categoria" required>
+                            <select name="categoria_id" required>
                                 <option value="" disabled selected>Categoria...</option>
                                 @forelse($categorias as $categoria)
                                     <option value="{{$categoria->id}}" @if (isset($projeto) && in_array($categoria->id, $categoria_escola)) selected @endif>{{$categoria->categoria}}</option>
@@ -85,6 +85,7 @@
                             <label>Categorias</label>
                         </div>
                     </div>
+
                     <p class="center-align">
                         <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>

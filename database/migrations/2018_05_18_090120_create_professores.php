@@ -16,11 +16,17 @@ class CreateProfessores extends Migration
         Schema::create('professores', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('matricula');
+            $table->enum('tipo', ['orientador', 'coorientador', 'erro'])->default('erro');
+
+            $table->unsignedInteger('projeto_id');
+            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
+
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
-            //criando a FK do usuario desse professor
+
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

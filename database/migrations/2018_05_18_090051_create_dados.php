@@ -22,9 +22,11 @@ class CreateDados extends Migration
             $table->string('telefone')->nullable();
             $table->string('grauDeInstrucao');
             $table->string('cpf')->nullable();
+
             //criando FK de user
             $table->unsignedInteger('user_id')->nullable()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

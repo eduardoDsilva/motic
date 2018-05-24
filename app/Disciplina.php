@@ -12,7 +12,7 @@ class Disciplina extends Model
 
     public function projeto()
     {
-        return $this->belongsToMany(Projeto::class, 'projetos_disciplinas')->withTimestamps();
+        return $this->belongsToMany(Projeto::class, 'projetos_disciplinas');
     }
 
 }

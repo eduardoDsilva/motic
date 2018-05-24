@@ -4,87 +4,60 @@
 
 @section('conteudo')
 
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>
 
     <section class="container">
         <div class="row">
-            <h3 class="center-align">Cadastrar </h3>
+            <h3 class="center-align">Cadastrar equipe do projeto {{$projeto->titulo}}</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data">
 
-                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-
-                    <h5>Dados básicos</h5>
-
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Título</label>
-                            <input type="text" name="titulo" required>
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Área</label>
-                            <input type="text" name="area" required>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">assignment</i>
-                            <textarea name="descricao" id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Resumo</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">assignment</i>
-                            <select multiple name="disciplina_id[]">
-                                <option value="" disabled selected>Selecione as disciplinas</option>
-                                @forelse ($disciplinas as $disciplina)
-                                    <option value="{{$disciplina->id}}">{{$disciplina->name}}</option>
-                                @empty
-                                    <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com o administrador.</option>
-                                @endforelse
-                            </select>
-                            <label>Disciplinas</label>
-                        </div>
-                    </div>
+                {{csrf_field()}}
+                    <h5>Orientador e Coorientador</h5>
 
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="escola">
-                                <option value="" disabled selected>Selecione a escola</option>
-                                @forelse ($escolas as $escola)
-                                    <option value="{{$escola->id}}">{{$escola->name}}</option>
+                            <select id="userRequest_activity" name="orientador" required>
+                                <option value="" disabled selected>Selecione o Orientador</option>
+                                @forelse ($professores as $professor)
+                                    <option value="{{$professor->id}}">{{$professor->user->dado->name}}</option>
                                 @empty
-                                    <option value="">Nenhuma escola cadastrada no sistema! Entre em contato com o administrador.</option>
+                                    <option value="">Nenhum professor dessa escola cadastrado no sistema! Entre em contato com o administrador.</option>
                                 @endforelse
                             </select>
-                            <label>Escola</label>
+                            <label>Orientador</label>
                         </div>
 
                         <div class="input-field col s6">
-                            <i class="material-icons prefix">school</i>
-                            <select name="categoria" required>
-                                <option value="" disabled selected>Categoria...</option>
-                                @forelse($categorias as $categoria)
-                                    <option value="{{$categoria->id}}" @if (isset($projeto) && in_array($categoria->id, $categoria_escola)) selected @endif>{{$categoria->categoria}}</option>
+                            <i class="material-icons prefix">assignment</i>
+                            <select multiple id="userRequest_activity" name="coorientador">
+                                <option value="" disabled selected>Selecione o Coorientador</option>
+                                @forelse ($professores as $professor)
+                                    <option value="{{$professor->id}}">{{$professor->user->dado->name}}</option>
                                 @empty
-                                    <option value="">Nenhuma categoria cadastrada no sistema! Entre em contato com o administrador.</option>
+                                    <option value="">Nenhum professor dessa escola cadastrado no sistema! Entre em contato com o administrador.</option>
                                 @endforelse
                             </select>
-                            <label>Categorias</label>
+                            <label>Coorientador</label>
                         </div>
                     </div>
+
+                    <h5>Alunos</h5>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">assignment</i>
+                        <select multiple name="escola" required>
+                            <option value="" id="userRequest_activity" disabled selected>Selecione os alunos</option>
+                            @forelse ($alunos as $aluno)
+                                <option value="{{$aluno->id}}">{{$aluno->name}}</option>
+                            @empty
+                                <option value="">Nenhum aluno dessa escola cadastrado no sistema! Entre em contato com o administrador.</option>
+                            @endforelse
+                        </select>
+                        <label>Alunos</label>
+                    </div>
+
                     <p class="center-align">
                         <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>

@@ -72,7 +72,7 @@ class EscolaCreateFormRequest extends FormRequest
             'numero.min' => 'Insira um némero válido!',
             'numero.max' => 'Insira um némero válido!',
             
-            'numero.max' => 'Insira um complemento!',
+            'numero.max' => 'Insira um número válido!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
             'username.min' => 'Insira um némero válido!',

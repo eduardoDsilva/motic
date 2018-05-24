@@ -29,7 +29,6 @@ class AlunoUpdateFormRequest extends FormRequest
             'sexo'                  => 'required',
             'anoLetivo'             => 'required',
             'escola_id'             => 'required|numeric',
-            'email'                 => 'email|string',
             'telefone'              => 'max:15',
             'cpf'                   => '',
             'cep'                   => 'max:8',
@@ -37,8 +36,6 @@ class AlunoUpdateFormRequest extends FormRequest
             'rua'                   => 'max:100',
             'numero'                => 'max:5',
             'complemento'           => '',
-            'username'              => 'required|string|min:5|max:20',
-            'password'              => 'required|string|min:6|confirmed',
         ];
     }
 
@@ -60,8 +57,6 @@ class AlunoUpdateFormRequest extends FormRequest
             'escola_id.required' => 'O campo escola é de preenchimento obrigatório!',
             'escola_id.numeric'  => 'Escola uma escola válida!',
 
-            'email.email' => 'Insira um e-mail válido!',
-
             'telefone.numeric' => 'Insira um telefoen válido!',
             'telefone.max' => 'Insira um telefone válido!',
 
@@ -72,17 +67,6 @@ class AlunoUpdateFormRequest extends FormRequest
             'rua.max' => 'Insira uma rua válida!',
 
             'numero.max' => 'Insira um némero válido!',
-
-            'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.min' => 'Insira um némero válido!',
-            'username.max' => 'Insira um némero válido!',
-
-            'password.required' => 'O campo senha é de preenchimento obrigatório!',
-            'password.min' => 'A senha deve ter no mínimo 6 caractéres',
-            'password.confirmed' => 'As senhas devem ser iguais!',
-
-            'password_confirmed.required' => 'O campo senha é de preenchimento obrigatório!',
-            'password_confirmed.min' => 'A senha deve ter no mínimo 6 caractéres',
         ];
     }
 }

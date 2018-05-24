@@ -47,16 +47,16 @@ class AdminEscolaController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeCreate($user, $user->id);
+            $this->auditoriaController->storeCreate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
 
             $escola = Escola::create($dataForm + ['user_id' => $user->id]);
             foreach ($request->only(['categoria_id']) as $categoria){
                 $escola->categoria()->attach($categoria);
             }
-            $this->auditoriaController->storeCreate($escola, $escola->id);
+            $this->auditoriaController->storeCreate(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($endereco, $endereco->id);
+            $this->auditoriaController->storeCreate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
 
@@ -102,16 +102,15 @@ class AdminEscolaController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeUpdate($user, $user->id);
-
+            $this->auditoriaController->storeUpdate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
 
             $escola = $user->escola;
             $escola->update($dataForm);
-            $this->auditoriaController->storeUpdate($escola, $escola->id);
+            $this->auditoriaController->storeUpdate(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
-            $this->auditoriaController->storeUpdate($endereco, $endereco->id);
+            $this->auditoriaController->storeUpdate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
 
@@ -126,7 +125,7 @@ class AdminEscolaController extends Controller
             dd($id);
             $escola = User::find($id);
             $escola->delete($id);
-            $this->auditoriaController->storeDelete($escola, $escola->id);
+            $this->auditoriaController->storeDelete(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
             $escolas = Escola::all();
             Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");

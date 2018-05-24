@@ -8,7 +8,7 @@ class Projeto extends Model
 {
 
     protected $fillable = [
-        'titulo', 'area', 'estande', 'resumo', 'status',
+        'titulo', 'area', 'estande', 'resumo', 'status', 'categoria_id', 'escola_id'
     ];
 
 
@@ -19,12 +19,7 @@ class Projeto extends Model
 
     public function disciplina()
     {
-        return $this->belongsToMany(Disciplina::class,  'projetos_disciplinas')->withTimestamps();
-    }
-
-    public function categoria()
-    {
-        return $this->belongsToMany(Categoria::class,  'escolas_categorias')->withTimestamps();
+        return $this->belongsToMany(Disciplina::class,  'projetos_disciplinas');
     }
 
     public function aluno()
@@ -36,6 +31,13 @@ class Projeto extends Model
     {
         return $this->belongsTo(Equipe::class, 'professor_id', 'id');
     }
+
+    public function coorientador()
+    {
+        return $this->hasMany(Equipe::class, 'professor_id', 'id');
+    }
+
+
 
 
 }

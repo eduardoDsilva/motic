@@ -41,6 +41,21 @@
 
     <script type="text/javascript">
 
+        $(document).ready(function() {
+
+            var last_valid_selection = null;
+
+            $('#userRequest_activity').change(function(event) {
+
+                if ($(this).val().length > 3) {
+
+                    $(this).val(last_valid_selection);
+                } else {
+                    last_valid_selection = $(this).val();
+                }
+            });
+        });
+
         $(document).ready(function(){
             $('.tooltipped').tooltip({delay: 50});
         });

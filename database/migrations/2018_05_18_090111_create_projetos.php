@@ -19,18 +19,12 @@ class CreateProjetos extends Migration
             $table->string('area', 100);
             $table->string('estande', 50)->nullable();
             $table->longText('resumo');
-            $table->enum('status', ['aprovado', 'suplente'])->default('suplente');
+            $table->enum('status', ['aprovado', 'suplente'])->default('aprovado');
 
-            $table->unsignedInteger('categoria_id')->unique();
+            $table->unsignedInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
 
-            $table->unsignedInteger('aluno_id')->nullable()->unique();
-            $table->foreign('aluno_id')->references('id')->on('alunos');
-
-            $table->unsignedInteger('orientador_id')->nullable()->unique();
-            $table->foreign('orientador_id')->references('id')->on('orientadores');
-
-            $table->unsignedInteger('escola_id')->unique();
+            $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
             $table->timestamps();

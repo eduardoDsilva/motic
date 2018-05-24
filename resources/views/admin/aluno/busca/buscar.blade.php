@@ -34,7 +34,6 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Usuário</th>
                     <th>Escola</th>
                     <th>Equipe</th>
                     <th>Projeto</th>
@@ -44,8 +43,7 @@
                 @forelse ($alunos as $aluno)
                     <tbody>
                     <tr>
-                        <td>{{$aluno->user->dado->name}}</td>
-                        <td>{{$aluno->user->username}}</td>
+                        <td>{{$aluno->name}}</td>
                         <td>{{$aluno->escola->name}}</td>
                         <td>{{( $aluno->equipe ? $aluno->equipe->id : "Aluno ainda sem equipe" )}}</td>
                         <td>{{( $aluno->equipe ? $aluno->equipe->projeto->id ? $aluno->equipe->projeto->titulo : "Aluno ainda sem projeto" : "Aluno ainda sem projeto" )}}</td>

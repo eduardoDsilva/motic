@@ -47,16 +47,16 @@ class AdminAvaliadorController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeCreate($user, $user->id);
+            $this->auditoriaController->storeCreate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
 
             $avaliador = Avaliador::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($avaliador, $avaliador->id);
+            $this->auditoriaController->storeCreate(json_encode($avaliador, JSON_UNESCAPED_UNICODE), $avaliador->id);
 
             $dado = Dado::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($dado, $dado->id);
+            $this->auditoriaController->storeCreate(json_encode($dado, JSON_UNESCAPED_UNICODE), $dado->id);
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($endereco, $endereco->id);
+            $this->auditoriaController->storeCreate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
 
             Session::put('mensagem', "O avaliador ".$avaliador->user->dado->name." foi cadastrado com sucesso!");
 
@@ -97,19 +97,19 @@ class AdminAvaliadorController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeUpdate($user, $user->id);
+            $this->auditoriaController->storeUpdate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
 
             $avaliador = $user->avaliador;
             $avaliador->update($dataForm);
-            $this->auditoriaController->storeUpdate($avaliador, $user->id);
+            $this->auditoriaController->storeUpdate(json_encode($avaliador, JSON_UNESCAPED_UNICODE), $user->id);
 
             $dado = $user->dado;
             $dado->update($dataForm);
-            $this->auditoriaController->storeUpdate($dado, $user->id);
+            $this->auditoriaController->storeUpdate(json_encode($dado, JSON_UNESCAPED_UNICODE), $user->id);
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
-            $this->auditoriaController->storeUpdate($endereco, $user->id);
+            $this->auditoriaController->storeUpdate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $user->id);
 
             Session::put('mensagem', "O avaliador ".$avaliador->user->dado->name." foi editado com sucesso!");
 
@@ -124,7 +124,7 @@ class AdminAvaliadorController extends Controller
         try{
             $avaliador = User::find($id);
             $avaliador->delete($id);
-            $this->auditoriaController->storeDelete($avaliador, $avaliador->id);
+            $this->auditoriaController->storeDelete(json_encode($avaliador, JSON_UNESCAPED_UNICODE), $avaliador->id);
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
 
             $avaliadores = Avaliador::all();

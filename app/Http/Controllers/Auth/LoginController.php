@@ -41,8 +41,6 @@ class LoginController extends Controller
             return 'avaliador/home';
         } else if ($tipo == "projeto") {
             return 'projeto/home';
-        } else if ($tipo == "aluno") {
-            return 'aluno/home';
         } else if ($tipo== "professor") {
             return 'professor/home';
         } else {

@@ -38,27 +38,13 @@ class AdminAlunoController extends Controller
     }
 
     public function store(AlunoCreateFormRequest $request){
-        $dataForm = $request->all() + ['tipoUser' => 'aluno'];
+        $dataForm = $request->all();
         try{
-            $user = User::create([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $this->auditoriaController->storeCreate($user, $user->id);
+            $aluno = Aluno::create($dataForm);
 
-            $aluno = Aluno::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($aluno, $aluno->id);
+            $this->auditoriaController->storeCreate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
 
-            $dado = Dado::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($dado, $dado->id);
-
-            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate($endereco, $endereco->id);
-
-            Session::put('mensagem', "O aluno ".$aluno->user->dado->name." foi cadastrado com sucesso!");
+            Session::put('mensagem', "O aluno ".$aluno->name." foi cadastrado com sucesso!");
 
             return redirect()->route("admin/aluno/busca/buscar");
         }catch (\Exception $e) {
@@ -78,7 +64,7 @@ class AdminAlunoController extends Controller
     public function edit($id){
         try{
             $aluno = Aluno::find($id);
-            $titulo = "Editar aluno: ".$aluno->user->dado->name;
+            $titulo = "Editar aluno: ".$aluno->name;
             $escolas = Escola::all();
             return view("admin/aluno/cadastro/registro", compact('aluno', 'titulo', 'escolas'));
         }catch (\Exception $e) {
@@ -89,29 +75,11 @@ class AdminAlunoController extends Controller
     public function update(AlunoUpdateFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'aluno'];
         try{
-            $user = User::find($id);
-            $user->update([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $this->auditoriaController->storeUpdate($user, $user->id);
-
-            $aluno = $user->aluno;
+            $aluno = Aluno::find($id);
             $aluno->update($dataForm);
-            $this->auditoriaController->storeUpdate($aluno, $aluno->id);
+            $this->auditoriaController->storeUpdate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
 
-            $dado = $user->dado;
-            $dado->update($dataForm);
-            $this->auditoriaController->storeUpdate($dado, $dado->id);
-
-            $endereco = $user->endereco;
-            $endereco->update($dataForm);
-            $this->auditoriaController->storeUpdate($endereco, $endereco->id);
-
-            Session::put('mensagem', "O aluno ".$aluno->user->dado->name." foi editado com sucesso!");
+            Session::put('mensagem', "O aluno ".$aluno->name." foi editado com sucesso!");
 
             $alunos = $this->aluno->all();
             return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));
@@ -124,9 +92,9 @@ class AdminAlunoController extends Controller
         try{
             $aluno = Aluno::find($id);
             $aluno->delete($id);
-            $this->auditoriaController->storeDelete($aluno, $aluno->id);
+            $this->auditoriaController->storeDelete(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
 
-            Session::put('mensagem', "O aluno ".$aluno->user->dado->name." foi deletado com sucesso!");
+            Session::put('mensagem', "O aluno ".$aluno->name." foi deletado com sucesso!");
 
             $alunos = aluno::all();
             return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));

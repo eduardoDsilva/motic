@@ -37,7 +37,7 @@ class AdminDisciplinaController extends Controller
         $dataForm = $request->all();
         try{
             $disciplinas = Disciplina::create($dataForm);
-            $this->auditoriaController->storeCreate($disciplinas, $disciplinas->id);
+            $this->auditoriaController->storeCreate(json_encode($disciplinas, JSON_UNESCAPED_UNICODE), $disciplinas->id);
 
             return redirect()
                 ->route("admin/disciplinas/home")
@@ -70,7 +70,7 @@ class AdminDisciplinaController extends Controller
         try{
             $disciplinas = Disciplina::find($id);
             $disciplinas->update($dataForm);
-            $this->auditoriaController->storeUpdate($disciplinas, $disciplinas->id);
+            $this->auditoriaController->storeUpdate(json_encode($disciplinas, JSON_UNESCAPED_UNICODE), $disciplinas->id);
 
             $disciplinas = Disciplina::all();
             return view('admin/disciplinas/home', compact('disciplinas'));
@@ -83,7 +83,7 @@ class AdminDisciplinaController extends Controller
         try{
             $disciplina = Disciplina::find($id);
             $disciplina->delete($id);
-            $this->auditoriaController->storeDelete($disciplina, $disciplina->id);
+            $this->auditoriaController->storeDelete(json_encode($disciplina, JSON_UNESCAPED_UNICODE), $disciplina->id);
 
             $disciplinas = Disciplina::all();
             return view('admin/disciplinas/home', compact('disciplinas'));

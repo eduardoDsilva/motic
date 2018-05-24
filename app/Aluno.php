@@ -7,17 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
     protected $fillable = [
-        'anoLetivo','turma', 'equipe', 'escola_id', 'user_id'
+        'name', 'anoLetivo', 'turma', 'equipe', 'nascimento', 'sexo', 'email', 'telefone',  'rua', 'numero', 'complemento', 'bairro', 'cep', 'cidade', 'estado', 'pais', 'escola_id', 'projeto_id',
     ];
 
-    public function user()
+    public function projeto()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-
-    public function equipe()
-    {
-        return $this->belongsTo(Equipe::class, 'id_equipe');
+        return $this->belongsTo(Projeto::class, 'id_projeto');
     }
 
     public function escola()
@@ -28,10 +23,5 @@ class Aluno extends Model
     public function categoria()
     {
         return $this->belongsTo(Categoria::class, 'escola_id', 'id');
-    }
-
-    public function ano()
-    {
-        return $this->belongsTo(Ano::class,'ano_id');
     }
 }

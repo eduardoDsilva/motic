@@ -8,12 +8,17 @@
 
 namespace App\Http\Controllers\Admin\Projeto;
 
+use App\Aluno;
 use App\Categoria;
 use App\Disciplina;
 use App\Escola;
+use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Professor;
 use App\Projeto;
-use http\Env\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AdminProjetoController extends Controller
 {
@@ -25,9 +30,10 @@ class AdminProjetoController extends Controller
         return view('admin/projeto/home');
     }
 
-    public function __construct(AuditoriaController $auditoriaController)
+    public function __construct(AuditoriaController $auditoriaController, Professor $professor)
     {
         $this->auditoriaController = $auditoriaController;
+        $this->professor = $professor;
     }
 
     public function create(){
@@ -41,15 +47,27 @@ class AdminProjetoController extends Controller
     public function store(Request $request){
         $dataForm = $request->all();
         try{
-
             $projeto = Projeto::create($dataForm);
-            $this->auditoriaController->store($projeto, $projeto->id);
-            return view("admin/projeto/cadastro/equipe", compact('projeto'));
-         //   Session::put('mensagem', "O projeto ".$projeto->titulo." foi cadastrado com sucesso!");
+            foreach ($request->only(['disciplina_id']) as $disciplina){
+                $projeto->disciplina()->attach($disciplina);
+            }
+            $this->auditoriaController->storeCreate($projeto, $projeto->id);
 
+            $professores = $this->professor->all()
+                ->where('escola_id', '=', $projeto->escola_id)
+                ->where('projeto_id', '=', null);
+
+            $alunos = Aluno::all()
+                ->where('escola_id', '=', $projeto->escola_id)
+                ->where('projeto_id', '=', '');
+
+            Session::put('projeto_id', $projeto->id);
+
+            return view("admin/projeto/cadastro/equipe", compact('projeto', 'professores', 'alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
+
     }
 
     public function show(){
@@ -79,27 +97,6 @@ class AdminProjetoController extends Controller
     public function update(Request $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'escola'];
         try{
-            $user = User::find($id);
-            $user->update([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $this->auditoriaController->storeUpdate($user, $user->id);
-
-
-            $escola = $user->escola;
-            $escola->update($dataForm);
-            $this->auditoriaController->storeUpdate($escola, $escola->id);
-
-            $endereco = $user->endereco;
-            $endereco->update($dataForm);
-            $this->auditoriaController->storeUpdate($endereco, $endereco->id);
-
-            Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
-
             return redirect()->route("admin/escola/busca/buscar");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
