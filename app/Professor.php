@@ -14,11 +14,11 @@ class Professor extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
 
     public function escola()
     {
-        return $this->belongsTo(Escola::class, 'escola_id', 'id');
+        return $this->hasMany(Escola::class, 'escola_id', 'id');
     }
 }

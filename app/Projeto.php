@@ -24,20 +24,12 @@ class Projeto extends Model
 
     public function aluno()
     {
-        return $this->belongsTo(Equipe::class, 'aluno_id', 'id');
+        return $this->hasMany(Equipe::class, 'aluno_id', 'id');
     }
 
     public function professor()
     {
-        return $this->belongsTo(Equipe::class, 'professor_id', 'id');
-    }
-
-    public function coorientador()
-    {
         return $this->hasMany(Equipe::class, 'professor_id', 'id');
     }
-
-
-
 
 }
