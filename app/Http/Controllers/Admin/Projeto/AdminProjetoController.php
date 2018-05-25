@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Professor;
 use App\Projeto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class AdminProjetoController extends Controller
@@ -117,6 +117,12 @@ class AdminProjetoController extends Controller
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
+    }
+
+    public function alunos(){
+        $escola_id = Input::get('escola_id');
+        $alunos = Aluno::where('escola_id', '=', $escola_id)->get();
+        return response()->json($alunos);
     }
 
 }

@@ -10,17 +10,17 @@ class Escola extends Model
     ];
     public function user()
     {
-        return $this->hasOne(User::class,'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function aluno()
     {
-        return $this->belongsTo(Aluno::class, 'escola_id', 'id');
+        return $this->hasMany(Aluno::class, 'escola_id', 'id');
     }
 
     public function professor()
     {
-        return $this->belongsTo(Professor::class, 'escola_id', 'id');
+        return $this->hasMany(Professor::class, 'escola_id', 'id');
     }
 
     public function categoria()

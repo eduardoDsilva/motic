@@ -41,20 +41,18 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function() {
+            $('#escola').on('change', function(e){
+                console.log(e);
+                var escola_id = e.target.value;
+                $.get('/json-alunos?escola_id=' + escola_id,function(data) {
+                    console.log(data);
+                    $('#aluno').appendTo('<option value="0" disable="true" selected="true">=== Select alunos ===</option>');
 
-            var last_valid_selection = null;
-
-            $('#userRequest_activity').change(function(event) {
-
-                if ($(this).val().length > 3) {
-
-                    $(this).val(last_valid_selection);
-                } else {
-                    last_valid_selection = $(this).val();
-                }
+                    $.each(data, function(index, alunosObj){
+                        $('#aluno').append('<option value="'+ alunosObj.id +'">'+ alunosObj.name +'</option>');
+                    })
+                });
             });
-        });
 
         $(document).ready(function(){
             $('.tooltipped').tooltip({delay: 50});

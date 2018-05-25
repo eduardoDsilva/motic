@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function escola()
     {
-        return $this->hasOne(Escola::class, 'user_id');
+        return $this->hasOne(Escola::class);
     }
 
     public function avaliador()
