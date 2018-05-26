@@ -61,8 +61,8 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="escola_id">
-                                <option disabled selected>Selecione a escola</option>
+                            <select name="escola" id="escola">
+                                <option value="0" disable="true" selected="true">=== Select escola ===</option>
                                 @forelse ($escolas as $escola)
                                     <option value="{{$escola->id}}">{{$escola->name}}</option>
                                 @empty
@@ -72,19 +72,17 @@
                             <label>Escola</label>
                         </div>
 
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">school</i>
-                            <select name="categoria_id" required>
-                                <option value="" disabled selected>Categoria...</option>
-                                @forelse($categorias as $categoria)
-                                    <option value="{{$categoria->id}}" @if (isset($projeto) && in_array($categoria->id, $categoria_escola)) selected @endif>{{$categoria->categoria}}</option>
-                                @empty
-                                    <option value="">Nenhuma categoria cadastrada no sistema! Entre em contato com o administrador.</option>
-                                @endforelse
+
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">assignment</i>
+                            <select name="alunos" id="aluno" required>
                             </select>
-                            <label>Categorias</label>
+                            <label>Alunos</label>
                         </div>
+
                     </div>
+
+                    {{csrf_field()}}
 
                     <p class="center-align">
                         <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
@@ -95,5 +93,30 @@
             </article>
         </div>
     </section>
-
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

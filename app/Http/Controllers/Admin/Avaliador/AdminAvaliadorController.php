@@ -90,7 +90,7 @@ class AdminAvaliadorController extends Controller
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try{
             $user = User::find($id);
-            $user->update([
+            $user->user->update([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
                 'email' => $dataForm['email'],

@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function escola()
     {
-        return $this->hasOne(Escola::class, 'user_id');
+        return $this->hasOne(Escola::class);
     }
 
     public function avaliador()
@@ -40,11 +40,6 @@ class User extends Authenticatable
     public function professor()
     {
         return $this->hasOne(Professor::class, 'user_id');
-    }
-
-    public function aluno()
-    {
-        return $this->hasOne(Aluno::class, 'user_id');
     }
 
     public function auditoria()

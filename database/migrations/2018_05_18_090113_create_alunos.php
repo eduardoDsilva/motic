@@ -20,7 +20,7 @@ class CreateAlunos extends Migration
             $table->enum('sexo',['masculino','feminino', "nao especificado"])->default('nao especificado');
             $table->string('email')->nullable()->unique();
             $table->string('telefone')->nullable();
-            $table->enum('anoLetivo', ['Educação Infantil', '	1° ANO', '2° ANO', '3° ANO', '4° ANO', '5° ANO', '6° ANO', '7° ANO', '8° ANO', '9° ANO', 'ERRO' ])->default('ERRO');
+            $table->enum('anoLetivo', ['Educação Infantil', '1° ANO', '2° ANO', '3° ANO', '4° ANO', '5° ANO', '6° ANO', '7° ANO', '8° ANO', '9° ANO', 'ERRO' ])->default('ERRO');
             $table->string('turma', 50);
             $table->string('equipe')->nullable();
 

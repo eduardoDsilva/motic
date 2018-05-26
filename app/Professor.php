@@ -14,11 +14,16 @@ class Professor extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id', 'id');
+    }
+
+    public function projeto()
+    {
+        return $this->belongsTo(Projeto::class, 'id_projeto');
     }
 }

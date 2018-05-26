@@ -91,14 +91,12 @@ class ProfessorCreateFormRequest extends FormRequest
             'rua.max' => 'Insira uma rua válida!',
 
             'numero.required' => 'O campo número é de preenchimento obrigatório!',
-            'numero.min' => 'Insira um némero válido!',
-            'numero.max' => 'Insira um némero válido!',
-
-            'numero.max' => 'Insira o número da residência!',
+            'numero.min' => 'Insira um número válido!',
+            'numero.max' => 'Insira um número válido!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.min' => 'Insira um némero válido!',
-            'username.max' => 'Insira um némero válido!',
+            'username.min' => 'Insira um usuário válido!',
+            'username.max' => 'Insira um usuário válido!',
             'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
