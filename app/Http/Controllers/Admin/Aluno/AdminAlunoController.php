@@ -29,7 +29,8 @@ class AdminAlunoController extends Controller
 
     public function index()
     {
-        return view('admin/aluno/home');
+        $alunos = aluno::all();
+        return view('admin/aluno/home', compact('alunos'));
     }
 
     public function create(){
@@ -40,6 +41,8 @@ class AdminAlunoController extends Controller
     public function store(AlunoCreateFormRequest $request){
         $dataForm = $request->all();
         try{
+            $categoria = $this->categoriaAluno($dataForm['anoLetivo']);
+            $dataForm = ['categoria' => $categoria];
             $aluno = Aluno::create($dataForm);
 
             $this->auditoriaController->storeCreate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
@@ -55,7 +58,7 @@ class AdminAlunoController extends Controller
     public function show(){
         try{
             $alunos = aluno::all();
-            return view("admin/aluno/busca/buscar", compact('alunos'));
+            return view('admin/aluno/home', compact('alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -100,6 +103,22 @@ class AdminAlunoController extends Controller
             return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    private function categoriaAluno($ano){
+        if($ano == 'Educação Infantil'){
+            return 'Educação Infantil';
+        }else if($ano == '1° ANO' || '2° ANO' || '3° ANO'){
+            return 'EMEF 1';
+        }else if($ano == '4° ANO' || '5° ANO' || '6° ANO'){
+            return 'EMEF 2';
+        }else if($ano == '7° ANO' || '8° ANO' || '9° ANO'){
+            return 'EMEF 3';
+        }else if ($ano == 'EJA'){
+            return 'EJA';
+        }else{
+            return 'Sem categoria';
         }
     }
 

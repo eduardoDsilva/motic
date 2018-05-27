@@ -22,6 +22,6 @@ class Aluno extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class, 'escola_id', 'id');
+        return $this->belongsTo(Categoria::class, 'categoria_id', 'id');
     }
 }

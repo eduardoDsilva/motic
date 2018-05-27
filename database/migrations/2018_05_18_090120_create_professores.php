@@ -15,6 +15,12 @@ class CreateProfessores extends Migration
     {
         Schema::create('professores', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('nascimento');
+            $table->enum('sexo',['masculino','feminino', "nao especificado"])->default('nao especificado');
+            $table->string('telefone');
+            $table->string('grauDeInstrucao');
+            $table->string('cpf');
             $table->integer('matricula');
             $table->enum('tipo', ['orientador', 'coorientador', 'erro'])->default('erro');
 

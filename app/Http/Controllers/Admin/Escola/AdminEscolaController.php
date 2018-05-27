@@ -27,7 +27,8 @@ class AdminEscolaController extends Controller
 
     public function index()
     {
-        return view('admin/escola/home');
+        $escolas = Escola::all();
+        return view("admin/escola/home", compact('escolas'));
     }
 
     public function create(){
@@ -70,7 +71,7 @@ class AdminEscolaController extends Controller
     public function show(){
         try{
             $escolas = Escola::all();
-            return view("admin/escola/busca/buscar", compact('escolas'));
+            return view("admin/escola/home", compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

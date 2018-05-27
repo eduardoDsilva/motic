@@ -41,18 +41,41 @@
 
     <script type="text/javascript">
 
-            $('#escola').on('change', function(e){
-                console.log(e);
-                var escola_id = e.target.value;
-                $.get('/json-alunos?escola_id=' + escola_id,function(data) {
-                    console.log(data);
-                    $('#aluno').appendTo('<option value="0" disable="true" selected="true">=== Select alunos ===</option>');
+        $('#escola').on('change', function(e){
+            console.log(e);
+            var escola_id = e.target.value;
 
-                    $.each(data, function(index, alunosObj){
-                        $('#aluno').append('<option value="'+ alunosObj.id +'">'+ alunosObj.name +'</option>');
-                    })
-                });
+            $.get('/json-categorias?escola_id=' + escola_id,function(data) {
+                console.log(data);
+                $('#categorias').append('<option value="0" disable="true" selected="true">=== Select categoria ===</option>');
+                $('select').material_select();
+                $.each(data, function(index, categoriasObj){
+                    console.log(categoriasObj);
+                    $('#categorias').append('<option value="'+ categoriasObj.id +'">'+ categoriasObj.categoria +'</option>');
+                    $('select').material_select();
+                })
             });
+
+            $.get('/json-alunos?escola_id=' + escola_id,function(data) {
+                console.log(data);
+                $('#alunos').append('<option value="0" disable="true" selected="true">=== Select alunos ===</option>');
+                $('select').material_select();
+                $.each(data, function(index, alunosObj){
+                    $('#alunos').append('<option value="'+ alunosObj.id +'">'+ alunosObj.name +'</option>');
+                    $('select').material_select();
+                })
+            });
+
+            $.get('/json-professores?escola_id=' + escola_id,function(data) {
+                console.log(data);
+                $('#professores').append('<option value="0" disable="true" selected="true">=== Select orientador ===</option>');
+                $('select').material_select();
+                $.each(data, function(index, professoresObj){
+                    $('#professores').append('<option value="'+ professoresObj.id +'">'+ professoresObj.name +'</option>');
+                    $('select').material_select();
+                })
+            });
+        });
 
         $(document).ready(function(){
             $('.tooltipped').tooltip({delay: 50});
@@ -62,7 +85,7 @@
             $('select').material_select();
         });
 
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('.modal').modal();
         });
 
@@ -93,7 +116,6 @@
         });
 
         $(document).ready(function(){
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
         });
       </script>

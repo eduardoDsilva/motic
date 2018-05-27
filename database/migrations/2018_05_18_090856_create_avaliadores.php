@@ -15,6 +15,13 @@ class CreateAvaliadores extends Migration
     {
         Schema::create('avaliadores', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('nascimento');
+            $table->enum('sexo',['masculino','feminino', "nao especificado"])->default('nao especificado');
+            $table->string('telefone');
+            $table->string('grauDeInstrucao');
+            $table->string('cpf');
+
             //criando a FK do usuario desse avaliador
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

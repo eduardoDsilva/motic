@@ -24,15 +24,19 @@ class AdminProjetoController extends Controller
 {
 
     private $request;
+    private $auditoriaController;
+    private $professor;
+    private $escola;
 
     public function index()
     {
         return view('admin/projeto/home');
     }
 
-    public function __construct(AuditoriaController $auditoriaController, Professor $professor)
+    public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
     {
         $this->auditoriaController = $auditoriaController;
+        $this->escola = $escola;
         $this->professor = $professor;
     }
 
@@ -119,10 +123,22 @@ class AdminProjetoController extends Controller
         }
     }
 
+    public function categorias(){
+        $escola_id = Input::get('escola_id');
+        $escola = $this->escola->find($escola_id);
+        $categorias = $escola->categoria;
+        return response()->json($categorias);
+    }
     public function alunos(){
         $escola_id = Input::get('escola_id');
         $alunos = Aluno::where('escola_id', '=', $escola_id)->get();
         return response()->json($alunos);
+    }
+
+    public function professores(){
+        $escola_id = Input::get('escola_id');
+        $professores = Professor::where('escola_id', '=', $escola_id)->get();
+        return response()->json($professores);
     }
 
 }

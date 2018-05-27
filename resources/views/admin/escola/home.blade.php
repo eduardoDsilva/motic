@@ -1,15 +1,28 @@
+
 @extends('layout.site')
 
 @section('titulo','Motic Admin')
 
 @section('conteudo')
 
+    @if(Session::get('mensagem'))
+        <div class="center-align">
+            <div class="chip green">
+                {{Session::get('mensagem')}}
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+        {{Session::forget('mensagem')}}
+    @endif
+
+    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
+
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br><br>
             <h1 class="header center orange-text">Escolas</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Bem vindo ao menu de escolas!</h5>
+                <h5 class="header col s12 light">Essas são as escolas cadastradas no sistema!</h5>
             </div>
             <br>
         </div>
@@ -18,37 +31,67 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <div class="row">
-                <a href="{{route ('admin/escola/cadastro/registro')}}">
-                    <div class="col s12 m6">
-                        <div class="card hoverable red darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">school</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Cadastrar escolas</span>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th>E-mail</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                @forelse ($escolas as $escola)
+                    <tbody>
+                    <tr>
+                        <td>{{$escola->id}}</td>
+                        <td>{{$escola->name}}</td>
+                        <td>{{$escola->telefone}}</td>
+                        <td>{{$escola->user->endereco->rua}}</td>
+                        <td>{{$escola->user->email}}</td>
+                        <td>{{$escola->user->username}}</td>
+                        <td>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/editar") }}"><i class="small material-icons">edit</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1"> <i class="small material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
 
-                                <p>Clique aqui para entrar nas opções da escola no sistema.</p>
-                            </div>
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>Deletar</h4>
+                            <p>Você tem certeza que deseja deletar essa escola?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ url("admin/escola/deletar/".$escola->user->id."/excluir") }}" class="btn red">Sim</a>
                         </div>
                     </div>
-                </a>
+                @empty
+                    <tbody>
+                    <tr>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                    </tr>
+                    </tbody>
+                @endforelse
+            </table>
 
-                <a href="{{route ('admin/escola/busca/buscar')}}">
-                    <div class="col s12 m6">
-                        <div class="card hoverable blue darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">library_add</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Verificar escolas</span>
+            <br><br>
 
-                                <p>Clique aqui para verificar as escolas cadastradas no sistema.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">add</i></a>
             </div>
+
+            <br><br>
+
+            <br><br>
+
         </div>
     </div>
 

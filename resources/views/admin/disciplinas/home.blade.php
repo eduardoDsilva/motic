@@ -65,6 +65,10 @@
 
             <br><br>
 
+            <div class="fixed-action-btn">
+                <a data-target="modal3" data-target="modal3" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar disciplina" href="#modal3"><i class="material-icons">add</i></a>
+            </div>
+
             <!-- Modal Structure -->
             <div id="modal2" class="modal">
                 <div class="modal-content">
@@ -75,8 +79,6 @@
                     <a href="{{ url("admin/disciplinas/deletar/".session()->get('id')."/excluir") }}" class="btn red">Sim</a>
                 </div>
             </div>
-
-            <a data-target="modal3"  class="btn blue modal-trigger" href="#modal3">Adicionar disciplina</a>
 
             <!-- Modal Structure -->
             <div id="modal3" class="modal">

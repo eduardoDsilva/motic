@@ -5,7 +5,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home-inicio');
 
+Route::get('/json-categorias','Admin\Projeto\AdminProjetoController@categorias');
 Route::get('/json-alunos','Admin\Projeto\AdminProjetoController@alunos');
+Route::get('/json-professores','Admin\Projeto\AdminProjetoController@professores');
 
 require_once('auth/auth.php');
 

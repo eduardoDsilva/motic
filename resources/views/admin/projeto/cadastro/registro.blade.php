@@ -59,6 +59,7 @@
                     </div>
 
                     <div class="row">
+
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
                             <select name="escola" id="escola">
@@ -72,12 +73,32 @@
                             <label>Escola</label>
                         </div>
 
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">assignment</i>
+                            <select name="categoria_id[]" id="categorias" required>
+                            </select>
+                            <label>Categoria</label>
+                        </div>
 
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="alunos" id="aluno" required>
+                            <select multiple name="alunos" id="alunos" required>
                             </select>
                             <label>Alunos</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">assignment</i>
+                            <select name="orientador" id="professores" required>
+                            </select>
+                            <label>Orientador</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">assignment</i>
+                            <select name="coorientador" id="coorientador" required>
+                            </select>
+                            <label>Coorientador</label>
                         </div>
 
                     </div>

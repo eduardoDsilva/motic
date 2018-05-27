@@ -1,11 +1,17 @@
 @extends('layout.site')
 
-@section('titulo','Motic Admin - Aluno')
+@section('titulo','Motic Admin')
 
 @section('conteudo')
 
-    @if(session('success'))
-        {{session('success')}}
+    @if(Session::get('mensagem'))
+        <div class="center-align">
+            <div class="chip green">
+                {{Session::get('mensagem')}}
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+        {{Session::forget('mensagem')}}
     @endif
 
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>
@@ -15,7 +21,7 @@
             <br><br>
             <h1 class="header center orange-text">Alunos</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Bem vindo ao menu de alunos!</h5>
+                <h5 class="header col s12 light">Esses são os alunos cadastrados no sistema!</h5>
             </div>
             <br>
         </div>
@@ -24,51 +30,61 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <div class="row">
-                <a href="{{route ('admin/aluno/cadastro/registro')}}">
-                    <div class="col s12 m4">
-                        <div class="card red darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">account_circle</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Cadastrar aluno</span>
-
-                                <p>Clique aqui para cadastrar alunos no sistema.</p>
-                            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Escola</th>
+                    <th>Equipe</th>
+                    <th>Projeto</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                @forelse ($alunos as $aluno)
+                    <tbody>
+                    <tr>
+                        <td>{{$aluno->name}}</td>
+                        <td>{{$aluno->escola->name}}</td>
+                        <td>{{( $aluno->equipe ? $aluno->equipe->id : "Aluno ainda sem equipe" )}}</td>
+                        <td>{{( $aluno->equipe ? $aluno->equipe->projeto->id ? $aluno->equipe->projeto->titulo : "Aluno ainda sem projeto" : "Aluno ainda sem projeto" )}}</td>
+                        <td>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/aluno/update/".$aluno->id."/editar") }}"><i class="small material-icons">edit</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>Deletar</h4>
+                            <p>Você tem certeza que deseja deletar o aluno?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ url("/admin/aluno/deletar/".$aluno->id."/excluir") }}" class="btn red">Sim</a>
                         </div>
                     </div>
-                </a>
+                @empty
+                    <tbody>
+                    <tr>
+                        <td>Nenhum avaliador encontrado</td>
+                        <td>Nenhum avaliador encontrado</td>
+                        <td>Nenhum avaliador encontrado</td>
+                        <td>Aluno sem nenhuma equipe</td>
+                        <td>Aluno sem nenhum projeto</td>
+                        <td>Nenhum avaliador encontrado</td>
+                    </tr>
+                    </tbody>
+                @endforelse
+            </table>
 
-                <a href="{{route ('admin/aluno/busca/buscar')}}">
-                    <div class="col s12 m4">
-                        <div class="card blue darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">library_add</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Listar alunos</span>
-
-                                <p>Clique aqui para listar os alunos cadastrados no sistema.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{route ('admin/escola/busca/buscar')}}">
-                    <div class="col s12 m4">
-                        <div class="card green darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">library_add</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Atribuir equipe</span>
-
-                                <p>Clique aqui para atribuir uma equipe aos alunos do sistema.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+            <br><br>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Adicionar aluno" href="{{route ('admin/aluno/cadastro/registro')}}"><i class="material-icons">add</i></a>
             </div>
+
+            <br><br>
+
+
         </div>
     </div>
 

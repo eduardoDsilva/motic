@@ -44,7 +44,7 @@
                 @forelse ($professores as $professor)
                     <tbody>
                     <tr>
-                        <td>{{$professor->user->dado->name}}</td>
+                        <td>{{$professor->name}}</td>
                         <td>{{$professor->user->username}}</td>
                         <td>{{$professor->escola->name}}</td>
                         <td>{{( $professor->equipe ? $professor->equipe->id : "Professor ainda sem equipe" )}}</td>
