@@ -35,7 +35,6 @@
                 <tr>
                     <th>Nome</th>
                     <th>Escola</th>
-                    <th>Equipe</th>
                     <th>Projeto</th>
                     <th>Ações</th>
                 </tr>
@@ -45,8 +44,7 @@
                     <tr>
                         <td>{{$aluno->name}}</td>
                         <td>{{$aluno->escola->name}}</td>
-                        <td>{{( $aluno->equipe ? $aluno->equipe->id : "Aluno ainda sem equipe" )}}</td>
-                        <td>{{( $aluno->equipe ? $aluno->equipe->projeto->id ? $aluno->equipe->projeto->titulo : "Aluno ainda sem projeto" : "Aluno ainda sem projeto" )}}</td>
+                        <td>{{$aluno->projeto_id}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/aluno/update/".$aluno->id."/editar") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>

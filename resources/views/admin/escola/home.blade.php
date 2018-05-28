@@ -29,24 +29,21 @@
     </div>
 
     <div class="container">
-        <div class="col s12 m4 l8">
 
-            <table>
+            <table class="responsive-table">
                 <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Endereço</th>
-                    <th>E-mail</th>
-                    <th>Usuário</th>
-                    <th>Ações</th>
-                </tr>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Endereço</th>
+                        <th>E-mail</th>
+                        <th>Usuário</th>
+                        <th>Ações</th>
+                    </tr>
                 </thead>
                 @forelse ($escolas as $escola)
-                    <tbody>
+                <tbody>
                     <tr>
-                        <td>{{$escola->id}}</td>
                         <td>{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
                         <td>{{$escola->user->endereco->rua}}</td>
@@ -57,32 +54,32 @@
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    </tbody>
-
-                    <!-- Modal Structure -->
-                    <div id="modal1" class="modal">
-                        <div class="modal-content">
-                            <h4>Deletar</h4>
-                            <p>Você tem certeza que deseja deletar essa escola?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url("admin/escola/deletar/".$escola->user->id."/excluir") }}" class="btn red">Sim</a>
-                        </div>
-                    </div>
+                </tbody>
                 @empty
                     <tbody>
-                    <tr>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                    </tr>
+                        <tr>
+                            <td>Nenhuma escola encontrada</td>
+                            <td>Nenhuma escola encontrada</td>
+                            <td>Nenhuma escola encontrada</td>
+                            <td>Nenhuma escola encontrada</td>
+                            <td>Nenhuma escola encontrada</td>
+                            <td>Nenhuma escola encontrada</td>
+                        </tr>
                     </tbody>
                 @endforelse
             </table>
 
-            <br><br>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Deletar</h4>
+                <p>Você tem certeza que deseja deletar essa escola?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ url("admin/escola/deletar/".$escola->user->id."/excluir") }}" class="btn red">Sim</a>
+            </div>
+        </div>
 
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">add</i></a>
@@ -92,7 +89,6 @@
 
             <br><br>
 
-        </div>
     </div>
 
 @endsection

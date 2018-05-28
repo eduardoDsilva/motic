@@ -108,20 +108,7 @@
                     </div>
                 </div>
             </a>
-            <a href="{{route ('admin/disciplinas/home')}}">
-                <div class="col s12 m4">
-                    <div class="card cyan darken-2">
-                        <div class="card-content black-text center-align">
-                            <i class="large material-icons">people</i>
-                        </div>
-                        <div class="card-action white-text">
-                            <span class="card-title">Equipes</span>
 
-                            <p>Clique aqui para entrar nas opções de equipes no sistema.</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
             <a href="{{route ('admin/auditoria/home')}}">
                 <div class="col s12 m4">
                     <div class="card blue-grey darken-2">

@@ -10,6 +10,7 @@ use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Aluno\AlunoCreateFormRequest;
 use App\Http\Requests\Admin\Aluno\AlunoUpdateFormRequest;
+use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +20,6 @@ class AdminAlunoController extends Controller
 
     private $aluno;
     private $auditoriaController;
-    use RegistersUsers;
 
     public function __construct(Aluno $aluno, AuditoriaController $auditoriaController)
     {
@@ -29,8 +29,9 @@ class AdminAlunoController extends Controller
 
     public function index()
     {
-        $alunos = aluno::all();
-        return view('admin/aluno/home', compact('alunos'));
+        $alunos = Aluno::all();
+        $projetos = Projeto::all();
+        return view('admin/aluno/home', compact('alunos', 'projetos'));
     }
 
     public function create(){
@@ -41,15 +42,14 @@ class AdminAlunoController extends Controller
     public function store(AlunoCreateFormRequest $request){
         $dataForm = $request->all();
         try{
-            $categoria = $this->categoriaAluno($dataForm['anoLetivo']);
-            $dataForm = ['categoria' => $categoria];
+            $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['anoLetivo'])];
             $aluno = Aluno::create($dataForm);
 
             $this->auditoriaController->storeCreate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi cadastrado com sucesso!");
 
-            return redirect()->route("admin/aluno/busca/buscar");
+            return redirect()->route("admin/aluno/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -108,17 +108,29 @@ class AdminAlunoController extends Controller
 
     private function categoriaAluno($ano){
         if($ano == 'Educação Infantil'){
-            return 'Educação Infantil';
-        }else if($ano == '1° ANO' || '2° ANO' || '3° ANO'){
-            return 'EMEF 1';
-        }else if($ano == '4° ANO' || '5° ANO' || '6° ANO'){
-            return 'EMEF 2';
-        }else if($ano == '7° ANO' || '8° ANO' || '9° ANO'){
-            return 'EMEF 3';
-        }else if ($ano == 'EJA'){
-            return 'EJA';
+            return '1';
+        }else if($ano == '1° ANO') {
+            return '2';
+        }else if($ano == '2° ANO') {
+            return '2';
+        }else if($ano == '3° ANO') {
+            return '2';
+        }else if($ano == '4° ANO') {
+            return '3';
+        }else if($ano == '5° ANO') {
+            return '3';
+        }else if($ano == '6° ANO') {
+            return '3';
+        }else if($ano == '7° ANO') {
+            return '4';
+        }else if($ano == '8° ANO') {
+            return '4';
+        }else if($ano == '9° ANO') {
+            return '4';
+        }else if($ano == 'EJA') {
+            return '5';
         }else{
-            return 'Sem categoria';
+            dd('erro');
         }
     }
 

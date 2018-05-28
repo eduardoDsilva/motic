@@ -49,24 +49,26 @@ class AdminProjetoController extends Controller
     }
 
     public function store(Request $request){
-        $dataForm = $request->all();
+        $dataForm = $request->all() + ['status' => 'aprovado'];
+        dd($dataForm);
         try{
             $projeto = Projeto::create($dataForm);
+
             foreach ($request->only(['disciplina_id']) as $disciplina){
                 $projeto->disciplina()->attach($disciplina);
             }
+            foreach ($request->only(['aluno_id']) as $aluno_id){
+                $alunos = Aluno::find($aluno_id);
+            }
+            foreach ($alunos as $a){
+                $a->projeto_id = $projeto->id;
+                $a->save();
+            }
+
+
+
             $this->auditoriaController->storeCreate($projeto, $projeto->id);
-
-            $professores = $this->professor->all()
-                ->where('escola_id', '=', $projeto->escola_id)
-                ->where('projeto_id', '=', null);
-
-            $alunos = Aluno::all()
-                ->where('escola_id', '=', $projeto->escola_id)
-                ->where('projeto_id', '=', '');
-
-            Session::put('projeto_id', $projeto->id);
-
+            dd('cadastrado');
             return view("admin/projeto/cadastro/equipe", compact('projeto', 'professores', 'alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -125,19 +127,21 @@ class AdminProjetoController extends Controller
 
     public function categorias(){
         $escola_id = Input::get('escola_id');
+        Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
         $categorias = $escola->categoria;
         return response()->json($categorias);
     }
+
     public function alunos(){
-        $escola_id = Input::get('escola_id');
-        $alunos = Aluno::where('escola_id', '=', $escola_id)->get();
+        $categoria_id = Input::get('categoria_id');
+        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
         return response()->json($alunos);
     }
 
     public function professores(){
         $escola_id = Input::get('escola_id');
-        $professores = Professor::where('escola_id', '=', $escola_id)->get();
+        $professores = Professor::where('escola_id', '=', $escola_id)->where('projeto_id', '=', null)->get();
         return response()->json($professores);
     }
 

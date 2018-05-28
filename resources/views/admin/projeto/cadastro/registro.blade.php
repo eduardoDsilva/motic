@@ -62,8 +62,8 @@
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="escola" id="escola">
-                                <option value="0" disable="true" selected="true">=== Select escola ===</option>
+                            <select name="escola_id" id="escola">
+                                <option disabled selected>Escola</option>
                                 @forelse ($escolas as $escola)
                                     <option value="{{$escola->id}}">{{$escola->name}}</option>
                                 @empty
@@ -75,21 +75,21 @@
 
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="categoria_id[]" id="categorias" required>
+                            <select name="categoria_id" id="categorias" required>
                             </select>
                             <label>Categoria</label>
                         </div>
 
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <select multiple name="alunos" id="alunos" required>
+                            <select multiple name="aluno_id[]" id="alunos" required>
                             </select>
                             <label>Alunos</label>
                         </div>
 
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="orientador" id="professores" required>
+                            <select name="orientador" id="orientador" required>
                             </select>
                             <label>Orientador</label>
                         </div>

@@ -22,7 +22,7 @@ class CreateProfessores extends Migration
             $table->string('grauDeInstrucao');
             $table->string('cpf');
             $table->integer('matricula');
-            $table->enum('tipo', ['orientador', 'coorientador', 'erro'])->default('erro');
+            $table->enum('tipo', ['orientador', 'coorientador', 'nenhum'])->default('nenhum');
 
             $table->unsignedInteger('projeto_id')->nullable();
             $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');

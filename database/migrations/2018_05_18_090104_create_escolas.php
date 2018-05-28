@@ -18,7 +18,8 @@ class CreateEscolas extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('telefone');
-            //criando a FK do usuario dessa escola
+            $table->integer('projetos');
+
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

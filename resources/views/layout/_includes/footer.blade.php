@@ -47,7 +47,8 @@
 
             $.get('/json-categorias?escola_id=' + escola_id,function(data) {
                 console.log(data);
-                $('#categorias').append('<option value="0" disable="true" selected="true">=== Select categoria ===</option>');
+                $('#categorias').empty()
+                $('#categorias').append('<option disabled selected>Categoria</option>');
                 $('select').material_select();
                 $.each(data, function(index, categoriasObj){
                     console.log(categoriasObj);
@@ -56,9 +57,32 @@
                 })
             });
 
-            $.get('/json-alunos?escola_id=' + escola_id,function(data) {
+        $.get('/json-professores?escola_id=' + escola_id,function(data) {
                 console.log(data);
-                $('#alunos').append('<option value="0" disable="true" selected="true">=== Select alunos ===</option>');
+                $('#orientador').empty()
+                $('#orientador').append('<option disabled selected>Orientador</option>');
+                $('#coorientador').empty()
+                $('#coorientador').append('<option disabled selected>Coorientador</option>');
+                $('select').material_select();
+                $.each(data, function(index, professoresObj){
+                    $('#orientador').append('<option value="'+ professoresObj.id +'">'+ professoresObj.name +'</option>');
+                    $('select').material_select();
+                })
+                $.each(data, function(index, professoresObj){
+                    $('#coorientador').append('<option value="'+ professoresObj.id +'">'+ professoresObj.name +'</option>');
+                    $('select').material_select();
+                })
+            });
+        });
+
+        $('#categorias').on('change', function(e){
+            console.log(e);
+            var categoria_id = e.target.value;
+
+            $.get('/json-alunos?categoria_id=' + categoria_id,function(data) {
+                console.log(data);
+                $('#alunos').empty()
+                $('#alunos').append('<option disabled selected>Alunos</option>');
                 $('select').material_select();
                 $.each(data, function(index, alunosObj){
                     $('#alunos').append('<option value="'+ alunosObj.id +'">'+ alunosObj.name +'</option>');
@@ -66,15 +90,6 @@
                 })
             });
 
-            $.get('/json-professores?escola_id=' + escola_id,function(data) {
-                console.log(data);
-                $('#professores').append('<option value="0" disable="true" selected="true">=== Select orientador ===</option>');
-                $('select').material_select();
-                $.each(data, function(index, professoresObj){
-                    $('#professores').append('<option value="'+ professoresObj.id +'">'+ professoresObj.name +'</option>');
-                    $('select').material_select();
-                })
-            });
         });
 
         $(document).ready(function(){
