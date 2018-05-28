@@ -39,7 +39,7 @@ class CreateAlunos extends Migration
             $table->unsignedInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
 
-            $table->unsignedInteger('projeto_id')->nullable()->unique();
+            $table->unsignedInteger('projeto_id')->nullable();
             $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
 
             $table->timestamps();
