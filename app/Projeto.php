@@ -24,12 +24,22 @@ class Projeto extends Model
 
     public function aluno()
     {
-        return $this->hasMany(Equipe::class, 'aluno_id', 'id');
+        return $this->hasMany(Aluno::class);
     }
 
     public function professor()
     {
-        return $this->hasMany(Equipe::class, 'professor_id', 'id');
+        return $this->hasMany(Professor::class);
+    }
+
+    public function escola()
+    {
+        return $this->belongsTo(Escola::class);
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
     }
 
 }

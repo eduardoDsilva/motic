@@ -14,9 +14,9 @@
     <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
-        <h1 class="header center orange-text">Escolas</h1>
+        <h1 class="header center orange-text">Projetos</h1>
         <div class="row center">
-            <h5 class="header col s12 light">Essas são as escolas cadastradas no sistema!</h5>
+            <h5 class="header col s12 light">Essas são os projetos cadastrados no sistema!</h5>
         </div>
         <br>
     </div>
@@ -25,33 +25,33 @@
 <div class="container">
     <div class="col s12 m4 l8">
 
-        <table>
+        <table class="centered responsive-table highlight bordered">
             <thead>
             <tr>
-                <th>Nome</th>
-                <th>Tipo Escola</th>
-                <th>Telefone</th>
-                <th>Endereço</th>
-                <th>E-mail</th>
-                <th>Usuário</th>
-                <th>Ações</th>
+                <th>Título</th>
+                <th>Área</th>
+                <th>Estande</th>
+                <th>Resumo</th>
+                <th>Status</th>
+                <th>Categoria</th>
+                <th>Escola</th>
             </tr>
             </thead>
-            @forelse ($escolas as $escola)
-                <tbody>
+            <tbody>
+            @forelse ($projetos as $projeto)
                 <tr>
-                    <td>{{$escola->name}}</td>
-                    <td>{{$escola->tipoEscola}}</td>
-                    <td>{{$escola->telefone}}</td>
-                    <td>{{$escola->users->endereco->rua}}</td>
-                    <td>{{$escola->users->email}}</td>
-                    <td>{{$escola->users->username}}</td>
+                    <td>{{$projeto->titulo}}</td>
+                    <td>{{$projeto->area}}</td>
+                    <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
+                    <td>{{$projeto->resumo}}</td>
+                    <td>{{$projeto->status}}</td>
+                    <td>{{$projeto->categoria->categoria}}</td>
+                    <td>{{$projeto->escola->name}}</td>
                     <td>
-                        <a class="btn deep-orange modal-trigger" href="{{ url("/admin/escola/update/".$escola->users->id."/editar") }}">Editar</a>
-                        <a data-target="modal1" class="btn red modal-trigger" href="#modal1">Deletar</a>
+                        <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$projeto."/editar") }}"><i class="small material-icons">edit</i></a>
+                        <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
                     </td>
                 </tr>
-                </tbody>
 
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal">
@@ -60,11 +60,10 @@
                         <p>Você tem certeza que deseja deletar essa escola?</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ url("admin/escola/deletar/".$escola->users->id."/excluir") }}" class="btn red">Sim</a>
+                        <a href="{{ url("admin/escola/deletar/".$projeto."/excluir") }}" class="btn red">Sim</a>
                     </div>
                 </div>
             @empty
-                <tbody>
                 <tr>
                     <td>Nenhuma escola encontrada</td>
                     <td>Nenhuma escola encontrada</td>
@@ -72,13 +71,16 @@
                     <td>Nenhuma escola encontrada</td>
                     <td>Nenhuma escola encontrada</td>
                 </tr>
-                </tbody>
             @endforelse
+            </tbody>
         </table>
 
         <br><br>
 
-        <a class="btn blue" href="{{route ('admin/escola/cadastro/registro')}}">Adicionar Escola</a>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/projeto/cadastro/registro')}}"><i class="material-icons">add</i></a>
+        </div>
+
         <br><br>
 
         <br><br>

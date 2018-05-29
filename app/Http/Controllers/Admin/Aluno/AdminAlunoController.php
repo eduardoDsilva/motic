@@ -13,6 +13,7 @@ use App\Http\Requests\Admin\Aluno\AlunoUpdateFormRequest;
 use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class AdminAlunoController extends Controller
@@ -78,6 +79,8 @@ class AdminAlunoController extends Controller
     public function update(AlunoUpdateFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'aluno'];
         try{
+            $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['anoLetivo'])];
+
             $aluno = Aluno::find($id);
             $aluno->update($dataForm);
             $this->auditoriaController->storeUpdate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
@@ -85,7 +88,7 @@ class AdminAlunoController extends Controller
             Session::put('mensagem', "O aluno ".$aluno->name." foi editado com sucesso!");
 
             $alunos = $this->aluno->all();
-            return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));
+            return redirect()->route("admin/aluno/home", compact('alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -132,6 +135,36 @@ class AdminAlunoController extends Controller
         }else{
             dd('erro');
         }
+    }
+
+    public function escolaCategoria(){
+        $escola_id = Input::get('escola_id');
+        $escola = Escola::find($escola_id);
+        $categorias = $escola->categoria;
+        //dd($categorias);
+        $ano = [];
+        foreach ($categorias as $categoria){
+            //dd($categoria->id);
+            if($categoria->id == 1){
+                $ano[] = 'Educação Infantil';
+            }else if($categoria->id == 2){
+                $ano[] = '1° ANO';
+                $ano[] = '2° ANO';
+                $ano[] = '3° ANO';
+            }else if($categoria->id == 3){
+                $ano[] = '4° ANO';
+                $ano[] = '5° ANO';
+                $ano[] = '6° ANO';
+            }else if($categoria->id == 4){
+                $ano[] = '7° ANO';
+                $ano[] = '8° ANO';
+                $ano[] = '9° ANO';
+            }else if($categoria->id == 5){
+                $ano[] = 'EJA';
+            }else{
+            }
+        }
+        return response()->json($ano);
     }
 
 }

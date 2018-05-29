@@ -24,7 +24,7 @@ class User extends Authenticatable
 
     public function endereco()
     {
-        return $this->hasOne(Endereco::class, 'user_id');
+        return $this->hasOne(Endereco::class);
     }
 
     public function escola()
@@ -34,17 +34,17 @@ class User extends Authenticatable
 
     public function avaliador()
     {
-        return $this->hasOne(Avaliador::class, 'user_id');
+        return $this->hasOne(Avaliador::class);
     }
 
     public function professor()
     {
-        return $this->hasOne(Professor::class, 'user_id');
+        return $this->hasOne(Professor::class);
     }
 
     public function auditoria()
     {
-        return $this->hasOne(Auditoria::class, 'user_id');
+        return $this->hasOne(Auditoria::class);
     }
 
 }

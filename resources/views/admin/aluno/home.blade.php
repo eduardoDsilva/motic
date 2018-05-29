@@ -30,27 +30,30 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <table>
+            <table class="centered responsive-table highlight bordered">
                 <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Ano Letivo</th>
+                    <th>Turma</th>
                     <th>Escola</th>
                     <th>Projeto</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
+                <tbody>
                 @forelse ($alunos as $aluno)
-                    <tbody>
                     <tr>
                         <td>{{$aluno->name}}</td>
+                        <td>{{$aluno->anoLetivo}}</td>
+                        <td>{{$aluno->turma}}</td>
                         <td>{{$aluno->escola->name}}</td>
-                        <td>{{$aluno->projeto_id}}</td>
+                        <td>{{($aluno->projeto_id == null ? "Aluno sem projeto" : $aluno->projeto->titulo)}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/aluno/update/".$aluno->id."/editar") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    </tbody>
                     <!-- Modal Structure -->
                     <div id="modal1" class="modal">
                         <div class="modal-content">
@@ -62,7 +65,6 @@
                         </div>
                     </div>
                 @empty
-                    <tbody>
                     <tr>
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
@@ -71,8 +73,8 @@
                         <td>Aluno sem nenhum projeto</td>
                         <td>Nenhum avaliador encontrado</td>
                     </tr>
-                    </tbody>
                 @endforelse
+                </tbody>
             </table>
 
             <br><br>

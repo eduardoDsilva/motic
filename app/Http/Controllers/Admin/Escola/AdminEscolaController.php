@@ -40,6 +40,7 @@ class AdminEscolaController extends Controller
 
     public function store(EscolaCreateFormRequest $request){
         $dataForm = $request->all() + ['tipoUser' => 'escola'];
+        $qntProjetos = $dataForm['categoria_id'];
         try{
             $user = User::create([
                 'name' => $dataForm['name'],
@@ -50,7 +51,7 @@ class AdminEscolaController extends Controller
             ]);
             $this->auditoriaController->storeCreate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
 
-            $escola = Escola::create($dataForm + ['user_id' => $user->id]);
+            $escola = Escola::create($dataForm + ['user_id' => $user->id] + ['projetos' => count($qntProjetos)]);
             foreach ($request->only(['categoria_id']) as $categoria){
                 $escola->categoria()->attach($categoria);
             }

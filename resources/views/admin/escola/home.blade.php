@@ -30,8 +30,8 @@
 
     <div class="container">
 
-            <table class="responsive-table">
-                <thead>
+        <table class="centered responsive-table highlight bordered">
+            <thead>
                     <tr>
                         <th>Nome</th>
                         <th>Telefone</th>
@@ -41,8 +41,8 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                @forelse ($escolas as $escola)
-                <tbody>
+            <tbody>
+            @forelse ($escolas as $escola)
                     <tr>
                         <td>{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
@@ -54,9 +54,7 @@
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                </tbody>
                 @empty
-                    <tbody>
                         <tr>
                             <td>Nenhuma escola encontrada</td>
                             <td>Nenhuma escola encontrada</td>
@@ -65,9 +63,9 @@
                             <td>Nenhuma escola encontrada</td>
                             <td>Nenhuma escola encontrada</td>
                         </tr>
-                    </tbody>
                 @endforelse
-            </table>
+            </tbody>
+        </table>
 
 
         <!-- Modal Structure -->
@@ -77,7 +75,7 @@
                 <p>Você tem certeza que deseja deletar essa escola?</p>
             </div>
             <div class="modal-footer">
-                <a href="{{ url("admin/escola/deletar/".$escola->user->id."/excluir") }}" class="btn red">Sim</a>
+                <a href="{{ url("admin/escola/deletar/"."/excluir") }}" class="btn red">Sim</a>
             </div>
         </div>
 

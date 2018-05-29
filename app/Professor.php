@@ -24,6 +24,6 @@ class Professor extends Model
 
     public function projeto()
     {
-        return $this->belongsTo(Projeto::class, 'id_projeto');
+        return $this->belongsTo(Projeto::class);
     }
 }

@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Session;
 class AdminProjetoController extends Controller
 {
 
-    private $request;
     private $auditoriaController;
     private $professor;
     private $escola;
@@ -43,33 +42,43 @@ class AdminProjetoController extends Controller
     public function create(){
         $disciplinas = Disciplina::all();
         $escolas = Escola::all();
-        $categorias = Categoria::all();
 
         return view("admin/projeto/cadastro/registro", compact('disciplinas', 'escolas', 'categorias'));
     }
 
     public function store(Request $request){
         $dataForm = $request->all() + ['status' => 'aprovado'];
-        dd($dataForm);
         try{
             $projeto = Projeto::create($dataForm);
 
             foreach ($request->only(['disciplina_id']) as $disciplina){
                 $projeto->disciplina()->attach($disciplina);
             }
+
             foreach ($request->only(['aluno_id']) as $aluno_id){
                 $alunos = Aluno::find($aluno_id);
             }
-            foreach ($alunos as $a){
-                $a->projeto_id = $projeto->id;
-                $a->save();
+
+            foreach ($alunos as $aluno) {
+                $aluno->projeto_id = $projeto->id;
+                $aluno->save();
             }
 
+            $orientador = Professor::find($dataForm['orientador']);
+            $orientador->projeto_id = $projeto->id;
+            $orientador->tipo = 'orientador';
+            $orientador->save();
 
+            if(isset($dataForm['coorientador'])){
+                $coorientador = Professor::find($dataForm['coorientador']);
+                $coorientador->projeto_id = $projeto->id;
+                $coorientador->tipo = 'coorientador';
+                $coorientador->save();
+            }
 
             $this->auditoriaController->storeCreate($projeto, $projeto->id);
             dd('cadastrado');
-            return view("admin/projeto/cadastro/equipe", compact('projeto', 'professores', 'alunos'));
+            return view("admin/projeto/cadastro", compact('projeto', 'professores', 'alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -78,8 +87,8 @@ class AdminProjetoController extends Controller
 
     public function show(){
         try{
-            $escolas = Escola::all();
-            return view("admin/escola/busca/buscar", compact('escolas'));
+            $projetos = Projeto::all();
+            return view("admin/projeto/busca/buscar", compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

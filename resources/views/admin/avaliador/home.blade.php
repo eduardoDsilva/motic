@@ -30,7 +30,7 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <table>
+            <table class="centered responsive-table highlight bordered">
                 <thead>
                 <tr>
                     <th>Nome</th>
@@ -41,8 +41,8 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
+                <tbody>
                 @forelse ($avaliadores as $avaliador)
-                    <tbody>
                     <tr>
                         <td>{{$avaliador->user->name}}</td>
                         <td>{{$avaliador->user->username}}</td>
@@ -54,19 +54,7 @@
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    </tbody>
-                    <!-- Modal Structure -->
-                    <div id="modal1" class="modal">
-                        <div class="modal-content">
-                            <h4>Deletar</h4>
-                            <p>Você tem certeza que deseja deletar o avaliador?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url("/admin/avaliador/deletar/".$avaliador->user->id."/excluir") }}" class="btn red">Sim</a>
-                        </div>
-                    </div>
                 @empty
-                    <tbody>
                     <tr>
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
@@ -75,8 +63,8 @@
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
                     </tr>
-                    </tbody>
                 @endforelse
+                </tbody>
             </table>
 
             <br><br>
@@ -87,7 +75,16 @@
 
             <br><br>
 
-
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Deletar</h4>
+                    <p>Você tem certeza que deseja deletar o avaliador?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url("/admin/avaliador/deletar/excluir") }}" class="btn red">Sim</a>
+                </div>
+            </div>
 
 
         </div>

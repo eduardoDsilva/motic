@@ -19,7 +19,6 @@ class CreateEscolas extends Migration
             $table->string('name');
             $table->string('telefone');
             $table->integer('projetos');
-
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

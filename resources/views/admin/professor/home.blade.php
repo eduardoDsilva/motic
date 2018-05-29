@@ -30,7 +30,7 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <table>
+            <table class="centered responsive-table highlight bordered">
                 <thead>
                 <tr>
                     <th>Nome</th>
@@ -41,20 +41,19 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
+                <tbody>
                 @forelse ($professores as $professor)
-                    <tbody>
                     <tr>
                         <td>{{$professor->name}}</td>
                         <td>{{$professor->user->username}}</td>
                         <td>{{$professor->escola->name}}</td>
-                        <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $aluno->projeto_id )}}</td>
-                        <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $aluno->tipo )}}</td>
+                        <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $professor->projeto->titulo )}}</td>
+                        <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $professor->tipo )}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/professor/update/".$professor->id."/editar") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    </tbody>
                     <!-- Modal Structure -->
                     <div id="modal1" class="modal">
                         <div class="modal-content">
@@ -66,7 +65,6 @@
                         </div>
                     </div>
                 @empty
-                    <tbody>
                     <tr>
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
@@ -75,8 +73,8 @@
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
                     </tr>
-                    </tbody>
                 @endforelse
+                </tbody>
             </table>
 
             <br><br>

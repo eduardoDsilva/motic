@@ -42,9 +42,9 @@
                             <i class="large material-icons">bookmark_border</i>
                         </div>
                         <div class="card-action white-text">
-                            <span class="card-title">Verificar projetos</span>
+                            <span class="card-title">Listar projetos</span>
 
-                            <p>Clique aqui para verificar os projetos.</p>
+                            <p>Clique aqui para listar os projetos.</p>
                         </div>
                     </div>
                 </div>

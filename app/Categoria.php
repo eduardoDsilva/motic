@@ -20,4 +20,9 @@ class Categoria extends Model
         return $this->hasMany(Aluno::class, 'aluno_id', 'id');
     }
 
+    public function projeto()
+    {
+        return $this->hasMany(Projeto::class);
+    }
+
 }

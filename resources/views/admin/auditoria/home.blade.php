@@ -23,30 +23,24 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <table>
+            <table class="centered responsive-table highlight bordered">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Tipo</th>
                     <th>Descricao</th>
                     <th>Usuário Responsável</th>
-                    <th>ID alterado</th>
                     <th>ID do responsável</th>
                 </tr>
                 </thead>
+                <tbody>
                 @forelse ($auditorias as $auditoria)
-                    <tbody>
                     <tr>
-                        <td>{{$auditoria->id}}</td>
                         <td>{{$auditoria->tipo}}</td>
                         <td>{{$auditoria->descricao}}</td>
                         <td>{{$auditoria->nome_usuario}}</td>
-                        <td>{{$auditoria->id_acao}}</td>
                         <td>{{$auditoria->user_id}}</td>
                     </tr>
-                    </tbody>
                 @empty
-                    <tbody>
                     <tr>
                         <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
@@ -55,8 +49,8 @@
                         <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
                     </tr>
-                    </tbody>
                 @endforelse
+                </tbody>
             </table>
 
             <br><br>

@@ -30,7 +30,7 @@
     <div class="container">
         <div class="col s12 m4 l8">
 
-            <table>
+            <table class="centered responsive-table highlight bordered">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -39,8 +39,8 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
+                <tbody>
                 @forelse ($disciplinas as $disciplina)
-                    <tbody>
                     <tr>
                         <td>{{$disciplina->id}}</td>
                         <td>{{$disciplina->name}}</td>
@@ -50,17 +50,15 @@
                             <a {{session()->put('id', $disciplina->id)}}data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2"><i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    </tbody>
                 @empty
-                    <tbody>
                     <tr>
                         <td>Nenhuma disciplina encontrada</td>
                         <td>Nenhuma disciplina encontrada</td>
                         <td>Nenhuma disciplina encontrada</td>
                         <td>Nenhuma disciplina encontrada</td>
                     </tr>
-                    </tbody>
                 @endforelse
+                </tbody>
             </table>
 
             <br><br>

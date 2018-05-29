@@ -28,4 +28,8 @@ class Escola extends Model
         return $this->belongsToMany(Categoria::class, 'escolas_categorias', 'escola_id','categoria_id');
     }
 
+    public function projeto()
+    {
+        return $this->hasMany(Projeto::class);
+    }
 }

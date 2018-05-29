@@ -46,7 +46,7 @@
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix">people</i>
                                         <select name="sexo">
-                                            <option value="" disabled>Sexo</option>
+                                            <option value="" disabled selected>Sexo</option>
                                             <option value="masculino"  <?php if(isset($aluno) && $aluno->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
                                             <option value="feminino"   <?php if(isset($aluno) && $aluno->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
                                         </select>
@@ -54,30 +54,8 @@
                                     </div>
 
                                     <div class="input-field col s6">
-                                        <i class="material-icons prefix">book</i>
-                                        <select name="anoLetivo">
-                                            <option value="" disabled selected>Ano Letivo</option>
-                                            <option value="Educação Infantil" <?php if(isset($aluno) && $aluno->anoLetivo=='Educação Infantil'){ echo 'selected';} ?>>Educação Infantil</option>
-                                            <option value="1° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='1° ANO'){ echo 'selected';} ?>>1° ANO</option>
-                                            <option value="2° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='2° ANO'){ echo 'selected';} ?>>2° ANO</option>
-                                            <option value="3° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='3° ANO'){ echo 'selected';} ?>>3° ANO</option>
-                                            <option value="4° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='4° ANO'){ echo 'selected';} ?>>4° ANO</option>
-                                            <option value="5° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='5° ANO'){ echo 'selected';} ?>>5° ANO</option>
-                                            <option value="6° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='6° ANO'){ echo 'selected';} ?>>6° ANO</option>
-                                            <option value="7° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='7° ANO'){ echo 'selected';} ?>>7° ANO</option>
-                                            <option value="8° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='8° ANO'){ echo 'selected';} ?>>8° ANO</option>
-                                            <option value="9° ANO" <?php if(isset($aluno) && $aluno->anoLetivo=='9° ANO'){ echo 'selected';} ?>>9° ANO</option>
-                                            <option value="EJA" <?php if(isset($aluno) && $aluno->anoLetivo=='EJA'){ echo 'selected';} ?>>EJA</option>
-                                        </select>
-                                        <label>Ano Letivo</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="input-field col s6">
                                         <i class="material-icons prefix">people</i>
-                                        <select name="escola_id">
+                                        <select id='escolaAluno' name="escola_id">
                                             <option value="" disabled selected>Selecione a escola</option>
                                             @forelse ($escolas as $escola)
                                                 <option value="{{$escola->id}}" @if (isset($aluno) && $escola->id == $aluno->escola_id) selected @endif>{{$escola->name}}</option>
@@ -86,6 +64,18 @@
                                             @endforelse
                                         </select>
                                         <label>Escola</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">book</i>
+                                        <select id='anoLetivo' name="anoLetivo">
+                                            <option value="" disabled selected>Ano Letivo</option>
+                                            <option value="{{$aluno->anoLetivo}}" @if (isset($aluno)) selected @endif>{{$aluno->anoLetivo}}</option>
+                                        </select>
+                                        <label>Ano Letivo</label>
                                     </div>
 
                                     <div class="input-field col s6">
@@ -178,7 +168,7 @@
                                 </p>
 
                             </form>
-                            </form>
+                    </form>
 
             </article>
         </div>
