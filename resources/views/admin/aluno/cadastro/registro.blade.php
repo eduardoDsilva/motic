@@ -73,7 +73,7 @@
                                         <i class="material-icons prefix">book</i>
                                         <select id='anoLetivo' name="anoLetivo">
                                             <option value="" disabled selected>Ano Letivo</option>
-                                            <option value="{{$aluno->anoLetivo}}" @if (isset($aluno)) selected @endif>{{$aluno->anoLetivo}}</option>
+                                            <option value="@if(isset($aluno))@endif" @if(isset($aluno))selected @endif > @if(isset($aluno))$aluno->anoLetivo @endif</option>
                                         </select>
                                         <label>Ano Letivo</label>
                                     </div>

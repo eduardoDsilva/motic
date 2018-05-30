@@ -46,7 +46,7 @@
                         <td>{{$disciplina->name}}</td>
                         <td>{{$disciplina->descricao}}</td>
                         <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."/editar") }}"><i class="small material-icons">edit</i></a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."edita") }}"><i class="small material-icons">edit</i></a>
                             <a {{session()->put('id', $disciplina->id)}}data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2"><i class="small material-icons">delete</i></a>
                         </td>
                     </tr>

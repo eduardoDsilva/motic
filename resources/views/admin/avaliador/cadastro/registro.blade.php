@@ -17,7 +17,6 @@
 
     <a class="btn green" href="{{url()->previous()}}">Voltar</a>
 
-
     <section class="container">
         <div class="row">
             <h3 class="center-align">{{$titulo}}</h3>
@@ -155,13 +154,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <label for="password">Senha</label>
-                            <input type="password" name="password" value="{{old('password')}}"required>
+                            <input type="password" name="password" required>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock</i>
                             <label for="password_confirmation">Confirmar senha</label>
-                            <input type="password" name="password_confirmation" value="old('password')}}"required>
+                            <input type="password" name="password_confirmation" required>
                         </div>
                     </div>
 

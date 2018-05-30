@@ -8,8 +8,8 @@ Route::get('admin/disciplinas/home', 'Admin\Disciplinas\AdminDisciplinaControlle
 Route::post("admin/disciplinas/{id}", 'Admin\Disciplinas\AdminDisciplinaController@update');
 //deletar
 Route::get("admin/disciplinas/deletar/{id}/excluir", "Admin\Disciplinas\AdminDisciplinaController@destroy");
-//formulario de editar
-Route::get("admin/disciplinas/update/{id}/editar", "Admin\Disciplinas\AdminDisciplinaController@edit");
+//formulario de edita
+Route::get("admin/disciplinas/update/{id}/edita", "Admin\Disciplinas\AdminDisciplinaController@edit");
 //create
 Route::post('admin/disciplinas/cadastro/registro', 'Admin\Disciplinas\AdminDisciplinaController@store')->name('admin/disciplinas/cadastro/registro');
 //exibir

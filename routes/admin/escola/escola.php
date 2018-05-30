@@ -6,8 +6,8 @@ Route::get('admin/escola/home', 'Admin\Escola\AdminEscolaController@index')->nam
 Route::post("admin/escola/{id}", 'Admin\Escola\AdminEscolaController@update');
     //deletar
 Route::get("admin/escola/deletar/{id}/excluir", "Admin\Escola\AdminEscolaController@destroy");
-    //formulario de editar
-Route::get("admin/escola/update/{id}/editar", "Admin\Escola\AdminEscolaController@edit");
+    //formulario de edita
+Route::get("admin/escola/update/{id}/edita", "Admin\Escola\AdminEscolaController@edit");
     //formulario de registrar
 Route::get('admin/escola/cadastro/registro', 'Admin\Escola\AdminEscolaController@create')->name('admin/escola/cadastro/registro');
     //create

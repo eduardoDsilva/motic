@@ -39,7 +39,6 @@
                               <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>
                               <li><a href="{{{route ('admin/avaliador/home')}}}">Avaliadores</a></li>
                               <li><a href="{{{route ('admin/disciplinas/home')}}}">Disciplinas</a></li>
-                              <li><a href="{{{ route(Auth::user()->tipoUser.'/home') }}}">Equipes</a></li>
                               <li><a href="{{{route ('admin/escola/home')}}}">Escolas</a></li>
                               <li><a href="{{{route ('admin/professor/home')}}}">Professores</a></li>
                               <li><a href="{{{route ('admin/projeto/home')}}}">Projetos</a></li>
@@ -59,7 +58,6 @@
                           <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>
                           <li><a href="{{{route ('admin/avaliador/home')}}}">Avaliadores</a></li>
                           <li><a href="{{{route ('admin/disciplinas/home')}}}">Disciplinas</a></li>
-                          <li><a href="{{{ route(Auth::user()->tipoUser.'/home') }}}">Equipes</a></li>
                           <li><a href="{{{route ('admin/escola/home')}}}">Escolas</a></li>
                           <li><a href="{{{route ('admin/professor/home')}}}">Professores</a></li>
                           <li><a href="{{{route ('admin/projeto/home')}}}">Projetos</a></li>
@@ -87,7 +85,6 @@
                     document.getElementById('logout-form').submit();">
                     Logout
               </a>
-
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{{ csrf_field() }}}
               </form>

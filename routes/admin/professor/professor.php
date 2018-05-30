@@ -6,8 +6,8 @@ Route::get('admin/professor/home', 'Admin\Professor\AdminProfessorController@ind
 Route::post("admin/professor/{id}", 'Admin\Professor\AdminProfessorController@update');
 //deletar
 Route::get("admin/professor/deletar/{id}/excluir", "Admin\Professor\AdminProfessorController@destroy");
-//formulario de editar
-Route::get("admin/professor/update/{id}/editar", "Admin\Professor\AdminProfessorController@edit");
+//formulario de edita
+Route::get("admin/professor/update/{id}/edita", "Admin\Professor\AdminProfessorController@edit");
 //formulario de registrar
 Route::get('admin/professor/cadastro/registro', 'Admin\Professor\AdminProfessorController@create')->name('admin/professor/cadastro/registro');
 //create

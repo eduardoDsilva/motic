@@ -141,7 +141,6 @@ class AdminAlunoController extends Controller
         $escola_id = Input::get('escola_id');
         $escola = Escola::find($escola_id);
         $categorias = $escola->categoria;
-        //dd($categorias);
         $ano = [];
         foreach ($categorias as $categoria){
             //dd($categoria->id);

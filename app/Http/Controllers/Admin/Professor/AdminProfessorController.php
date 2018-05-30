@@ -6,7 +6,7 @@ use App\Dado;
 use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
-use App\Http\Requests\Admin\Professor\ProfessorCreateFormRequest;
+use App\Http\Requests\Admin\Professor\ProjetoCreateFormRequest;
 use App\Http\Requests\Admin\Professor\ProfessorUpdateFormRequest;
 use App\professor;
 use App\Http\Controllers\Controller;
@@ -41,7 +41,7 @@ class AdminProfessorController extends Controller
         return view('admin/professor/cadastro/registro', compact('escolas', 'titulo'));
     }
 
-    public function store(ProfessorCreateFormRequest $request){
+    public function store(ProjetoCreateFormRequest $request){
         $dataForm = $request->all()+ ['tipoUser' => 'professor'];
         try{
             $user = User::create([

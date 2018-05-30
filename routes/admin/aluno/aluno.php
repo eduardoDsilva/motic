@@ -6,8 +6,8 @@ Route::get('admin/aluno/home', 'Admin\Aluno\AdminAlunoController@index')->name('
 Route::post("admin/aluno/{id}", 'Admin\Aluno\AdminAlunoController@update');
 //deletar
 Route::get("admin/aluno/deletar/{id}/excluir", "Admin\Aluno\AdminAlunoController@destroy");
-//formulario de editar
-Route::get("admin/aluno/update/{id}/editar", "Admin\Aluno\AdminAlunoController@edit");
+//formulario de edita
+Route::get("admin/aluno/update/{id}/edita", "Admin\Aluno\AdminAlunoController@edit");
 //formulario de registrar
 Route::get('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@create')->name('admin/aluno/cadastro/registro');
 //create

@@ -29,7 +29,8 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        return view('admin/projeto/home');
+        $projetos = Projeto::all();
+        return view('admin/projeto/home', compact('projetos'));
     }
 
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
@@ -96,23 +97,25 @@ class AdminProjetoController extends Controller
 
     public function edit($id){
         try{
-            $escola = Escola::find($id);
-            $categorias = Categoria::all();
-            $titulo = 'Editar avalaidor: '.$escola->name;
-            foreach ($escola->categoria as $id){
-                $categoria_escola[] = $id->pivot->categoria_id;
-            }
-
-            return view("admin/escola/cadastro/registro", compact('escola', 'categorias', 'titulo', 'categoria_escola'));
+            $projeto = Projeto::find($id);
+            $disciplinas = Disciplina::all();
+            $titulo = 'Editar projeto: '.$projeto->titulo;
+            return view("admin/projeto/edita/editar", compact( 'projeto', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
     public function update(Request $request, $id){
-        $dataForm = $request->all() + ['tipoUser' => 'escola'];
+        $dataForm = $request->all();
         try{
-            return redirect()->route("admin/escola/busca/buscar");
+            $projeto = Projeto::find($id);
+            $projeto->update($dataForm);
+            $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+
+            Session::put('mensagem', "O projeto ".$projeto->titulo." foi editado com sucesso!");
+
+            return redirect()->route("admin/projeto/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
