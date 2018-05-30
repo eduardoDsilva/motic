@@ -10,9 +10,7 @@
         </div>
     @endif
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-
-    <section class="container">
+    <section class="section container">
         <div class="row">
             <h3 class="center-align">Editar projeto {{$projeto->titulo}}</h3>
             <article class="col s12">
@@ -67,6 +65,7 @@
                 </form>
 
             </article>
+        </div>
         </div>
     </section>
 @endsection

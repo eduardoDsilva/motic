@@ -16,9 +16,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
-<body>
-  <header>
 
+<body style="background-color:#F0F0F0;">
+  <header>
+      <div class="navbar-fixed">
       <nav class="light-blue lighten-1">
           <div class="container">
               <div class="nav-wrapper">
@@ -76,6 +77,7 @@
               </div>
           </div>
       </nav>
+      </div>
 
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content">

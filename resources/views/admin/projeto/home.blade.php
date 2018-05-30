@@ -9,20 +9,17 @@
         {{session('success')}}
     @endif
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
+    <div class="section container">
+        <div class="card-panel">
             <h1 class="header center orange-text">Projetos</h1>
             <div class="row center">
                 <h5 class="header col s12 light">Essas são os projetos cadastrados no sistema!</h5>
             </div>
-            <br>
         </div>
     </div>
 
-    <div class="container">
+    <div class="section container">
+        <div class="card-panel">
         <div class="col s12 m4 l8">
 
             <table class="centered responsive-table highlight bordered">
@@ -75,8 +72,6 @@
                 </tbody>
             </table>
 
-            <br><br>
-
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large red">
                     <i class="large material-icons">mode_edit</i>
@@ -89,10 +84,7 @@
                 </ul>
             </div>
 
-            <br><br>
-
-            <br><br>
-
+        </div>
         </div>
     </div>
 

@@ -15,9 +15,8 @@
         </div>
     @endif
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-
-    <section class="container">
+    <section class="section container">
+        <div class="card-panel">
         <div class="row">
             <h3 class="center-align">Editar Avaliador</h3>
             <article class="col s12">
@@ -44,6 +43,7 @@
                 </form>
 
             </article>
+        </div>
         </div>
     </section>
 

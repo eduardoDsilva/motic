@@ -15,21 +15,17 @@
         {{Session::forget('mensagem')}}
     @endif
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
+    <div class="section container">
+        <div class="card-panel">
             <h1 class="header center orange-text">Escolas</h1>
             <div class="row center">
                 <h5 class="header col s12 light">Essas são as escolas cadastradas no sistema!</h5>
             </div>
-            <br>
         </div>
     </div>
 
-    <div class="container">
-
+    <div class="section container">
+        <div class="card-panel">
         <table class="centered responsive-table highlight bordered">
             <thead>
                     <tr>
@@ -50,7 +46,7 @@
                         <td>{{$escola->user->email}}</td>
                         <td>{{$escola->user->username}}</td>
                         <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."edita") }}"><i class="small material-icons">edit</i></a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
@@ -67,7 +63,6 @@
             </tbody>
         </table>
 
-
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -82,10 +77,7 @@
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">add</i></a>
             </div>
-
-            <br><br>
-
-            <br><br>
+            </div>
 
     </div>
 

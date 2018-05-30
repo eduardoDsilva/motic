@@ -8,15 +8,12 @@
         {{session('success')}}
     @endif
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
+    <div class="section container">
+        <div class="card-panel">
             <h1 class="header center orange-text">Auditoria</h1>
             <div class="row center">
                 <h5 class="header col s12 light">Essas são os registros realizados no sistema!</h5>
             </div>
-            <br>
         </div>
     </div>
 
@@ -52,10 +49,6 @@
                 @endforelse
                 </tbody>
             </table>
-
-            <br><br>
-
-            <br><br>
 
         </div>
     </div>

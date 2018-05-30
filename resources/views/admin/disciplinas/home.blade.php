@@ -15,19 +15,17 @@
         </div>
     @endif
 
-    <a class="btn green" href="{{url()->previous()}}">Voltar</a>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
+    <div class="section container">
+        <div class="card-panel">
             <h1 class="header center orange-text">Disciplinas</h1>
             <div class="row center">
                 <h5 class="header col s12 light">Essas são as disciplinas cadastradas no sistema!</h5>
             </div>
-            <br>
         </div>
     </div>
 
-    <div class="container">
+    <div class="section container">
+        <div class="card-panel">
         <div class="col s12 m4 l8">
 
             <table class="centered responsive-table highlight bordered">
@@ -60,8 +58,6 @@
                 @endforelse
                 </tbody>
             </table>
-
-            <br><br>
 
             <div class="fixed-action-btn">
                 <a data-target="modal3" data-target="modal3" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar disciplina" href="#modal3"><i class="material-icons">add</i></a>
@@ -107,10 +103,7 @@
                 </form>
             </div>
 
-            <br><br>
-
-            <br><br>
-
+        </div>
         </div>
     </div>
 
