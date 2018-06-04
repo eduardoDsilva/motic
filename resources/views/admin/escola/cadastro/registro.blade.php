@@ -5,8 +5,6 @@
 @section('conteudo')
 
     @if( isset($errors) && count($errors) > 0 )
-       {{dd($errors->all())}}
-       {{dd(property_exists ($errors, 'password'))}}
         <div class="center-align">
             @foreach( $errors->all() as $error )
                 <div class="chip red">
@@ -97,19 +95,19 @@
                         <div class="row">
                             <div class="input-field col s4">
                                 <i class="material-icons prefix">location_city</i>
-                                <input id="cidade" class="validate" type="text" name="cidade" value="São Leopoldo" readonly="true" value="{{$escola->user->endereco->cidade or old('cidade')}}" required>
+                                <input id="cidade" class="validate" type="text" name="cidade" value="São Leopoldo" value="{{$escola->user->endereco->cidade or old('cidade')}}" required>
                                 <label data-error="Insira uma cidade válida!" data-success="Ok" for="cidade">Cidade</label>
                             </div>
 
                             <div class="input-field col s4">
                                 <i class="material-icons prefix">location_city</i>
-                                <input id="estado" class="validate" type="text" name="estado"  value="Rio Grande do Sul" readonly="true" value="{{$escola->user->endereco->estado or old('estado')}}" required>
+                                <input id="estado" class="validate" type="text" name="estado"  value="Rio Grande do Sul" value="{{$escola->user->endereco->estado or old('estado')}}" required>
                                 <label data-error="Insira um estado válido!" data-success="Ok" for="estado">Estado</label>
                             </div>
 
                             <div class="input-field col s4">
                                 <i class="material-icons prefix">location_city</i>
-                                <input class="validate" id="pais" type="text" name="pais" value="Brasil" readonly="true" value="{{$escola->user->endereco->pais or old('pais')}}" required>
+                                <input class="validate" id="pais" type="text" name="pais" value="Brasil" value="{{$escola->user->endereco->pais or old('pais')}}" required>
                                 <label data-error="Insira um país válido!" data-success="Ok" for="pais">País</label>
                             </div>
                         </div>

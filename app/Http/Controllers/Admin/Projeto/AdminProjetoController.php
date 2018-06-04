@@ -9,7 +9,6 @@
 namespace App\Http\Controllers\Admin\Projeto;
 
 use App\Aluno;
-use App\Categoria;
 use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
