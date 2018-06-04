@@ -29,7 +29,7 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::all();
+        $projetos = Projeto::all()->where('ano', '=', date('y'));
         return view('admin/projeto/home', compact('projetos'));
     }
 
@@ -88,7 +88,7 @@ class AdminProjetoController extends Controller
 
     public function show(){
         try{
-            $projetos = Projeto::all();
+            $projetos = Projeto::all()->where('ano', '=', date('y'));
             return view("admin/projeto/busca/buscar", compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
