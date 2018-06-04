@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auditoria;
 
+use App\Auditoria;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,7 @@ class AdminAuditoriaController extends Controller
     }
     public function index()
     {
-        $auditorias = $this->auditoriaController->buscar();
+        $auditorias = Auditoria::all();
 
         return view('admin/auditoria/home', compact('auditorias'));
 

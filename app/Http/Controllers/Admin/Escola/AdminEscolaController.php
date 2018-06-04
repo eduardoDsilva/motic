@@ -62,16 +62,18 @@ class AdminEscolaController extends Controller
 
             Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
 
-            return redirect()->route("admin/escola/busca/buscar");
+            return redirect()->route("admin/escola/home");
 
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function show(){
+    public function show(Request $request){
+        dd("batata");
+        $dataForm = $request->all();
         try{
-            $escolas = Escola::all();
+            $escolas = Escola::all()->where('name', 'like', '%'.$dataForm->name.'%');
             return view("admin/escola/home", compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -86,7 +88,6 @@ class AdminEscolaController extends Controller
             foreach ($escola->categoria as $id){
                 $categoria_escola[] = $id->pivot->categoria_id;
             }
-
             return view("admin/escola/cadastro/registro", compact('escola', 'categorias', 'titulo', 'categoria_escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -94,7 +95,7 @@ class AdminEscolaController extends Controller
     }
 
     public function update(EscolaUpdateFormRequest $request, $id){
-            $dataForm = $request->all() + ['tipoUser' => 'escola'];
+        $dataForm = $request->all() + ['tipoUser' => 'escola'];
         try{
             $user = User::find($id);
             $user->update([
@@ -110,13 +111,19 @@ class AdminEscolaController extends Controller
             $escola->update($dataForm);
             $this->auditoriaController->storeUpdate(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
+            $escola = $user->escola;
+            $escola->categoria()->detach();
+            foreach ($request->only(['categoria_id']) as $categoria){
+                $escola->categoria()->attach($categoria);
+            }
+
             $endereco = $user->endereco;
             $endereco->update($dataForm);
             $this->auditoriaController->storeUpdate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
 
-            return redirect()->route("admin/escola/busca/buscar");
+            return redirect()->route("admin/escola/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -132,7 +139,7 @@ class AdminEscolaController extends Controller
             $escolas = Escola::all();
             Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
 
-            return redirect()->route("admin/escola/busca/buscar", compact('escolas'));
+            return redirect()->route("admin/escola/home", compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

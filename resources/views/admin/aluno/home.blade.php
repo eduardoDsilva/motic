@@ -29,12 +29,12 @@
 
             <table class="centered responsive-table highlight bordered">
 
-                <form>
+                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
                     <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
+                        <input id="search" type="search">
+                        <label for="search"><i class="material-icons">search</i></label>
                     </div>
+                    {{csrf_field()}}
                 </form>
 
                 <thead>
@@ -57,19 +57,9 @@
                         <td>{{($aluno->projeto_id == null ? "Aluno sem projeto" : $aluno->projeto->titulo)}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/aluno/update/".$aluno->id."edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$aluno->id}}" data-name="{{$aluno->name}}"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    <!-- Modal Structure -->
-                    <div id="modal1" class="modal">
-                        <div class="modal-content">
-                            <h4>Deletar</h4>
-                            <p>Você tem certeza que deseja deletar o aluno?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url("/admin/aluno/deletar/".$aluno->id."/excluir") }}" class="btn red">Sim</a>
-                        </div>
-                    </div>
                 @empty
                     <tr>
                         <td>Nenhum avaliador encontrado</td>
@@ -88,6 +78,17 @@
             </div>
 
         </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Deletar</h4>
+            <p>Você tem certeza que deseja deletar o aluno?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="{{ url("/admin/aluno/deletar/id/excluir") }}" class="btn red">Sim</a>
         </div>
     </div>
 

@@ -17,7 +17,7 @@
 
     <div class="container section">
         <div class="card-panel">
-            <div class="container section">
+        <div class="row">
                 <h3 class="center-align">Cadastrar Aluno</h3>
                 <div class="divider"></div>
                 @if(isset($aluno))
@@ -192,7 +192,7 @@
 
                             </form>
                     </form>
-            </div>
+        </div>
         </div>
     </div>
 

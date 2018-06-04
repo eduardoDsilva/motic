@@ -28,12 +28,12 @@
         <div class="card-panel">
         <table class="centered responsive-table highlight bordered">
 
-            <form>
+            <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
                 <div class="input-field">
-                    <input id="search" type="search" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
+                    <input id="search" type="search">
+                    <label for="search"><i class="material-icons">search</i></label>
                 </div>
+                {{csrf_field()}}
             </form>
 
             <thead>
@@ -51,7 +51,7 @@
                     <tr>
                         <td>{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
-                        <td>{{$escola->user->endereco->rua}}</td>
+                        <td>@if(isset($escola->user->endereco->rua)) {{$escola->user->endereco->rua}} @else Escola sem endereço @endif</td>
                         <td>{{$escola->user->email}}</td>
                         <td>{{$escola->user->username}}</td>
                         <td>

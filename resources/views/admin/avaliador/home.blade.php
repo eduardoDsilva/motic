@@ -29,12 +29,12 @@
 
             <table class="centered responsive-table highlight bordered">
 
-                <form>
+                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
                     <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
+                        <input id="search" type="search">
+                        <label for="search"><i class="material-icons">search</i></label>
                     </div>
+                    {{csrf_field()}}
                 </form>
 
                 <thead>
@@ -53,7 +53,7 @@
                         <td>{{$avaliador->user->name}}</td>
                         <td>{{$avaliador->user->username}}</td>
                         <td>{{$avaliador->user->email}}</td>
-                        <td>{{$avaliador->user->telefone}}</td>
+                        <td>{{$avaliador->telefone}}</td>
                         <td>{{$avaliador->user->endereco->rua}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/avaliador/update/".$avaliador->id."edita") }}"><i class="small material-icons">edit</i></a>
