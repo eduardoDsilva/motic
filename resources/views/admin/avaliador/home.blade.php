@@ -39,6 +39,7 @@
 
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Usuário</th>
                     <th>E-mail</th>
@@ -50,6 +51,7 @@
                 <tbody>
                 @forelse ($avaliadores as $avaliador)
                     <tr>
+                        <td>{{$avaliador->id}}</td>
                         <td>{{$avaliador->user->name}}</td>
                         <td>{{$avaliador->user->username}}</td>
                         <td>{{$avaliador->user->email}}</td>
@@ -62,6 +64,7 @@
                     </tr>
                 @empty
                     <tr>
+                        <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>
                         <td>Nenhum avaliador encontrado</td>

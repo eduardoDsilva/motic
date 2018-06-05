@@ -34,6 +34,7 @@
 
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Título</th>
                     <th>Área</th>
                     <th>Estande</th>
@@ -46,6 +47,7 @@
                 <tbody>
                 @forelse ($projetos as $projeto)
                     <tr>
+                        <td>{{$projeto->id}}</td>
                         <td>{{$projeto->titulo}}</td>
                         <td>{{$projeto->area}}</td>
                         <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
@@ -61,11 +63,14 @@
 
                 @empty
                     <tr>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
+                        <td>Nenhuma projeto encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>

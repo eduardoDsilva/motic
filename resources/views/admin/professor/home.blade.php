@@ -39,6 +39,7 @@
 
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Usuário</th>
                     <th>Escola</th>
@@ -50,6 +51,7 @@
                 <tbody>
                 @forelse ($professores as $professor)
                     <tr>
+                        <td>{{$professor->id}}</td>
                         <td>{{$professor->name}}</td>
                         <td>{{$professor->user->username}}</td>
                         <td>{{$professor->escola->name}}</td>
@@ -63,12 +65,13 @@
 
                 @empty
                     <tr>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
+                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum professor encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>

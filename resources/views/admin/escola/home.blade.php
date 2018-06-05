@@ -38,6 +38,7 @@
 
             <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Endereço</th>
@@ -49,6 +50,7 @@
             <tbody>
             @forelse ($escolas as $escola)
                     <tr>
+                        <td>{{$escola->id}}</td>
                         <td>{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
                         <td>@if(isset($escola->user->endereco->rua)) {{$escola->user->endereco->rua}} @else Escola sem endereço @endif</td>
@@ -61,6 +63,7 @@
                     </tr>
                 @empty
                         <tr>
+                            <td>Nenhuma escola encontrada</td>
                             <td>Nenhuma escola encontrada</td>
                             <td>Nenhuma escola encontrada</td>
                             <td>Nenhuma escola encontrada</td>

@@ -49,6 +49,7 @@
 
     $('.modal-footer').on('click', '.delete', function() {
         id = $('#id_delete').val();
+        console.log(id);
         $.ajax({
             type: 'GET',
             url: 'destroy/' + id,

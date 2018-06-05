@@ -63,6 +63,7 @@
                             <td>Nenhuma disciplina encontrada</td>
                             <td>Nenhuma disciplina encontrada</td>
                             <td>Nenhuma disciplina encontrada</td>
+                            <td>Nenhuma disciplina encontrada</td>
                         </tr>
                     @endforelse
                     </tbody>

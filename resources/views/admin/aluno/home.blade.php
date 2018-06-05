@@ -39,6 +39,7 @@
 
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>Ano Letivo</th>
                     <th>Turma</th>
@@ -50,6 +51,7 @@
                 <tbody>
                 @forelse ($alunos as $aluno)
                     <tr>
+                        <td>{{$aluno->id}}</td>
                         <td>{{$aluno->name}}</td>
                         <td>{{$aluno->anoLetivo}}</td>
                         <td>{{$aluno->turma}}</td>
@@ -62,12 +64,13 @@
                     </tr>
                 @empty
                     <tr>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Aluno sem nenhuma equipe</td>
-                        <td>Aluno sem nenhum projeto</td>
-                        <td>Nenhum avaliador encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum aluno encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>
