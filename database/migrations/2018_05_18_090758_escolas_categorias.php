@@ -15,10 +15,10 @@ class EscolasCategorias extends Migration
     {
         Schema::create('escolas_categorias', function (Blueprint $table) {
             $table->integer('escola_id')->unsigned();
-            $table->foreign('escola_id')->references('id')->on('escolas');
+            $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
             $table->integer('categoria_id')->unsigned();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 
