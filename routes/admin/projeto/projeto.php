@@ -5,7 +5,7 @@ Route::get('admin/projeto/home', 'Admin\Projeto\AdminProjetoController@index')->
 //update
 Route::post("admin/projeto/{id}", 'Admin\Projeto\AdminProjetoController@update');
 //deletar
-Route::get("admin/projeto/deletar/{id}/excluir", "Admin\Projeto\AdminProjetoController@destroy");
+Route::get("admin/projeto/destroy/{id}", "Admin\Projeto\AdminProjetoController@destroy");
 //formulario de edita
 Route::get("admin/projeto/update/{id}/edita", "Admin\Projeto\AdminProjetoController@edit");
 //formulario de registrar

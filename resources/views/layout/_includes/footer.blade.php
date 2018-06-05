@@ -42,19 +42,18 @@
     <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
 
 <script type="text/javascript">
+    $(document).on('click', '.modal-trigger', function() {
+        $('#id_delete').val($(this).data('id'));
+        $('#name_delete').val($(this).data('name'));
+    });
+
     $('.modal-footer').on('click', '.delete', function() {
+        id = $('#id_delete').val();
         $.ajax({
-            type: 'DELETE',
-            url: 'posts/' + id,
-            data: {
-                '_token': $('input[name=_token]').val(),
-            },
+            type: 'GET',
+            url: 'destroy/' + id,
             success: function(data) {
-                Materialize.toast('Successfully deleted Post!', 4000)
-                $('.item' + data['id']).remove();
-                $('.col1').each(function (index) {
-                    $(this).html(index+1);
-                });
+                location.reload();
             }
         });
     });

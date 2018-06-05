@@ -55,20 +55,10 @@
                         <td>{{$projeto->escola->name}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
 
-                    <!-- Modal Structure -->
-                    <div id="modal1" class="modal">
-                        <div class="modal-content">
-                            <h4>Deletar</h4>
-                            <p>Você tem certeza que deseja deletar essa escola?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url("admin/escola/deletar/".$projeto."/excluir") }}" class="btn red">Sim</a>
-                        </div>
-                    </div>
                 @empty
                     <tr>
                         <td>Nenhuma escola encontrada</td>
@@ -94,6 +84,29 @@
             </div>
 
         </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Deletar</h4>
+            <p>Você tem certeza que deseja deletar o projeto abaixo?</p>
+            <div class="row">
+                <label for="id_delete">ID</label>
+                <div class="input-field col s12">
+                    <input disabled class="validate" type="number" id="id_delete">
+                </div>
+            </div>
+            <div class="row">
+                <label for="name_delete">Nome do projeto</label>
+                <div class="input-field col s12">
+                    <input disabled class="validate" type="text" id="name_delete">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn red delete">Sim</a>
         </div>
     </div>
 

@@ -84,9 +84,6 @@ class AdminDisciplinaController extends Controller
             $disciplina = Disciplina::find($id);
             $disciplina->delete($id);
             $this->auditoriaController->storeDelete(json_encode($disciplina, JSON_UNESCAPED_UNICODE), $disciplina->id);
-
-            $disciplinas = Disciplina::all();
-            return view('admin/disciplinas/home', compact('disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

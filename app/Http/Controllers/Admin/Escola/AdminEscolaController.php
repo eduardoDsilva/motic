@@ -131,15 +131,11 @@ class AdminEscolaController extends Controller
 
     public function destroy($id){
         try{
-            dd($id);
-            $escola = User::find($id);
+            $escola = Escola::find($id);
             $escola->delete($id);
             $this->auditoriaController->storeDelete(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
-            $escolas = Escola::all();
             Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
-
-            return redirect()->route("admin/escola/home", compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

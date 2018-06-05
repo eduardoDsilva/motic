@@ -5,7 +5,7 @@ Route::get('admin/professor/home', 'Admin\Professor\AdminProfessorController@ind
 //update
 Route::post("admin/professor/{id}", 'Admin\Professor\AdminProfessorController@update');
 //deletar
-Route::get("admin/professor/deletar/{id}/excluir", "Admin\Professor\AdminProfessorController@destroy");
+Route::get("admin/professor/destroy/{id}", "Admin\Professor\AdminProfessorController@destroy");
 //formulario de edita
 Route::get("admin/professor/update/{id}/edita", "Admin\Professor\AdminProfessorController@edit");
 //formulario de registrar
@@ -13,4 +13,4 @@ Route::get('admin/professor/cadastro/registro', 'Admin\Professor\AdminProfessorC
 //create
 Route::post('admin/professor/cadastro/registro', 'Admin\Professor\AdminProfessorController@store')->name('admin/professor/cadastro/registro');
 //exibir
-Route::get('admin/professor/busca/buscar', 'Admin\Professor\AdminProfessorController@show')->name('admin/professor/busca/buscar');
+//Route::get('admin/professor/busca/buscar', 'Admin\Professor\AdminProfessorController@show')->name('admin/professor/busca/buscar');

@@ -120,12 +120,9 @@ class AdminProfessorController extends Controller
 
     public function destroy($id){
         try{
-            $professor = User::find($id);
+            $professor = Professor::find($id);
             $professor->delete($id);
             $this->auditoriaController->storeDelete(json_encode($professor, JSON_UNESCAPED_UNICODE), $professor->id);
-
-            $professores = Professor::all();
-            return redirect()->route("admin/professor/busca/buscar", compact('professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

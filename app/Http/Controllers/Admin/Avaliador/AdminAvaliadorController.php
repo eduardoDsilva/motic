@@ -116,13 +116,10 @@ class AdminAvaliadorController extends Controller
 
     public function destroy($id){
         try{
-            $avaliador = User::find($id);
+            $avaliador = Avaliador::find($id);
             $avaliador->delete($id);
             $this->auditoriaController->storeDelete(json_encode($avaliador, JSON_UNESCAPED_UNICODE), $avaliador->id);
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
-
-            $avaliadores = Avaliador::all();
-            return redirect()->route("admin/avaliador/busca/buscar", compact('avaliadores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

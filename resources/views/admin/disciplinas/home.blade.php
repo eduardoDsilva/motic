@@ -26,72 +26,84 @@
 
     <div class="section container">
         <div class="card-panel">
-        <div class="col s12 m4 l8">
+            <div class="col s12 m4 l8">
 
-            <table class="centered responsive-table highlight bordered">
+                <table class="centered responsive-table highlight bordered">
 
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
-                    <div class="input-field">
-                        <input id="search" type="search">
-                        <label for="search"><i class="material-icons">search</i></label>
-                    </div>
-                    {{csrf_field()}}
-                </form>
+                    <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                        <div class="input-field">
+                            <input id="search" type="search">
+                            <label for="search"><i class="material-icons">search</i></label>
+                        </div>
+                        {{csrf_field()}}
+                    </form>
 
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Descricao</th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse ($disciplinas as $disciplina)
+                    <thead>
                     <tr>
-                        <td>{{$disciplina->id}}</td>
-                        <td>{{$disciplina->name}}</td>
-                        <td>{{$disciplina->descricao}}</td>
-                        <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."edita") }}"><i class="small material-icons">edit</i></a>
-                            <a {{session()->put('id', $disciplina->id)}}data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2"><i class="small material-icons">delete</i></a>
-                        </td>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descricao</th>
+                        <th>Ações</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td>Nenhuma disciplina encontrada</td>
-                        <td>Nenhuma disciplina encontrada</td>
-                        <td>Nenhuma disciplina encontrada</td>
-                        <td>Nenhuma disciplina encontrada</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @forelse ($disciplinas as $disciplina)
+                        <tr>
+                            <td>{{$disciplina->id}}</td>
+                            <td>{{$disciplina->name}}</td>
+                            <td>{{$disciplina->descricao}}</td>
+                            <td>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."edita") }}"><i class="small material-icons">edit</i></a>
+                                <a data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2" data-id="{{$disciplina->id}}" data-name="{{$disciplina->name}}"><i class="small material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td>Nenhuma disciplina encontrada</td>
+                            <td>Nenhuma disciplina encontrada</td>
+                            <td>Nenhuma disciplina encontrada</td>
+                            <td>Nenhuma disciplina encontrada</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
 
-            <div class="fixed-action-btn">
-                <a data-target="modal3" data-target="modal3" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar disciplina" href="#modal3"><i class="material-icons">add</i></a>
-            </div>
-
-            <!-- Modal Structure -->
-            <div id="modal2" class="modal">
-                <div class="modal-content">
-                    <h4>Deletar</h4>
-                    <p>Você tem certeza que deseja deletar essa disciplina?</p>
+                <div class="fixed-action-btn">
+                    <a data-target="modal3" data-target="modal3" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar disciplina" href="#modal3"><i class="material-icons">add</i></a>
                 </div>
-                <div class="modal-footer">
-                    <a href="{{ url("admin/disciplinas/deletar/".session()->get('id')."/excluir") }}" class="btn red">Sim</a>
-                </div>
-            </div>
 
-            <!-- Modal Structure -->
-            <div id="modal3" class="modal">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/disciplinas/cadastro/registro') }}">
+                <!-- Modal Structure -->
+                <div id="modal2" class="modal">
                     <div class="modal-content">
-                        <h4>Adicionar disciplina</h4>
-
-                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-
+                        <h4>Deletar</h4>
+                        <p>Você tem certeza que deseja deletar a disciplina abaixo?</p>
                         <div class="row">
+                            <label for="id_delete">ID</label>
+                            <div class="input-field col s12">
+                                <input disabled class="validate" type="number" id="id_delete">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="name_delete">Nome da disciplina</label>
+                            <div class="input-field col s12">
+                                <input disabled class="validate" type="text" id="name_delete">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn red delete">Sim</a>
+                    </div>
+                </div>
+
+                <!-- Modal Structure -->
+                <div id="modal3" class="modal">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin/disciplinas/cadastro/registro') }}">
+                        <div class="modal-content">
+                            <h4>Adicionar disciplina</h4>
+
+                            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
+                            <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">book</i>
                                     <label for="nome">Nome</label>
@@ -105,14 +117,14 @@
                                     <label for="textarea1">Descrição</label>
                                 </div>
                             </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
-                    </div>
-                </form>
-            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
+                        </div>
+                    </form>
+                </div>
 
-        </div>
+            </div>
         </div>
     </div>
 

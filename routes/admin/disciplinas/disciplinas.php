@@ -7,7 +7,7 @@ Route::get('admin/disciplinas/home', 'Admin\Disciplinas\AdminDisciplinaControlle
 //update
 Route::post("admin/disciplinas/{id}", 'Admin\Disciplinas\AdminDisciplinaController@update');
 //deletar
-Route::get("admin/disciplinas/deletar/{id}/excluir", "Admin\Disciplinas\AdminDisciplinaController@destroy");
+Route::get("admin/disciplinas/destroy/{id}", "Admin\Disciplinas\AdminDisciplinaController@destroy");
 //formulario de edita
 Route::get("admin/disciplinas/update/{id}/edita", "Admin\Disciplinas\AdminDisciplinaController@edit");
 //create

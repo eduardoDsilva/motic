@@ -85,10 +85,22 @@
     <div id="modal1" class="modal">
         <div class="modal-content">
             <h4>Deletar</h4>
-            <p>Você tem certeza que deseja deletar o aluno?</p>
+            <p>Você tem certeza que deseja deletar o aluno abaixo?</p>
+                <div class="row">
+                    <label for="id_delete">ID</label>
+                    <div class="input-field col s12">
+                        <input disabled class="validate" type="number" id="id_delete">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="name_delete">Nome do aluno</label>
+                    <div class="input-field col s12">
+                        <input disabled class="validate" type="text" id="name_delete">
+                    </div>
+                </div>
         </div>
         <div class="modal-footer">
-            <a href="{{ url("/admin/aluno/deletar/id/excluir") }}" class="btn red">Sim</a>
+            <a class="btn red delete">Sim</a>
         </div>
     </div>
 

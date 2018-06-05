@@ -56,7 +56,7 @@
                         <td>{{$escola->user->username}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1"> <i class="small material-icons">delete</i></a>
+                            <a id="deletar" data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$escola->id}}" data-name="{{$escola->name}}"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
                 @empty
@@ -72,16 +72,28 @@
             </tbody>
         </table>
 
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h4>Deletar</h4>
-                <p>Você tem certeza que deseja deletar essa escola?</p>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Deletar</h4>
+                    <p>Você tem certeza que deseja deletar a escola abaixo?</p>
+                    <div class="row">
+                        <label for="id_delete">ID</label>
+                        <div class="input-field col s12">
+                            <input disabled class="validate" type="number" id="id_delete">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="name_delete">Nome da escola</label>
+                        <div class="input-field col s12">
+                            <input disabled class="validate" type="text" id="name_delete">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn red delete">Sim</a>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="{{ url("admin/escola/deletar/"."/excluir") }}" class="btn red">Sim</a>
-            </div>
-        </div>
 
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">add</i></a>

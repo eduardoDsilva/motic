@@ -101,9 +101,6 @@ class AdminAlunoController extends Controller
             $this->auditoriaController->storeDelete(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi deletado com sucesso!");
-
-            $alunos = aluno::all();
-            return redirect()->route("admin/aluno/busca/buscar", compact('alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

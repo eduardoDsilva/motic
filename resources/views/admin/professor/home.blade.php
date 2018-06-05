@@ -57,19 +57,10 @@
                         <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $professor->tipo )}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/professor/update/".$professor->id."edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1"> <i class="small material-icons">delete</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$professor->id}}" data-name="{{$professor->name}}"> <i class="small material-icons">delete</i></a>
                         </td>
                     </tr>
-                    <!-- Modal Structure -->
-                    <div id="modal1" class="modal">
-                        <div class="modal-content">
-                            <h4>Deletar</h4>
-                            <p>Você tem certeza que deseja deletar o aluno?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ url("/admin/professor/deletar/".$professor->user->id."/excluir") }}" class="btn red">Sim</a>
-                        </div>
-                    </div>
+
                 @empty
                     <tr>
                         <td>Nenhum avaliador encontrado</td>
@@ -82,6 +73,29 @@
                 @endforelse
                 </tbody>
             </table>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Deletar</h4>
+                    <p>Você tem certeza que deseja deletar o professor abaixo?</p>
+                    <div class="row">
+                        <label for="id_delete">ID</label>
+                        <div class="input-field col s12">
+                            <input disabled class="validate" type="number" id="id_delete">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="name_delete">Nome do professor</label>
+                        <div class="input-field col s12">
+                            <input disabled class="validate" type="text" id="name_delete">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn red delete">Sim</a>
+                </div>
+            </div>
 
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('admin/professor/cadastro/registro')}}"><i class="material-icons">add</i></a>

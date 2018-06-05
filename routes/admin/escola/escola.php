@@ -7,7 +7,7 @@ Route::post("admin/escola/{id}", 'Admin\Escola\AdminEscolaController@update');
     //pesquisar
 Route::post("admin/escola/show", 'Admin\Escola\AdminEscolaController@show');
     //deletar
-Route::get("admin/escola/deletar/{id}/excluir", "Admin\Escola\AdminEscolaController@destroy");
+Route::get("admin/escola/destroy/{id}", "Admin\Escola\AdminEscolaController@destroy");
     //formulario de edita
 Route::get("admin/escola/update/{id}/edita", "Admin\Escola\AdminEscolaController@edit");
     //formulario de registrar

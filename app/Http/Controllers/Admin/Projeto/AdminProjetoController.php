@@ -122,15 +122,9 @@ class AdminProjetoController extends Controller
 
     public function destroy($id){
         try{
-            dd($id);
-            $escola = User::find($id);
-            $escola->delete($id);
-            $this->auditoriaController->storeDelete($escola, $escola->id);
-
-            $escolas = Escola::all();
-            Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
-
-            return redirect()->route("admin/escola/busca/buscar", compact('escolas'));
+            $projeto = Projeto::find($id);
+            $projeto->delete($id);
+            $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
