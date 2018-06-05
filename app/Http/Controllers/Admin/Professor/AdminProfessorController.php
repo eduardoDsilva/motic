@@ -61,7 +61,7 @@ class AdminProfessorController extends Controller
 
             Session::put('mensagem', "O professor ".$professor->name." foi criado com sucesso!");
 
-            return redirect()->route("admin/professor/busca/buscar");
+            return redirect()->route("admin/professor/home");
 
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -112,7 +112,7 @@ class AdminProfessorController extends Controller
 
             Session::put('mensagem', "O professor ".$professor->name." foi editado com sucesso!");
 
-            return redirect()->route("admin/professor/busca/buscar");
+            return redirect()->route("admin/professor/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

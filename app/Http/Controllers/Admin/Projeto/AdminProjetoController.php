@@ -28,7 +28,7 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::all()->where('ano', '=', date('y'));
+        $projetos = Projeto::all()->where('ano', '=', '2018');
         return view('admin/projeto/home', compact('projetos'));
     }
 
@@ -77,8 +77,7 @@ class AdminProjetoController extends Controller
             }
 
             $this->auditoriaController->storeCreate($projeto, $projeto->id);
-            dd('cadastrado');
-            return view("admin/projeto/cadastro", compact('projeto', 'professores', 'alunos'));
+            return view("admin/projeto/home", compact('projeto', 'professores', 'alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
