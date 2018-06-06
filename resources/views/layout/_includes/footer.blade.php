@@ -62,6 +62,10 @@
 
     <script type="text/javascript">
 
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+
        $(document).ready(function(){
            $('.tooltipped').tooltip({delay: 50});
        });
@@ -79,9 +83,6 @@
        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
        //$('.collapsible').collapsible();
 
-       $(document).ready(function(){
-           $('.sidenav').sidenav();
-       });
        $('.datepicker').pickadate({
            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],

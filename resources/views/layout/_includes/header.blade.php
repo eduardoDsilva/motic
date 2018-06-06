@@ -20,9 +20,10 @@
 
 <body>
   <header>
-      <nav class="top-nav blue">
+      <nav class="nav blue">
           <div class="container">
               <div class="nav-wrapper">
+                  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                   <div class="col s12">
                       @yield('breadcrumb')
                   </div>
@@ -62,4 +63,5 @@
               </div>
           </div>
       </nav>
+
   </header>
