@@ -26,7 +26,7 @@
         <div class="card-panel">
             <div class="col s12 m4 l8">
 
-            <table class="centered responsive-table highlight bordered">
+            <table class="centered responsive-table highlight bordere">
 
                 <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
                     <div class="input-field">
@@ -48,7 +48,7 @@
                 @forelse ($auditorias as $auditoria)
                     <tr>
                         <td>{{$auditoria->tipo}}</td>
-                        <td>{{$auditoria->descricao}}</td>
+                        <td class="limit">{{$auditoria->descricao}}</td>
                         <td>{{$auditoria->nome_usuario}}</td>
                         <td>{{$auditoria->user_id}}</td>
                     </tr>

@@ -9,4 +9,10 @@ body{
     }
 }
 
+.limit {
+    max-width: 50ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
