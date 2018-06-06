@@ -24,22 +24,22 @@ class ProjetoCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|string|max:100',
-            'nascimento'            => 'required',
-            'sexo'                  => 'required',
-            'grauDeInstrucao'       => 'required',
-            'matricula'             => 'required|numeric|unique:professores',
-            'escola_id'             => 'required|numeric',
-            'email'                 => 'required|email|string|unique:users',
-            'telefone'              => 'required|max:15',
-            'cpf'                   => 'required|string|min:11|max:11',
-            'cep'                   => 'required|min:8|max:8',
-            'bairro'                => 'required|min:4|string|max:100',
-            'rua'                   => 'required|min:4|string|max:100',
-            'numero'                => 'required|min:1|max:5',
-            'complemento'           => '',
-            'username'              => 'required|string|min:5|max:20|unique:users',
-            'password'              => 'required|string|min:6|confirmed',
+            'name'             => 'required|min:3|string|max:100',
+            'nascimento'       => 'required',
+            'sexo'             => 'required',
+            'grauDeInstrucao'  => 'required',
+            'matricula'        => 'required|numeric|unique:professores',
+            'escola_id'        => 'required|numeric',
+            'email'            => 'required|email|string|unique:users',
+            'telefone'         => 'required|max:15',
+            'cpf'              => 'required|string|min:11|max:11',
+            'cep'              => 'required|min:8|max:8',
+            'bairro'           => 'required|min:4|string|max:100',
+            'rua'              => 'required|min:4|string|max:100',
+            'numero'           => 'required|min:1|max:5',
+            'complemento'      => '',
+            'username'         => 'required|string|min:5|max:20|unique:users',
+            'password'         => 'required|string|min:6|confirmed',
         ];
     }
 

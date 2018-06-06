@@ -13,9 +13,11 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Professor\ProjetoCreateFormRequest;
 use App\Professor;
 use App\Projeto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -42,12 +44,16 @@ class AdminProjetoController extends Controller
     public function create(){
         $disciplinas = Disciplina::all();
         $escolas = Escola::all();
-
         return view("admin/projeto/cadastro/registro", compact('disciplinas', 'escolas', 'categorias'));
     }
 
-    public function store(Request $request){
+    public function store(ProjetoCreateFormRequest $request){
         $dataForm = $request->all() + ['status' => 'aprovado'];
+        $escola = Escola::find($dataForm['escola_id']);
+        $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
+        if(count($projeto)>=$escola->projetos){
+            dd('não pode mais cadastrar projetos');
+        }
         try{
             $projeto = Projeto::create($dataForm);
 
@@ -133,8 +139,13 @@ class AdminProjetoController extends Controller
         $escola_id = Input::get('escola_id');
         Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
-        $categorias = $escola->categoria;
-        return response()->json($categorias);
+        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+        foreach($projetos as $projeto){
+            $categoria_id[] = $projeto->categoria_id;
+        }
+        $categoria = $escola->categoria->whereNotIn('id', $categoria_id);
+
+        return response()->json($categoria);
     }
 
     public function alunos(){

@@ -26,7 +26,7 @@
         <div class="card-panel">
             <div class="col s12 m4 l8">
 
-            <table class="centered responsive-table highlight bordere">
+            <table class="centered responsive-table highlight bordered">
 
                 <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
                     <div class="input-field">
