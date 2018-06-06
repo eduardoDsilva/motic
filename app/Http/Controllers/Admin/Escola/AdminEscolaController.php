@@ -96,6 +96,7 @@ class AdminEscolaController extends Controller
 
     public function update(EscolaUpdateFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'escola'];
+        $qntProjetos = $dataForm['categoria_id'];
         try{
             $user = User::find($id);
             $user->update([
@@ -108,7 +109,7 @@ class AdminEscolaController extends Controller
             $this->auditoriaController->storeUpdate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
 
             $escola = $user->escola;
-            $escola->update($dataForm);
+            $escola->update($dataForm + ['projetos' => count($qntProjetos)]);
             $this->auditoriaController->storeUpdate(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
             $escola = $user->escola;

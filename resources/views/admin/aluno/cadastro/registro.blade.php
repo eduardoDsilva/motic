@@ -95,7 +95,7 @@
                                                 <option value="" disabled selected>Ano Letivo</option>
                                                 <option value="@if(isset($aluno))@endif"
                                                         @if(isset($aluno))selected @endif > @if(isset($aluno))
-                                                        $aluno->anoLetivo @endif</option>
+                                                        {{$aluno->anoLetivo}}@endif</option>
                                             </select>
                                             <label>Ano Letivo</label>
                                         </div>

@@ -12,3 +12,5 @@ Route::get("admin/aluno/update/{id}/edita", "Admin\Aluno\AdminAlunoController@ed
 Route::get('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@create')->name('admin/aluno/cadastro/registro');
 //create
 Route::post('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@store')->name('admin/aluno/cadastro/registro');
+
+Route::get('/json-aluno','Admin\Aluno\AdminAlunoController@escolaCategoria');

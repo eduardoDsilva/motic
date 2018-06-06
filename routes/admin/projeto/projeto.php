@@ -12,5 +12,7 @@ Route::get("admin/projeto/update/{id}/edita", "Admin\Projeto\AdminProjetoControl
 Route::get('admin/projeto/cadastro/registro', 'Admin\Projeto\AdminProjetoController@create')->name('admin/projeto/cadastro/registro');
 //create
 Route::post('admin/projeto/cadastro/registro', 'Admin\Projeto\AdminProjetoController@store')->name('admin/projeto/cadastro/registro');
-//exibir
-Route::get('admin/projeto/busca/buscar', 'Admin\Projeto\AdminProjetoController@show')->name('admin/projeto/busca/buscar');
+
+Route::get('/json-categorias','Admin\Projeto\AdminProjetoController@categorias');
+Route::get('/json-alunos','Admin\Projeto\AdminProjetoController@alunos');
+Route::get('/json-professores','Admin\Projeto\AdminProjetoController@professores');

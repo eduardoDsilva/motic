@@ -28,6 +28,7 @@
                       @yield('breadcrumb')
                   </div>
               </div>
+
                   <ul class="side-nav fixed" id="mobile-demo">
                       @if (Auth::guest())
                           <li><a href="{{{ route('login') }}}">Login</a></li>

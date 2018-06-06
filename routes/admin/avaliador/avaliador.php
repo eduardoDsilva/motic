@@ -12,5 +12,3 @@ Route::get("admin/avaliador/update/{id}/edita", "Admin\Avaliador\AdminAvaliadorC
 Route::get('admin/avaliador/cadastro/registro', 'Admin\Avaliador\AdminAvaliadorController@create')->name('admin/avaliador/cadastro/registro');
 //create
 Route::post('admin/avaliador/cadastro/registro', 'Admin\Avaliador\AdminAvaliadorController@store')->name('admin/avaliador/cadastro/registro');
-//exibir
-//Route::get('admin/avaliador/busca/buscar', 'Admin\Avaliador\AdminAvaliadorController@show')->name('admin/avaliador/busca/buscar');

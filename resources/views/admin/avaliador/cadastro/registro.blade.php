@@ -43,12 +43,12 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Nome</label>
-                            <input type="text" name="name" value="{{$avaliador->user->dado->name or old('name')}}"required>
+                            <input type="text" name="name" value="{{$avaliador->name or old('name')}}"required>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">today</i>
                             <label for="nascimento">Nascimento</label>
-                            <input type="text" class="datepicker" name="nascimento" value="{{$avaliador->user->dado->nascimento or old('nascimento')}}"required>
+                            <input type="text" class="datepicker" name="nascimento" value="{{$avaliador->nascimento or old('nascimento')}}"required>
                         </div>
                     </div>
                     <div class="row">
@@ -56,8 +56,8 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
-                                <option value="masculino"  <?php if(isset($avaliador) && $avaliador->user->dado->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
-                                <option value="feminino"   <?php if(isset($avaliador) && $avaliador->user->dado->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
+                                <option value="masculino"  <?php if(isset($avaliador) && $avaliador->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
+                                <option value="feminino"   <?php if(isset($avaliador) && $avaliador->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
                             </select>
                             <label>Sexo</label>
                         </div>
@@ -66,9 +66,9 @@
                             <i class="material-icons prefix">book</i>
                             <select name="grauDeInstrucao">
                                 <option value="" disabled selected>Grau de Instrução</option>
-                                <option value="Ensino Fundamental"  <?php if(isset($avaliador) && $avaliador->user->dado->grauDeInstrucao=='Ensino Fundamental'){ echo 'selected';} ?>>Ensino Fundamental</option>
-                                <option value="Ensino Médio"        <?php if(isset($avaliador)  && $avaliador->user->dado->grauDeInstrucao=='Ensino Médio'){ echo 'selected';}?>>Ensino Médio</option>
-                                <option value="Ensino Superior"     <?php if(isset($avaliador) && $avaliador->user->dado->grauDeInstrucao=='Ensino Superior'){ echo 'selected';}?>>Ensino Superior</option>
+                                <option value="Ensino Fundamental"  <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Ensino Fundamental'){ echo 'selected';} ?>>Ensino Fundamental</option>
+                                <option value="Ensino Médio"        <?php if(isset($avaliador)  && $avaliador->grauDeInstrucao=='Ensino Médio'){ echo 'selected';}?>>Ensino Médio</option>
+                                <option value="Ensino Superior"     <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Ensino Superior'){ echo 'selected';}?>>Ensino Superior</option>
                             </select>
                             <label>Grau de Instrição</label>
                         </div>
@@ -79,19 +79,19 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">email</i>
                             <label for="email">Email</label>
-                            <input type="email" name="email" value="{{$avaliador->user->dado->email or old('email')}}"required>
+                            <input type="email" name="email" value="{{$avaliador->user->email or old('email')}}"required>
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" data-length="16" value="{{$avaliador->user->dado->telefone or old('telefone')}}"required>
+                            <input type="text" name="telefone" data-length="16" value="{{$avaliador->telefone or old('telefone')}}"required>
                         </div>
 
                         <div class="input-field col s4">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF</label>
-                            <input type="number" name="cpf" data-length="11" value="{{$avaliador->user->dado->cpf or old('cpf')}}"required>
+                            <input type="number" name="cpf" data-length="11" value="{{$avaliador->cpf or old('cpf')}}"required>
                         </div>
                     </div>
 

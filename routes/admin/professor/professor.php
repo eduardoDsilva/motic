@@ -12,5 +12,3 @@ Route::get("admin/professor/update/{id}/edita", "Admin\Professor\AdminProfessorC
 Route::get('admin/professor/cadastro/registro', 'Admin\Professor\AdminProfessorController@create')->name('admin/professor/cadastro/registro');
 //create
 Route::post('admin/professor/cadastro/registro', 'Admin\Professor\AdminProfessorController@store')->name('admin/professor/cadastro/registro');
-//exibir
-//Route::get('admin/professor/busca/buscar', 'Admin\Professor\AdminProfessorController@show')->name('admin/professor/busca/buscar');

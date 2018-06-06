@@ -58,7 +58,7 @@ class AdminAvaliadorController extends Controller
 
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi cadastrado com sucesso!");
 
-            return redirect()->route("admin/avaliador/busca/buscar");
+            return redirect()->route("admin/avaliador/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

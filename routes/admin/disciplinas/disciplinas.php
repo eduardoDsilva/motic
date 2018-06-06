@@ -12,5 +12,3 @@ Route::get("admin/disciplinas/destroy/{id}", "Admin\Disciplinas\AdminDisciplinaC
 Route::get("admin/disciplinas/update/{id}/edita", "Admin\Disciplinas\AdminDisciplinaController@edit")->name('admin/disciplinas/edita/editar');
 //create
 Route::post('admin/disciplinas/cadastro/registro', 'Admin\Disciplinas\AdminDisciplinaController@store')->name('admin/disciplinas/cadastro/registro');
-//exibir
-Route::get('admin/disciplinas/busca/buscar', 'Admin\Disciplinas\AdminDisciplinaController@show')->name('admin/disciplinas/busca/buscar');

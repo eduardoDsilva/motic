@@ -93,7 +93,7 @@ class AdminProfessorController extends Controller
         $dataForm = $request->all() + ['tipoUser' => 'professor'];
         try{
             $user = User::find($id);
-            $user = $user->update([
+            $user->update([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
                 'email' => $dataForm['email'],
