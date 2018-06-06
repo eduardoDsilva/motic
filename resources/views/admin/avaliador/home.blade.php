@@ -2,6 +2,11 @@
 
 @section('titulo','Motic Admin')
 
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/avaliador/home')}}}" class="breadcrumb">Avaliador</a>
+@endsection
+
 @section('conteudo')
 
     @if(Session::get('mensagem'))

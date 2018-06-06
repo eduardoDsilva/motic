@@ -2,6 +2,12 @@
 
 @section('titulo','Motic Admin')
 
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/disciplinas/home')}}}" class="breadcrumb">Disciplinas</a>
+    <a href="#" class="breadcrumb">Editar</a>
+@endsection
+
 @section('conteudo')
 
     @if( isset($errors) && count($errors) > 0 )
@@ -18,7 +24,7 @@
     <section class="section container">
         <div class="card-panel">
         <div class="row">
-            <h3 class="center-align">Editar Avaliador</h3>
+            <h3 class="center-align">Editar Disciplina</h3>
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/disciplinas/".$disciplina->id) }}">
                         <h4>Editar disciplina</h4>

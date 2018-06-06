@@ -9,7 +9,7 @@ Route::post("admin/disciplinas/{id}", 'Admin\Disciplinas\AdminDisciplinaControll
 //deletar
 Route::get("admin/disciplinas/destroy/{id}", "Admin\Disciplinas\AdminDisciplinaController@destroy");
 //formulario de edita
-Route::get("admin/disciplinas/update/{id}/edita", "Admin\Disciplinas\AdminDisciplinaController@edit");
+Route::get("admin/disciplinas/update/{id}/edita", "Admin\Disciplinas\AdminDisciplinaController@edit")->name('admin/disciplinas/edita/editar');
 //create
 Route::post('admin/disciplinas/cadastro/registro', 'Admin\Disciplinas\AdminDisciplinaController@store')->name('admin/disciplinas/cadastro/registro');
 //exibir

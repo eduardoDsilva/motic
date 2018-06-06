@@ -2,6 +2,16 @@
 
 @section('titulo', $titulo)
 
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/escola/home')}}}" class="breadcrumb">Escolas</a>
+    @if(isset($escola))
+        <a href="" class="breadcrumb">Editar</a>
+    @else
+        <a href="{{{route ('admin/aluno/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+    @endif
+@endsection
+
 @section('conteudo')
 
     @if( isset($errors) && count($errors) > 0 )

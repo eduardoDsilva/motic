@@ -3,6 +3,11 @@
 
 @section('titulo','Motic Admin')
 
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/projeto/home')}}}" class="breadcrumb">Projetos</a>
+@endsection
+
 @section('conteudo')
 
     @if(session('success'))

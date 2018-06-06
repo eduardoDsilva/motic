@@ -2,6 +2,16 @@
 
 @section('titulo','Motic Admin')
 
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/professor/home')}}}" class="breadcrumb">Professor</a>
+    @if(isset($professor))
+        <a href="" class="breadcrumb">Editar</a>
+    @else
+        <a href="{{{route ('admin/professor/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+    @endif
+@endsection
+
 @section('conteudo')
 
     @if( isset($errors) && count($errors) > 0 )

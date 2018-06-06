@@ -23,32 +23,33 @@
       <nav class="top-nav blue">
           <div class="container">
               <div class="nav-wrapper">
-                      <div class="col s12">
-                          <a href="#!" class="breadcrumb">Administrador</a>
-                          <a href="#!" class="breadcrumb">Home</a>
-                      </div>
+                  <div class="col s12">
+                      @yield('breadcrumb')
+                  </div>
               </div>
                   <ul class="side-nav fixed" id="mobile-demo">
                       @if (Auth::guest())
                           <li><a href="{{{ route('login') }}}">Login</a></li>
                       @else
-                          <li><div class="user-view">
+                          <li>
+                              <div class="user-view">
                                   <div class="background blue">
                                   </div>
                                   <a href="#!user"><i class="large material-icons">account_circle</i></a>
                                   <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
                                   <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
                               </div></li>
-                          <li><a href="{{{route ('admin/home')}}}">MOTIC</a></li>
-                          <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>
-                          <li><a href="{{{route ('admin/avaliador/home')}}}">Avaliadores</a></li>
-                          <li><a href="{{{route ('admin/disciplinas/home')}}}">Disciplinas</a></li>
-                          <li><a href="{{{route ('admin/escola/home')}}}">Escolas</a></li>
-                          <li><a href="{{{route ('admin/professor/home')}}}">Professores</a></li>
-                          <li><a href="{{{route ('admin/projeto/home')}}}">Projetos</a></li>
+                          <li><a href="{{{route ('admin/home')}}}"><i class="small material-icons">home</i>Home</a></li>
+                          <li><a href="{{{route ('admin/aluno/home')}}}"><i class="small material-icons">person</i>Alunos</a></li>
+                          <li><a href="{{{route ('admin/auditoria/home')}}}"><i class="small material-icons">format_list_bulleted</i>Auditoria</a></li>
+                          <li><a href="{{{route ('admin/avaliador/home')}}}"><i class="small material-icons">contacts</i>Avaliadores</a></li>
+                          <li><a href="{{{route ('admin/disciplinas/home')}}}"><i class="small material-icons">note</i>Disciplinas</a></li>
+                          <li><a href="{{{route ('admin/escola/home')}}}"><i class="small material-icons">school</i>Escolas</a></li>
+                          <li><a href="{{{route ('admin/professor/home')}}}"><i class="small material-icons">person</i>Professores</a></li>
+                          <li><a href="{{{route ('admin/projeto/home')}}}"><i class="small material-icons">library_add</i>Projetos</a></li>
                           <li>
                               <a href="{{{ route('logout') }}}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"> Logout
+                                document.getElementById('logout-form').submit();"> <i class="small material-icons">exit_to_app</i>Logout
                               </a>
 
                               <form id="logout-form" action="{{{ route('logout') }}}" method="POST" style="display: none;">
@@ -61,19 +62,4 @@
               </div>
           </div>
       </nav>
-
-      <!-- Dropdown Structure -->
-      <ul id="dropdown1" class="dropdown-content">
-          <li>
-              <a href="{{{ route('logout') }}}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Logout
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  {{{ csrf_field() }}}
-              </form>
-          </li>
-      </ul>
-
   </header>

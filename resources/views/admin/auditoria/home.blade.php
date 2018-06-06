@@ -2,6 +2,11 @@
 
 @section('titulo','Motic Admin - Auditoria')
 
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/auditoria/home')}}}" class="breadcrumb">Auditoria</a>
+@endsection
+
 @section('conteudo')
 
     @if(session('success'))
@@ -17,9 +22,9 @@
         </div>
     </div>
 
-    <div class="card-panel">
-
-        <div class="col s12 m4 l8">
+    <div class="section container">
+        <div class="card-panel">
+            <div class="col s12 m4 l8">
 
             <table class="centered responsive-table highlight bordered">
 
@@ -53,13 +58,12 @@
                         <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
-                        <td>Nenhuma auditoria encontrada</td>
-                        <td>Nenhuma auditoria encontrada</td>
                     </tr>
                 @endforelse
                 </tbody>
             </table>
 
+            </div>
         </div>
     </div>
 
