@@ -20,45 +20,26 @@
 
 <body>
   <header>
-      <div class="navbar-fixed">
-      <nav class="light-blue lighten-1">
+      <nav class="top-nav blue">
           <div class="container">
               <div class="nav-wrapper">
-
-                  @if (Auth::guest())
-                  <a href="{{{ route('home-inicio') }}}" class="brand-logo">MOTIC</a>
-                  @else
-                  <a href="{{{ route(Auth::user()->tipoUser.'/home') }}}" class="brand-logo">MOTIC</a>
-                  @endif
-                  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-                  @if (Auth::guest())
-                      <ul class="right hide-on-med-and-down">
-                          <li><a href="{{{ route('login') }}}">Login</a></li>
-                      </ul>
-                  @else
-                      <ul class="right hide-on-med-and-down">
-                          @if (Auth::user()->tipoUser == 'admin')
-                              <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>
-                              <li><a href="{{{route ('admin/avaliador/home')}}}">Avaliadores</a></li>
-                              <li><a href="{{{route ('admin/disciplinas/home')}}}">Disciplinas</a></li>
-                              <li><a href="{{{route ('admin/escola/home')}}}">Escolas</a></li>
-                              <li><a href="{{{route ('admin/professor/home')}}}">Professores</a></li>
-                              <li><a href="{{{route ('admin/projeto/home')}}}">Projetos</a></li>
-                              @yield('menu')
-                              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{{ Auth::user()->name }}}<i class="material-icons right">arrow_drop_down</i></a></li>
-                          @elseif (Auth::user()->tipoUser == 'escola')
-                              @yield('menu')
-                              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{{ Auth::user()->name }}}<i class="material-icons right">arrow_drop_down</i></a></li>
-                          @endif
-                      </ul>
-                  @endif
-
+                      <div class="col s12">
+                          <a href="#!" class="breadcrumb">Administrador</a>
+                          <a href="#!" class="breadcrumb">Home</a>
+                      </div>
+              </div>
                   <ul class="side-nav fixed" id="mobile-demo">
                       @if (Auth::guest())
                           <li><a href="{{{ route('login') }}}">Login</a></li>
                       @else
-                          <li><a class="brand-logo" href="{{{route ('admin/home')}}}">MOTIC</a></li>
+                          <li><div class="user-view">
+                                  <div class="background blue">
+                                  </div>
+                                  <a href="#!user"><i class="large material-icons">account_circle</i></a>
+                                  <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
+                                  <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
+                              </div></li>
+                          <li><a href="{{{route ('admin/home')}}}">MOTIC</a></li>
                           <li><a href="{{{route ('admin/aluno/home')}}}">Alunos</a></li>
                           <li><a href="{{{route ('admin/avaliador/home')}}}">Avaliadores</a></li>
                           <li><a href="{{{route ('admin/disciplinas/home')}}}">Disciplinas</a></li>
@@ -80,7 +61,6 @@
               </div>
           </div>
       </nav>
-      </div>
 
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content">

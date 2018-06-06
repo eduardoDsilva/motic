@@ -24,8 +24,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Escolas</span>
-
-                                <p>Clique aqui para entrar nas opções da escola no sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -38,8 +36,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Projetos</span>
-
-                                <p>Clique aqui para entrar nas opções dos projetos no sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -52,8 +48,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Avaliadores</span>
-
-                                <p>Clique aqui para entrar nas opções dos avaliadores no sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -66,8 +60,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Disciplinas</span>
-
-                                <p>Clique aqui para entrar nas opções de disciplinas no sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -80,8 +72,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Alunos</span>
-
-                                <p>Clique aqui para entrar nas opções de disciplinas no sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -94,8 +84,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Professores</span>
-
-                                <p>Clique aqui para entrar nas opções de professores no sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -108,8 +96,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Auditoria</span>
-
-                                <p>Clique aqui para entrar nas opções de auditoria do sistema.</p>
                             </div>
                         </div>
                     </div>
@@ -122,8 +108,6 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Usuários</span>
-
-                                <p>Clique aqui para entrar nas opções dos usuários no sistema.</p>
                             </div>
                         </div>
                     </div>
