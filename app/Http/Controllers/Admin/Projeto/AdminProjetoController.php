@@ -114,6 +114,10 @@ class AdminProjetoController extends Controller
         try{
             $projeto = Projeto::find($id);
             $projeto->update($dataForm);
+            $projeto->disciplina()->detach();
+            foreach ($request->only(['disciplina_id']) as $disciplina){
+                $projeto->categoria()->attach($disciplina);
+            }
             $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
 
             Session::put('mensagem', "O projeto ".$projeto->titulo." foi editado com sucesso!");
