@@ -42,7 +42,7 @@
                                   <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
                               </div></li>
                           <li class="white">
-                              <a href="{{{route ('admin/home')}}}"><i class="small material-icons">home</i>Home</a>
+                                <a class="collapsible-header" href="{{{route ('admin/home')}}}"><i class="small material-icons">home</i>Home</a>
                           </li>
                           <li class="white">
                               <ul class="collapsible collapsible-accordion">
@@ -131,24 +131,23 @@
                                       <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">library_add</i>Projetos <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
                                       <div class="collapsible-body">
                                           <ul>
-                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/professor/home')}}}"><i class="material-icons">list</i>Listar projetos</a></li>
-                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/professor/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar projetos</a></li>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/home')}}}"><i class="material-icons">list</i>Listar projetos</a></li>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar projetos</a></li>
                                               <li><div class="divider"></div></li>
                                           </ul>
                                       </div>
                                   </li>
                               </ul>
                           </li>
-                          <li>
-                              <a href="{{{ route('logout') }}}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"> <i class="small material-icons">exit_to_app</i>Logout
+                          <li class="white">
+                              <a class="collapsible-header" href="{{{ route('logout') }}}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"> <i class="small material-icons">exit_to_app</i>Logout
                               </a>
 
                               <form id="logout-form" action="{{{ route('logout') }}}" method="POST" style="display: none;">
                                   {{{ csrf_field() }}}
                               </form>
                           </li>
-
                       @endif
                   </ul>
               </div>

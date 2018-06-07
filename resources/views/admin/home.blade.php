@@ -82,7 +82,7 @@
                 </a>
                 <a href="{{route ('admin/professor/home')}}">
                     <div class="col s12 m4">
-                        <div class="card amber darken-2">
+                        <div class="card teal darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
                             </div>
@@ -92,30 +92,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/auditoria/home')}}">
-                    <div class="col s12 m4">
-                        <div class="card blue-grey darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">format_list_bulleted</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Auditoria</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{route ('admin/disciplinas/home')}}">
-                    <div class="col s12 m4">
-                        <div class="card teal darken-2">
-                            <div class="card-content black-text center-align">
-                                <i class="large material-icons">supervisor_account</i>
-                            </div>
-                            <div class="card-action white-text">
-                                <span class="card-title">Usuários</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+
             </div>
         </div>
     </div>

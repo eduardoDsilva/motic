@@ -35,14 +35,14 @@
                     </div>
                     {{csrf_field()}}
                 </form>
-
                 <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Descricao</th>
-                    <th>Usuário Responsável</th>
-                    <th>ID do responsável</th>
-                </tr>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descricao</th>
+                        <th>Usuário Responsável</th>
+                        <th>ID do responsável</th>
+                        <th>Visualizar</th>
+                    </tr>
                 </thead>
                 <tbody>
                 @forelse ($auditorias as $auditoria)
@@ -51,9 +51,11 @@
                         <td class="limit">{{$auditoria->descricao}}</td>
                         <td>{{$auditoria->nome_usuario}}</td>
                         <td>{{$auditoria->user_id}}</td>
+                        <td><a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="#modal1" data-user_id="{{$auditoria->user_id}}" data-tipo="{{$auditoria->tipo}}" data-id="{{$auditoria->id}}" data-nome_usuario="{{$auditoria->nome_usuario}}" data-descricao="{{$auditoria->descricao}}"> <i class="small material-icons">search</i></a></td>
                     </tr>
                 @empty
                     <tr>
+                        <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
                         <td>Nenhuma auditoria encontrada</td>
@@ -62,7 +64,34 @@
                 @endforelse
                 </tbody>
             </table>
+                {{$auditorias->links()}}
+            </div>
 
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Visualizar</h4>
+                    <table class="centered responsive-table highlight bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Descricao</th>
+                                <th>Usuário Responsável</th>
+                                <th>ID do responsável</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="id_auditoria"></td>
+                                <td id="tipo_auditoria"></td>
+                                <td id="descricao_auditoria"></td>
+                                <td id="usuario_auditoria"></td>
+                                <td id="responsavel_auditoria"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

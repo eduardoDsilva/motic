@@ -116,7 +116,7 @@ class AdminProjetoController extends Controller
             $projeto->update($dataForm);
             $projeto->disciplina()->detach();
             foreach ($request->only(['disciplina_id']) as $disciplina){
-                $projeto->categoria()->attach($disciplina);
+                $projeto->disciplina()->attach($disciplina);
             }
             $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
 
