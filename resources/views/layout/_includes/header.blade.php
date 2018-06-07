@@ -22,7 +22,7 @@
   <header>
       <nav class="nav blue">
           <div class="container">
-              <div class="nav-wrapper">
+              <div class="navbar-fixed">
                   <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                   <div class="col s12">
                       @yield('breadcrumb')
@@ -77,7 +77,7 @@
                                       <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">contacts</i>Avaliadores <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
                                       <div class="collapsible-body">
                                           <ul>
-                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/disciplinas/home')}}}"><i class="material-icons">list</i>Listar avaliadores</a></li>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/home')}}}"><i class="material-icons">list</i>Listar avaliadores</a></li>
                                               <li><div class="divider"></div></li>
                                           </ul>
                                       </div>
@@ -90,7 +90,7 @@
                                       <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">note</i>Disciplinas <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
                                       <div class="collapsible-body">
                                           <ul>
-                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/escola/home')}}}"><i class="material-icons">list</i>Listar disciplinas</a></li>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/disciplinas/home')}}}"><i class="material-icons">list</i>Listar disciplinas</a></li>
                                               <li><div class="divider"></div></li>
                                           </ul>
                                       </div>

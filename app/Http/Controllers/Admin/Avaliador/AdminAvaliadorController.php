@@ -88,7 +88,7 @@ class AdminAvaliadorController extends Controller
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try{
             $user = User::find($id);
-            $user->user->update([
+            $user->update([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
                 'email' => $dataForm['email'],
@@ -108,7 +108,7 @@ class AdminAvaliadorController extends Controller
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi editado com sucesso!");
 
             $avaliadores = $this->avaliador->all();
-            return redirect()->route("admin/avaliador/busca/buscar", compact('avaliadores'));
+            return redirect()->route("admin/avaliador/home", compact('avaliadores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
