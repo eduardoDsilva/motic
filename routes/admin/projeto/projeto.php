@@ -14,5 +14,7 @@ Route::get('admin/projeto/cadastro/registro', 'Admin\Projeto\AdminProjetoControl
 Route::post('admin/projeto/cadastro/registro', 'Admin\Projeto\AdminProjetoController@store')->name('admin/projeto/cadastro/registro');
 
 Route::get('/json-categorias','Admin\Projeto\AdminProjetoController@categorias');
+
 Route::get('/json-alunos','Admin\Projeto\AdminProjetoController@alunos');
+
 Route::get('/json-professores','Admin\Projeto\AdminProjetoController@professores');

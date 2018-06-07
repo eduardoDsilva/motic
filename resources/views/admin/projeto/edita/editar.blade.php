@@ -17,10 +17,11 @@
     @endif
 
     <section class="section container">
-        <div class="row">
+        <div class="card-panel">
+            <div class="row">
             <h3 class="center-align">Editar projeto {{$projeto->titulo}}</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/'.$projeto->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url('admin/projeto/'.$projeto->id) }}">
 
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
@@ -71,6 +72,7 @@
                 </form>
 
             </article>
+        </div>
         </div>
         </div>
     </section>

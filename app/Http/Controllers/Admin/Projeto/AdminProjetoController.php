@@ -13,7 +13,6 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Professor\ProjetoCreateFormRequest;
 use App\Professor;
 use App\Projeto;
 use Illuminate\Http\Request;
@@ -47,7 +46,7 @@ class AdminProjetoController extends Controller
         return view("admin/projeto/cadastro/registro", compact('disciplinas', 'escolas', 'categorias'));
     }
 
-    public function store(ProjetoCreateFormRequest $request){
+    public function store(Request $request){
         $dataForm = $request->all() + ['status' => 'aprovado'];
         $escola = Escola::find($dataForm['escola_id']);
         $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
@@ -82,8 +81,8 @@ class AdminProjetoController extends Controller
                 $coorientador->save();
             }
 
-            $this->auditoriaController->storeCreate($projeto, $projeto->id);
-            return view("admin/projeto/home", compact('projeto', 'professores', 'alunos'));
+            $projetos = Projeto::all()->where('ano', '=', '2018');
+            return view('admin/projeto/home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -140,6 +139,7 @@ class AdminProjetoController extends Controller
         Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
         $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+        $categoria_id = [];
         foreach($projetos as $projeto){
             $categoria_id[] = $projeto->categoria_id;
         }

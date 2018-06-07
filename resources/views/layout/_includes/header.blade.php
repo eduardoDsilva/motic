@@ -41,12 +41,39 @@
                                   <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
                                   <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
                               </div></li>
+                          <li class="white">
+                              <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                      <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">folder_open</i>A submenu <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                                      <div class="collapsible-body">
+                                          <ul>
+                                              <li><a class="waves-effect waves-blue" href="#"><i class="material-icons">fullscreen</i>Full Screen</a></li>
+                                              <li><a class="waves-effect waves-blue" href="#"><i class="material-icons">swap_horiz</i>Horizontal Menu</a></li>
+                                              <li><div class="divider"></div></li>
+                                          </ul>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </li>
                           <li><a href="{{{route ('admin/home')}}}"><i class="small material-icons">home</i>Home</a></li>
                           <li><a href="{{{route ('admin/aluno/home')}}}"><i class="small material-icons">person</i>Alunos</a></li>
                           <li><a href="{{{route ('admin/auditoria/home')}}}"><i class="small material-icons">format_list_bulleted</i>Auditoria</a></li>
                           <li><a href="{{{route ('admin/avaliador/home')}}}"><i class="small material-icons">contacts</i>Avaliadores</a></li>
                           <li><a href="{{{route ('admin/disciplinas/home')}}}"><i class="small material-icons">note</i>Disciplinas</a></li>
-                          <li><a href="{{{route ('admin/escola/home')}}}"><i class="small material-icons">school</i>Escolas</a></li>
+                          <li class="white">
+                              <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                      <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">school</i>Escolas <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                                      <div class="collapsible-body">
+                                          <ul>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/escola/home')}}}"><i class="material-icons">list</i>Listar escolas</a></li>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/escola/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar escola</a></li>
+                                              <li><div class="divider"></div></li>
+                                          </ul>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </li>
                           <li><a href="{{{route ('admin/professor/home')}}}"><i class="small material-icons">person</i>Professores</a></li>
                           <li><a href="{{{route ('admin/projeto/home')}}}"><i class="small material-icons">library_add</i>Projetos</a></li>
                           <li>
