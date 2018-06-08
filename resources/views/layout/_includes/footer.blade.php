@@ -63,6 +63,12 @@
     <script type="text/javascript">
 
         $(document).ready(function(){
+            $('ul.tabs').tabs({
+                swipeable : true
+            });
+        });
+
+        $(document).ready(function(){
             $('.sidenav').sidenav();
         });
 

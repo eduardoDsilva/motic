@@ -29,7 +29,7 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::all()->where('ano', '=', '2018');
+        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
         return view('admin/projeto/home', compact('projetos'));
     }
 

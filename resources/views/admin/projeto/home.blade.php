@@ -55,51 +55,111 @@
                 </form>
             </div>
 
-            <table class="centered responsive-table highlight bordered">
+            <div class="row">
+                <div class="col s12">
+                    <ul id="tabs-swipe-demo" class="tabs">
+                        <li class="tab col s6"><a class="active black-text" href="#test1">Projetos aprovados</a></li>
+                        <li class="tab col s6"><a class="black-text" href="#test2">Projetos suplentes</a></li>
+                    </ul>
+                </div>
+                <div id="test1" class="col s12">
 
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Área</th>
-                    <th>Estande</th>
-                    <th>Resumo</th>
-                    <th>Status</th>
-                    <th>Categoria</th>
-                    <th>Escola</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse ($projetos as $projeto)
-                    <tr>
-                        <td>{{$projeto->id}}</td>
-                        <td>{{$projeto->titulo}}</td>
-                        <td>{{$projeto->area}}</td>
-                        <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
-                        <td>{{$projeto->resumo}}</td>
-                        <td>{{$projeto->status}}</td>
-                        <td>{{$projeto->categoria->categoria}}</td>
-                        <td>{{$projeto->escola->name}}</td>
-                        <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
-                        </td>
-                    </tr>
+                    <table class="centered responsive-table highlight bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Área</th>
+                            <th>Estande</th>
+                            <th>Resumo</th>
+                            <th>Status</th>
+                            <th>Categoria</th>
+                            <th>Escola</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse ($projetos as $projeto)
+                            <tr>
+                                <td>{{$projeto->id}}</td>
+                                <td>{{$projeto->titulo}}</td>
+                                <td>{{$projeto->area}}</td>
+                                <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
+                                <td>{{$projeto->resumo}}</td>
+                                <td>{{$projeto->status}}</td>
+                                <td>{{$projeto->categoria->categoria}}</td>
+                                <td>{{$projeto->escola->name}}</td>
+                                <td>
+                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                    {{$projetos->links()}}
+                </div>
 
-                @empty
-                    <tr>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                        <td>Nenhum projeto encontrado</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+                <div id="test2" class="col s12">
+                @if(isset($projetos_suplentes))
+
+                    <table class="centered responsive-table highlight bordered">
+                        <thead>
+                            <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Área</th>
+                            <th>Estande</th>
+                            <th>Resumo</th>
+                            <th>Status</th>
+                            <th>Categoria</th>
+                            <th>Escola</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse ($projetos_suplentes as $projeto)
+                            <tr>
+                                <td>{{$projeto->id}}</td>
+                                <td>{{$projeto->titulo}}</td>
+                                <td>{{$projeto->area}}</td>
+                                <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
+                                <td>{{$projeto->resumo}}</td>
+                                <td>{{$projeto->status}}</td>
+                                <td>{{$projeto->categoria->categoria}}</td>
+                                <td>{{$projeto->escola->name}}</td>
+                                <td>
+                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                                <td>Nenhum projeto encontrado</td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                {{$projetos_suplentes->links()}}
+                @endif
+            </div>
 
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large red">

@@ -55,6 +55,7 @@
             <table class="centered responsive-table highlight bordered">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Tipo</th>
                         <th>Descricao</th>
                         <th>Usuário Responsável</th>
@@ -65,6 +66,7 @@
                 <tbody>
                 @forelse ($auditorias as $auditoria)
                     <tr>
+                        <td>{{$auditoria->id}}</td>
                         <td>{{$auditoria->tipo}}</td>
                         <td class="limit">{{$auditoria->descricao}}</td>
                         <td>{{$auditoria->nome_usuario}}</td>
