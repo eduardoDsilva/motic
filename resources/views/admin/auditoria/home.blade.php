@@ -24,17 +24,35 @@
 
     <div class="section container">
         <div class="card-panel">
+
             <div class="col s12 m4 l8">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select required>
+                                <option value="" disabled selected>Filtrar por...</option>
+                                <option value="id">ID</option>
+                                <option value="tipo">Tipo</option>
+                                <option value="descricao">Descrição</option>
+                                <option value="user">Usuário responsável</option>
+                                <option value="id_user">ID do responsável</option>
+                            </select>
+                            <label>Filtros</label>
+                        </div>
+
+                        <div class="input-field col s7">
+                            <input id="search" type="search">
+                            <label for="search">Pesquise no sistema...</label>
+                        </div>
+                        {{csrf_field()}}
+                        <div class="input-field col s1">
+                            <a class="btn-floating "><i class="material-icons">search</i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             <table class="centered responsive-table highlight bordered">
-
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
-                    <div class="input-field">
-                        <input id="search" type="search">
-                        <label for="search"><i class="material-icons">search</i></label>
-                    </div>
-                    {{csrf_field()}}
-                </form>
                 <thead>
                     <tr>
                         <th>Tipo</th>

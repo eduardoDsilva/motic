@@ -30,17 +30,37 @@
 
     <div class="section container">
         <div class="card-panel">
-        <div class="col s12 m4 l8">
 
-            <table class="centered responsive-table highlight bordered">
+            <div class="col s12 m4 l8">
+            <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="" disabled selected>Filtrar por...</option>
+                            <option value="id">ID</option>
+                            <option value="nome">Nome</option>
+                            <option value="nscimento">Nascimento</option>
+                            <option value="sexo">Sexo</option>
+                            <option value="anoLetivo">Ano letivo</option>
+                            <option value="escola">Escola</option>
+                            <option value="projeto">Projeto</option>
+                            <option value="anoLetivo">Ano letivo</option>
+                        </select>
+                        <label>Filtros</label>
+                    </div>
 
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
-                    <div class="input-field">
+                    <div class="input-field col s7">
                         <input id="search" type="search">
-                        <label for="search"><i class="material-icons">search</i></label>
+                        <label for="search">Pesquise no sistema...</label>
                     </div>
                     {{csrf_field()}}
-                </form>
+                    <div class="input-field col s1">
+                        <a class="btn-floating "><i class="material-icons">search</i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+            <table class="centered responsive-table highlight bordered">
 
                 <thead>
                 <tr>
