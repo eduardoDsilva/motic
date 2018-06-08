@@ -56,10 +56,10 @@ class AdminAlunoController extends Controller
         }
     }
 
-    public function show(){
+    public function show($id){
         try{
-            $alunos = aluno::all();
-            return view('admin/aluno/home', compact('alunos'));
+            $aluno = Aluno::find($id);
+            return view('admin/aluno/show', compact('aluno'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

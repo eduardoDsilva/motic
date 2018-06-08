@@ -2,6 +2,8 @@
 
     //home
 Route::get('admin/escola/home', 'Admin\Escola\AdminEscolaController@index')->name('admin/escola/home');
+    //exibir aluno
+Route::get('admin/escola/show/{id}', 'Admin\Escola\AdminEscolaController@show');
     //update
 Route::post("admin/escola/{id}", 'Admin\Escola\AdminEscolaController@update');
     //pesquisar

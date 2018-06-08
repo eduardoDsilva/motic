@@ -22,7 +22,7 @@
             <div class="row">
                 <a href="{{route ('admin/escola/home')}}">
                     <div class="col s12 m4">
-                        <div class="card red darken-2">
+                        <div class="card hoverable red darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">school</i>
                             </div>
@@ -34,7 +34,7 @@
                 </a>
                 <a href="{{route ('admin/projeto/home')}}">
                     <div class="col s12 m4">
-                        <div class="card blue darken-2">
+                        <div class="card hoverable blue darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">library_add</i>
                             </div>
@@ -46,7 +46,7 @@
                 </a>
                 <a href="{{route ('admin/avaliador/home')}}">
                     <div class="col s12 m4">
-                        <div class="card orange darken-2">
+                        <div class="card hoverable orange darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">contacts</i>
                             </div>
@@ -58,7 +58,7 @@
                 </a>
                 <a href="{{route ('admin/disciplinas/home')}}">
                     <div class="col s12 m4">
-                        <div class="card green darken-2">
+                        <div class="card hoverable green darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">note</i>
                             </div>
@@ -70,7 +70,7 @@
                 </a>
                 <a href="{{route ('admin/aluno/home')}}">
                     <div class="col s12 m4">
-                        <div class="card pink darken-2">
+                        <div class="card hoverable pink darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
                             </div>
@@ -82,7 +82,7 @@
                 </a>
                 <a href="{{route ('admin/professor/home')}}">
                     <div class="col s12 m4">
-                        <div class="card teal darken-2">
+                        <div class="card hoverable teal darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
                             </div>

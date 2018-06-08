@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin\Escola;
+use App\Aluno;
 use App\Categoria;
 use App\Endereco;
 use App\Escola;
@@ -7,6 +8,8 @@ use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Escola\EscolaCreateFormRequest;
 use App\Http\Requests\Admin\Escola\EscolaUpdateFormRequest;
+use App\Professor;
+use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Session;
@@ -69,12 +72,14 @@ class AdminEscolaController extends Controller
         }
     }
 
-    public function show(Request $request){
-        dd("batata");
-        $dataForm = $request->all();
+    public function show($id){
         try{
-            $escolas = Escola::all()->where('name', 'like', '%'.$dataForm->name.'%');
-            return view("admin/escola/home", compact('escolas'));
+            $escola = Escola::find($id);
+            $alunos = Aluno::where('escola_id', '=', $escola->id)->paginate(6);
+            $professores = Professor::where('escola_id', '=', $escola->id)->paginate(6);
+            $projetos = Projeto::where('escola_id', '=', $escola->id)->paginate(6);
+
+            return view('admin/escola/show', compact('escola', 'alunos', 'professores', 'projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

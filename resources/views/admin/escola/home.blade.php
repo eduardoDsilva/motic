@@ -65,7 +65,6 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Telefone</th>
-                        <th>Endereço</th>
                         <th>E-mail</th>
                         <th>Usuário</th>
                         <th>Ações</th>
@@ -77,12 +76,12 @@
                         <td>{{$escola->id}}</td>
                         <td>{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
-                        <td>@if(isset($escola->user->endereco->rua)) {{$escola->user->endereco->rua}} @else Escola sem endereço @endif</td>
                         <td>{{$escola->user->email}}</td>
                         <td>{{$escola->user->username}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a id="deletar" data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$escola->id}}" data-name="{{$escola->name}}"> <i class="small material-icons">delete</i></a>
+                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/escola/show/".$escola->id) }}"> <i class="small material-icons">library_books</i></a>
                         </td>
                     </tr>
                 @empty

@@ -2,6 +2,8 @@
 
 //home
 Route::get('admin/aluno/home', 'Admin\Aluno\AdminAlunoController@index')->name('admin/aluno/home');
+//exibir aluno
+Route::get('admin/aluno/show/{id}', 'Admin\Aluno\AdminAlunoController@show');
 //update
 Route::post("admin/aluno/{id}", 'Admin\Aluno\AdminAlunoController@update');
 //deletar
