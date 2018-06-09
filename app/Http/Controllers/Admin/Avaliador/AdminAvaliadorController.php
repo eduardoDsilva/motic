@@ -9,6 +9,7 @@ use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Avaliador\AvaliadorCreateFormRequest;
 use App\Http\Requests\Admin\Avaliador\AvaliadorUpdateFormRequest;
+use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Session;
@@ -64,10 +65,10 @@ class AdminAvaliadorController extends Controller
         }
     }
 
-    public function show(){
+    public function show($id){
         try{
-            $avaliadores = Avaliador::all();
-            return view("admin/avaliador/home", compact('avaliadores'));
+            $avaliador = Avaliador::find($id);
+            return view("admin/avaliador/show", compact('avaliador'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

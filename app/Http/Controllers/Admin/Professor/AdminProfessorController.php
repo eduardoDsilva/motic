@@ -68,10 +68,10 @@ class AdminProfessorController extends Controller
         }
     }
 
-    public function show(){
+    public function show($id){
         try{
-            $professores = Professor::all();
-            return view("admin/professor/home", compact('professores'));
+            $professor = Professor::find($id);
+            return view("admin/professor/show", compact('professor'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

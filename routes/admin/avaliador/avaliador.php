@@ -2,6 +2,8 @@
 
 //home
 Route::get('admin/avaliador/home', 'Admin\Avaliador\AdminAvaliadorController@index')->name('admin/avaliador/home');
+//exibir aluno
+Route::get('admin/avaliador/show/{id}', 'Admin\Avaliador\AdminAvaliadorController@show');
 //update
 Route::post("admin/avaliador/{id}", 'Admin\Avaliador\AdminAvaliadorController@update');
 //deletar

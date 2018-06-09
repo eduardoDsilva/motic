@@ -40,7 +40,8 @@
                                   <a href="#!user"><i class="large material-icons">account_circle</i></a>
                                   <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
                                   <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
-                              </div></li>
+                              </div>
+                          </li>
                           <li class="white">
                                 <a class="collapsible-header" href="{{{route ('admin/home')}}}"><i class="small material-icons">home</i>Home</a>
                           </li>
@@ -79,6 +80,8 @@
                                       <div class="collapsible-body">
                                           <ul>
                                               <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/home')}}}"><i class="material-icons">list</i>Listar avaliadores</a></li>
+                                              <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar avaliador</a></li>
+                                              <li><a class="waves-effect waves-blue" href=""><i class="material-icons">cached</i>Vincular projeto</a></li>
                                               <li><div class="divider"></div></li>
                                           </ul>
                                       </div>

@@ -139,7 +139,6 @@
                 <div class="card-content">
                     <span class="card-title">Professores</span>
                     <table class="centered responsive-table highlight bordered">
-
                         <thead>
                         <tr>
                             <th>Nome</th>

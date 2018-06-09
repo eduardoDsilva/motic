@@ -86,6 +86,7 @@
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/professor/update/".$professor->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$professor->id}}" data-name="{{$professor->name}}"> <i class="small material-icons">delete</i></a>
+                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/professor/show/".$professor->id) }}"> <i class="small material-icons">library_books</i></a>
                         </td>
                     </tr>
 

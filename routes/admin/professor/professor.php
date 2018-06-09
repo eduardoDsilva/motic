@@ -2,6 +2,8 @@
 
 //home
 Route::get('admin/professor/home', 'Admin\Professor\AdminProfessorController@index')->name('admin/professor/home');
+//exibir professor
+Route::get('admin/professor/show/{id}', 'Admin\Professor\AdminProfessorController@show');
 //update
 Route::post("admin/professor/{id}", 'Admin\Professor\AdminProfessorController@update');
 //deletar
