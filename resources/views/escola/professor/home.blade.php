@@ -86,7 +86,6 @@
                             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/professor/show/".$professor->id) }}"> <i class="small material-icons">library_books</i></a>
                         </td>
                     </tr>
-
                 @empty
                     <tr>
                         <td>Nenhum professor encontrado</td>

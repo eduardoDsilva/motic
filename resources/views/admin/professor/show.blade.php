@@ -141,11 +141,11 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{(isset($projeto->projeto->id)  == null ? "Professor sem projeto" : $projeto->projeto->id)}}</td>
-                            <td>{{(isset($projeto->projeto->titulo)  == null ? "Professor sem projeto" : $projeto->projeto->titulo)}}</td>
-                            <td>{{(isset($projeto->projeto->area)  == null ? "Professor sem projeto" : $projeto->projeto->area)}}</td>
-                            <td>{{(isset($projeto->projeto->estande) == null ? "Professor sem projeto" : $projeto->projeto->estande)}}</td>
-                            <td>{{(isset($projeto->projeto->status)  == null ? "Professor sem projeto" : $projeto->projeto->status)}}</td>
+                            <td>{{(isset($professor->projeto->id)  == null ? "Professor sem projeto" : $professor->projeto->id)}}</td>
+                            <td>{{(isset($professor->projeto->titulo)  == null ? "Professor sem projeto" : $professor->projeto->titulo)}}</td>
+                            <td>{{(isset($professor->projeto->area)  == null ? "Professor sem projeto" : $professor->projeto->area)}}</td>
+                            <td>{{(isset($professor->projeto->estande) == null ? "Professor sem projeto" : $professor->projeto->estande)}}</td>
+                            <td>{{(isset($professor->projeto->status)  == null ? "Professor sem projeto" : $professor->projeto->status)}}</td>
                         </tr>
                         </tbody>
                     </table>
