@@ -4,6 +4,10 @@
 Route::get('admin/projeto/home', 'Admin\Projeto\AdminProjetoController@index')->name('admin/projeto/home');
 //update
 Route::post("admin/projeto/{id}", 'Admin\Projeto\AdminProjetoController@update');
+//exibir projeto
+Route::get('admin/projeto/show/{id}/suplente', 'Admin\Projeto\AdminProjetoController@showSuplente');
+//exibir projeto
+Route::get('admin/projeto/show/{id}', 'Admin\Projeto\AdminProjetoController@show');
 //deletar
 Route::get("admin/projeto/destroy/{id}", "Admin\Projeto\AdminProjetoController@destroy");
 //formulario de edita

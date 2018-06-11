@@ -179,7 +179,6 @@
                         <tr>
                             <th>Título</th>
                             <th>Área</th>
-                            <th>Status</th>
                             <th>Categoria</th>
                         </tr>
                         </thead>
@@ -188,12 +187,10 @@
                             <tr>
                                 <td>{{$projeto->titulo}}</td>
                                 <td>{{$projeto->area}}</td>
-                                <td>{{$projeto->status}}</td>
                                 <td>{{$projeto->categoria->categoria}}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>

@@ -132,7 +132,6 @@
                             <th>Projeto</th>
                             <th>Área</th>
                             <th>Estande</th>
-                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -140,8 +139,7 @@
                             <td>{{(isset($aluno->projeto->id)  == null ? "Aluno sem projeto" : $aluno->projeto->id)}}</td>
                             <td>{{(isset($aluno->projeto->titulo)  == null ? "Aluno sem projeto" : $aluno->projeto->titulo)}}</td>
                             <td>{{(isset($aluno->projeto->area)  == null ? "Aluno sem projeto" : $aluno->projeto->area)}}</td>
-                            <td>{{(isset($aluno->projeto->estande) == null ? "Projeto sem projeto" : $aluno->projeto->estande)}}</td>
-                            <td>{{(isset($aluno->projeto->status)  == null ? "Aluno sem projeto" : $aluno->projeto->status)}}</td>
+                            <td>{{$aluno->projeto->estande}}</td>
                         </tr>
                         </tbody>
                     </table>

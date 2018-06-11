@@ -89,6 +89,7 @@
                                 <td>
                                     <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
                                     <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
                                 </td>
                             </tr>
                         @empty
@@ -133,6 +134,7 @@
                                 <td>
                                     <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
                                     <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$suplente->id."/suplente") }}"> <i class="small material-icons">library_books</i></a>
                                 </td>
                             </tr>
                         @empty

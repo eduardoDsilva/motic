@@ -51,53 +51,89 @@ class AdminProjetoController extends Controller
 
     public function store(Request $request){
         $dataForm = $request->all();
-        $escola = Escola::find($dataForm['escola_id']);
-        $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
-        if(count($projeto)>=$escola->projetos){
-            dd('não pode mais cadastrar projetos');
-        }
         try{
-            $projeto = Projeto::create($dataForm);
+            if($dataForm['tipoProjeto'] == 'suplente') {
+                $escola = Escola::find($dataForm['escola_id']);
+                $suplente = Suplente::all()->where('escola_id', '=', $escola->id);
+                if(count($suplente)>=$escola->projetos){
+                    dd('não pode mais cadastrar projetos');
+                }
+                $suplente = Suplente::create($dataForm);
 
-            foreach ($request->only(['disciplina_id']) as $disciplina){
-                $projeto->disciplina()->attach($disciplina);
+                foreach ($request->only(['disciplina_id']) as $disciplina) {
+                    $suplente->disciplina()->attach($disciplina);
+                }
+
+                foreach ($request->only(['aluno_id']) as $aluno_id) {
+                    $alunos = Aluno::find($aluno_id);
+                }
+
+                foreach ($alunos as $aluno) {
+                    $aluno->suplente_id = $suplente->id;
+                    $aluno->save();
+                }
+
+                $orientador = Professor::find($dataForm['orientador']);
+                $orientador->suplente_id = $suplente->id;
+                $orientador->tipo = 'orientador';
+                $orientador->save();
+
+                if (isset($dataForm['coorientador'])) {
+                    $coorientador = Professor::find($dataForm['coorientador']);
+                    $coorientador->suplente_id = $suplente->id;
+                    $coorientador->tipo = 'coorientador';
+                    $coorientador->save();
+                }
+
+            }else{
+                $escola = Escola::find($dataForm['escola_id']);
+                $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
+                if(count($projeto)>=$escola->projetos){
+                    dd('não pode mais cadastrar projetos');
+                }
+                $projeto = Projeto::create($dataForm);
+
+                foreach ($request->only(['disciplina_id']) as $disciplina) {
+                    $projeto->disciplina()->attach($disciplina);
+                }
+
+                foreach ($request->only(['aluno_id']) as $aluno_id) {
+                    $alunos = Aluno::find($aluno_id);
+                }
+
+                foreach ($alunos as $aluno) {
+                    $aluno->projeto_id = $projeto->id;
+                    $aluno->save();
+                }
+
+                $orientador = Professor::find($dataForm['orientador']);
+                $orientador->projeto_id = $projeto->id;
+                $orientador->tipo = 'orientador';
+                $orientador->save();
+
+                if (isset($dataForm['coorientador'])) {
+                    $coorientador = Professor::find($dataForm['coorientador']);
+                    $coorientador->projeto_id = $projeto->id;
+                    $coorientador->tipo = 'coorientador';
+                    $coorientador->save();
+                }
             }
-
-            foreach ($request->only(['aluno_id']) as $aluno_id){
-                $alunos = Aluno::find($aluno_id);
-            }
-
-            foreach ($alunos as $aluno) {
-                $aluno->projeto_id = $projeto->id;
-                $aluno->save();
-            }
-
-            $orientador = Professor::find($dataForm['orientador']);
-            $orientador->projeto_id = $projeto->id;
-            $orientador->tipo = 'orientador';
-            $orientador->save();
-
-            if(isset($dataForm['coorientador'])){
-                $coorientador = Professor::find($dataForm['coorientador']);
-                $coorientador->projeto_id = $projeto->id;
-                $coorientador->tipo = 'coorientador';
-                $coorientador->save();
-            }
-
             $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
             $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
 
             return view('admin/projeto/home', compact('projetos', 'suplentes'));
-            }catch (\Exception $e) {
+        }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
 
     }
 
-    public function show(){
+    public function show($id){
         try{
-            $projetos = Projeto::all()->where('ano', '=', date('y'));
-            return view("admin/projeto/busca/buscar", compact('projetos'));
+            $projeto = Projeto::find($id);
+            $alunos = Aluno::all()->where('projeto_id', '=', $projeto->id);
+            $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
+            return view("admin/projeto/show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -139,7 +175,7 @@ class AdminProjetoController extends Controller
             DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
             $projeto = Projeto::find($id);
             $projeto->delete($id);
-            $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+            $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
