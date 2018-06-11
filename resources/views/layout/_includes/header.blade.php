@@ -137,6 +137,7 @@
                                           <ul>
                                               <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/home')}}}"><i class="material-icons">list</i>Listar projetos</a></li>
                                               <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar projetos</a></li>
+                                              <li><a class="waves-effect waves-blue" href=""><i class="material-icons">add</i>Projetos x Avaliadores</a></li>
                                               <li><div class="divider"></div></li>
                                           </ul>
                                       </div>

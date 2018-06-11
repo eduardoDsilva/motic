@@ -13,6 +13,7 @@ class CreateProfessores extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('professores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -24,17 +25,18 @@ class CreateProfessores extends Migration
             $table->integer('matricula');
             $table->enum('tipo', ['orientador', 'coorientador', 'nenhum'])->default('nenhum');
 
-            $table->unsignedInteger('projeto_id')->nullable();
-            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
-
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');
 
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->unsignedInteger('projeto_id')->nullable();
+            $table->foreign('projeto_id')->references('id')->on('projetos');
+
             $table->timestamps();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
     /**
      * Reverse the migrations.
@@ -43,6 +45,8 @@ class CreateProfessores extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('professores');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Professor;
 use App\Projeto;
+use App\Suplente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -29,8 +30,9 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::paginate(10);
-        $suplentes = Projeto::paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
+        $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
+
         return view('admin/projeto/home', compact('projetos', 'suplentes'));
     }
 
@@ -82,9 +84,11 @@ class AdminProjetoController extends Controller
                 $coorientador->save();
             }
 
-            $projetos = Projeto::all()->where('ano', '=', '2018');
-            return view('admin/projeto/home', compact('projetos'));
-        }catch (\Exception $e) {
+            $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
+            $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
+
+            return view('admin/projeto/home', compact('projetos', 'suplentes'));
+            }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
 
@@ -131,6 +135,8 @@ class AdminProjetoController extends Controller
 
     public function destroy($id){
         try{
+            DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
+            DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
             $projeto = Projeto::find($id);
             $projeto->delete($id);
             $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);

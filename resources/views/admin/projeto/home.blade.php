@@ -72,7 +72,6 @@
                             <th>Área</th>
                             <th>Estande</th>
                             <th>Resumo</th>
-                            <th>Status</th>
                             <th>Categoria</th>
                             <th>Escola</th>
                         </tr>
@@ -85,7 +84,6 @@
                                 <td>{{$projeto->area}}</td>
                                 <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
                                 <td>{{$projeto->resumo}}</td>
-                                <td>{{$projeto->status}}</td>
                                 <td>{{$projeto->categoria->categoria}}</td>
                                 <td>{{$projeto->escola->name}}</td>
                                 <td>
@@ -95,7 +93,6 @@
                             </tr>
                         @empty
                             <tr>
-                                <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
@@ -119,30 +116,27 @@
                             <th>Área</th>
                             <th>Estande</th>
                             <th>Resumo</th>
-                            <th>Status</th>
                             <th>Categoria</th>
                             <th>Escola</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse ($suplentes as $projeto)
+                        @forelse ($suplentes as $suplente)
                             <tr>
-                                <td>{{$projeto->id}}</td>
-                                <td>{{$projeto->titulo}}</td>
-                                <td>{{$projeto->area}}</td>
-                                <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
-                                <td>{{$projeto->resumo}}</td>
-                                <td>{{$projeto->status}}</td>
-                                <td>{{$projeto->categoria->categoria}}</td>
-                                <td>{{$projeto->escola->name}}</td>
+                                <td>{{$suplente->id}}</td>
+                                <td>{{$suplente->titulo}}</td>
+                                <td>{{$suplente->area}}</td>
+                                <td>{{$suplente->estande == null ? 'Estande não definida' : $suplente->estande}}</td>
+                                <td>{{$suplente->resumo}}</td>
+                                <td>{{$suplente->categoria->categoria}}</td>
+                                <td>{{$suplente->escola->name}}</td>
                                 <td>
-                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>

@@ -13,6 +13,7 @@ class CreateAlunos extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('alunos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -22,7 +23,6 @@ class CreateAlunos extends Migration
             $table->string('telefone')->nullable();
             $table->enum('anoLetivo', ['Educação Infantil', '1° ANO', '2° ANO', '3° ANO', '4° ANO', '5° ANO', '6° ANO', '7° ANO', '8° ANO', '9° ANO', 'ERRO' ])->default('ERRO');
             $table->string('turma', 50);
-
             $table->string('rua')->nullable();
             $table->string('numero')->nullable();
             $table->string('complemento')->nullable();
@@ -39,10 +39,11 @@ class CreateAlunos extends Migration
             $table->foreign('categoria_id')->references('id')->on('categorias');
 
             $table->unsignedInteger('projeto_id')->nullable();
-            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
+            $table->foreign('projeto_id')->references('id')->on('projetos');
 
             $table->timestamps();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
     /**
      * Reverse the migrations.
@@ -51,6 +52,8 @@ class CreateAlunos extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('alunos');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

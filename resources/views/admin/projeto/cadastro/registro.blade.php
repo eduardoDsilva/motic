@@ -107,6 +107,15 @@
 
                     </div>
 
+                    <label>Selecione se o projeto é...</label>
+                    <p>
+                        <input class="with-gap" name="group1" type="radio" id="test1" />
+                        <label for="test1">Normal</label>
+                    </p>
+                    <p>
+                        <input class="with-gap" name="group1" type="radio" id="test2" />
+                        <label for="test2">Suplente</label>
+                    </p>
                     {{csrf_field()}}
 
                     <p class="center-align">

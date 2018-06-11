@@ -13,6 +13,7 @@ class CreateProjetos extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('projetos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo', 100);
@@ -29,6 +30,7 @@ class CreateProjetos extends Migration
 
             $table->timestamps();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
     /**
      * Reverse the migrations.
@@ -37,6 +39,8 @@ class CreateProjetos extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::dropIfExists('projetos');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
