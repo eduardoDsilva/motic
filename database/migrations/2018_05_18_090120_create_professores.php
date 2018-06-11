@@ -25,7 +25,7 @@ class CreateProfessores extends Migration
             $table->enum('tipo', ['orientador', 'coorientador', 'nenhum'])->default('nenhum');
 
             $table->unsignedInteger('projeto_id')->nullable();
-            $table->foreign('projeto_id')->references('id')->on('projetos');
+            $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
 
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');

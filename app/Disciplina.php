@@ -15,4 +15,9 @@ class Disciplina extends Model
         return $this->belongsToMany(Projeto::class, 'projetos_disciplinas');
     }
 
+    public function suplente()
+    {
+        return $this->belongsToMany(Suplente::class, 'suplentes_disciplinas');
+    }
+
 }

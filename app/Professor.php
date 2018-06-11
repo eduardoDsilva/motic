@@ -26,4 +26,9 @@ class Professor extends Model
     {
         return $this->belongsTo(Projeto::class);
     }
+
+    public function suplente()
+    {
+        return $this->belongsTo(Suplente::class);
+    }
 }

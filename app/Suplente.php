@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Projeto extends Model
+class Suplente extends Model
 {
 
     protected $fillable = [
@@ -18,7 +18,7 @@ class Projeto extends Model
 
     public function disciplina()
     {
-        return $this->belongsToMany(Disciplina::class,  'projetos_disciplinas');
+        return $this->belongsToMany(Disciplina::class,  'suplentes_disciplinas');
     }
 
     public function aluno()

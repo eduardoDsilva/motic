@@ -22,4 +22,9 @@ class Avaliador extends Model
     {
         return $this->belongsToMany(Projeto::class);
     }
+
+    public function suplente()
+    {
+        return $this->belongsToMany(Suplente::class);
+    }
 }

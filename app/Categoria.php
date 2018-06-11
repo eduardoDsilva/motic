@@ -25,4 +25,9 @@ class Categoria extends Model
         return $this->hasMany(Projeto::class);
     }
 
+    public function suplente()
+    {
+        return $this->hasMany(Suplente::class);
+    }
+
 }

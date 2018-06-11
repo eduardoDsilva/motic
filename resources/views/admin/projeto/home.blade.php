@@ -111,8 +111,6 @@
                 </div>
 
                 <div id="test2" class="col s12">
-                @if(isset($projetos_suplentes))
-
                     <table class="centered responsive-table highlight bordered">
                         <thead>
                             <tr>
@@ -127,7 +125,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse ($projetos_suplentes as $projeto)
+                        @forelse ($suplentes as $projeto)
                             <tr>
                                 <td>{{$projeto->id}}</td>
                                 <td>{{$projeto->titulo}}</td>
@@ -157,8 +155,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{$projetos_suplentes->links()}}
-                @endif
+                {{$suplentes->links()}}
             </div>
 
             <div class="fixed-action-btn">

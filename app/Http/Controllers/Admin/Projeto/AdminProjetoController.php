@@ -29,8 +29,9 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
-        return view('admin/projeto/home', compact('projetos'));
+        $projetos = Projeto::paginate(10);
+        $suplentes = Projeto::paginate(10);
+        return view('admin/projeto/home', compact('projetos', 'suplentes'));
     }
 
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
@@ -47,7 +48,7 @@ class AdminProjetoController extends Controller
     }
 
     public function store(Request $request){
-        $dataForm = $request->all() + ['status' => 'aprovado'];
+        $dataForm = $request->all();
         $escola = Escola::find($dataForm['escola_id']);
         $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
         if(count($projeto)>=$escola->projetos){
