@@ -45,18 +45,33 @@
     $(document).on('click', '.modal-trigger', function() {
         $('#id_delete').val($(this).data('id'));
         $('#name_delete').val($(this).data('name'));
+        $('#projeto').val($(this).data('projeto'));
     });
 
     $('.modal-footer').on('click', '.delete', function() {
         id = $('#id_delete').val();
+        projeto = $('#projeto').val();
         console.log(id);
-        $.ajax({
-            type: 'GET',
-            url: 'destroy/' + id,
-            success: function(data) {
-                location.reload();
-            }
-        });
+        if(projeto == null){
+            $.ajax({
+                type: 'GET',
+                url: 'destroy/' + id,
+                success: function(data) {
+                    location.reload();
+                }
+            });
+        }else{
+            $.ajax({
+                type: 'GET',
+                url: 'destroy/' + id + '/' + projeto,
+                success: function(data) {
+                    location.reload();
+                }
+            });
+        }
+
+
+
     });
 </script>
 

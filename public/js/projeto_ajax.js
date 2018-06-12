@@ -2,7 +2,7 @@ $('#escolaAluno').on('change', function(e) {
     console.log(e);
     var escola_id = e.target.value;
 
-    $.get('/json-aluno?escola_id=' + escola_id, function (data) {
+    $.get('/json-ano?escola_id=' + escola_id, function (data) {
         console.log(data);
         $('#anoLetivo').empty()
         $('#anoLetivo').append('<option disabled selected>Ano letivo</option>');
@@ -52,7 +52,21 @@ $('#categorias').on('change', function(e){
     $.get('/json-alunos?categoria_id=' + categoria_id,function(data) {
         console.log(data);
         $('#alunos').empty()
-        $('#alunos').append('<option disabled selected>Alunos</option>');
+        $('#alunos').append('<option disabled selected>Selecione os alunos...</option>');
+        $('select').material_select();
+        $.each(data, function(index, alunosObj){
+            $('#alunos').append('<option value="'+ alunosObj.id +'">'+ alunosObj.name +'</option>');
+            $('select').material_select();
+        })
+    });
+});
+$('#categoria').on('change', function(e){
+    console.log(e);
+    var categoria_id = e.target.value;
+    $.get('/json-aluno?categoria_id=' + categoria_id,function(data) {
+        console.log(data);
+        $('#alunos').empty()
+        $('#alunos').append('<option disabled selected>Selecione os alunos...</option>');
         $('select').material_select();
         $.each(data, function(index, alunosObj){
             $('#alunos').append('<option value="'+ alunosObj.id +'">'+ alunosObj.name +'</option>');

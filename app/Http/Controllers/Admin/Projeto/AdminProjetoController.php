@@ -169,13 +169,21 @@ class AdminProjetoController extends Controller
         }
     }
 
-    public function destroy($id){
+    public function destroy($id, $projeto){
         try{
-            DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
-            DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
-            $projeto = Projeto::find($id);
-            $projeto->delete($id);
-            $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+            if($projeto == 'suplente'){
+                DB::update('update alunos set suplente_id = ? where suplente_id = ?',[null,$id]);
+                DB::update('update professores set suplente_id = ? where suplente_id = ?',[null,$id]);
+                $projeto = Suplente::find($id);
+                $projeto->delete($id);
+                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+            }else{
+                DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
+                DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
+                $projeto = Projeto::find($id);
+                $projeto->delete($id);
+                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+            }
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -197,7 +205,7 @@ class AdminProjetoController extends Controller
 
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
+        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->where('suplente_id', '=', null)->get();
         return response()->json($alunos);
     }
 

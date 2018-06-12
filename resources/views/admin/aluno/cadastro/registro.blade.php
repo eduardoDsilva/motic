@@ -58,13 +58,9 @@
                                             <i class="material-icons prefix">people</i>
                                             <select name="sexo">
                                                 <option value="" disabled selected>Sexo</option>
-                                                <option value="masculino" <?php if (isset($aluno) && $aluno->sexo == 'feminino') {
-                                                    echo 'selected';
-                                                } ?>>Feminino
+                                                <option value="feminino" @if(isset($aluno)) @if($aluno->sexo == 'feminino') selected @endif @endif>Feminino
                                                 </option>
-                                                <option value="feminino" <?php if (isset($aluno) && $aluno->sexo == 'masculino') {
-                                                    echo 'selected';
-                                                } ?>>Masculino
+                                                <option value="masculino" @if(isset($aluno)) @if($aluno->sexo == 'masculino') selected @endif @endif>Masculino
                                                 </option>
                                             </select>
                                             <label>Sexo</label>
@@ -92,10 +88,6 @@
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">book</i>
                                             <select id='anoLetivo' name="anoLetivo">
-                                                <option value="" disabled selected>Ano Letivo</option>
-                                                <option value="@if(isset($aluno))@endif"
-                                                        @if(isset($aluno))selected @endif > @if(isset($aluno))
-                                                        {{$aluno->anoLetivo}}@endif</option>
                                             </select>
                                             <label>Ano Letivo</label>
                                         </div>

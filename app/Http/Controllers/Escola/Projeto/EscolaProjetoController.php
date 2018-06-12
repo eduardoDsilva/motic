@@ -54,12 +54,14 @@ class EscolaProjetoController extends Controller
             $categoria_id[] = $projeto->categoria_id;
         }
         $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
+        $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id);
 
-        return view("escola/projeto/cadastro/registro", compact('disciplinas', 'escola', 'categorias'));
+        return view("escola/projeto/cadastro/registro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
     public function store(Request $request){
         $dataForm = $request->all();
+        dd('chegou aqui');
         try{
             if($dataForm['tipoProjeto'] == 'suplente') {
                 $escola = Escola::find($dataForm['escola_id']);
@@ -162,6 +164,7 @@ class EscolaProjetoController extends Controller
     public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
+            dd('caiu no update????');
             $projeto = Projeto::find($id);
             $projeto->update($dataForm);
             $projeto->disciplina()->detach();
@@ -190,30 +193,10 @@ class EscolaProjetoController extends Controller
         }
     }
 
-    public function categorias(){
-        $escola_id = Input::get('escola_id');
-        Session::put('escola_id', $escola_id);
-        $escola = $this->escola->find($escola_id);
-        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
-        $categoria_id = [];
-        foreach($projetos as $projeto){
-            $categoria_id[] = $projeto->categoria_id;
-        }
-        $categoria = $escola->categoria->whereNotIn('id', $categoria_id);
-
-        return response()->json($categoria);
-    }
-
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
+        $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
         return response()->json($alunos);
-    }
-
-    public function professores(){
-        $escola_id = Input::get('escola_id');
-        $professores = Professor::where('escola_id', '=', $escola_id)->where('projeto_id', '=', null)->get();
-        return response()->json($professores);
     }
 
 }

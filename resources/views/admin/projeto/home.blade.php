@@ -74,6 +74,7 @@
                             <th>Resumo</th>
                             <th>Categoria</th>
                             <th>Escola</th>
+                            <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,12 +89,13 @@
                                 <td>{{$projeto->escola->name}}</td>
                                 <td>
                                     <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal"> <i class="small material-icons">delete</i></a>
                                     <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
+                                <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
@@ -119,6 +121,7 @@
                             <th>Resumo</th>
                             <th>Categoria</th>
                             <th>Escola</th>
+                            <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -133,7 +136,7 @@
                                 <td>{{$suplente->escola->name}}</td>
                                 <td>
                                     <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$projeto->titulo}}"> <i class="small material-icons">delete</i></a>
+                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
                                     <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$suplente->id."/suplente") }}"> <i class="small material-icons">library_books</i></a>
                                 </td>
                             </tr>
@@ -179,6 +182,7 @@
                 <label for="id_delete">ID</label>
                 <div class="input-field col s12">
                     <input disabled class="validate" type="number" id="id_delete">
+                    <input disabled class="validate" type="hidden" id="projeto">
                 </div>
             </div>
             <div class="row">

@@ -9,7 +9,7 @@ Route::get('admin/projeto/show/{id}/suplente', 'Admin\Projeto\AdminProjetoContro
 //exibir projeto
 Route::get('admin/projeto/show/{id}', 'Admin\Projeto\AdminProjetoController@show');
 //deletar
-Route::get("admin/projeto/destroy/{id}", "Admin\Projeto\AdminProjetoController@destroy");
+Route::get("admin/projeto/destroy/{id}/{projeto}", "Admin\Projeto\AdminProjetoController@destroy");
 //formulario de edita
 Route::get("admin/projeto/update/{id}/edita", "Admin\Projeto\AdminProjetoController@edit");
 //formulario de registrar

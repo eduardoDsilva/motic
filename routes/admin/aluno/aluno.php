@@ -15,4 +15,4 @@ Route::get('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@cr
 //create
 Route::post('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@store')->name('admin/aluno/cadastro/registro');
 
-Route::get('/json-aluno','Admin\Aluno\AdminAlunoController@escolaCategoria');
+Route::get('/json-ano','Admin\Aluno\AdminAlunoController@escolaCategoria');

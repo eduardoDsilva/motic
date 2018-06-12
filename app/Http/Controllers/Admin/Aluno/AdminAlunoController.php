@@ -140,7 +140,6 @@ class AdminAlunoController extends Controller
         $categorias = $escola->categoria;
         $ano = [];
         foreach ($categorias as $categoria){
-            //dd($categoria->id);
             if($categoria->id == 1){
                 $ano[] = 'Educação Infantil';
             }else if($categoria->id == 2){

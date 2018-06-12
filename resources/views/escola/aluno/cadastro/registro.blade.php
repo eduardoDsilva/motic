@@ -58,13 +58,9 @@
                                             <i class="material-icons prefix">people</i>
                                             <select name="sexo">
                                                 <option value="" disabled selected>Sexo</option>
-                                                <option value="masculino" <?php if (isset($aluno) && $aluno->sexo == 'feminino') {
-                                                    echo 'selected';
-                                                } ?>>Feminino
+                                                <option value="feminino" @if(isset($aluno)) @if($aluno->sexo == 'feminino') selected @endif @endif>Feminino
                                                 </option>
-                                                <option value="feminino" <?php if (isset($aluno) && $aluno->sexo == 'masculino') {
-                                                    echo 'selected';
-                                                } ?>>Masculino
+                                                <option value="masculino" @if(isset($aluno)) @if($aluno->sexo == 'masculino') selected @endif @endif>Masculino
                                                 </option>
                                             </select>
                                             <label>Sexo</label>
@@ -83,7 +79,7 @@
                                             <select id='anoLetivo' name="anoLetivo">
                                                 <option value="" disabled selected>Ano Letivo</option>
                                                 @foreach($ano as $a)
-                                                    <option value="{{$a}}">{{$a}}</option>
+                                                    <option value="{{$a}}" @if(isset($aluno)) @if($aluno->anoLetivo == $a) selected @endif @endif>{{$a}}</option>
                                                 @endforeach
                                             </select>
                                             <label>Ano Letivo</label>

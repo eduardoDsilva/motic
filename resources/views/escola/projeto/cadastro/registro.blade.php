@@ -15,9 +15,7 @@
         <div class="row">
             <h3 class="center-align">Cadastrar projeto</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/cadastro/registro') }}">
-
-                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/cadastrar') }}">
 
                     <h5>Dados básicos</h5>
 
@@ -68,7 +66,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="categoria_id" required>
+                            <select id='categoria' name="categoria_id" required>
                                 @forelse ($categorias as $categoria)
                                     <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
                                 @empty
@@ -91,13 +89,25 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
                             <select name="orientador" id="orientador" required>
+                                <option value="" disable selected>Escolha um orientador...</option>
+                                @forelse ($professores as $professor)
+                                    <option value="{{$professor->id}}">{{$professor->name}}</option>
+                                @empty
+                                    <option value="">Nenhum professor cadastrada no sistema.</option>
+                                @endforelse
                             </select>
                             <label>Orientador</label>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="coorientador" id="coorientador" required>
+                            <select name="coorientador" id="coorientador">
+                            <option value="" disable selected>Escolha um coorientador...</option>
+                            @forelse ($professores as $professor)
+                                    <option value="{{$professor->id}}">{{$professor->name}}</option>
+                                @empty
+                                    <option value="">Nenhum professor cadastrada no sistema.</option>
+                                @endforelse
                             </select>
                             <label>Coorientador</label>
                         </div>

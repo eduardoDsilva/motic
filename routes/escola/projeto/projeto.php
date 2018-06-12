@@ -10,16 +10,13 @@ Route::get('escola/projeto/show/{id}/suplente', 'Escola\Projeto\EscolaProjetoCon
 //exibir projeto
 Route::get('escola/projeto/show/{id}', 'Escola\Projeto\EscolaProjetoController@show');
 //deletar
-Route::get("escola/projeto/destroy/{id}", "Escola\Projeto\EscolaProjetoController@destroy");
+Route::get("admin/projeto/destroy/{id}/{projeto}", "Admin\Projeto\AdminProjetoController@destroy");
 //formulario de edita
 Route::get("escola/projeto/update/{id}/edita", "Escola\Projeto\EscolaProjetoController@edit");
 //formulario de registrar
 Route::get('escola/projeto/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@create')->name('escola/projeto/cadastro/registro');
 //create
-Route::post('escola/projeto/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@store')->name('escola/projeto/cadastro/registro');
+Route::post('escola/projeto/cadastrar', 'Escola\Projeto\EscolaProjetoController@store')->name('escola/projeto/cadastrar');
 
-Route::get('/json-categorias','Escola\Projeto\EscolaProjetoController@categorias');
+Route::get('/json-aluno','Escola\Projeto\EscolaProjetoController@alunos');
 
-Route::get('/json-alunos','Escola\Projeto\EscolaProjetoController@alunos');
-
-Route::get('/json-professores','Escola\Projeto\EscolaProjetoController@professores');
