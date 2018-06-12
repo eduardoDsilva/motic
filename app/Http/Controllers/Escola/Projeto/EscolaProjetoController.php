@@ -31,10 +31,16 @@ class EscolaProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->where('escola_id', '=', Auth::user()->escola->id)->paginate(10);
-        $suplentes = Suplente::where('ano', '=', '2018')->where('escola_id', '=', Auth::user()->escola->id)->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
 
-        return view('escola/projeto/home', compact('projetos', 'suplentes'));
+        return view('escola/projeto/home', compact('projetos'));
+    }
+
+    public function suplentes()
+    {
+        $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
+
+        return view('escola/projeto/suplentes', compact('suplentes'));
     }
 
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
@@ -60,8 +66,7 @@ class EscolaProjetoController extends Controller
     }
 
     public function store(Request $request){
-        $dataForm = $request->all();
-        dd('chegou aqui');
+        $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             if($dataForm['tipoProjeto'] == 'suplente') {
                 $escola = Escola::find($dataForm['escola_id']);
@@ -164,7 +169,6 @@ class EscolaProjetoController extends Controller
     public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
-            dd('caiu no update????');
             $projeto = Projeto::find($id);
             $projeto->update($dataForm);
             $projeto->disciplina()->detach();

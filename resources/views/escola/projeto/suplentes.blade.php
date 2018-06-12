@@ -18,7 +18,7 @@
         <div class="card-panel">
             <h1 class="header center orange-text">Projetos</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Essas são os projetos cadastrados no sistema!</h5>
+                <h5 class="header col s12 light">Essas são os projetos suplentes cadastrados no sistema!</h5>
             </div>
         </div>
     </div>
@@ -56,50 +56,50 @@
             </div>
 
             <div class="row">
-                    <table class="centered responsive-table highlight bordered">
-                        <thead>
+                <table class="centered responsive-table highlight bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Área</th>
+                        <th>Estande</th>
+                        <th>Resumo</th>
+                        <th>Categoria</th>
+                        <th>Escola</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse ($suplentes as $projeto)
                         <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Área</th>
-                            <th>Estande</th>
-                            <th>Resumo</th>
-                            <th>Categoria</th>
-                            <th>Escola</th>
-                            <th>Ações</th>
+                            <td>{{$projeto->id}}</td>
+                            <td>{{$projeto->titulo}}</td>
+                            <td>{{$projeto->area}}</td>
+                            <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
+                            <td>{{$projeto->resumo}}</td>
+                            <td>{{$projeto->categoria->categoria}}</td>
+                            <td>{{$projeto->escola->name}}</td>
+                            <td>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @forelse ($projetos as $projeto)
-                            <tr>
-                                <td>{{$projeto->id}}</td>
-                                <td>{{$projeto->titulo}}</td>
-                                <td>{{$projeto->area}}</td>
-                                <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
-                                <td>{{$projeto->resumo}}</td>
-                                <td>{{$projeto->categoria->categoria}}</td>
-                                <td>{{$projeto->escola->name}}</td>
-                                <td>
-                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal"> <i class="small material-icons">delete</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
-                    {{$projetos->links()}}
+                    @empty
+                        <tr>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+                {{$suplentes->links()}}
             </div>
 
             <div class="fixed-action-btn">
@@ -114,7 +114,7 @@
             </div>
 
         </div>
-        </div>
+    </div>
     </div>
 
     <!-- Modal Structure -->

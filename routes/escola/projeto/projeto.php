@@ -2,15 +2,16 @@
 
 //home
 Route::get('escola/projeto/home', 'Escola\Projeto\EscolaProjetoController@index')->name('escola/projeto/home');
+//home
+Route::get('escola/projeto/suplentes', 'Escola\Projeto\EscolaProjetoController@suplentes')->name('escola/projeto/suplentes');
 //update
 Route::post("escola/projeto/{id}", 'Escola\Projeto\EscolaProjetoController@update');
 //exibir projeto
 Route::get('escola/projeto/show/{id}/suplente', 'Escola\Projeto\EscolaProjetoController@showSuplente');
-Route::get('escola/projeto/show/{id}/suplente', 'Escola\Projeto\EscolaProjetoController@showSuplente');
 //exibir projeto
 Route::get('escola/projeto/show/{id}', 'Escola\Projeto\EscolaProjetoController@show');
 //deletar
-Route::get("admin/projeto/destroy/{id}/{projeto}", "Admin\Projeto\AdminProjetoController@destroy");
+Route::get("escola/projeto/destroy/{id}/{projeto}", "Admin\Projeto\AdminProjetoController@destroy");
 //formulario de edita
 Route::get("escola/projeto/update/{id}/edita", "Escola\Projeto\EscolaProjetoController@edit");
 //formulario de registrar

@@ -31,9 +31,15 @@ class AdminProjetoController extends Controller
     public function index()
     {
         $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
+
+        return view('admin/projeto/home', compact('projetos'));
+    }
+
+    public function suplentes()
+    {
         $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
 
-        return view('admin/projeto/home', compact('projetos', 'suplentes'));
+        return view('admin/projeto/suplentes', compact('suplentes'));
     }
 
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
