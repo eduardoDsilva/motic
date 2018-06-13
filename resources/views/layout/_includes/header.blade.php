@@ -137,9 +137,22 @@
                                           <div class="collapsible-body">
                                               <ul>
                                                   <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/home')}}}"><i class="material-icons">list</i>Listar projetos</a></li>
-                                                  <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/suplentes')}}}"><i class="material-icons">list</i>Listar suplentes</a></li>
                                                   <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar projetos</a></li>
                                                   <li><a class="waves-effect waves-blue" href=""><i class="material-icons">add</i>Projetos x Avaliadores</a></li>
+                                                  <li><div class="divider"></div></li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li class="white">
+                                  <ul class="collapsible collapsible-accordion">
+                                      <li>
+                                          <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">library_add</i>Suplentes<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                                          <div class="collapsible-body">
+                                              <ul>
+                                                  <li><a class="waves-effect waves-blue" href="{{{route ('admin/suplente/home')}}}"><i class="material-icons">list</i>Listar suplentes</a></li>
+                                                  <li><a class="waves-effect waves-blue" href="{{{route ('admin/suplente/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar suplentes</a></li>
                                                   <li><div class="divider"></div></li>
                                               </ul>
                                           </div>
@@ -194,8 +207,21 @@
                                           <div class="collapsible-body">
                                               <ul>
                                                   <li><a class="waves-effect waves-blue" href="{{{route ('escola/projeto/home')}}}"><i class="material-icons">list</i>Listar projetos</a></li>
-                                                  <li><a class="waves-effect waves-blue" href="{{{route ('escola/projeto/suplentes')}}}"><i class="material-icons">list</i>Listar suplentes</a></li>
                                                   <li><a class="waves-effect waves-blue" href="{{{route ('escola/projeto/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar projetos</a></li>
+                                                  <li><div class="divider"></div></li>
+                                              </ul>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li class="white">
+                                  <ul class="collapsible collapsible-accordion">
+                                      <li>
+                                          <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">library_add</i>Suplentes<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                                          <div class="collapsible-body">
+                                              <ul>
+                                                  <li><a class="waves-effect waves-blue" href="{{{route ('escola/suplente/home')}}}"><i class="material-icons">list</i>Listar suplente</a></li>
+                                                  <li><a class="waves-effect waves-blue" href="{{{route ('escola/suplente/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar suplentes</a></li>
                                                   <li><div class="divider"></div></li>
                                               </ul>
                                           </div>

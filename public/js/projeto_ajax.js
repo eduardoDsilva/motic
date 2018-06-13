@@ -19,7 +19,7 @@ $('#escola').on('change', function(e){
     var escola_id = e.target.value;
     $.get('/json-categorias?escola_id=' + escola_id,function(data) {
         console.log(data);
-        $('#categorias').empty()
+        $('#categorias').empty();
         $('#categorias').append('<option disabled selected>Categoria</option>');
         $('select').material_select();
         $.each(data, function(index, categoriasObj){

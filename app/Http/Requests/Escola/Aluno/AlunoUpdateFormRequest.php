@@ -27,7 +27,7 @@ class AlunoUpdateFormRequest extends FormRequest
             'name'                  => 'required|min:3|string|max:100',
             'nascimento'            => 'required',
             'sexo'                  => 'required',
-            'anoLetivo'             => 'required',
+            'etapa'                 => 'required',
             'telefone'              => 'max:15',
             'cpf'                   => '',
             'cep'                   => 'max:8',
@@ -49,7 +49,7 @@ class AlunoUpdateFormRequest extends FormRequest
 
             'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
 
-            'anoLetivo.required' => 'O campo ano letivo é de preencimento obrigatório',
+            'etapa.required' => 'O campo ano letivo é de preencimento obrigatório',
 
             'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
 

@@ -44,7 +44,7 @@
                             <th>Sexo</th>
                             <th>E-mail</th>
                             <th>Telefone</th>
-                            <th>Ano Letivo</th>
+                            <th>Ano/Etapa</th>
                             <th>Turma</th>
                         </tr>
                         </thead>
@@ -56,7 +56,7 @@
                                 <td>{{$aluno->sexo}}</td>
                                 <td>{{($aluno->email == null ? "Aluno sem e-mail" : $aluno->email)}}</td>
                                 <td>{{($aluno->telefone == null ? "Aluno sem telefone" : $aluno->telefone)}}</td>
-                                <td>{{$aluno->anoLetivo}}</td>
+                                <td>{{$aluno->etapa}}</td>
                                 <td>{{$aluno->turma}}</td>
                             </tr>
                         </tbody>

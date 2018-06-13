@@ -38,7 +38,9 @@
                                 <option value="estande">Estande</option>
                                 <option value="escola">Escola</option>
                                 <option value="categoria">Categoria</option>
-                                <option value="status">Status</option>
+                                <option value="professor">Professor</option>
+                                <option value="aluno">Aluno</option>
+                                <option value="avaliador">Avaliador</option>
                             </select>
                             <label>Filtros</label>
                         </div>
@@ -62,7 +64,6 @@
                             <th>ID</th>
                             <th>Título</th>
                             <th>Área</th>
-                            <th>Estande</th>
                             <th>Resumo</th>
                             <th>Categoria</th>
                             <th>Escola</th>
@@ -75,7 +76,6 @@
                                 <td>{{$projeto->id}}</td>
                                 <td>{{$projeto->titulo}}</td>
                                 <td>{{$projeto->area}}</td>
-                                <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
                                 <td>{{$projeto->resumo}}</td>
                                 <td>{{$projeto->categoria->categoria}}</td>
                                 <td>{{$projeto->escola->name}}</td>
@@ -87,7 +87,6 @@
                             </tr>
                         @empty
                             <tr>
-                                <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>
                                 <td>Nenhum projeto encontrado</td>

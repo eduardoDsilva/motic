@@ -4,8 +4,8 @@
 
 @section('breadcrumb')
     <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/projeto/home')}}}" class="breadcrumb">Projetos</a>
-    <a href="{{{route ('admin/projeto/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+    <a href="{{{route ('admin/suplente/home')}}}" class="breadcrumb">suplentes</a>
+    <a href="{{{route ('admin/suplente/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
 @endsection
 
 @section('conteudo')
@@ -13,9 +13,9 @@
     <section class="section container">
         <div class="card-panel">
         <div class="row">
-            <h3 class="center-align">Cadastrar projeto</h3>
+            <h3 class="center-align">Cadastrar suplente</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/suplente/cadastro/registro') }}">
 
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
@@ -110,7 +110,7 @@
                     {{csrf_field()}}
 
                     <p class="center-align">
-                        <button class="waves-effect waves-light btn" id="envia" disabled type="submit"><i class="material-icons right">send</i>salvar</button>
+                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>
 
                 </form>

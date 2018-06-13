@@ -17,5 +17,7 @@ require_once ('avaliador/avaliador.php');
 
 require_once ('projeto/projeto.php');
 
+require_once ('suplente/suplente.php');
+
 require_once ('disciplinas/disciplinas.php');
 

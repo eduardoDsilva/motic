@@ -27,7 +27,7 @@ class AlunoCreateFormRequest extends FormRequest
             'name'                  => 'required|min:3|string|max:100',
             'nascimento'            => 'required',
             'sexo'                  => 'required',
-            'anoLetivo'             => 'required',
+            'etapa'                 => 'required',
             'turma'                 => 'required',
             'escola_id'             => 'required|numeric',
             'telefone'              => 'max:15',
@@ -50,7 +50,7 @@ class AlunoCreateFormRequest extends FormRequest
 
             'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
 
-            'anoLetivo.required' => 'O campo ano letivo é de preencimento obrigatório',
+            'etapa.required' => 'O campo etapa é de preencimento obrigatório',
 
             'turma.required' => 'O campo turma é de preencimento obrigatório',
 

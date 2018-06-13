@@ -36,13 +36,6 @@ class EscolaProjetoController extends Controller
         return view('escola/projeto/home', compact('projetos'));
     }
 
-    public function suplentes()
-    {
-        $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
-
-        return view('escola/projeto/suplentes', compact('suplentes'));
-    }
-
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
     {
         $this->auditoriaController = $auditoriaController;
@@ -68,74 +61,39 @@ class EscolaProjetoController extends Controller
     public function store(Request $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
-            if($dataForm['tipoProjeto'] == 'suplente') {
-                $escola = Escola::find($dataForm['escola_id']);
-                $suplente = Suplente::all()->where('escola_id', '=', $escola->id);
-                if(count($suplente)>=$escola->projetos){
-                    dd('não pode mais cadastrar projetos');
-                }
-                $suplente = Suplente::create($dataForm);
-
-                foreach ($request->only(['disciplina_id']) as $disciplina) {
-                    $suplente->disciplina()->attach($disciplina);
-                }
-
-                foreach ($request->only(['aluno_id']) as $aluno_id) {
-                    $alunos = Aluno::find($aluno_id);
-                }
-
-                foreach ($alunos as $aluno) {
-                    $aluno->suplente_id = $suplente->id;
-                    $aluno->save();
-                }
-
-                $orientador = Professor::find($dataForm['orientador']);
-                $orientador->suplente_id = $suplente->id;
-                $orientador->tipo = 'orientador';
-                $orientador->save();
-
-                if (isset($dataForm['coorientador'])) {
-                    $coorientador = Professor::find($dataForm['coorientador']);
-                    $coorientador->suplente_id = $suplente->id;
-                    $coorientador->tipo = 'coorientador';
-                    $coorientador->save();
-                }
-
-            }else{
-                $escola = Escola::find($dataForm['escola_id']);
-                $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
-                if(count($projeto)>=$escola->projetos){
-                    dd('não pode mais cadastrar projetos');
-                }
-                $projeto = Projeto::create($dataForm);
-
-                foreach ($request->only(['disciplina_id']) as $disciplina) {
-                    $projeto->disciplina()->attach($disciplina);
-                }
-
-                foreach ($request->only(['aluno_id']) as $aluno_id) {
-                    $alunos = Aluno::find($aluno_id);
-                }
-
-                foreach ($alunos as $aluno) {
-                    $aluno->projeto_id = $projeto->id;
-                    $aluno->save();
-                }
-
-                $orientador = Professor::find($dataForm['orientador']);
-                $orientador->projeto_id = $projeto->id;
-                $orientador->tipo = 'orientador';
-                $orientador->save();
-
-                if (isset($dataForm['coorientador'])) {
-                    $coorientador = Professor::find($dataForm['coorientador']);
-                    $coorientador->projeto_id = $projeto->id;
-                    $coorientador->tipo = 'coorientador';
-                    $coorientador->save();
-                }
+            $escola = Escola::find($dataForm['escola_id']);
+            $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
+            if(count($projeto)>=$escola->projetos){
+                dd('não pode mais cadastrar projetos');
             }
+            $projeto = Projeto::create($dataForm);
+
+            foreach ($request->only(['disciplina_id']) as $disciplina) {
+                $projeto->disciplina()->attach($disciplina);
+            }
+
+            foreach ($request->only(['aluno_id']) as $aluno_id) {
+                $alunos = Aluno::find($aluno_id);
+            }
+
+            foreach ($alunos as $aluno) {
+                $aluno->projeto_id = $projeto->id;
+                $aluno->save();
+            }
+
+            $orientador = Professor::find($dataForm['orientador']);
+            $orientador->projeto_id = $projeto->id;
+            $orientador->tipo = 'orientador';
+            $orientador->save();
+
+            if (isset($dataForm['coorientador'])) {
+                $coorientador = Professor::find($dataForm['coorientador']);
+                $coorientador->projeto_id = $projeto->id;
+                $coorientador->tipo = 'coorientador';
+                $coorientador->save();
+            }
+
             $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
-            $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
 
             return view('escola/projeto/home', compact('projetos', 'suplentes'));
         }catch (\Exception $e) {

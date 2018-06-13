@@ -41,9 +41,8 @@
                             <option value="nome">Nome</option>
                             <option value="nscimento">Nascimento</option>
                             <option value="sexo">Sexo</option>
-                            <option value="anoLetivo">Ano letivo</option>
+                            <option value="etapa">Ano/Etapa</option>
                             <option value="projeto">Projeto</option>
-                            <option value="anoLetivo">Ano letivo</option>
                         </select>
                         <label>Filtros</label>
                     </div>
@@ -65,7 +64,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Ano Letivo</th>
+                    <th>Ano/Etapa</th>
                     <th>Turma</th>
                     <th>Projeto</th>
                     <th>Ações</th>
@@ -76,7 +75,7 @@
                     <tr>
                         <td>{{$aluno->id}}</td>
                         <td>{{$aluno->name}}</td>
-                        <td>{{$aluno->anoLetivo}}</td>
+                        <td>{{$aluno->etapa}}</td>
                         <td>{{$aluno->turma}}</td>
                         <td>{{($aluno->projeto_id == null ? "Aluno sem projeto" : $aluno->projeto->titulo)}}</td>
                         <td>

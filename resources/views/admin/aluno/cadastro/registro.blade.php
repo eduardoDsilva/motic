@@ -87,9 +87,9 @@
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">book</i>
-                                            <select id='anoLetivo' name="anoLetivo">
+                                            <select id='anoLetivo' name="etapa">
                                             </select>
-                                            <label>Ano Letivo</label>
+                                            <label>Ano/Etapa</label>
                                         </div>
 
                                         <div class="input-field col s6">

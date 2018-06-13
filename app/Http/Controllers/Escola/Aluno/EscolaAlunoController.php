@@ -62,7 +62,7 @@ class EscolaAlunoController extends Controller
     public function store(AlunoCreateFormRequest $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
-            $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['anoLetivo'])];
+            $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
             $aluno = Aluno::create($dataForm);
 
             $this->auditoriaController->storeCreate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
@@ -117,7 +117,7 @@ class EscolaAlunoController extends Controller
     public function update(AlunoUpdateFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
         try{
-            $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['anoLetivo'])];
+            $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
 
             $aluno = Aluno::find($id);
             $aluno->update($dataForm);

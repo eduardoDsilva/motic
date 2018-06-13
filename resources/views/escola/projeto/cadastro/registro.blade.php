@@ -127,7 +127,7 @@
                     {{csrf_field()}}
 
                     <p class="center-align">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
+                        <button class="waves-effect waves-light btn" id="envia" type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>
 
                 </form>

@@ -77,6 +77,21 @@
 
     <script type="text/javascript">
 
+        $(document).ready(function() {
+            $('#alunos').change(function(event) {
+                var alunos = $('#alunos').val();
+                if (alunos.length == 3){
+                    $("#envia").prop("disabled", false);
+                }else if(alunos.length > 3){
+                    $("#envia").prop("disabled", true);
+                    alert("Selecione no máximo 3 alunos");
+                }else{
+                    $("#envia").prop("disabled", true);
+                }
+
+            });
+        });
+
         $(document).ready(function(){
             $('ul.tabs').tabs({
                 swipeable : true

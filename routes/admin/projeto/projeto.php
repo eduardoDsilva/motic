@@ -2,8 +2,6 @@
 
 //home
 Route::get('admin/projeto/home', 'Admin\Projeto\AdminProjetoController@index')->name('admin/projeto/home');
-//home
-Route::get('admin/projeto/suplentes', 'Admin\Projeto\AdminProjetoController@suplentes')->name('admin/projeto/suplentes');
 //update
 Route::post("admin/projeto/{id}", 'Admin\Projeto\AdminProjetoController@update');
 //exibir projeto

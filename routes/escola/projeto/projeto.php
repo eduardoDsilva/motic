@@ -2,8 +2,6 @@
 
 //home
 Route::get('escola/projeto/home', 'Escola\Projeto\EscolaProjetoController@index')->name('escola/projeto/home');
-//home
-Route::get('escola/projeto/suplentes', 'Escola\Projeto\EscolaProjetoController@suplentes')->name('escola/projeto/suplentes');
 //update
 Route::post("escola/projeto/{id}", 'Escola\Projeto\EscolaProjetoController@update');
 //exibir projeto
