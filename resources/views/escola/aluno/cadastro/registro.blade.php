@@ -76,7 +76,7 @@
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">book</i>
-                                            <select id='anoLetivo' name="anoLetivo">
+                                            <select id='anoLetivo' name="etapa">
                                                 <option value="" disabled selected>Ano Letivo</option>
                                                 @foreach($ano as $a)
                                                     <option value="{{$a}}" @if(isset($aluno)) @if($aluno->anoLetivo == $a) selected @endif @endif>{{$a}}</option>

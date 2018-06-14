@@ -155,7 +155,6 @@ class AdminProjetoController extends Controller
         Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
         $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
-        dd('batata');
         $categoria_id = [];
         foreach($projetos as $projeto){
             $categoria_id[] = $projeto->categoria_id;

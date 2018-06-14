@@ -53,7 +53,7 @@ class EscolaProjetoController extends Controller
             $categoria_id[] = $projeto->categoria_id;
         }
         $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
-        $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id);
+        $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('suplente_id', '=', null);
 
         return view("escola/projeto/cadastro/registro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }

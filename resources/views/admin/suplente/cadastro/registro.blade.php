@@ -61,7 +61,7 @@
 
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <select name="escola_id" id="escola">
+                            <select name="escola_id" id="escolasuplente">
                                 <option disabled selected>Escola</option>
                                 @forelse ($escolas as $escola)
                                     <option value="{{$escola->id}}">{{$escola->name}}</option>
@@ -119,6 +119,7 @@
         </div>
         </div>
     </section>
+
 @endsection
 
 

@@ -15,7 +15,6 @@ Route::get("escola/projeto/update/{id}/edita", "Escola\Projeto\EscolaProjetoCont
 //formulario de registrar
 Route::get('escola/projeto/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@create')->name('escola/projeto/cadastro/registro');
 //create
-Route::post('escola/projeto/cadastrar', 'Escola\Projeto\EscolaProjetoController@store')->name('escola/projeto/cadastrar');
+Route::post('escola/projeto/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@store')->name('escola/projeto/cadastrar');
 
 Route::get('/json-aluno','Escola\Projeto\EscolaProjetoController@alunos');
-

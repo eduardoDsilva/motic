@@ -15,7 +15,7 @@
         <div class="row">
             <h3 class="center-align">Cadastrar projeto</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/cadastrar') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/cadastro/registro') }}">
 
                     <h5>Dados básicos</h5>
 
@@ -114,20 +114,10 @@
 
                     </div>
 
-                    <label>Selecione se o projeto é...</label>
-                    <p>
-                        <input class="with-gap" value="normal" name="tipoProjeto" type="radio" id="test1"/>
-                        <label for="test1">Normal</label>
-                    </p>
-                    <p>
-                        <input class="with-gap" value="suplente" name="tipoProjeto" type="radio" id="test2"/>
-                        <label for="test2">Suplente</label>
-                    </p>
-
                     {{csrf_field()}}
 
                     <p class="center-align">
-                        <button class="waves-effect waves-light btn" id="envia" type="submit"><i class="material-icons right">send</i>salvar</button>
+                        <button class="waves-effect waves-light btn" id="envia" disabled type="submit"><i class="material-icons right">send</i>salvar</button>
                     </p>
 
                 </form>

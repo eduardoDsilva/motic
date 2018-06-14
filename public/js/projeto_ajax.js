@@ -14,10 +14,43 @@ $('#escolaAluno').on('change', function(e) {
         })
     });
 })
-$('#escola').on('change', function(e){
+$('#escolaprojeto').on('change', function(e){
     console.log(e);
     var escola_id = e.target.value;
-    $.get('/json-categorias?escola_id=' + escola_id,function(data) {
+    $.get('/json-categorias-projeto?escola_id=' + escola_id,function(data) {
+        console.log(data);
+        $('#categorias').empty();
+        $('#categorias').append('<option disabled selected>Categoria</option>');
+        $('select').material_select();
+        $.each(data, function(index, categoriasObj){
+            console.log(categoriasObj);
+            $('#categorias').append('<option value="'+ categoriasObj.id +'">'+ categoriasObj.categoria +'</option>');
+            $('select').material_select();
+        })
+    });
+
+    $.get('/json-professores?escola_id=' + escola_id,function(data) {
+        console.log(data);
+        $('#orientador').empty()
+        $('#orientador').append('<option disabled selected>Orientador</option>');
+        $('#coorientador').empty()
+        $('#coorientador').append('<option disabled selected>Coorientador</option>');
+        $('select').material_select();
+        $.each(data, function(index, professoresObj){
+            $('#orientador').append('<option value="'+ professoresObj.id +'">'+ professoresObj.name +'</option>');
+            $('select').material_select();
+        })
+        $.each(data, function(index, professoresObj){
+            $('#coorientador').append('<option value="'+ professoresObj.id +'">'+ professoresObj.name +'</option>');
+            $('select').material_select();
+        })
+    });
+});
+
+$('#escolasuplente').on('change', function(e){
+    console.log(e);
+    var escola_id = e.target.value;
+    $.get('/json-categorias-suplente?escola_id=' + escola_id,function(data) {
         console.log(data);
         $('#categorias').empty();
         $('#categorias').append('<option disabled selected>Categoria</option>');

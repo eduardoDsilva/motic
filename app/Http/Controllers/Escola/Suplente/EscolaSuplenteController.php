@@ -6,7 +6,7 @@
  * Time: 09:49
  */
 
-namespace App\Http\Controllers\Admin\Suplente;
+namespace App\Http\Controllers\Escola\Suplente;
 
 use App\Aluno;
 use App\Disciplina;
@@ -16,11 +16,12 @@ use App\Http\Controllers\Controller;
 use App\Professor;
 use App\Suplente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
-class AdminSuplenteController extends Controller
+class EscolaSuplenteController extends Controller
 {
 
     private $auditoriaController;
@@ -31,7 +32,7 @@ class AdminSuplenteController extends Controller
     {
         $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
 
-        return view('admin/suplente/home', compact('suplentes'));
+        return view('escola/suplente/home', compact('suplentes'));
     }
 
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
@@ -43,14 +44,23 @@ class AdminSuplenteController extends Controller
 
     public function create(){
         $disciplinas = Disciplina::all();
-        $escolas = Escola::all();
-        return view("admin/suplente/cadastro/registro", compact('disciplinas', 'escolas', 'categorias'));
+        $escola = Escola::find(Auth::user()->escola->id);
+
+        $suplentes = DB::table('suplentes')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+        $categoria_id = [];
+        foreach($suplentes as $suplente){
+            $categoria_id[] = $suplente->categoria_id;
+        }
+        $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
+        $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('suplente_id', '=', null);
+
+        return view("escola/suplente/cadastro/registro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
     public function store(Request $request){
-        $dataForm = $request->all();
+        $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
-            $escola = Escola::find($dataForm['escola_id']);
+            $escola = Escola::find(Auth::user()->escola->id);
             $suplente = Suplente::all()->where('escola_id', '=', $escola->id);
             if(count($suplente)>=$escola->projetos){
                 dd('não pode mais cadastrar suplentes');
@@ -83,7 +93,7 @@ class AdminSuplenteController extends Controller
             }
             $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
 
-            return view('admin/suplente/home', compact('suplentes', 'suplentes'));
+            return view('escola/suplente/home', compact('suplentes', 'suplentes'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -95,7 +105,7 @@ class AdminSuplenteController extends Controller
             $suplente = Suplente::find($id);
             $alunos = Aluno::all()->where('suplente_id', '=', $suplente->id);
             $professores = Professor::all()->where('suplente_id', '=', $suplente->id);
-            return view("admin/suplente/show", compact('suplente', 'alunos', 'professores'));
+            return view("escola/suplente/show", compact('suplente', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -106,7 +116,7 @@ class AdminSuplenteController extends Controller
             $suplente = Suplente::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar suplente: '.$suplente->titulo;
-            return view("admin/suplente/edita/editar", compact( 'suplente', 'titulo', 'disciplinas'));
+            return view("escola/suplente/edita/editar", compact( 'suplente', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -125,7 +135,7 @@ class AdminSuplenteController extends Controller
 
             Session::put('mensagem', "O suplente ".$suplente->titulo." foi editado com sucesso!");
 
-            return redirect()->route("admin/suplente/home");
+            return redirect()->route("escola/suplente/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

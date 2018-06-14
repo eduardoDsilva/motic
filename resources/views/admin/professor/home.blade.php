@@ -81,8 +81,8 @@
                         <td>{{$professor->name}}</td>
                         <td>{{$professor->user->username}}</td>
                         <td>{{$professor->escola->name}}</td>
-                        <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $professor->projeto->titulo )}}</td>
-                        <td>{{($professor->projeto_id == null ? "Professor sem projeto" : $professor->tipo )}}</td>
+                        <td>{{($professor->projeto_id == null ? ($professor->suplente_id == null ? "Professor sem projeto" : $professor->suplente->titulo) : $professor->projeto->titulo)}}</td>
+                        <td>{{($professor->projeto_id == null ? ($professor->suplente_id == null ? "Professor sem projeto" : $professor->tipo) : $professor->tipo)}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/professor/update/".$professor->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$professor->id}}" data-name="{{$professor->name}}"> <i class="small material-icons">delete</i></a>

@@ -1,11 +1,11 @@
 
 @extends('layout.site')
 
-@section('titulo','Motic escola')
+@section('titulo','Motic Escola')
 
 @section('breadcrumb')
     <a href="{{{route ('escola/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('escola/projeto/home')}}}" class="breadcrumb">Projetos</a>
+    <a href="{{{route ('escola/suplente/home')}}}" class="breadcrumb">Suplentes</a>
 @endsection
 
 @section('conteudo')
@@ -16,7 +16,7 @@
 
     <div class="section container">
         <div class="card-panel">
-            <h1 class="header center orange-text">Projetos</h1>
+            <h1 class="header center orange-text">Suplentes</h1>
             <div class="row center">
                 <h5 class="header col s12 light">Essas são os projetos suplentes cadastrados no sistema!</h5>
             </div>
@@ -38,7 +38,9 @@
                                 <option value="estande">Estande</option>
                                 <option value="escola">Escola</option>
                                 <option value="categoria">Categoria</option>
-                                <option value="status">Status</option>
+                                <option value="professor">Professor</option>
+                                <option value="aluno">Aluno</option>
+                                <option value="avaliador">Avaliador</option>
                             </select>
                             <label>Filtros</label>
                         </div>
@@ -62,7 +64,6 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Área</th>
-                        <th>Estande</th>
                         <th>Resumo</th>
                         <th>Categoria</th>
                         <th>Escola</th>
@@ -70,31 +71,29 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse ($suplentes as $projeto)
+                    @forelse ($suplentes as $suplente)
                         <tr>
-                            <td>{{$projeto->id}}</td>
-                            <td>{{$projeto->titulo}}</td>
-                            <td>{{$projeto->area}}</td>
-                            <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
-                            <td>{{$projeto->resumo}}</td>
-                            <td>{{$projeto->categoria->categoria}}</td>
-                            <td>{{$projeto->escola->name}}</td>
+                            <td>{{$suplente->id}}</td>
+                            <td>{{$suplente->titulo}}</td>
+                            <td>{{$suplente->area}}</td>
+                            <td>{{$suplente->resumo}}</td>
+                            <td>{{$suplente->categoria->categoria}}</td>
+                            <td>{{$suplente->escola->name}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/suplente/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/suplente/show/".$suplente->id) }}"> <i class="small material-icons">library_books</i></a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
-                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum projeto suplente encontrado</td>
                         </tr>
                     @endforelse
                     </tbody>
@@ -107,7 +106,7 @@
                     <i class="large material-icons">mode_edit</i>
                 </a>
                 <ul>
-                    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('escola/projeto/cadastro/registro')}}"><i class="material-icons">add</i></a></li>
+                    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('escola/suplente/cadastro/registro')}}"><i class="material-icons">add</i></a></li>
                     <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar aluno" href="{{route ('escola/aluno/cadastro/registro')}}"><i class="material-icons">format_quote</i></a></li>
                     <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('escola/professor/cadastro/registro')}}"><i class="material-icons">publish</i></a></li>
                 </ul>
@@ -121,7 +120,7 @@
     <div id="modal1" class="modal">
         <div class="modal-content">
             <h4>Deletar</h4>
-            <p>Você tem certeza que deseja deletar o projeto abaixo?</p>
+            <p>Você tem certeza que deseja deletar o projeto suplente abaixo?</p>
             <div class="row">
                 <label for="id_delete">ID</label>
                 <div class="input-field col s12">
@@ -130,7 +129,7 @@
                 </div>
             </div>
             <div class="row">
-                <label for="name_delete">Nome do projeto</label>
+                <label for="name_delete">Nome do projeto suplente</label>
                 <div class="input-field col s12">
                     <input disabled class="validate" type="text" id="name_delete">
                 </div>

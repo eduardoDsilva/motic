@@ -1,10 +1,10 @@
 @extends('layout.site')
 
-@section('titulo','Motic Admin')
+@section('titulo','Motic Escola')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/suplente/home')}}}" class="breadcrumb">Suplentes</a>
+    <a href="{{{route ('escola/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('escola/suplente/home')}}}" class="breadcrumb">Suplentes</a>
     <a href="" class="breadcrumb">Editar</a>
 @endsection
 
@@ -21,7 +21,7 @@
             <div class="row">
             <h3 class="center-align">Editar suplente {{$suplente->titulo}}</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url('admin/suplente/'.$suplente->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url('escola/suplente/'.$suplente->id) }}">
 
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 

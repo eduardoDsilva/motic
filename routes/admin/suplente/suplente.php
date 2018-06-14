@@ -17,7 +17,7 @@ Route::get('admin/suplente/cadastro/registro', 'Admin\Suplente\AdminSuplenteCont
 //create
 Route::post('admin/suplente/cadastro/registro', 'Admin\Suplente\AdminSuplenteController@store')->name('admin/suplente/cadastro/registro');
 
-Route::get('/json-categorias','Admin\Suplente\AdminSuplenteController@categorias');
+Route::get('/json-categorias-suplente','Admin\Suplente\AdminSuplenteController@categorias');
 
 Route::get('/json-alunos','Admin\Suplente\AdminSuplenteController@alunos');
 
