@@ -1,8 +1,8 @@
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic')
 
-@section('conteudo')
+@section('content')
 
     <div class="container portfolio">
         <h5>&nbsp;</h5>

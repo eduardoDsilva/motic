@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic Admin - Auditoria')
 
@@ -7,7 +7,7 @@
     <a href="{{{route ('admin/auditoria/home')}}}" class="breadcrumb">Auditoria</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     @if(session('success'))
         {{session('success')}}

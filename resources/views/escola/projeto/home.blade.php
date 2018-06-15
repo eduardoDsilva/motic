@@ -1,5 +1,5 @@
 
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic escola')
 
@@ -8,7 +8,7 @@
     <a href="{{{route ('escola/projeto/home')}}}" class="breadcrumb">Projetos</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     @if(session('success'))
         {{session('success')}}

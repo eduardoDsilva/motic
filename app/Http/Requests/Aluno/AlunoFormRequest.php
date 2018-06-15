@@ -28,7 +28,7 @@ class AlunoFormRequest extends FormRequest
             'name'                  => 'required|string|between:3,100',
             'nascimento'            => 'required',
             'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
-            'escola_id'             => 'required|numeric|exists:escolas,id',
+            'escola_id'             => 'required|integer|exists:escolas,id',
             'etapa'                 => 'required',
             'turma'                 => 'required',
             'telefone'              => 'max:16',
@@ -51,12 +51,12 @@ class AlunoFormRequest extends FormRequest
 
             'sexo.required' => 'O campo sexo é de preencimento obrigatório',
 
-            'etapa.required' => 'O campo etapa é de preencimento obrigatório',
+            'etapa.required' => 'O campo etapa sé de preencimento obrigatório',
 
             'turma.required' => 'O campo turma é de preencimento obrigatório',
 
             'escola_id.required' => 'O campo escola é de preenchimento obrigatório!',
-            'escola_id.numeric'  => 'Selecione uma escola válida!',
+            'escola_id.integer'  => 'Selecione uma escola válida!',
             'escola_id.exists'  => 'Selecione uma escola válida!',
 
             'telefone.max' => 'Insira um telefone válido!',

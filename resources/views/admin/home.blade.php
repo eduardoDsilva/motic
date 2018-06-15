@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic Admin')
 
@@ -6,7 +6,7 @@
     <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     <div class="section container">
         <div class="card-panel">

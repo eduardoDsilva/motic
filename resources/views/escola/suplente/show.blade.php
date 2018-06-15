@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic Escola')
 
@@ -8,7 +8,7 @@
     <a href="" class="breadcrumb">{{$suplente->titulo}}</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     @if(Session::get('mensagem'))
         <div class="center-align">

@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic Admin')
 
@@ -7,7 +7,7 @@
     <a href="{{{route ('admin/disciplinas/home')}}}" class="breadcrumb">Disciplinas</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     @if( isset($errors) && count($errors) > 0 )
         <div class="center-align">

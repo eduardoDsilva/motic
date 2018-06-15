@@ -1,14 +1,12 @@
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Login')
 
-@section('conteudo')
+@section('content')
     <div class="container">
         <h3 class="center">Entrar</h3>
         <div class="row">
             <form class="" action="{{route('login')}}" method="post">
-
-
 
                 <div class="input-field">
                     <input type="text" name="email">

@@ -1,5 +1,5 @@
 
-@extends('layout.site')
+@extends('layouts.app')
 
 @section('titulo','Motic Escola')
 
@@ -8,7 +8,7 @@
     <a href="{{{route ('escola/suplente/home')}}}" class="breadcrumb">Suplentes</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     @if(session('success'))
         {{session('success')}}
@@ -83,6 +83,7 @@
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/suplente/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
                                 <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/suplente/show/".$suplente->id) }}"> <i class="small material-icons">library_books</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href=""> <i class="small material-icons">publish</i></a>
                             </td>
                         </tr>
                     @empty

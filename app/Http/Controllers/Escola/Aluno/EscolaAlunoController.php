@@ -32,8 +32,8 @@ class EscolaAlunoController extends Controller
     }
 
     public function create(){
-        $escola = Escola::find(Auth::user()->escola->id);
-        $categorias = $escola->categoria;
+        $escolas = Escola::find(Auth::user()->escola->id);
+        $categorias = $escolas->categoria;
         foreach ($categorias as $categoria){
             if($categoria->id == 1){
                 $ano[] = 'Educação Infantil';
@@ -53,7 +53,7 @@ class EscolaAlunoController extends Controller
                 $ano[] = 'EJA';
             }
         }
-        return view('escola/aluno/cadastro/', compact('escola', 'ano'));
+        return view('escola/aluno/cadastro', compact('escolas', 'ano'));
     }
 
     public function store(AlunoFormRequest $request){
@@ -105,7 +105,7 @@ class EscolaAlunoController extends Controller
                     $ano[] = 'EJA';
                 }
             }
-            return view('escola/aluno/cadastro/', compact('escola', 'ano', 'aluno'));
+            return view('escola/aluno/cadastro', compact('escola', 'ano', 'aluno'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
