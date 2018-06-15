@@ -59,7 +59,7 @@
 
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                                <input type="text" name="escola" value="{{$escola->name or old('name')}}" disabled>
+                                <input type="text" name="escola_id" value="{{$escola->name or old('name')}}" disabled>
                         </div>
                     </div>
 

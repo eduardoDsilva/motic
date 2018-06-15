@@ -13,10 +13,10 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Admin\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
-use App\Suplente;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -58,7 +58,7 @@ class EscolaProjetoController extends Controller
         return view("escola/projeto/cadastro/registro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(Request $request){
+    public function store(ProjetoCreateFormRequest $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find($dataForm['escola_id']);
@@ -124,7 +124,7 @@ class EscolaProjetoController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ProjetoUpdateFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($id);

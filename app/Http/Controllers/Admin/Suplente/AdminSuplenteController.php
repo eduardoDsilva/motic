@@ -13,9 +13,10 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Admin\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Suplente;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -47,7 +48,7 @@ class AdminSuplenteController extends Controller
         return view("admin/suplente/cadastro/registro", compact('disciplinas', 'escolas', 'categorias'));
     }
 
-    public function store(Request $request){
+    public function store(ProjetoCreateFormRequest $request){
         $dataForm = $request->all();
         try{
             $escola = Escola::find($dataForm['escola_id']);
@@ -112,7 +113,7 @@ class AdminSuplenteController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ProjetoUpdateFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $suplente = Suplente::find($id);
