@@ -13,13 +13,14 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Projeto\ProjetoCreateFormRequest;
-use App\Http\Requests\Admin\Projeto\ProjetoUpdateFormRequest;
+use App\Http\Requests\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class EscolaProjetoController extends Controller
@@ -55,10 +56,10 @@ class EscolaProjetoController extends Controller
         $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
         $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('suplente_id', '=', null);
 
-        return view("escola/projeto/cadastro/registro", compact('disciplinas', 'escola', 'categorias', 'professores'));
+        return view("escola/projeto/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(ProjetoCreateFormRequest $request){
+    public function store(Request $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find($dataForm['escola_id']);
@@ -118,13 +119,13 @@ class EscolaProjetoController extends Controller
             $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar projeto: '.$projeto->titulo;
-            return view("escola/projeto/edita/editar", compact( 'projeto', 'titulo', 'disciplinas'));
+            return view("escola/projeto/editar", compact( 'projeto', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(ProjetoUpdateFormRequest $request, $id){
+    public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($id);

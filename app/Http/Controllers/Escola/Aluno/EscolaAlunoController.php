@@ -7,10 +7,7 @@ use App\Dado;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Escola\Aluno\AlunoCreateFormRequest;
-use App\Http\Requests\Escola\Aluno\AlunoUpdateFormRequest;
 use App\Projeto;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -56,10 +53,10 @@ class EscolaAlunoController extends Controller
                 $ano[] = 'EJA';
             }
         }
-        return view('escola/aluno/cadastro/registro', compact('escola', 'ano'));
+        return view('escola/aluno/cadastro/', compact('escola', 'ano'));
     }
 
-    public function store(AlunoCreateFormRequest $request){
+    public function store(AlunoFormRequest $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
@@ -108,13 +105,13 @@ class EscolaAlunoController extends Controller
                     $ano[] = 'EJA';
                 }
             }
-            return view('escola/aluno/cadastro/registro', compact('escola', 'ano', 'aluno'));
+            return view('escola/aluno/cadastro/', compact('escola', 'ano', 'aluno'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(AlunoUpdateFormRequest $request, $id){
+    public function update(AlunoFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
         try{
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];

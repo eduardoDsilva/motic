@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Admin\Professor;
+namespace App\Http\Requests\Professor;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProfessorCreateFormRequest extends FormRequest
 {
@@ -24,21 +25,21 @@ class ProfessorCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|string|max:100',
+            'name'                  => 'required|string|between:3,100',
             'nascimento'            => 'required',
-            'sexo'                  => 'required',
+            'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
             'grauDeInstrucao'       => 'required',
             'matricula'             => 'required|numeric|unique:professores',
-            'escola_id'             => 'required|numeric',
-            'email'                 => 'required|email|string|unique:users|unique:professores|unique:avaliadores',
-            'telefone'              => 'required|max:15',
-            'cpf'                   => 'required|string|min:11|max:11|unique:alunos|unique:professores|unique:avaliadores',
-            'cep'                   => 'required|min:8|max:8',
-            'bairro'                => 'required|min:4|string|max:100',
-            'rua'                   => 'required|min:4|string|max:100',
-            'numero'                => 'required|min:1|max:5',
+            'escola_id'             => 'required|numeric|exists:escolas,id',
+            'email'                 => 'required|email|string|unique:users|unique:alunos',
+            'telefone'              => 'required|between:8,16',
+            'cpf'                   => 'required|string|digits:11|unique:alunos|unique:professores|unique:avaliadores',
+            'cep'                   => 'required|digits:8',
+            'bairro'                => 'required|string|between:4,100',
+            'rua'                   => 'required|between:4,100',
+            'numero'                => 'required|max:5',
             'complemento'           => '',
-            'username'              => 'required|string|min:5|max:20|unique:users',
+            'username'              => 'required|string|between:4,20|unique:users',
             'password'              => 'required|string|min:6|confirmed',
         ];
     }
@@ -47,27 +48,22 @@ class ProfessorCreateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.min' => 'Insira um nome válido!',
-            'name.max' => 'Insira um nome válido!',
+            'name.string' => 'Insira um nome válido!',
+            'name.between' => 'Insira um nome válido!',
 
-            'naacimento.required' => 'O cmapo nascimento é de preencimento obrigatório',
+            'nascimento.required' => 'O cmapo nascimento é de preencimento obrigatório',
 
             'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
 
             'grauDeInstrucao.required' => 'O cmapo grau de instrução é de preencimento obrigatório',
-
-            'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
-
-            'cpf.required' => 'O campo cpf é de preenchimento obrigatório!',
-            'cpf.min' => 'Insira um CPF válido!',
-            'cpf.max' => 'Insira um CPF válido!',
 
             'matricula.required' => 'O campo matrícula é de preenchimento obrigatório!',
             'matricula.numeric'  => 'Insira uma matrícula válida!',
             'matricula.unique'   => 'Matrícula já cadastrada no sistema!',
 
             'escola_id.required' => 'O campo escola é de preenchimento obrigatório!',
-            'escola_id.numeric'  => 'Escola uma escola válida!',
+            'escola_id.numeric'  => 'Escolha uma escola válida!',
+            'escola_id.exists'  => 'Escola inválida!',
 
             'email.required' => 'O campo email é de preenchimento obrigatório!',
             'email.email' => 'Insira um e-mail válido!',
@@ -75,28 +71,28 @@ class ProfessorCreateFormRequest extends FormRequest
 
             'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
             'telefone.numeric' => 'Insira um telefoen válido!',
-            'telefone.min' => 'Insira um telefone válido!',
-            'telefone.max' => 'Insira um telefone válido!',
+            'telefone.between' => 'Insira um telefone entre 8 e 16 caracteres!',
+
+            'cpf.required' => 'O campo cpf é de preenchimento obrigatório!',
+            'cpf.digits' => 'Insira um CPF de 11 caracteres!',
+            'cpf.unique' => 'CPF já cadastrado no sistema!',
 
             'cep.required' => 'O campo CEP é de preenchimento obrigatório',
-            'cep.min' => 'Insira um CEP válido!',
-            'cep.max' => 'Insira um CEP válido!',
+            'cep.digits' => 'Insira um CEP válido!',
 
             'bairro.required' => 'O campo bairro é de preenchimento obrigatório!',
-            'bairro.min' => 'Insira um bairro válido!',
-            'bairro.max' => 'Insira um bairro válido!',
+            'bairro.string' => 'Insira um bairro válido!',
+            'bairro.between' => 'Insira um bairro válido!',
 
             'rua.required' => 'O campo rua é de preenchimento obrigatório!',
-            'rua.min' => 'Insira uma rua válida!',
-            'rua.max' => 'Insira uma rua válida!',
+            'rua.between' => 'Insira uma rua válida!',
 
             'numero.required' => 'O campo número é de preenchimento obrigatório!',
-            'numero.min' => 'Insira um número válido!',
             'numero.max' => 'Insira um número válido!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.min' => 'Insira um usuário válido!',
-            'username.max' => 'Insira um usuário válido!',
+            'username.string' => 'Insira um usuário válido',
+            'username.between' => 'Insira um usuário válido!',
             'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',

@@ -36,7 +36,7 @@ class AdminAvaliadorController extends Controller
 
     public function create(){
         $titulo = 'Cadastrar avaliador';
-        return view('admin/avaliador/cadastro/registro', compact('titulo'));
+        return view('admin/avaliador/cadastro', compact('titulo'));
     }
 
     public function store(AvaliadorCreateFormRequest $request){
@@ -79,7 +79,7 @@ class AdminAvaliadorController extends Controller
             $avaliador = Avaliador::find($id);
             $titulo = 'Editar avaliador: '.$avaliador->name;
 
-            return view("admin/avaliador/cadastro/registro", compact('avaliador', 'titulo'));
+            return view("admin/avaliador/cadastro", compact('avaliador', 'titulo'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

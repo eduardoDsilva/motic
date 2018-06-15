@@ -68,7 +68,7 @@
 
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">people</i>
-                                            <input type="text" name="escola" value="{{$escola->name or old('name')}}" disabled>
+                                            <input type="text" name="escola_id" value="{{$escola->name or old('name')}}" disabled>
                                         </div>
 
                                     </div>

@@ -38,7 +38,7 @@ class AdminEscolaController extends Controller
         $categorias = Categoria::all();
         $titulo = 'Cadastrar escola';
 
-        return view('admin/escola/cadastro/registro', compact('categorias', 'titulo'));
+        return view('admin/escola/cadastro', compact('categorias', 'titulo'));
     }
 
     public function store(EscolaCreateFormRequest $request){
@@ -93,7 +93,7 @@ class AdminEscolaController extends Controller
             foreach ($escola->categoria as $id){
                 $categoria_escola[] = $id->pivot->categoria_id;
             }
-            return view("admin/escola/cadastro/registro", compact('escola', 'categorias', 'titulo', 'categoria_escola'));
+            return view("admin/escola/cadastro", compact('escola', 'categorias', 'titulo', 'categoria_escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

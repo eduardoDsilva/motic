@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Aluno;
+namespace App\Http\Requests\Aluno;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class AlunoCreateFormRequest extends FormRequest
+class AlunoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +25,17 @@ class AlunoCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|string|max:100',
+            'name'                  => 'required|string|between:3,100',
             'nascimento'            => 'required',
-            'sexo'                  => 'required',
+            'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
+            'escola_id'             => 'required|numeric|exists:escolas,id',
             'etapa'                 => 'required',
             'turma'                 => 'required',
-            'escola_id'             => 'required|numeric',
-            'telefone'              => 'max:15',
+            'telefone'              => 'max:16',
             'cep'                   => 'max:8',
             'bairro'                => 'max:100',
             'rua'                   => 'max:100',
-            'numero'                => 'max:5',
+            'numero'                => 'max:6',
             'complemento'           => '',
         ];
     }
@@ -43,26 +44,22 @@ class AlunoCreateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.min' => 'Insira um nome válido!',
-            'name.max' => 'Insira um nome válido!',
+            'name.string' => 'Insira um nome válido!',
+            'name.between' => 'Insira um nome válido!',
 
             'naacimento.required' => 'O cmapo nascimento é de preencimento obrigatório',
 
-            'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
+            'sexo.required' => 'O campo sexo é de preencimento obrigatório',
 
             'etapa.required' => 'O campo etapa é de preencimento obrigatório',
 
             'turma.required' => 'O campo turma é de preencimento obrigatório',
 
-            'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
-
             'escola_id.required' => 'O campo escola é de preenchimento obrigatório!',
-            'escola_id.numeric'  => 'Escola uma escola válida!',
+            'escola_id.numeric'  => 'Selecione uma escola válida!',
+            'escola_id.exists'  => 'Selecione uma escola válida!',
 
-            'telefone.numeric' => 'Insira um telefoen válido!',
             'telefone.max' => 'Insira um telefone válido!',
-
-            'cep.max' => 'Insira um CEP válido!',
 
             'bairro.max' => 'Insira um bairro válido!',
 

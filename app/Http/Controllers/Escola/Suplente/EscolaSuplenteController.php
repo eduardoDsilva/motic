@@ -54,10 +54,10 @@ class EscolaSuplenteController extends Controller
         $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
         $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('suplente_id', '=', null);
 
-        return view("escola/suplente/cadastro/registro", compact('disciplinas', 'escola', 'categorias', 'professores'));
+        return view("escola/suplente/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(Request $request){
+    public function store(\Illuminate\Support\Facades\Request $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find(Auth::user()->escola->id);
@@ -116,13 +116,13 @@ class EscolaSuplenteController extends Controller
             $suplente = Suplente::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar suplente: '.$suplente->titulo;
-            return view("escola/suplente/edita/editar", compact( 'suplente', 'titulo', 'disciplinas'));
+            return view("escola/suplente/editar", compact( 'suplente', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(\Illuminate\Support\Facades\Request $request, $id){
         $dataForm = $request->all();
         try{
             $suplente = Suplente::find($id);

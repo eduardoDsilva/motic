@@ -24,7 +24,7 @@ class DisciplinaCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|min:3|string|max:50|unique:disciplinas',
+            'name'      => 'required|between:3,100|string|unique:disciplinas',
             'descricao' =>'required|max:240|string',
         ];
     }
@@ -33,8 +33,7 @@ class DisciplinaCreateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.min' => 'Insira um nome válido!',
-            'name.max' => 'Insira um nome válido!',
+            'name.between' => 'Insira um nome válido!',
             'name.string' => 'Insira um nome válido!',
             'name.unique' => 'Essa disciplina já existe no sistema!',
 

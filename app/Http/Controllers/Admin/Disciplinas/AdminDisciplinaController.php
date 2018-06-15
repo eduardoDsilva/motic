@@ -59,7 +59,7 @@ class AdminDisciplinaController extends Controller
     public function edit($id){
         try{
             $disciplina = disciplina::find($id);
-            return view("admin/disciplinas/editar/editar", compact('disciplina'));
+            return view("admin/disciplinas/editar", compact('disciplina'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

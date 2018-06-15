@@ -6,8 +6,8 @@ use App\Dado;
 use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
-use App\Http\Requests\Admin\Professor\ProfessorCreateFormRequest;
-use App\Http\Requests\Admin\Professor\ProfessorUpdateFormRequest;
+use App\Http\Requests\Professor\ProfessorCreateFormRequest;
+use App\Http\Requests\Professor\ProfessorUpdateFormRequest;
 use App\professor;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -38,7 +38,7 @@ class AdminProfessorController extends Controller
         $escolas = Escola::all();
         $titulo = 'Cadastrar professor';
 
-        return view('admin/professor/cadastro/registro', compact('escolas', 'titulo'));
+        return view('admin/professor/cadastro', compact('escolas', 'titulo'));
     }
 
     public function store(ProfessorCreateFormRequest $request){
@@ -83,7 +83,7 @@ class AdminProfessorController extends Controller
             $escolas = Escola::all();
             $titulo = 'Editar professor: '.$professor->name;
 
-            return view("admin/professor/cadastro/registro", compact('professor', 'titulo', 'escolas'));
+            return view("admin/professor/cadastro", compact('professor', 'titulo', 'escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -4,15 +4,11 @@ namespace App\Http\Controllers\Admin\Aluno;
 
 use App\Aluno;
 use App\Dado;
-use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Aluno\AlunoCreateFormRequest;
-use App\Http\Requests\Admin\Aluno\AlunoUpdateFormRequest;
+use App\Http\Requests\Aluno\AlunoFormRequest;
 use App\Projeto;
-use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -37,10 +33,10 @@ class AdminAlunoController extends Controller
 
     public function create(){
         $escolas = Escola::all();
-        return view('admin/aluno/cadastro/registro', compact('escolas'));
+        return view('admin/aluno/cadastro', compact('escolas'));
     }
 
-    public function store(AlunoCreateFormRequest $request){
+    public function store(AlunoFormRequest $request){
         $dataForm = $request->all();
         try{
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
@@ -70,13 +66,13 @@ class AdminAlunoController extends Controller
             $aluno = Aluno::find($id);
             $titulo = "Editar aluno: ".$aluno->name;
             $escolas = Escola::all();
-            return view("admin/aluno/cadastro/registro", compact('aluno', 'titulo', 'escolas'));
+            return view("admin/aluno/cadastro", compact('aluno', 'titulo', 'escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(AlunoUpdateFormRequest $request, $id){
+    public function update(AlunoFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'aluno'];
         try{
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];

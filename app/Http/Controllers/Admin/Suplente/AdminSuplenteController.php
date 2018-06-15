@@ -13,12 +13,13 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Projeto\ProjetoCreateFormRequest;
-use App\Http\Requests\Admin\Projeto\ProjetoUpdateFormRequest;
+use App\Http\Requests\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Suplente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class AdminSuplenteController extends Controller
@@ -45,10 +46,10 @@ class AdminSuplenteController extends Controller
     public function create(){
         $disciplinas = Disciplina::all();
         $escolas = Escola::all();
-        return view("admin/suplente/cadastro/registro", compact('disciplinas', 'escolas', 'categorias'));
+        return view("admin/suplente/cadastro", compact('disciplinas', 'escolas', 'categorias'));
     }
 
-    public function store(ProjetoCreateFormRequest $request){
+    public function store(Request $request){
         $dataForm = $request->all();
         try{
             $escola = Escola::find($dataForm['escola_id']);
@@ -107,13 +108,13 @@ class AdminSuplenteController extends Controller
             $suplente = Suplente::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar suplente: '.$suplente->titulo;
-            return view("admin/suplente/edita/editar", compact( 'suplente', 'titulo', 'disciplinas'));
+            return view("admin/suplente/editar", compact( 'suplente', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(ProjetoUpdateFormRequest $request, $id){
+    public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
             $suplente = Suplente::find($id);

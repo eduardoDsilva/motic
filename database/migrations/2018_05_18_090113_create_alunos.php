@@ -18,6 +18,7 @@ class CreateAlunos extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('nascimento');
+            $table->string('cpf')->nullable();
             $table->enum('sexo',['masculino','feminino', "nao especificado"])->default('nao especificado');
             $table->string('email')->nullable()->unique();
             $table->string('telefone')->nullable();

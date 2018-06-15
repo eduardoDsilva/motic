@@ -79,7 +79,9 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">people</i>
-                            <input type="text" name="escola" value="{{$escola->name or old('name')}}" disabled>
+                            <select name="escola_id">
+                                <option value="{{$professor->escola->id}}" selected>{{$professor->escola->name}}</option>
+                            </select>
                         </div>
 
                         <div class="input-field col s4">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Projeto;
+namespace App\Http\Requests\Projeto;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,9 @@ class ProjetoCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo'            => 'required|min:5|string|max:100',
-            'area'              => 'required|min:5|string|max:100',
-            'resumo'            => 'required|min:100|string|max:240',
+            'titulo'            => 'required|string|between:5,100',
+            'area'              => 'required|string|between:5,100',
+            'resumo'            => 'required|string|between:100,240',
             'disciplina_id'     => 'required|integer',
             'escola_id'         => 'required|integer',
             'categoria_id'      => 'required|integer|size:1',
@@ -40,18 +40,15 @@ class ProjetoCreateFormRequest extends FormRequest
     {
         return [
             'titulo.required' => 'O campo titulo é de preenchimento obrigatório!',
-            'titulo.min' => 'Insira um titulo com no mínimo 5 caracteres!',
-            'titulo.max' => 'Insira um titulo com no máximo 100 caracteres!',
+            'titulo.between' => 'Insira um titulo com no mínimo 5 caracteres!',
             'titulo.string' => 'Insira um titulo válido!',
 
             'area.required' => 'O campo area é de preenchimento obrigatório!',
-            'area.min' => 'Insira uma area com no mínimo 5 caracteres!',
-            'area.max' => 'Insira uma area com no máximo 100 caracteres!',
+            'area.between' => 'Insira uma area com no mínimo 5 caracteres!',
             'area.string' => 'Insira uma area válido!',
 
             'resumo.required' => 'O campo resumo é de preenchimento obrigatório!',
-            'resumo.min' => 'Insira um resumo com no mínimo 100 caracteres!',
-            'resumo.max' => 'Insira um resumo com no máximo 240 caracteres!',
+            'resumo.between' => 'Insira um resumo com no mínimo 100 caracteres!',
             'resumo.string' => 'Insira um resumo válido!',
 
             'disciplina_id.required' => 'O campo disciplina é de preenchimento obrigatório!',
@@ -62,9 +59,11 @@ class ProjetoCreateFormRequest extends FormRequest
 
             'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
             'categoria_id.integer'  => 'Escolha uma categoria válida!',
+            'categoria.size'  => 'Escolha uma categoria!',
 
             'aluno_id.required' => 'O campo aluno é de preenchimento obrigatório!',
             'aluno_id.integer'  => 'Escolha um aluno válido!',
+            'aluno_id.size'  => 'Escolha três alunos!',
 
             'orientador.required' => 'O campo orientador é de preenchimenti obrigatório!',
             'orientador.integer' => 'Escolha um orientador válido',

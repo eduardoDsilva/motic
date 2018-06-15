@@ -28,7 +28,7 @@ class AvaliadorCreateFormRequest extends FormRequest
             'nascimento'            => 'required',
             'sexo'                  => 'required',
             'grauDeInstrucao'       => 'required',
-            'email'                 => 'required|email|string|unique:users|unique:professores|unique:avaliadores',
+            'email'                 => 'required|email|string|unique:users|unique:alunos',
             'telefone'              => 'required|max:15',
             'cpf'                   => 'required|string|min:11|max:11|unique:alunos|unique:professores|unique:avaliadores',
             'cep'                   => 'required|min:8|max:8',
