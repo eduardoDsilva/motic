@@ -1,18 +1,22 @@
 <?php
 
-//home
-Route::get('admin/aluno/home', 'Admin\Aluno\AdminAlunoController@index')->name('admin/aluno/home');
+Route::group(['middleware' => 'auth','prefix' => 'admin/aluno'], function () {
+    //home
+    Route::get('/', 'Admin\Aluno\AdminAlunoController@index')->name('admin/aluno/home');
 //exibir aluno
-Route::get('admin/aluno/show/{id}', 'Admin\Aluno\AdminAlunoController@show');
+    Route::get('/show/{id}', 'Admin\Aluno\AdminAlunoController@show');
 //update
-Route::post("admin/aluno/{id}", 'Admin\Aluno\AdminAlunoController@update');
+    Route::post("/{id}", 'Admin\Aluno\AdminAlunoController@update');
 //deletar
-Route::get("admin/aluno/destroy/{id}", "Admin\Aluno\AdminAlunoController@destroy");
+    Route::get("/destroy/{id}", "Admin\Aluno\AdminAlunoController@destroy");
 //formulario de edita
-Route::get("admin/aluno/update/{id}/edita", "Admin\Aluno\AdminAlunoController@edit");
+    Route::get("/update/{id}/edita", "Admin\Aluno\AdminAlunoController@edit");
 //formulario de registrar
-Route::get('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@create')->name('admin/aluno/cadastro/registro');
+    Route::get('/cadastro/registro', 'Admin\Aluno\AdminAlunoController@create')->name('admin/aluno/cadastro/registro');
 //create
-Route::post('admin/aluno/cadastro/registro', 'Admin\Aluno\AdminAlunoController@store')->name('admin/aluno/cadastro/registro');
-
+    Route::post('/cadastro/registro', 'Admin\Aluno\AdminAlunoController@store')->name('admin/aluno/cadastro/registro');
+});
 Route::get('/json-ano','Admin\Aluno\AdminAlunoController@escolaCategoria');
+
+
+

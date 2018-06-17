@@ -18,9 +18,9 @@ use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
 use App\Suplente;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class AdminProjetoController extends Controller
@@ -51,7 +51,6 @@ class AdminProjetoController extends Controller
     }
 
     public function store(Request $request){
-        dd('chegou em store');
         $dataForm = $request->all();
         try{
             $escola = Escola::find($dataForm['escola_id']);

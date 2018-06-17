@@ -1,18 +1,22 @@
 <?php
 
+Route::group(['middleware' => 'auth','prefix' => 'admin/escola'], function () {
+
     //home
-Route::get('admin/escola/home', 'Admin\Escola\AdminEscolaController@index')->name('admin/escola/home');
+    Route::get('/', 'Admin\Escola\AdminEscolaController@index')->name('admin/escola/home');
     //exibir aluno
-Route::get('admin/escola/show/{id}', 'Admin\Escola\AdminEscolaController@show');
+    Route::get('/show/{id}', 'Admin\Escola\AdminEscolaController@show');
     //update
-Route::post("admin/escola/{id}", 'Admin\Escola\AdminEscolaController@update');
+    Route::post("/{id}", 'Admin\Escola\AdminEscolaController@update');
     //pesquisar
-Route::post("admin/escola/show", 'Admin\Escola\AdminEscolaController@show');
+    Route::post("/show", 'Admin\Escola\AdminEscolaController@show');
     //deletar
-Route::get("admin/escola/destroy/{id}", "Admin\Escola\AdminEscolaController@destroy");
+    Route::get("/destroy/{id}", "Admin\Escola\AdminEscolaController@destroy");
     //formulario de edita
-Route::get("admin/escola/update/{id}/edita", "Admin\Escola\AdminEscolaController@edit");
+    Route::get("/update/{id}/edita", "Admin\Escola\AdminEscolaController@edit");
     //formulario de registrar
-Route::get('admin/escola/cadastro/registro', 'Admin\Escola\AdminEscolaController@create')->name('admin/escola/cadastro/registro');
+    Route::get('/cadastro/registro', 'Admin\Escola\AdminEscolaController@create')->name('admin/escola/cadastro/registro');
     //create
-Route::post('admin/escola/cadastro/registro', 'Admin\Escola\AdminEscolaController@store')->name('admin/escola/cadastro/registro');
+    Route::post('/cadastro/registro', 'Admin\Escola\AdminEscolaController@store')->name('admin/escola/cadastro/registro');
+
+});

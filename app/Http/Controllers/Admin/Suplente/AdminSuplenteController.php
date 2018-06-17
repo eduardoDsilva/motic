@@ -31,9 +31,9 @@ class AdminSuplenteController extends Controller
 
     public function index()
     {
-        $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
+        $projetos = Suplente::where('ano', '=', '2018')->paginate(10);
 
-        return view('admin/suplente/home', compact('suplentes'));
+        return view('admin/suplente/home', compact('projetos'));
     }
 
     public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
@@ -53,14 +53,14 @@ class AdminSuplenteController extends Controller
         $dataForm = $request->all();
         try{
             $escola = Escola::find($dataForm['escola_id']);
-            $suplente = Suplente::all()->where('escola_id', '=', $escola->id);
-            if(count($suplente)>=$escola->projetos){
+            $projeto = Suplente::all()->where('escola_id', '=', $escola->id);
+            if(count($projeto)>=$escola->projetos){
                 dd('não pode mais cadastrar suplentes');
                 }
-            $suplente = Suplente::create($dataForm);
+            $projeto = Suplente::create($dataForm);
 
             foreach ($request->only(['disciplina_id']) as $disciplina) {
-                $suplente->disciplina()->attach($disciplina);
+                $projeto->disciplina()->attach($disciplina);
             }
 
             foreach ($request->only(['aluno_id']) as $aluno_id) {
@@ -68,24 +68,24 @@ class AdminSuplenteController extends Controller
             }
 
             foreach ($alunos as $aluno) {
-                $aluno->suplente_id = $suplente->id;
+                $aluno->suplente_id = $projeto->id;
                 $aluno->save();
             }
 
             $orientador = Professor::find($dataForm['orientador']);
-            $orientador->suplente_id = $suplente->id;
+            $orientador->suplente_id = $projeto->id;
             $orientador->tipo = 'orientador';
             $orientador->save();
 
             if (isset($dataForm['coorientador'])) {
                 $coorientador = Professor::find($dataForm['coorientador']);
-                $coorientador->suplente_id = $suplente->id;
+                $coorientador->suplente_id = $projeto->id;
                 $coorientador->tipo = 'coorientador';
                 $coorientador->save();
             }
-            $suplentes = Suplente::where('ano', '=', '2018')->paginate(10);
+            $projetos = Suplente::where('ano', '=', '2018')->paginate(10);
 
-            return view('admin/suplente/home', compact('suplentes', 'suplentes'));
+            return view('admin/suplente/home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -94,10 +94,10 @@ class AdminSuplenteController extends Controller
 
     public function show($id){
         try{
-            $suplente = Suplente::find($id);
-            $alunos = Aluno::all()->where('suplente_id', '=', $suplente->id);
-            $professores = Professor::all()->where('suplente_id', '=', $suplente->id);
-            return view("admin/suplente/show", compact('suplente', 'alunos', 'professores'));
+            $projeto = Suplente::find($id);
+            $alunos = Aluno::all()->where('suplente_id', '=', $projeto->id);
+            $professores = Professor::all()->where('suplente_id', '=', $projeto->id);
+            return view("admin/suplente/show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -105,10 +105,10 @@ class AdminSuplenteController extends Controller
 
     public function edit($id){
         try{
-            $suplente = Suplente::find($id);
+            $projeto = Suplente::find($id);
             $disciplinas = Disciplina::all();
-            $titulo = 'Editar suplente: '.$suplente->titulo;
-            return view("admin/suplente/editar", compact( 'suplente', 'titulo', 'disciplinas'));
+            $titulo = 'Editar suplente: '.$projeto->titulo;
+            return view("admin/suplente/editar", compact( 'projeto', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -117,15 +117,15 @@ class AdminSuplenteController extends Controller
     public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
-            $suplente = Suplente::find($id);
-            $suplente->update($dataForm);
-            $suplente->disciplina()->detach();
+            $projeto = Suplente::find($id);
+            $projeto->update($dataForm);
+            $projeto->disciplina()->detach();
             foreach ($request->only(['disciplina_id']) as $disciplina){
-                $suplente->disciplina()->attach($disciplina);
+                $projeto->disciplina()->attach($disciplina);
             }
-            $this->auditoriaController->storeUpdate(json_encode($suplente, JSON_UNESCAPED_UNICODE), $suplente->id);
+            $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
 
-            Session::put('mensagem', "O suplente ".$suplente->titulo." foi editado com sucesso!");
+            Session::put('mensagem', "O suplente ".$projeto->titulo." foi editado com sucesso!");
 
             return redirect()->route("admin/suplente/home");
         }catch (\Exception $e) {
@@ -133,20 +133,20 @@ class AdminSuplenteController extends Controller
         }
     }
 
-    public function destroy($id, $suplente){
+    public function destroy($id, $projeto){
         try{
-            if($suplente == 'suplente'){
+            if($projeto == 'suplente'){
                 DB::update('update alunos set suplente_id = ? where suplente_id = ?',[null,$id]);
                 DB::update('update professores set suplente_id = ? where suplente_id = ?',[null,$id]);
-                $suplente = Suplente::find($id);
-                $suplente->delete($id);
-                $this->auditoriaController->storeDelete(json_encode($suplente, JSON_UNESCAPED_UNICODE), $suplente->id);
+                $projeto = Suplente::find($id);
+                $projeto->delete($id);
+                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
             }else{
                 DB::update('update alunos set suplente_id = ? where suplente_id = ?',[null,$id]);
                 DB::update('update professores set suplente_id = ? where suplente_id = ?',[null,$id]);
-                $suplente = Suplente::find($id);
-                $suplente->delete($id);
-                $this->auditoriaController->storeDelete(json_encode($suplente, JSON_UNESCAPED_UNICODE), $suplente->id);
+                $projeto = Suplente::find($id);
+                $projeto->delete($id);
+                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
             }
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -157,10 +157,10 @@ class AdminSuplenteController extends Controller
         $escola_id = Input::get('escola_id');
         Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
-        $suplentes = DB::table('suplentes')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+        $projetos = DB::table('suplentes')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
         $categoria_id = [];
-        foreach($suplentes as $suplente){
-            $categoria_id[] = $suplente->categoria_id;
+        foreach($projetos as $projeto){
+            $categoria_id[] = $projeto->categoria_id;
         }
         $categoria = $escola->categoria->whereNotIn('id', $categoria_id);
 

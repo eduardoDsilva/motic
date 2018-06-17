@@ -9,6 +9,17 @@
 
 @section('content')
 
+    @extends('layout.site')
+
+@section('titulo','Motic Admin')
+
+@section('breadcrumb')
+    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('admin/aluno/home')}}}" class="breadcrumb">Alunos</a>
+@endsection
+
+@section('conteudo')
+
     @if(Session::get('mensagem'))
         <div class="center-align">
             <div class="chip green">
@@ -32,32 +43,32 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-            <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
-                <div class="row">
-                    <div class="input-field col s4">
-                        <select>
-                            <option value="" disabled selected>Filtrar por...</option>
-                            <option value="id">ID</option>
-                            <option value="nome">Nome</option>
-                            <option value="nscimento">Nascimento</option>
-                            <option value="sexo">Sexo</option>
-                            <option value="etapa">Ano/Etapa</option>
-                            <option value="projeto">Projeto</option>
-                        </select>
-                        <label>Filtros</label>
-                    </div>
+                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select>
+                                <option value="" disabled selected>Filtrar por...</option>
+                                <option value="id">ID</option>
+                                <option value="nome">Nome</option>
+                                <option value="nscimento">Nascimento</option>
+                                <option value="sexo">Sexo</option>
+                                <option value="etapa">Ano/Etapa</option>
+                                <option value="projeto">Projeto</option>
+                            </select>
+                            <label>Filtros</label>
+                        </div>
 
-                    <div class="input-field col s7">
-                        <input id="search" type="search">
-                        <label for="search">Pesquise no sistema...</label>
+                        <div class="input-field col s7">
+                            <input id="search" type="search">
+                            <label for="search">Pesquise no sistema...</label>
+                        </div>
+                        {{csrf_field()}}
+                        <div class="input-field col s1">
+                            <a class="btn-floating "><i class="material-icons">search</i></a>
+                        </div>
                     </div>
-                    {{csrf_field()}}
-                    <div class="input-field col s1">
-                        <a class="btn-floating "><i class="material-icons">search</i></a>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
             <table class="centered responsive-table highlight bordered">
 
                 <thead>
@@ -102,7 +113,7 @@
             </div>
 
         </div>
-        </div>
+    </div>
     </div>
 
     <!-- Modal Structure -->
@@ -110,22 +121,24 @@
         <div class="modal-content">
             <h4>Deletar</h4>
             <p>Você tem certeza que deseja deletar o aluno abaixo?</p>
-                <div class="row">
-                    <label for="id_delete">ID</label>
-                    <div class="input-field col s12">
-                        <input disabled class="validate" type="number" id="id_delete">
-                    </div>
+            <div class="row">
+                <label for="id_delete">ID</label>
+                <div class="input-field col s12">
+                    <input disabled class="validate" type="number" id="id_delete">
                 </div>
-                <div class="row">
-                    <label for="name_delete">Nome do aluno</label>
-                    <div class="input-field col s12">
-                        <input disabled class="validate" type="text" id="name_delete">
-                    </div>
+            </div>
+            <div class="row">
+                <label for="name_delete">Nome do aluno</label>
+                <div class="input-field col s12">
+                    <input disabled class="validate" type="text" id="name_delete">
                 </div>
+            </div>
         </div>
         <div class="modal-footer">
             <a class="btn red delete">Sim</a>
         </div>
     </div>
+
+@endsection
 
 @endsection

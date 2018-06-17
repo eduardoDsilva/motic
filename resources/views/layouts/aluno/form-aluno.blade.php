@@ -14,9 +14,9 @@
         <div class="row">
             <h3 class="center-align">Cadastrar Aluno</h3>
             <div class="divider"></div>
-            <form class="col s12" method="POST" enctype="multipart/form-data"
-                  action="@if(isset($aluno)){{ url("/admin/aluno/".$aluno->id) }}
-                  @else {{ route('admin/aluno/cadastro/registro') }}@endif">
+
+            <form @yield('form')>
+
                 {{csrf_field()}}
                 <div class="section">
                     <h5>Dados básicos</h5>
@@ -156,7 +156,6 @@
                     </button>
                 </p>
 
-            </form>
             </form>
         </div>
     </div>

@@ -32,7 +32,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="">
                     <div class="row">
                         <div class="input-field col s4">
                             <select required>
@@ -128,11 +128,11 @@
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('admin/professor/cadastro/registro')}}"><i class="material-icons">add</i></a>
+                @yield('floating-button')
             </div>
 
         </div>
-        </div>
+    </div>
     </div>
 
 @endsection

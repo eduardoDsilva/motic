@@ -7,7 +7,7 @@
     <a href="{{{route ('escola/professor/home')}}}" class="breadcrumb">Professores</a>
 @endsection
 
-@section('content')
+@section('conteudo')
 
     @if(Session::get('mensagem'))
         <div class="center-align">
@@ -127,7 +127,7 @@
             </div>
 
         </div>
-        </div>
+    </div>
     </div>
 
 @endsection

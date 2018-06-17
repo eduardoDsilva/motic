@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
     <a href="{{{route ('admin/aluno/home')}}}" class="breadcrumb">suplentes</a>
-    <a href="" class="breadcrumb">{{$suplente->titulo}}</a>
+    <a href="" class="breadcrumb">{{$projeto->titulo}}</a>
 @endsection
 
 @section('content')

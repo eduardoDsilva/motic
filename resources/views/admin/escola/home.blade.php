@@ -33,7 +33,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="">
                     <div class="row">
                         <div class="input-field col s4">
                             <select required>
@@ -60,18 +60,18 @@
 
             <table class="centered responsive-table highlight bordered">
 
-            <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>E-mail</th>
-                        <th>Usuário</th>
-                        <th>Ações</th>
-                    </tr>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
                 </thead>
-            <tbody>
-            @forelse ($escolas as $escola)
+                <tbody>
+                @forelse ($escolas as $escola)
                     <tr>
                         <td>{{$escola->id}}</td>
                         <td>{{$escola->name}}</td>
@@ -85,18 +85,18 @@
                         </td>
                     </tr>
                 @empty
-                        <tr>
-                            <td>Nenhuma escola encontrada</td>
-                            <td>Nenhuma escola encontrada</td>
-                            <td>Nenhuma escola encontrada</td>
-                            <td>Nenhuma escola encontrada</td>
-                            <td>Nenhuma escola encontrada</td>
-                            <td>Nenhuma escola encontrada</td>
-                            <td>Nenhuma escola encontrada</td>
-                        </tr>
+                    <tr>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhuma escola encontrada</td>
+                    </tr>
                 @endforelse
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
@@ -124,7 +124,7 @@
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">add</i></a>
             </div>
-            </div>
+        </div>
 
     </div>
 

@@ -26,7 +26,7 @@ class EscolaCreateFormRequest extends FormRequest
         return [
             'name'                  => 'required|min:3|string|max:100',
             'categoria_id'          => 'required',
-            'email'                 => 'required|email|string|unique:users|unique:professores|unique:avaliadores',
+            'email'                 => 'required|email|string|unique:users|unique:alunos',
             'telefone'              => 'required|string|min:8|max:15',
             'cep'                   => 'required|min:8|max:8',
             'bairro'                => 'required|min:4|string|max:100',

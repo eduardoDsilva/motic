@@ -58,7 +58,7 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/home')}}}"><i class="material-icons">list</i>Listar avaliadores</a></li>
-                                    <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar avaliador</a></li>
+                                    <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/registro')}}}"><i class="material-icons">add</i>Cadastrar avaliador</a></li>
                                     <li><a class="waves-effect waves-blue" href=""><i class="material-icons">cached</i>Vincular projeto</a></li>
                                     <li><div class="divider"></div></li>
                                 </ul>

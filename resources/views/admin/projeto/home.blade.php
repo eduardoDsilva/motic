@@ -8,11 +8,7 @@
     <a href="{{{route ('admin/projeto/home')}}}" class="breadcrumb">Projetos</a>
 @endsection
 
-@section('content')
-
-    @if(session('success'))
-        {{session('success')}}
-    @endif
+@section('banner')
 
     <div class="section container">
         <div class="card-panel">
@@ -22,6 +18,16 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('content')
+
+    @if(session('success'))
+        {{session('success')}}
+    @endif
+
+    @yield('banner')
 
     <div class="section container">
         <div class="card-panel">
@@ -58,47 +64,47 @@
             </div>
 
             <div class="row">
-                    <table class="centered responsive-table highlight bordered">
-                        <thead>
+                <table class="centered responsive-table highlight bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Área</th>
+                        <th>Resumo</th>
+                        <th>Categoria</th>
+                        <th>Escola</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse ($projetos as $projeto)
                         <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Área</th>
-                            <th>Resumo</th>
-                            <th>Categoria</th>
-                            <th>Escola</th>
-                            <th>Ações</th>
+                            <td>{{$projeto->id}}</td>
+                            <td>{{$projeto->titulo}}</td>
+                            <td>{{$projeto->area}}</td>
+                            <td>{{$projeto->resumo}}</td>
+                            <td>{{$projeto->categoria->categoria}}</td>
+                            <td>{{$projeto->escola->name}}</td>
+                            <td>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal"> <i class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @forelse ($projetos as $projeto)
-                            <tr>
-                                <td>{{$projeto->id}}</td>
-                                <td>{{$projeto->titulo}}</td>
-                                <td>{{$projeto->area}}</td>
-                                <td>{{$projeto->resumo}}</td>
-                                <td>{{$projeto->categoria->categoria}}</td>
-                                <td>{{$projeto->escola->name}}</td>
-                                <td>
-                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal"> <i class="small material-icons">delete</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                                <td>Nenhum projeto encontrado</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
-                    {{$projetos->links()}}
+                    @empty
+                        <tr>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                            <td>Nenhum projeto encontrado</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+                {{$projetos->links()}}
             </div>
 
             <div class="fixed-action-btn">
@@ -114,7 +120,7 @@
             </div>
 
         </div>
-        </div>
+    </div>
     </div>
 
     <!-- Modal Structure -->
@@ -140,5 +146,4 @@
             <a class="btn red delete">Sim</a>
         </div>
     </div>
-
 @endsection

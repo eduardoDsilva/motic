@@ -17,8 +17,6 @@
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/cadastro/registro') }}">
 
-                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-
                     <h5>Dados básicos</h5>
 
                     <div class="row">

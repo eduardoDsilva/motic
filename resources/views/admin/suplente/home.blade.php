@@ -1,11 +1,10 @@
-
 @extends('layouts.app')
 
-@section('titulo','Motic Admin')
+@section('titulo','Motic Escola')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/suplente/home')}}}" class="breadcrumb">Suplentes</a>
+    <a href="{{{route ('escola/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('escola/suplente/home')}}}" class="breadcrumb">Suplentes</a>
 @endsection
 
 @section('content')
@@ -27,7 +26,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("escola/escola/show") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select required>
@@ -71,19 +70,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse ($suplentes as $suplente)
+                    @forelse ($projetos as $projeto)
                         <tr>
-                            <td>{{$suplente->id}}</td>
-                            <td>{{$suplente->titulo}}</td>
-                            <td>{{$suplente->area}}</td>
-                            <td>{{$suplente->resumo}}</td>
-                            <td>{{$suplente->categoria->categoria}}</td>
-                            <td>{{$suplente->escola->name}}</td>
+                            <td>{{$projeto->id}}</td>
+                            <td>{{$projeto->titulo}}</td>
+                            <td>{{$projeto->area}}</td>
+                            <td>{{$projeto->resumo}}</td>
+                            <td>{{$projeto->categoria->categoria}}</td>
+                            <td>{{$projeto->escola->name}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/suplente/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/suplente/show/".$suplente->id) }}"> <i class="small material-icons">library_books</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Ativar projeto"  href=""> <i class="small material-icons">publish</i></a>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/suplente/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/suplente/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
                             </td>
                         </tr>
                     @empty
@@ -99,7 +97,7 @@
                     @endforelse
                     </tbody>
                 </table>
-                {{$suplentes->links()}}
+                {{$projetos->links()}}
             </div>
 
             <div class="fixed-action-btn">
@@ -107,10 +105,9 @@
                     <i class="large material-icons">mode_edit</i>
                 </a>
                 <ul>
-                    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('admin/suplente/cadastro/registro')}}"><i class="material-icons">add</i></a></li>
-                    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar aluno" href="{{route ('admin/aluno/cadastro/registro')}}"><i class="material-icons">format_quote</i></a></li>
-                    <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('admin/professor/cadastro/registro')}}"><i class="material-icons">publish</i></a></li>
-                    <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">attach_file</i></a></li>
+                    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('escola/suplente/cadastro/registro')}}"><i class="material-icons">add</i></a></li>
+                    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar aluno" href="{{route ('escola/aluno/cadastro/registro')}}"><i class="material-icons">format_quote</i></a></li>
+                    <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('escola/professor/cadastro/registro')}}"><i class="material-icons">publish</i></a></li>
                 </ul>
             </div>
 
