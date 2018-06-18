@@ -128,7 +128,9 @@
             </div>
 
             <div class="fixed-action-btn">
-                @yield('floating-button')
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('admin/professor/cadastro/registro')}}"><i class="material-icons">add</i></a>
+                </div>
             </div>
 
         </div>

@@ -30,9 +30,11 @@
             <div class="row">
                 <h3 class="center-align">@if(isset($escola)) Editar escola: {{$escola->name}} @else Cadastrar
                     escola @endif</h3>
-                @if(isset($escola))
                     <form class="col s12" method="POST" enctype="multipart/form-data"
-                          action="{{ url("/admin/escola/".$escola->user->id) }}@else {{ route('admin/escola/cadastro/registro') }}@endif">
+                          action="
+                            @if(isset($escola)) {{ url("/admin/escola/".$escola->user->id) }}
+                            @else {{ route('admin/escola/cadastro/registro') }}
+                            @endif ">
                         {{csrf_field()}}
                         <h5>Dados básicos</h5>
                         <div class="row">

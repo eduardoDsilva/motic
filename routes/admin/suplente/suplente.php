@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth','prefix' => 'admin/suplente'], function () {
+Route::prefix('admin/suplente')->group(function () {
 //home
     Route::get('/home', 'Admin\Suplente\AdminSuplenteController@index')->name('admin/suplente/home');
 //update

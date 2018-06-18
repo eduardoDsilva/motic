@@ -1,5 +1,6 @@
 <?php
-Route::group(['middleware' => 'auth','prefix' => 'escola/suplente'], function () {
+
+Route::prefix('escola/suplente')->group(function () {
 
 //home
     Route::get('/home', 'Escola\Suplente\EscolaSuplenteController@index')->name('escola/suplente/home');

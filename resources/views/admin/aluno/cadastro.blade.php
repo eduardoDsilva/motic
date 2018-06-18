@@ -39,13 +39,6 @@
     </div>
 @endsection
 
-@section('form')
-         class="col s12" method="POST" enctype="multipart/form-data"
-          action="@if(isset($aluno)){{ url("/admin/aluno/".$aluno->id) }}
-          @else {{ route('admin/aluno/cadastro/registro') }}@endif"
-
-@endsection
-
 @section('content')
 
     @include('layouts.aluno.form-aluno')

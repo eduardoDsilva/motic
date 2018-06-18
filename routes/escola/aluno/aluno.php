@@ -1,8 +1,8 @@
 <?php
 
-Route::group(['middleware' => 'auth','prefix' => 'escola/aluno'], function () {
+Route::prefix('escola/aluno')->group(function () {
 //home
-    Route::get('/', 'Escola\Aluno\EscolaAlunoController@index')->name('/home');
+    Route::get('/', 'Escola\Aluno\EscolaAlunoController@index')->name('escola/aluno/home');
 //exibir aluno
     Route::get('/show/{id}', 'Escola\Aluno\EscolaAlunoController@show');
 //update

@@ -1,7 +1,7 @@
 <?php
 
 //telas escola
-Route::group(['middleware' => 'auth','prefix' => 'admin/disciplinas'], function () {
+Route::prefix('admin/disciplinas')->group(function () {
 //home
     Route::get('/', 'Admin\Disciplinas\AdminDisciplinaController@index')->name('admin/disciplinas/home');
 //update

@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth','prefix' => 'admin/aluno'], function () {
+Route::prefix('admin/aluno')->group(function () {
     //home
     Route::get('/', 'Admin\Aluno\AdminAlunoController@index')->name('admin/aluno/home');
 //exibir aluno
