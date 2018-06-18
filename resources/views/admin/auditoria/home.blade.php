@@ -71,7 +71,7 @@
                         <td class="limit">{{$auditoria->descricao}}</td>
                         <td>{{$auditoria->nome_usuario}}</td>
                         <td>{{$auditoria->user_id}}</td>
-                        <td><a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="#modal1" data-user_id="{{$auditoria->user_id}}" data-tipo="{{$auditoria->tipo}}" data-id="{{$auditoria->id}}" data-nome_usuario="{{$auditoria->nome_usuario}}" data-descricao="{{$auditoria->descricao}}"> <i class="small material-icons">search</i></a></td>
+                        <td><a data-target="modal1" id="auditoria" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="#modal1" data-user_id="{{$auditoria->user_id}}" data-tipo="{{$auditoria->tipo}}" data-id="{{$auditoria->id}}" data-descricao="{{$auditoria->descricao}}" data-nome_usuario="{{$auditoria->nome_usuario}}"> <i class="small material-icons">search</i></a></td>
                     </tr>
                 @empty
                     <tr>

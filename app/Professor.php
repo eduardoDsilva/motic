@@ -9,7 +9,7 @@ class Professor extends Model
     protected $table = "professores";
 
     protected $fillable = [
-        'name', 'nascimento', 'sexo', 'telefone', 'grauDeInstrucao', 'cpf', 'matricula', 'tipo', 'projeto_id', 'suplente_id', 'escola_id', 'user_id'
+        'name', 'nascimento', 'sexo', 'telefone', 'grauDeInstrucao', 'cpf', 'matricula', 'tipo', 'projeto_id', 'escola_id', 'user_id'
     ];
 
     public function user()
@@ -27,8 +27,4 @@ class Professor extends Model
         return $this->belongsTo(Projeto::class);
     }
 
-    public function suplente()
-    {
-        return $this->belongsTo(Suplente::class);
-    }
 }

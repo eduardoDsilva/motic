@@ -21,6 +21,7 @@ class CreateAvaliadores extends Migration
             $table->string('telefone');
             $table->string('grauDeInstrucao');
             $table->string('cpf');
+            $table->string('instituicao');
 
             //criando a FK do usuario desse avaliador
             $table->unsignedInteger('user_id')->unique();

@@ -77,6 +77,21 @@
     <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
 
     <script type="text/javascript">
+        $(document).on('click', '#auditoria', function() {
+            $('#id_auditoria').html('');
+            $('#id_auditoria').append($(this).data('id'));
+            $('#tipo_auditoria').html('');
+            $('#tipo_auditoria').append($(this).data('tipo'));
+            $('#descricao_auditoria').html('');
+            $('#descricao_auditoria').append($(this).data('descricao'));
+            $('#usuario_auditoria').html('');
+            $('#usuario_auditoria').append($(this).data('user_id'));
+            $('#responsavel_auditoria').html('');
+            $('#responsavel_auditoria').append($(this).data('nome_usuario'));
+        });
+    </script>
+
+    <script type="text/javascript">
         $(document).on('click', '.modal-trigger', function() {
             $('#id_delete').val($(this).data('id'));
             $('#name_delete').val($(this).data('name'));
@@ -104,9 +119,6 @@
                     }
                 });
             }
-
-
-
         });
     </script>
 
@@ -159,6 +171,7 @@
             monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
             weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
             today: 'Hoje',
             clear: 'Limpar',
             close: 'Pronto',

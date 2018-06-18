@@ -10,7 +10,7 @@ class Avaliador extends Model
     protected $table = 'Avaliadores';
 
     protected $fillable = [
-        'name', 'nascimento', 'sexo', 'telefone', 'grauDeInstrucao', 'cpf', 'projeto_id', 'user_id',
+        'name', 'nascimento', 'sexo', 'telefone', 'grauDeInstrucao', 'cpf', 'instituicao', 'projeto_id', 'user_id',
     ];
 
     public function user()

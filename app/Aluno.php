@@ -15,11 +15,6 @@ class Aluno extends Model
         return $this->belongsTo(Projeto::class);
     }
 
-    public function suplente()
-    {
-        return $this->belongsTo(Suplente::class);
-    }
-
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id', 'id');

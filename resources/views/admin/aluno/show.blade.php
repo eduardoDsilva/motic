@@ -10,6 +10,6 @@
 
 @section('content')
 
-@includeIf('layouts.aluno.show-aluno')
+@include('layouts.aluno.show-aluno')
 
 @endsection

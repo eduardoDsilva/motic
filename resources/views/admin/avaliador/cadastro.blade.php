@@ -55,9 +55,13 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
-                                <option value="" disabled>Sexo</option>
-                                <option value="masculino"  <?php if(isset($avaliador) && $avaliador->sexo=='feminino'){ echo 'selected';} ?>>Feminino</option>
-                                <option value="feminino"   <?php if(isset($avaliador) && $avaliador->sexo=='masculino'){ echo 'selected';} ?>>Masculino</option>
+                                <option value="" disabled selected>Sexo</option>
+                                <option value="feminino"
+                                        @if(isset($avaliador)) @if($avaliador->sexo == 'feminino') selected @endif @endif>Feminino
+                                </option>
+                                <option value="masculino"
+                                        @if(isset($avaliador)) @if($avaliador->sexo == 'masculino') selected @endif @endif>Masculino
+                                </option>
                             </select>
                             <label>Sexo</label>
                         </div>
@@ -76,19 +80,28 @@
                     </div>
                     <div class="row">
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">email</i>
                             <label for="email">Email</label>
                             <input type="email" name="email" value="{{$avaliador->user->email or old('email')}}"required>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">local_phone</i>
                             <label for="telefone">Telefone</label>
                             <input type="text" name="telefone" data-length="16" value="{{$avaliador->telefone or old('telefone')}}"required>
                         </div>
 
-                        <div class="input-field col s4">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">business</i>
+                            <label for="instituicao">Instituição</label>
+                            <input type="text" name="instituicao" value="{{$avaliador->instituicao or old('instituicao')}}"required>
+                        </div>
+
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF</label>
                             <input type="number" name="cpf" data-length="11" value="{{$avaliador->cpf or old('cpf')}}"required>
