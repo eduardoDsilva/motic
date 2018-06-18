@@ -17,6 +17,8 @@ Route::prefix('admin/suplente')->group(function () {
     Route::get('/cadastro/registro', 'Admin\Suplente\AdminSuplenteController@create')->name('admin/suplente/cadastro/registro');
 //create
     Route::post('/cadastro/registro', 'Admin\Suplente\AdminSuplenteController@store')->name('admin/suplente/cadastro/registro');
+//promove
+    Route::get('/promove/{id}', 'Admin\Suplente\AdminSuplenteController@promoveSuplente');
 });
 Route::get('/json-categorias-suplente','Admin\Suplente\AdminSuplenteController@categorias');
 

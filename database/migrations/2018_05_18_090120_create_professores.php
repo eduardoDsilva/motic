@@ -34,9 +34,6 @@ class CreateProfessores extends Migration
             $table->unsignedInteger('projeto_id')->nullable();
             $table->foreign('projeto_id')->references('id')->on('projetos');
 
-            $table->unsignedInteger('suplente_id')->nullable();
-            $table->foreign('suplente_id')->references('id')->on('suplentes');
-
             $table->timestamps();
         });
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

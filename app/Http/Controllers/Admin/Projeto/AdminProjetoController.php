@@ -32,7 +32,7 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')->where('tipo', '=', 'normal')->paginate(10);
 
         return view('admin/projeto/home', compact('projetos'));
     }
@@ -82,9 +82,7 @@ class AdminProjetoController extends Controller
                 $coorientador->tipo = 'coorientador';
                 $coorientador->save();
             }
-            $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
-
-            return view('admin/projeto/home', compact('projetos', 'suplentes'));
+            return redirect()->route("admin/projeto/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -168,13 +166,13 @@ class AdminProjetoController extends Controller
 
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->where('suplente_id', '=', null)->get();
+        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
         return response()->json($alunos);
     }
 
     public function professores(){
         $escola_id = Input::get('escola_id');
-        $professores = Professor::where('escola_id', '=', $escola_id)->where('projeto_id', '=', null)->where('suplente_id', '=', null)->get();
+        $professores = Professor::where('escola_id', '=', $escola_id)->where('projeto_id', '=', null)->get();
         return response()->json($professores);
     }
 

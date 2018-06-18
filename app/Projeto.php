@@ -8,7 +8,7 @@ class Projeto extends Model
 {
 
     protected $fillable = [
-        'titulo', 'area', 'estande', 'resumo', 'status', 'categoria_id', 'escola_id'
+        'titulo', 'area', 'estande', 'resumo', 'ano', 'tipo', 'status', 'categoria_id', 'escola_id'
     ];
 
     public function avaliador()
