@@ -65,6 +65,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Ano/Etapa</th>
+                    <th>Escola</th>
                     <th>Turma</th>
                     <th>Projeto</th>
                     <th>Ações</th>
@@ -76,10 +77,11 @@
                         <td>{{$aluno->id}}</td>
                         <td>{{$aluno->name}}</td>
                         <td>{{$aluno->etapa}}</td>
+                        <td>{{$aluno->escola->name}}</td>
                         <td>{{$aluno->turma}}</td>
                         <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Aluno sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
                         <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/escola/aluno/update/".$aluno->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/aluno/update/".$aluno->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$aluno->id}}" data-name="{{$aluno->name}}"> <i class="small material-icons">delete</i></a>
                             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/aluno/show/".$aluno->id) }}"> <i class="small material-icons">library_books</i></a>
                         </td>

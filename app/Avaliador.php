@@ -20,7 +20,7 @@ class Avaliador extends Model
 
     public function projeto()
     {
-        return $this->belongsToMany(Projeto::class);
+        return $this->belongsToMany(Projeto::class, 'avaliadores_projetos');
     }
 
     public function suplente()

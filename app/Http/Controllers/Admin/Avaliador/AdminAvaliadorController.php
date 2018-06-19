@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\Avaliador\AvaliadorUpdateFormRequest;
 use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class AdminAvaliadorController extends Controller
@@ -122,6 +123,32 @@ class AdminAvaliadorController extends Controller
             $this->auditoriaController->storeDelete(json_encode($avaliador, JSON_UNESCAPED_UNICODE), $avaliador->id);
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
         }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+    
+    public function atribuir(){
+        try{
+            $projetos = Projeto::where('ano', '=', '2018')->where('tipo', '=', 'normal')->where('avaliadores', '<','3')->paginate(10);
+            $avaliadores = Avaliador::all();
+            return view('admin/avaliador/atribuir', compact('projetos', 'avaliadores'));
+        }catch (\Exception $e){
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function atribui(Request $request){
+        $dataForm = $request->all();
+        try{
+            $projeto = Projeto::find($dataForm['projeto_id']);
+            $avaliador = Avaliador::find($dataForm['avaliador_id']);
+
+            $avaliador->projeto()->attach($projeto->id);
+            $qnt = $projeto->avaliadores + 1;
+            $projeto->update(['avaliadores' => $qnt]);
+
+            return view('admin/avaliador/atribuir');
+        }catch (\Exception $e){
             return "ERRO: " . $e->getMessage();
         }
     }

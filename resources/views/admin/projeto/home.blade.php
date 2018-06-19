@@ -89,7 +89,7 @@
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
                                 <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal"> <i class="small material-icons">delete</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Avaliadores"  href=""> <i class="small material-icons">contacts</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Rebaixar a projeto suplente"  href="{{ url("/admin/projeto/rebaixa/".$projeto->id) }}"> <i class="small material-icons">arrow_downward</i></a>
                             </td>
                         </tr>
                     @empty

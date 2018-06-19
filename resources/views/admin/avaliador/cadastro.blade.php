@@ -31,10 +31,7 @@
             <h3 class="center-align">{{$titulo}}</h3>
             <article class="col s12">
                 @if(isset($avaliador))
-                    <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$avaliador->user->id) }}">
-                @else
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin/avaliador/registro') }}">
-                 @endif
+                    <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/avaliador/".$avaliador->user->id) }} @else {{ route('admin/avaliador/registro') }}"> @endif
                 {{csrf_field()}}
 
                     <h5>Dados básicos</h5>

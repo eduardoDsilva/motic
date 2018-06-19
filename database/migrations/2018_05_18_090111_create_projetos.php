@@ -22,6 +22,7 @@ class CreateProjetos extends Migration
             $table->longText('resumo');
             $table->integer('ano')->default(date('Y'));
             $table->enum('tipo', ['normal', 'suplente'])->default('normal');
+            $table->integer('avaliadores')->default(0);
             $table->unsignedInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
 

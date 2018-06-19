@@ -150,11 +150,21 @@ class AdminProjetoController extends Controller
         }
     }
 
+    public function rebaixaSuplente($id){
+        try{
+            $projeto = Projeto::find($id);
+            $projeto->update(['tipo' => 'suplente']);
+            return redirect()->route("admin/projeto/home");
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
     public function categorias(){
         $escola_id = Input::get('escola_id');
         Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
-        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->where('tipo','=','normal')->get();
         $categoria_id = [];
         foreach($projetos as $projeto){
             $categoria_id[] = $projeto->categoria_id;

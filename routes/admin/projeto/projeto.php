@@ -17,6 +17,8 @@ Route::prefix('admin/projeto')->group(function () {
     Route::get('/cadastro/registro', 'Admin\Projeto\AdminProjetoController@create')->name('admin/projeto/cadastro/registro');
 //create
     Route::post('/cadastro/registro', 'Admin\Projeto\AdminProjetoController@store')->name('admin/projeto/cadastro/registro');
+    //rebaixa
+    Route::get('/rebaixa/{id}', 'Admin\Projeto\AdminProjetoController@rebaixaSuplente');
 });
     Route::get('/json-categorias-projeto', 'Admin\Projeto\AdminProjetoController@categorias');
 

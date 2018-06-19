@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'check.admin' => \App\Http\Middleware\CheckContaAdmin::class,
         'check.escola' => \App\Http\Middleware\CheckContaEscola::class,
+        'check.avaliador' => \App\Http\Middleware\CheckContaAvaliador::class,
+        'check.professor' => \App\Http\Middleware\CheckContaProfessor::class,
     ];
 }
