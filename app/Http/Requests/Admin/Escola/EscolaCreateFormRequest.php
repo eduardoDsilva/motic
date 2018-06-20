@@ -24,16 +24,16 @@ class EscolaCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|string|max:100',
+            'name'                  => 'required|alpha|min:3|max:100',
             'categoria_id'          => 'required',
             'email'                 => 'required|email|string|unique:users|unique:alunos',
-            'telefone'              => 'required|string|min:8|max:15',
+            'telefone'              => 'required|alpha_num|min:8|max:15',
             'cep'                   => 'required|min:8|max:8',
             'bairro'                => 'required|min:4|string|max:100',
             'rua'                   => 'required|min:4|string|max:100',
             'numero'                => 'required|min:1|max:5',
             'complemento'           => '',
-            'username'              => 'required|string|min:5|max:20|unique:users',
+            'username'              => 'required|alpha|min:5|max:20|unique:users',
             'password'              => 'required|string|min:6|confirmed',
         ];
     }
@@ -42,6 +42,7 @@ class EscolaCreateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
+            'name.alpha' => 'Insira um nome válido!',
             'name.min' => 'Insira um nome válido!',
             'name.max' => 'Insira um nome válido!',
 
@@ -52,9 +53,9 @@ class EscolaCreateFormRequest extends FormRequest
             'email.unique' => 'E-mail já cadastrado no sistema',
 
             'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
-            'telefone.numeric' => 'Insira um telefoen válido!',
-            'telefone.min' => 'Insira um telefone válido!',
-            'telefone.max' => 'Insira um telefone válido!',
+            'telefone.alpha_num' => 'Insira um telefone sem letras',
+            'telefone.min' => 'Insira um telefone com mais de 8 números!',
+            'telefone.max' => 'Insira um telefone com até 16 números!',
 
             'cep.required' => 'O campo CEP é de preenchimento obrigatório',
             'cep.min' => 'Insira um CEP válido!',
@@ -75,8 +76,9 @@ class EscolaCreateFormRequest extends FormRequest
             'numero.max' => 'Insira um número válido!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.min' => 'Insira um némero válido!',
-            'username.max' => 'Insira um némero válido!',
+            'username.alpha' => 'Insira um usuário válido!',
+            'username.min' => 'Insira um usuário válido!',
+            'username.max' => 'Insira um usuário válido!',
             'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',

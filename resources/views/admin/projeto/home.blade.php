@@ -82,7 +82,7 @@
                             <td>{{$projeto->id}}</td>
                             <td>{{$projeto->titulo}}</td>
                             <td>{{$projeto->area}}</td>
-                            <td>{{$projeto->resumo}}</td>
+                            <td class="limit">{{$projeto->resumo}}</td>
                             <td>{{$projeto->categoria->categoria}}</td>
                             <td>{{$projeto->escola->name}}</td>
                             <td>

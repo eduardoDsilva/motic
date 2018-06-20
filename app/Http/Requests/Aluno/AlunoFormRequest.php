@@ -25,7 +25,7 @@ class AlunoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|string|between:3,100',
+            'name'                  => 'required|alpha|between:3,100',
             'nascimento'            => 'required',
             'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
             'escola_id'             => 'required|integer|exists:escolas,id',
@@ -44,7 +44,7 @@ class AlunoFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.string' => 'Insira um nome válido!',
+            'name.alpha' => 'Insira um nome válido!',
             'name.between' => 'Insira um nome válido!',
 
             'naacimento.required' => 'O cmapo nascimento é de preencimento obrigatório',
@@ -66,6 +66,8 @@ class AlunoFormRequest extends FormRequest
             'rua.max' => 'Insira uma rua válida!',
 
             'numero.max' => 'Insira um número válido!',
+
+            'cep.max' => 'Insira um cep válido!',
         ];
     }
 }

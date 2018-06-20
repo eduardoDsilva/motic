@@ -24,17 +24,17 @@ class EscolaUpdateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|string|max:100',
+            'name'                  => 'required|min:3|alpha|max:100',
             'categoria_id'          => 'required',
-            'email'                 => 'required|email|string',
-            'telefone'              => 'required|string|min:8|max:15',
+            'email'                 => 'required|email',
+            'telefone'              => 'required|min:8|max:15',
             'cep'                   => 'required|min:8|max:8',
-            'bairro'                => 'required|min:4|string|max:100',
-            'rua'                   => 'required|min:4|string|max:100',
+            'bairro'                => 'required|min:4|max:100',
+            'rua'                   => 'required|min:4|max:100',
             'numero'                => 'required|min:1|max:5',
             'complemento'           => '',
-            'username'              => 'required|string|min:5|max:20',
-            'password'              => 'required|string|min:6|confirmed',
+            'username'              => 'required|alpha|min:5|max:20',
+            'password'              => 'required|min:6|confirmed',
         ];
     }
 
@@ -42,8 +42,9 @@ class EscolaUpdateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.min' => 'Insira um nome válido!',
-            'name.max' => 'Insira um nome válido!',
+            'name.alpha' => 'Insira um nome sem números!',
+            'name.min' => 'Insira um nome com no mínimo 3 caracteres!',
+            'name.max' => 'Insira um nome com no máximo 100 caracteres!',
 
             'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
 

@@ -25,7 +25,7 @@ class ProfessorCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|string|between:3,100',
+            'name'                  => 'required|alpha|between:3,100',
             'nascimento'            => 'required',
             'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
             'grauDeInstrucao'       => 'required',
@@ -48,7 +48,7 @@ class ProfessorCreateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.string' => 'Insira um nome válido!',
+            'name.alpha' => 'Insira um nome válido!',
             'name.between' => 'Insira um nome válido!',
 
             'nascimento.required' => 'O cmapo nascimento é de preencimento obrigatório',

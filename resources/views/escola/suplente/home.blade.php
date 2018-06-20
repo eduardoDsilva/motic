@@ -76,7 +76,7 @@
                             <td>{{$suplente->id}}</td>
                             <td>{{$suplente->titulo}}</td>
                             <td>{{$suplente->area}}</td>
-                            <td>{{$suplente->resumo}}</td>
+                            <td class="limit">{{$suplente->resumo}}</td>
                             <td>{{$suplente->categoria->categoria}}</td>
                             <td>{{$suplente->escola->name}}</td>
                             <td>

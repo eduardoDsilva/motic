@@ -76,7 +76,7 @@
                                 <td>{{$projeto->titulo}}</td>
                                 <td>{{$projeto->area}}</td>
                                 <td>{{$projeto->estande == null ? 'Estande não definida' : $projeto->estande}}</td>
-                                <td>{{$projeto->resumo}}</td>
+                                <td class="limit">{{$projeto->resumo}}</td>
                                 <td>{{$projeto->categoria->categoria}}</td>
                                 <td>{{$projeto->escola->name}}</td>
                                 <td>

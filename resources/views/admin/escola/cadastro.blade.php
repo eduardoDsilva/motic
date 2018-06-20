@@ -153,7 +153,7 @@
                         <div class="input-field">
                             <i class="material-icons prefix">person</i>
                             <input id="usuario" class="validate" type="text" name="username"
-                                   value="{{$escola->user->username or old('usuario')}}" required>
+                                   value="{{$escola->user->username or old('username')}}" required>
                             <label data-error="Insira um usuário válido!" data-success="Ok"
                                    for="usuario">Usuário *</label>
                         </div>
