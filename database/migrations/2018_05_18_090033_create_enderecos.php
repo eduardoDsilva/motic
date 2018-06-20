@@ -15,14 +15,14 @@ class CreateEnderecos extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rua');
-            $table->string('numero');
+            $table->string('rua')->nullable();
+            $table->string('numero')->nullable();
             $table->string('complemento')->nullable();
-            $table->string('bairro');
+            $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('pais');
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('pais')->nullable();
 
             $table->unsignedInteger('user_id')->nullable()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

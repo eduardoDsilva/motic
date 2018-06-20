@@ -67,9 +67,6 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Usuário</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Endereço</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
@@ -79,9 +76,6 @@
                         <td>{{$avaliador->id}}</td>
                         <td>{{$avaliador->user->name}}</td>
                         <td>{{$avaliador->user->username}}</td>
-                        <td>{{$avaliador->user->email}}</td>
-                        <td>{{$avaliador->telefone}}</td>
-                        <td>{{$avaliador->user->endereco->rua}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/avaliador/update/".$avaliador->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$avaliador->id}}" data-name="{{$avaliador->name}}"> <i class="small material-icons">delete</i></a>

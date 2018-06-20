@@ -12,3 +12,5 @@ require_once('admin/admin.php');
 require_once('escola/escola.php');
 
 require_once('professor/professor.php');
+
+require_once('avaliador/avaliador.php');
