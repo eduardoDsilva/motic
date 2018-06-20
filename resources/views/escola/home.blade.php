@@ -56,14 +56,14 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('escola/professor/home')}}">
+                <a href="{{route ('escola/suplente/home')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable red darken-2">
                             <div class="card-content black-text center-align">
-                                <i class="large material-icons">person</i>
+                                <i class="large material-icons">library_add</i>
                             </div>
                             <div class="card-action white-text">
-                                <span class="card-title">Opções da conta</span>
+                                <span class="card-title">Suplentes</span>
                             </div>
                         </div>
                     </div>

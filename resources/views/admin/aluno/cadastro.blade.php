@@ -26,7 +26,7 @@
                 </option>
             @endforelse
         </select>
-        <label>Escola</label>
+        <label>Escola *</label>
     </div>
 @endsection
 
@@ -35,8 +35,16 @@
         <i class="material-icons prefix">book</i>
         <select id='anoLetivo' name="etapa">
         </select>
-        <label>Ano/Etapa</label>
+        <label>Ano/Etapa *</label>
     </div>
+@endsection
+
+@section('form')
+
+    class="col s12" method="POST" enctype="multipart/form-data"
+    action="@if(isset($aluno)){{ url("/admin/aluno/".$aluno->id) }}
+    @else {{ route('admin/aluno/cadastro/registro') }}@endif"
+
 @endsection
 
 @section('content')

@@ -18,4 +18,7 @@ Route::prefix('escola/suplente')->group(function () {
     Route::get('/cadastro/registro', 'Escola\Suplente\EscolaSuplenteController@create')->name('escola/suplente/cadastro/registro');
 //create
     Route::post('/cadastro/registro', 'Escola\Suplente\EscolaSuplenteController@store')->name('escola/suplente/cadastro/registro');
+
+    Route::get('/promove/{id}', 'Escola\Suplente\EscolaSuplenteController@promoveSuplente');
+
 });

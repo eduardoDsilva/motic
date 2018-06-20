@@ -27,7 +27,7 @@
                 </option>
             @endforelse
         </select>
-        <label>Escola</label>
+        <label>Escola *</label>
     </div>
 
 @endsection

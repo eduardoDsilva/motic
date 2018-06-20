@@ -15,9 +15,7 @@
             <h3 class="center-align">Cadastrar Aluno</h3>
             <div class="divider"></div>
 
-            <form class="col s12" method="POST" enctype="multipart/form-data"
-                  action="@if(isset($aluno)){{ url("/admin/aluno/".$aluno->id) }}
-                  @else {{ route('admin/aluno/cadastro/registro') }}@endif">
+            <form @yield('form')>
 
                 {{csrf_field()}}
                 <div class="section">
@@ -25,13 +23,13 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Nome</label>
+                            <label for="nome">Nome *</label>
                             <input type="text" name="name" value="{{$aluno->name or old('name')}}"
                                    required>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">today</i>
-                            <label for="nascimento">Nascimento</label>
+                            <label for="nascimento">Nascimento *</label>
                             <input type="text" class="datepicker" name="nascimento"
                                    value="{{$aluno->nascimento or old('nascimento')}}" required>
                         </div>
@@ -48,7 +46,7 @@
                                         @if(isset($aluno)) @if($aluno->sexo == 'masculino') selected @endif @endif>Masculino
                                 </option>
                             </select>
-                            <label>Sexo</label>
+                            <label>Sexo *</label>
                         </div>
 
                         @yield('campo-escola')
@@ -61,7 +59,7 @@
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="turma">Turma</label>
+                            <label for="turma">Turma *</label>
                             <input type="text" name="turma" value="{{$aluno->turma or old('turma')}}" required>
                         </div>
 

@@ -65,7 +65,6 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Telefone</th>
-                    <th>E-mail</th>
                     <th>Usuário</th>
                     <th>Ações</th>
                 </tr>
@@ -76,7 +75,6 @@
                         <td>{{$escola->id}}</td>
                         <td>{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
-                        <td>{{$escola->user->email}}</td>
                         <td>{{$escola->user->username}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/edita") }}"><i class="small material-icons">edit</i></a>
@@ -86,8 +84,6 @@
                     </tr>
                 @empty
                     <tr>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
                         <td>Nenhuma escola encontrada</td>
                         <td>Nenhuma escola encontrada</td>
                         <td>Nenhuma escola encontrada</td>

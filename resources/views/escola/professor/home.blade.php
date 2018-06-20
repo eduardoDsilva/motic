@@ -7,7 +7,7 @@
     <a href="{{{route ('escola/professor/home')}}}" class="breadcrumb">Professores</a>
 @endsection
 
-@section('conteudo')
+@section('content')
 
     @if(Session::get('mensagem'))
         <div class="center-align">

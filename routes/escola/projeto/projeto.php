@@ -18,6 +18,8 @@ Route::prefix('escola/projeto')->group(function () {
     Route::get('/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@create')->name('escola/projeto/cadastro/registro');
 //create
     Route::post('/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@store')->name('escola/projeto/cadastrar');
+    //rebaixa
+    Route::get('/rebaixa/{id}', 'Escola\Projeto\EscolaProjetoController@rebaixaSuplente');
 });
 
 Route::get('/json-aluno','Escola\Projeto\EscolaProjetoController@alunos');

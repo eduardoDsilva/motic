@@ -16,22 +16,22 @@
     <div class="input-field col s6">
         <i class="material-icons prefix">people</i>
         <select id='escolaAluno' name="escola_id">
-            <option value="{{$escolas->id}}" selected>{{$escolas->name or old('name')}}</option>
+            <option value="{{$escola->id}}" selected>{{$escola->name or old('name')}}</option>
         </select>
-        <label>Escola</label>
+        <label>Escola *</label>
     </div>
 @endsection
 
 @section('campo-etapa')
     <div class="input-field col s6">
         <i class="material-icons prefix">book</i>
-        <select id='anoLetivo' name="etapa">
+        <select name="etapa">
             <option value="" disabled selected>Ano Letivo</option>
             @foreach($ano as $a)
-                <option value="{{$a}}" @if(isset($aluno)) @if($aluno->anoLetivo == $a) selected @endif @endif>{{$a}}</option>
+                <option value="{{$a}}" @if(isset($aluno)) @if($aluno->etapa == $a) selected @endif @endif>{{$a}}</option>
             @endforeach
         </select>
-        <label>Ano Letivo</label>
+        <label>Ano Letivo *</label>
     </div>
 @endsection
 

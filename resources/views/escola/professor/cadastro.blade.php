@@ -17,8 +17,9 @@
     <div class="input-field col s4">
         <i class="material-icons prefix">people</i>
         <select name="escola_id">
-            <option value="{{$professor->escola->id}}" selected>{{$professor->escola->name}}</option>
+            <option value="{{$escola->id}}" selected>{{$escola->name}}</option>
         </select>
+        <label>Escola *</label>
     </div>
 
 @endsection

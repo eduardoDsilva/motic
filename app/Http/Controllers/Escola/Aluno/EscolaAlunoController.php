@@ -7,6 +7,7 @@ use App\Dado;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Aluno\AlunoFormRequest;
 use App\Projeto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -32,8 +33,9 @@ class EscolaAlunoController extends Controller
     }
 
     public function create(){
-        $escolas = Escola::find(Auth::user()->escola->id);
-        $categorias = $escolas->categoria;
+        $escola = Escola::find(Auth::user()->escola->id);
+        $categorias = $escola->categoria;
+        $ano = [];
         foreach ($categorias as $categoria){
             if($categoria->id == 1){
                 $ano[] = 'Educação Infantil';
@@ -53,7 +55,7 @@ class EscolaAlunoController extends Controller
                 $ano[] = 'EJA';
             }
         }
-        return view('escola/aluno/cadastro', compact('escolas', 'ano'));
+        return view('escola/aluno/cadastro', compact('escola', 'ano'));
     }
 
     public function store(AlunoFormRequest $request){

@@ -22,12 +22,12 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Título</label>
+                            <label for="nome">Título *</label>
                             <input type="text" name="titulo" required>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <label for="nome">Área</label>
+                            <label for="nome">Área *</label>
                             <input type="text" name="area" required>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
                             <textarea name="resumo" id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Resumo</label>
+                            <label for="textarea1">Resumo *</label>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                                     <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com o administrador.</option>
                                 @endforelse
                             </select>
-                            <label>Disciplinas</label>
+                            <label>Disciplinas *</label>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
                                     <option value="">Nenhuma escola cadastrada no sistema! Entre em contato com o administrador.</option>
                                 @endforelse
                             </select>
-                            <label>Escola</label>
+                            <label>Escola *</label>
                         </div>
                     </div>
 
@@ -76,14 +76,14 @@
                             <i class="material-icons prefix">assignment</i>
                             <select name="categoria_id" id="categorias" required>
                             </select>
-                            <label>Categoria</label>
+                            <label>Categoria *</label>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">assignment</i>
                             <select multiple name="aluno_id[]" id="alunos" required>
                             </select>
-                            <label>Alunos</label>
+                            <label>Alunos *</label>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@
                             <i class="material-icons prefix">assignment</i>
                             <select name="orientador" id="orientador" required>
                             </select>
-                            <label>Orientador</label>
+                            <label>Orientador *</label>
                         </div>
 
                         <div class="input-field col s6">

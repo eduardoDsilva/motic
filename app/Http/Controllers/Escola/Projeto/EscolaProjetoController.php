@@ -156,6 +156,16 @@ class EscolaProjetoController extends Controller
         }
     }
 
+    public function rebaixaSuplente($id){
+        try{
+            $projeto = Projeto::find($id);
+            $projeto->update(['tipo' => 'suplente']);
+            return redirect()->route("escola/projeto/home");
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
         $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();

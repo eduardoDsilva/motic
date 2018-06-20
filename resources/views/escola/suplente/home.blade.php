@@ -71,7 +71,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse ($suplentes as $suplente)
+                    @forelse ($projetos as $suplente)
                         <tr>
                             <td>{{$suplente->id}}</td>
                             <td>{{$suplente->titulo}}</td>
@@ -83,7 +83,7 @@
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/suplente/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
                                 <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/suplente/show/".$suplente->id) }}"> <i class="small material-icons">library_books</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href=""> <i class="small material-icons">publish</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Promover a projeto ativo"  href="{{ url("/escola/suplente/promove/".$projeto->id) }}"> <i class="small material-icons">arrow_upward</i></a>
                             </td>
                         </tr>
                     @empty
@@ -99,7 +99,7 @@
                     @endforelse
                     </tbody>
                 </table>
-                {{$suplentes->links()}}
+                {{$projetos->links()}}
             </div>
 
             <div class="fixed-action-btn">
