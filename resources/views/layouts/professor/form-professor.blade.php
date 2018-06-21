@@ -180,11 +180,9 @@
                         </div>
                     </div>
 
-                    <p class="center-align">
-                        <button class="waves-effect waves-light btn" type="submit"><i
-                                    class="material-icons right">send</i>salvar
-                        </button>
-                    </p>
+                    <div class="fixed-action-btn">
+                        <button type="submit" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i></button>
+                    </div>
 
                 </form>
 

@@ -44,14 +44,14 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/avaliador/home')}}">
+                <a href="{{route ('admin/suplente/home')}}">
                     <div class="col s12 m4">
-                        <div class="card hoverable orange darken-2">
+                        <div class="card hoverable indigo darken-2">
                             <div class="card-content black-text center-align">
-                                <i class="large material-icons">contacts</i>
+                                <i class="large material-icons">library_add</i>
                             </div>
                             <div class="card-action white-text">
-                                <span class="card-title">Avaliadores</span>
+                                <span class="card-title">Suplentes</span>
                             </div>
                         </div>
                     </div>
@@ -88,6 +88,30 @@
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Professores</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="col s12 m4">
+                        <div class="card hoverable grey darken-2">
+                            <div class="card-content black-text center-align">
+                                <i class="large material-icons">format_list_bulleted</i>
+                            </div>
+                            <div class="card-action white-text">
+                                <span class="card-title">Auditoria</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="{{route ('admin/avaliador/home')}}">
+                    <div class="col s12 m4">
+                        <div class="card hoverable orange darken-2">
+                            <div class="card-content black-text center-align">
+                                <i class="large material-icons">contacts</i>
+                            </div>
+                            <div class="card-action white-text">
+                                <span class="card-title">Avaliadores</span>
                             </div>
                         </div>
                     </div>

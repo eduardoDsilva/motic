@@ -30,7 +30,7 @@ class AdminProfessorController extends Controller
 
     public function index()
     {
-        $professores = Professor::all();
+        $professores = Professor::orderBy('name', 'asc')->paginate(10);
         return view("admin/professor/home", compact('professores'));
     }
 
@@ -121,7 +121,7 @@ class AdminProfessorController extends Controller
     public function destroy($id){
         try{
             $professor = Professor::find($id);
-            $professor->delete($id);
+            $professor->user()->delete($id);
             $this->auditoriaController->storeDelete(json_encode($professor, JSON_UNESCAPED_UNICODE), $professor->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

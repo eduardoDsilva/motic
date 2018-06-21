@@ -78,7 +78,7 @@
                         <td>{{$avaliador->user->username}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/avaliador/update/".$avaliador->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$avaliador->id}}" data-name="{{$avaliador->name}}"> <i class="small material-icons">delete</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$avaliador->id}}" data-name="{{$avaliador->name}}" data-tipo="avaliador"> <i class="small material-icons">delete</i></a>
                             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/avaliador/show/".$avaliador->id) }}"> <i class="small material-icons">library_books</i></a>
                             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Projetos"  href=""> <i class="small material-icons">view_agenda</i></a>
                         </td>
@@ -110,6 +110,7 @@
                         <label for="id_delete">ID</label>
                         <div class="input-field col s12">
                             <input disabled class="validate" type="number" id="id_delete">
+                            <input disabled class="validate" hidden type="text" id="tipo">
                         </div>
                     </div>
                     <div class="row">

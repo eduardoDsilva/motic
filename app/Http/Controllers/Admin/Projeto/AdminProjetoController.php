@@ -13,7 +13,7 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Projeto\ProjetoFormRequest;
 use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
@@ -32,7 +32,7 @@ class AdminProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->where('tipo', '=', 'normal')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')->where('tipo', '=', 'normal')->orderBy('titulo', 'asc')->paginate(10);
 
         return view('admin/projeto/home', compact('projetos'));
     }
@@ -130,21 +130,13 @@ class AdminProjetoController extends Controller
         }
     }
 
-    public function destroy($id, $projeto){
+    public function destroy($id){
         try{
-            if($projeto == 'suplente'){
-                DB::update('update alunos set suplente_id = ? where suplente_id = ?',[null,$id]);
-                DB::update('update professores set suplente_id = ? where suplente_id = ?',[null,$id]);
-                $projeto = Suplente::find($id);
-                $projeto->delete($id);
-                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
-            }else{
-                DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
-                DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
-                $projeto = Projeto::find($id);
-                $projeto->delete($id);
-                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
-            }
+            DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
+            DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
+            $projeto = Projeto::find($id);
+            $projeto->delete($id);
+            $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

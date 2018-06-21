@@ -13,7 +13,7 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Projeto\ProjetoFormRequest;
 use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
@@ -32,7 +32,7 @@ class EscolaProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')->orderBy('titulo', 'asc')->paginate(10);
 
         return view('escola/projeto/home', compact('projetos'));
     }
@@ -59,7 +59,7 @@ class EscolaProjetoController extends Controller
         return view("escola/projeto/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(Request $request){
+    public function store(ProjetoFormRequest $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find($dataForm['escola_id']);
@@ -125,7 +125,7 @@ class EscolaProjetoController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ProjetoFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($id);

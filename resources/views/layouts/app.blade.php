@@ -96,24 +96,66 @@
             $('#id_delete').val($(this).data('id'));
             $('#name_delete').val($(this).data('name'));
             $('#projeto').val($(this).data('projeto'));
+            $('#tipo').val($(this).data('tipo'));
         });
 
         $('.modal-footer').on('click', '.delete', function() {
             id = $('#id_delete').val();
             projeto = $('#projeto').val();
+            tipo = $('#tipo').val();
             console.log(id);
-            if(projeto == null){
+            if(tipo == 'escola'){
                 $.ajax({
                     type: 'GET',
-                    url: 'destroy/' + id,
+                    url: 'escola/destroy/' + id,
                     success: function(data) {
                         location.reload();
                     }
                 });
-            }else{
+            }else if(tipo == 'projeto'){
                 $.ajax({
                     type: 'GET',
-                    url: 'destroy/' + id + '/' + projeto,
+                    url: 'projeto/destroy/' + id,
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }else if(tipo == 'aluno'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'aluno/destroy/' + id,
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }else if(tipo == 'professor'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'professor/destroy/' + id,
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }else if(tipo == 'suplente'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'suplente/destroy/' + id,
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }else if(tipo == 'avaliador'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'avaliador/destroy/' + id,
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }else if (tipo == 'disciplina'){
+                $.ajax({
+                    type: 'GET',
+                    url: 'disciplinas/destroy/' + id,
                     success: function(data) {
                         location.reload();
                     }

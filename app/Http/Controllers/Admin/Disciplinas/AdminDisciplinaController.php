@@ -29,7 +29,7 @@ class AdminDisciplinaController extends Controller
 
     public function index()
     {
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::orderBy('name', 'asc')->paginate(10);
         return view('admin/disciplinas/home', compact('disciplinas'));
     }
 

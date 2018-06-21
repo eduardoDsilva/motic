@@ -24,17 +24,20 @@ class EscolaCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|alpha|min:3|max:100',
+            'name'                  => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|between:3,100',
             'categoria_id'          => 'required',
-            'email'                 => 'required|email|string|unique:users|unique:alunos',
-            'telefone'              => 'required|alpha_num|min:8|max:15',
-            'cep'                   => 'required|min:8|max:8',
-            'bairro'                => 'required|min:4|string|max:100',
-            'rua'                   => 'required|min:4|string|max:100',
-            'numero'                => 'required|min:1|max:5',
-            'complemento'           => '',
-            'username'              => 'required|alpha|min:5|max:20|unique:users',
-            'password'              => 'required|string|min:6|confirmed',
+            'email'                 => 'required|email|unique:users|unique:alunos',
+            'telefone'              => 'required|digits_between:8, 16',
+            'cep'                   => 'required|digits:8',
+            'bairro'                => 'required|string|between:4,100',
+            'rua'                   => 'required|string|between:3,100',
+            'numero'                => 'required|digits_between:1,5',
+            'cidade'                => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'estado'                => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'pais'                  => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'complemento'           => 'sometimes|nullable|alpha_num',
+            'username'              => 'required|alpha_num|between:5,20|unique:users',
+            'password'              => 'required|alpha_num|min:6|confirmed',
         ];
     }
 
@@ -42,9 +45,8 @@ class EscolaCreateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.alpha' => 'Insira um nome válido!',
-            'name.min' => 'Insira um nome válido!',
-            'name.max' => 'Insira um nome válido!',
+            'name.regex' => 'Insira um nome sem números!',
+            'name.between' => 'Insira um nome entre 3 e 100 caracteres!',
 
             'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
 
@@ -53,40 +55,47 @@ class EscolaCreateFormRequest extends FormRequest
             'email.unique' => 'E-mail já cadastrado no sistema',
 
             'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
-            'telefone.alpha_num' => 'Insira um telefone sem letras',
-            'telefone.min' => 'Insira um telefone com mais de 8 números!',
-            'telefone.max' => 'Insira um telefone com até 16 números!',
+            'telefone.digits_between' => 'Insira um telefone entre 8 e 16 dígitos!',
 
             'cep.required' => 'O campo CEP é de preenchimento obrigatório',
-            'cep.min' => 'Insira um CEP válido!',
-            'cep.max' => 'Insira um CEP válido!',
+            'cep.digits' => 'Insira um CEP com 8 dígitos!',
 
             'bairro.required' => 'O campo bairro é de preenchimento obrigatório!',
-            'bairro.min' => 'Insira um bairro válido!',
-            'bairro.max' => 'Insira um bairro válido!',
+            'bairro.between' => 'Insira um bairro que tenha entre 4 e 100 caracteres!',
+            'bairro.string' => 'Insira um bairro sem caracteres especiais!',
 
             'rua.required' => 'O campo rua é de preenchimento obrigatório!',
-            'rua.min' => 'Insira uma rua válida!',
-            'rua.max' => 'Insira uma rua válida!',
+            'rua.between' => 'Insira uma rua que tenha entre 3 e 100 caracteres!',
+            'rua.string' => 'Insira uma rua sem caracteres especiais!',
 
             'numero.required' => 'O campo número é de preenchimento obrigatório!',
-            'numero.min' => 'Insira um némero válido!',
-            'numero.max' => 'Insira um némero válido!',
-            
-            'numero.max' => 'Insira um número válido!',
+            'numero.digits_between' => 'Insira um número válido!',
+
+            'complemento.alpha_num' => 'Insira um complemento sem caracteres especiais!',
+
+            'cidade.required' => 'O campo cidade é de preenchimento obrigatório!',
+            'cidade.regex' => 'Insira uma cidade sem caracteres especiais!',
+
+            'estado.required' => 'O campo estado é de preenchimento obrigatório!',
+            'estado.regex' => 'Insira um estado sem caracteres especiais!',
+
+            'pais.required' => 'O campo país é de preenchimento obrigatório!',
+            'pais.regex' => 'Insira um país sem caracteres especiais!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.alpha' => 'Insira um usuário válido!',
-            'username.min' => 'Insira um usuário válido!',
-            'username.max' => 'Insira um usuário válido!',
+            'username.alpha_num' => 'Insira um usuário sem números!',
+            'username.between' => 'Insira um usuário entre 5 e 20 caracteres!',
             'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',
             'password.confirmed' => 'As senhas devem ser iguais!',
+            'password.alpha_num' => 'Insira uma senha sem caracteres especiais!',
 
             'password_confirmed.required' => 'O campo senha é de preenchimento obrigatório!',
             'password_confirmed.min' => 'A senha deve ter no mínimo 6 caractéres',
+            'password_confirmed.alpha_num' => 'Insira uma senha sem caracteres especiais',
+            'password_confirmed.confirmed' => 'As senhas devem ser iguais',
         ];
     }
 }

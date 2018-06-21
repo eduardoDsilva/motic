@@ -81,9 +81,9 @@
                             <td>{{$suplente->escola->name}}</td>
                             <td>
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/suplente/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente"> <i class="small material-icons">delete</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i class="small material-icons">delete</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/suplente/show/".$suplente->id) }}"> <i class="small material-icons">library_books</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Promover a projeto ativo"  href="{{ url("/escola/suplente/promove/".$projeto->id) }}"> <i class="small material-icons">arrow_upward</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Promover a projeto ativo"  href="{{ url("/escola/suplente/promove/".$suplente->id) }}"> <i class="small material-icons">arrow_upward</i></a>
                             </td>
                         </tr>
                     @empty
@@ -127,6 +127,7 @@
                 <div class="input-field col s12">
                     <input disabled class="validate" type="number" id="id_delete">
                     <input disabled class="validate" type="hidden" id="projeto">
+                    <input disabled class="validate" hidden type="text" id="tipo">
                 </div>
             </div>
             <div class="row">

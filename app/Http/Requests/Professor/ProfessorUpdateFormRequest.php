@@ -25,22 +25,25 @@ class ProfessorUpdateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|string|between:3,100',
-            'nascimento'            => 'required',
+            'name'                  => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|between:3,100',
+            'nascimento'            => 'required|date_format:d-m-Y',
             'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
             'grauDeInstrucao'       => 'required',
             'matricula'             => 'required|numeric',
             'escola_id'             => 'required|numeric|exists:escolas,id',
-            'email'                 => 'required|email|string',
-            'telefone'              => 'required|between:8,16',
-            'cpf'                   => 'required|string|digits:11',
+            'email'                 => 'required|email',
+            'cpf'                   => 'required|digits:11',
+            'telefone'              => 'required|digits_between:8, 16',
             'cep'                   => 'required|digits:8',
             'bairro'                => 'required|string|between:4,100',
-            'rua'                   => 'required|between:4,100',
-            'numero'                => 'required|max:5',
-            'complemento'           => '',
-            'username'              => 'required|string|between:4,20',
-            'password'              => 'required|string|min:6|confirmed',
+            'rua'                   => 'required|string|between:4,100',
+            'numero'                => 'required|digits_between:1,5',
+            'complemento'           => 'sometimes|nullable|string',
+            'cidade'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'estado'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'pais'                  => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'username'              => 'required|alpha_num|between:5,20',
+            'password'              => 'required|alpha_num|min:6|confirmed',
         ];
     }
 
@@ -48,55 +51,67 @@ class ProfessorUpdateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.string' => 'Insira um nome válido!',
-            'name.between' => 'Insira um nome válido!',
+            'name.regex' => 'Insira um nome sem números!',
+            'name.between' => 'Insira um nome entre 3 e 100 caracteres!',
 
-            'nascimento.required' => 'O cmapo nascimento é de preencimento obrigatório',
+            'naacimento.required' => 'O campo nascimento é de preencimento obrigatório',
+            'naacimento.date' => 'Insira uma data sem letras',
 
-            'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
+            'sexo.required' => 'O campo sexo é de preencimento obrigatório',
 
-            'grauDeInstrucao.required' => 'O cmapo grau de instrução é de preencimento obrigatório',
+            'grauDeInstrucao.required' => 'O campo grau de instrução é de preencimento obrigatório',
 
             'matricula.required' => 'O campo matrícula é de preenchimento obrigatório!',
-            'matricula.numeric'  => 'Insira uma matrícula válida!',
+            'matricula.numeric'  => 'Insira uma matrícula sem letras!',
 
             'escola_id.required' => 'O campo escola é de preenchimento obrigatório!',
             'escola_id.numeric'  => 'Escolha uma escola válida!',
-            'escola_id.exists'  => 'Escola inválida!',
+            'escola_id.exists'  => 'Escola não existe no sistema!',
 
             'email.required' => 'O campo email é de preenchimento obrigatório!',
             'email.email' => 'Insira um e-mail válido!',
 
-            'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
-            'telefone.numeric' => 'Insira um telefoen válido!',
-            'telefone.between' => 'Insira um telefone entre 8 e 16 caracteres!',
-
             'cpf.required' => 'O campo cpf é de preenchimento obrigatório!',
             'cpf.digits' => 'Insira um CPF de 11 caracteres!',
 
+            'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
+            'telefone.digits_between' => 'Insira um telefone entre 8 e 16 dígitos!',
+
             'cep.required' => 'O campo CEP é de preenchimento obrigatório',
-            'cep.digits' => 'Insira um CEP válido!',
+            'cep.digits' => 'Insira um CEP com 8 dígitos!',
 
             'bairro.required' => 'O campo bairro é de preenchimento obrigatório!',
-            'bairro.string' => 'Insira um bairro válido!',
-            'bairro.between' => 'Insira um bairro válido!',
+            'bairro.between' => 'Insira um bairro que tenha entre 4 e 100 caracteres!',
+            'bairro.string' => 'Insira um bairro sem caracteres especiais!',
 
             'rua.required' => 'O campo rua é de preenchimento obrigatório!',
-            'rua.between' => 'Insira uma rua válida!',
+            'rua.between' => 'Insira uma rua que tenha entre 4 e 100 caracteres!',
+            'rua.string' => 'Insira uma rua sem caracteres especiais!',
 
             'numero.required' => 'O campo número é de preenchimento obrigatório!',
-            'numero.max' => 'Insira um número válido!',
+            'numero.digits_between' => 'Insira um número que tenha até 5 dígitos!',
+
+            'complemento.string' => 'Insira um complemento sem caracteres especiais!',
+
+            'cidade.regex' => 'Insira uma cidade sem caracteres especiais!',
+
+            'estado.regex' => 'Insira um estado sem caracteres especiais!',
+
+            'pais.regex' => 'Insira um país sem caracteres especiais!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.string' => 'Insira um usuário válido',
-            'username.between' => 'Insira um usuário válido!',
+            'username.alpha_num' => 'Insira um usuário sem números!',
+            'username.between' => 'Insira um usuário entre 5 e 20 caracteres!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',
             'password.confirmed' => 'As senhas devem ser iguais!',
+            'password.alpha_num' => 'Insira uma senha sem caracteres especiais!',
 
             'password_confirmed.required' => 'O campo senha é de preenchimento obrigatório!',
             'password_confirmed.min' => 'A senha deve ter no mínimo 6 caractéres',
+            'password_confirmed.alpha_num' => 'Insira uma senha sem caracteres especiais',
+            'password_confirmed.confirmed' => 'As senhas devem ser iguais',
         ];
     }
 }

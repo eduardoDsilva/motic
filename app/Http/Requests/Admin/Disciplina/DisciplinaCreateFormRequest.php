@@ -24,8 +24,8 @@ class DisciplinaCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|between:3,100|string|unique:disciplinas',
-            'descricao' =>'required|max:240|string',
+            'name'      =>'required|between:3,100|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|unique:disciplinas',
+            'descricao' =>'required|alpha_num|max:240',
         ];
     }
 
@@ -34,12 +34,12 @@ class DisciplinaCreateFormRequest extends FormRequest
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
             'name.between' => 'Insira um nome válido!',
-            'name.string' => 'Insira um nome válido!',
+            'name.regex' => 'Insira um nome somente com letras!',
             'name.unique' => 'Essa disciplina já existe no sistema!',
 
             'descricao.required' => 'O campo descrição é de preenchimento obrigatório',
             'descricao.max' => 'Insira uma descrição com no máximo 240 caractéres!',
-            'descricao.string' => 'Insira uma descrição válida!',
+            'descricao.alpha_num' => 'Insira uma descrição sem caracteres especiais',
         ];
     }
 }

@@ -31,7 +31,7 @@ class EscolaProfessorController extends Controller
 
     public function index()
     {
-        $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id);
+        $professores = Professor::where('escola_id', '=', Auth::user()->escola->id)->orderBy('name', 'asc')->paginate(10);
         return view("escola/professor/home", compact('professores'));
     }
 
@@ -121,7 +121,7 @@ class EscolaProfessorController extends Controller
     public function destroy($id){
         try{
             $professor = Professor::find($id);
-            $professor->delete($id);
+            $professor->user()->delete($id);
             $this->auditoriaController->storeDelete(json_encode($professor, JSON_UNESCAPED_UNICODE), $professor->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

@@ -35,7 +35,7 @@
                         <div class='row'>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">assignment</i>
-                                <textarea name="resumo" id="textarea1" class="materialize-textarea"></textarea>
+                                <textarea name="resumo" id="textarea1" data-length="240" class="materialize-textarea"></textarea>
                                 <label for="textarea1">Resumo</label>
                             </div>
                         </div>
@@ -116,9 +116,9 @@
 
                         {{csrf_field()}}
 
-                        <p class="center-align">
-                            <button class="waves-effect waves-light btn" id="envia" disabled type="submit"><i class="material-icons right">send</i>salvar</button>
-                        </p>
+                        <div class="fixed-action-btn">
+                            <button disabled id="envia" type="submit" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i></button>
+                        </div>
 
                     </form>
 

@@ -24,13 +24,24 @@ class AvaliadorUpdateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|string|max:100',
-            'sexo'                  => 'required',
-            'email'                 => 'required|email|string',
-            'cpf'                   => 'required|string|min:11|max:11',
-            'instituicao'           => 'required|string',
-            'username'              => 'required|string|min:5|max:20',
-            'password'              => 'required|string|min:6|confirmed',
+            'name'                  => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|between:3,100',
+            'nascimento'            => 'sometimes|nullable|date_format:d-m-Y',
+            'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
+            'grauDeInstrucao'       => ['required', Rule::in(['Técnico', 'Graduado', 'Mestrado', 'Doutorado']),],
+            'email'                 => 'required|email',
+            'telefone'              => 'sometimes|nullable|integer|digits_between:8, 16',
+            'instituicao'           => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'cpf'                   => 'sometimes|nullable|digits:11',
+            'cep'                   => 'sometimes|nullable|digits:8',
+            'bairro'                => 'sometimes|nullable|alpha_num|max:100',
+            'rua'                   => 'sometimes|nullable|alpha_num|max:100',
+            'numero'                => 'sometimes|nullable|digits_between:0,5',
+            'complemento'           => 'sometimes|nullable|alpha_num',
+            'cidade'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'estado'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'pais'                  => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
+            'username'              => 'required|alpha_num|between:5,20',
+            'password'              => 'required|alpha_num|min:6|confirmed',
         ];
     }
 
@@ -38,33 +49,60 @@ class AvaliadorUpdateFormRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome é de preenchimento obrigatório!',
-            'name.min' => 'Insira um nome válido!',
-            'name.max' => 'Insira um nome válido!',
+            'name.regex' => 'Insira um nome sem números!',
+            'name.between' => 'Insira um nome entre entre 3 ou 100 caracteres!',
 
-            'sexo.required' => 'O cmapo sexo é de preencimento obrigatório',
+            'nascimento.required' => 'O campo nascimento é de preencimento obrigatório',
+            'nascimento.date' => 'Insira uma data sem letras',
 
-            'categoria_id.required' => 'O campo categoria é de preenchimento obrigatório!',
+            'sexo.required' => 'O campo sexo é de preencimento obrigatório',
 
-            'cpf.required' => 'O campo cpf é de preenchimento obrigatório!',
-            'cpf.min' => 'Insira um CPF válido!',
-            'cpf.max' => 'Insira um CPF válido!',
+            'grauDeInstrucao.required' => 'O campo sexo é de preencimento obrigatório',
 
             'email.required' => 'O campo email é de preenchimento obrigatório!',
             'email.email' => 'Insira um e-mail válido!',
 
+            'telefone.digits_between' => 'Insira um telefone que tenha entre 8 e 16 dígitos!',
+            'telefone.integer' => 'Insira um telefone sem letras!',
+
             'insituicao.required' => 'O campo instituição é de preenchimento obrigatório',
             'insituicao.string' => 'Insira uma instituição válida',
 
+            'cpf.digits' => 'Insira um CPF de 11 caracteres!',
+
+            'cep.digits' => 'Insira um cep válido!',
+
+            'email.email' => 'Insira um e-mail válido!',
+
+            'bairro.max' => 'Insira um bairro válido!',
+            'bairro.alpha_num' => 'Não insira caracteres especiais',
+
+            'rua.max' => 'Insira uma rua válida!',
+            'rua.alpha_num' => 'Não insira caracteres especiais!',
+
+            'numero.digits_between' => 'Insira um número com no máximo 5 dígitos!',
+
+            'complemento.alpha_num' => 'Insira um complemento sem caracteres especiais!',
+
+            'cidade.regex' => 'Insira uma cidade sem caracteres especiais!',
+
+            'estado.regex' => 'Insira um estado sem caracteres especiais!',
+
+            'pais.regex' => 'Insira um país sem caracteres especiais!',
+
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.min' => 'Insira um némero válido!',
-            'username.max' => 'Insira um némero válido!',
+            'username.alpha_num' => 'Insira um usuário sem números!',
+            'username.between' => 'Insira um usuário entre 5 e 20 caracteres!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',
             'password.confirmed' => 'As senhas devem ser iguais!',
+            'password.alpha_num' => 'Insira uma senha sem caracteres especiais!',
 
             'password_confirmed.required' => 'O campo senha é de preenchimento obrigatório!',
             'password_confirmed.min' => 'A senha deve ter no mínimo 6 caractéres',
+            'password_confirmed.alpha_num' => 'Insira uma senha sem caracteres especiais',
+            'password_confirmed.confirmed' => 'As senhas devem ser iguais',
         ];
     }
 }

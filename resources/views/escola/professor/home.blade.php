@@ -82,7 +82,7 @@
                         <td>{{($professor->projeto_id == null ? ($professor->suplente_id == null ? "Professor sem projeto" : $professor->tipo) : $professor->tipo)}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/escola/professor/update/".$professor->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$professor->id}}" data-name="{{$professor->name}}"> <i class="small material-icons">delete</i></a>
+                            <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$professor->id}}" data-name="{{$professor->name}}" data-tipo="professor"> <i class="small material-icons">delete</i></a>
                             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/professor/show/".$professor->id) }}"> <i class="small material-icons">library_books</i></a>
                         </td>
                     </tr>
@@ -99,6 +99,7 @@
                 </tbody>
             </table>
 
+            {{$professores->links()}}
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
@@ -108,6 +109,7 @@
                         <label for="id_delete">ID</label>
                         <div class="input-field col s12">
                             <input disabled class="validate" type="number" id="id_delete">
+                            <input disabled class="validate" hidden type="text" id="tipo">
                         </div>
                     </div>
                     <div class="row">

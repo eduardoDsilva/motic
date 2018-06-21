@@ -13,6 +13,7 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Projeto\ProjetoFormRequest;
 use App\Professor;
 use App\Projeto;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class EscolaSuplenteController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')->orderBy('titulo', 'asc')->paginate(10);
 
         return view('escola/suplente/home', compact('projetos'));
     }
@@ -57,7 +58,7 @@ class EscolaSuplenteController extends Controller
         return view("escola/suplente/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(\Illuminate\Support\Facades\Request $request){
+    public function store(ProjetoFormRequest $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find(Auth::user()->escola->id);
@@ -122,7 +123,7 @@ class EscolaSuplenteController extends Controller
         }
     }
 
-    public function update(\Illuminate\Support\Facades\Request $request, $id){
+    public function update(ProjetoFormRequest $request, $id){
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($id);

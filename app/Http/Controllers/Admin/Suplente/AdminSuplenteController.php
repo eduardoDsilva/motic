@@ -13,7 +13,7 @@ use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Projeto\ProjetoCreateFormRequest;
+use App\Http\Requests\Projeto\ProjetoFormRequest;
 use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
@@ -31,8 +31,7 @@ class AdminSuplenteController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->where('tipo','=', 'suplente')->paginate(10);
-
+        $projetos = Projeto::where('ano', '=', '2018')->where('tipo','=', 'suplente')->orderBy('titulo', 'asc')->paginate(10);
         return view('admin/suplente/home', compact('projetos'));
     }
 

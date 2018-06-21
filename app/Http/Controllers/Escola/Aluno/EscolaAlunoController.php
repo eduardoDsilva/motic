@@ -7,7 +7,8 @@ use App\Dado;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Aluno\AlunoFormRequest;
+use App\Http\Requests\Aluno\AlunoCreateFormRequest;
+use App\Http\Requests\Aluno\AlunoUpdateFormRequest;
 use App\Projeto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -27,7 +28,7 @@ class EscolaAlunoController extends Controller
 
     public function index()
     {
-        $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)->paginate(10);
+        $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)->orderBy('name', 'asc')->paginate(10);
         $projetos = Projeto::where('escola_id', '=', Auth::user()->escola->id)->paginate(10);
         return view('escola/aluno/home', compact('alunos', 'projetos'));
     }
@@ -58,7 +59,7 @@ class EscolaAlunoController extends Controller
         return view('escola/aluno/cadastro', compact('escola', 'ano'));
     }
 
-    public function store(AlunoFormRequest $request){
+    public function store(AlunoCreateFormRequest $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
@@ -113,7 +114,7 @@ class EscolaAlunoController extends Controller
         }
     }
 
-    public function update(AlunoFormRequest $request, $id){
+    public function update(AlunoUpdateFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
         try{
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];

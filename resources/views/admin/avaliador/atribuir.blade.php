@@ -36,18 +36,6 @@
                 {{csrf_field()}}
 
                 <div class="input-field col s12">
-                    <select name="projeto_id">
-                        <option value="" disabled selected>Selecione o projeto</option>
-                        @forelse($projetos as $projeto)
-                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
-                        @empty
-                            <option value="">Sem projetos disponíveis no sistema</option>
-                        @endforelse
-                    </select>
-                    <label>Projetos</label>
-                </div>
-
-                <div class="input-field col s12">
                     <select name="avaliador_id">
                         <option value="" disabled selected>Selecione o avaliador</option>
                         @forelse($avaliadores as $avaliador)
@@ -57,6 +45,18 @@
                         @endforelse
                     </select>
                     <label>Avaliadores</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <select name="projeto_id">
+                        <option value="" disabled selected>Selecione o projeto</option>
+                        @forelse($projetos as $projeto)
+                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                        @empty
+                            <option value="">Sem projetos disponíveis no sistema</option>
+                        @endforelse
+                    </select>
+                    <label>Projetos</label>
                 </div>
 
                 <p class="center-align">

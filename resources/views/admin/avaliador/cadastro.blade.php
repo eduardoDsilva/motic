@@ -66,9 +66,10 @@
                             <i class="material-icons prefix">book</i>
                             <select name="grauDeInstrucao">
                                 <option value="" disabled selected>Grau de Instrução</option>
-                                <option value="Ensino Fundamental"  <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Ensino Fundamental'){ echo 'selected';} ?>>Ensino Fundamental</option>
-                                <option value="Ensino Médio"        <?php if(isset($avaliador)  && $avaliador->grauDeInstrucao=='Ensino Médio'){ echo 'selected';}?>>Ensino Médio</option>
-                                <option value="Ensino Superior"     <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Ensino Superior'){ echo 'selected';}?>>Ensino Superior</option>
+                                <option value="Técnico"        <?php if(isset($avaliador)  && $avaliador->grauDeInstrucao=='Técnico'){ echo 'selected';}?>>Técnico</option>
+                                <option value="Graduado"     <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Graduado'){ echo 'selected';}?>>Graduado</option>
+                                <option value="Mestrado"     <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Mestrado'){ echo 'selected';}?>>Mestrado</option>
+                                <option value="Doutorado"     <?php if(isset($avaliador) && $avaliador->grauDeInstrucao=='Doutorado'){ echo 'selected';}?>>Doutorado</option>
                             </select>
                             <label>Grau de Instrição</label>
                         </div>
@@ -182,9 +183,9 @@
                         </div>
                     </div>
 
-                    <p class="center-align">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
-                    </p>
+                    <div class="fixed-action-btn">
+                        <button type="submit" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i></button>
+                    </div>
 
                 </form>
 

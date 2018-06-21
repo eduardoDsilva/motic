@@ -31,7 +31,7 @@ class AdminAvaliadorController extends Controller
 
     public function index()
     {
-        $avaliadores = Avaliador::all();
+        $avaliadores = Avaliador::orderBy('name', 'asc')->paginate(10);
         return view("admin/avaliador/home", compact('avaliadores'));
     }
 
@@ -119,7 +119,7 @@ class AdminAvaliadorController extends Controller
     public function destroy($id){
         try{
             $avaliador = Avaliador::find($id);
-            $avaliador->delete($id);
+            $avaliador->user()->delete($id);
             $this->auditoriaController->storeDelete(json_encode($avaliador, JSON_UNESCAPED_UNICODE), $avaliador->id);
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
         }catch (\Exception $e) {

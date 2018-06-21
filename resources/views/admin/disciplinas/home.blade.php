@@ -74,7 +74,7 @@
                             <td>{{$disciplina->descricao}}</td>
                             <td>
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."/edita") }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2" data-id="{{$disciplina->id}}" data-name="{{$disciplina->name}}"><i class="small material-icons">delete</i></a>
+                                <a data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2" data-id="{{$disciplina->id}}" data-name="{{$disciplina->name}}" data-tipo="disciplina"><i class="small material-icons">delete</i></a>
                             </td>
                         </tr>
                     @empty
@@ -136,6 +136,7 @@
                                     <i class="material-icons prefix">assignment</i>
                                     <textarea name="descricao" data-length="240" id="textarea1" class="materialize-textarea"></textarea>
                                     <label for="textarea1">Descrição</label>
+                                    <input disabled class="validate" hidden type="text" id="tipo">
                                 </div>
                             </div>
                         </div>

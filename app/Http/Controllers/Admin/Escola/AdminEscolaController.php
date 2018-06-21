@@ -30,7 +30,7 @@ class AdminEscolaController extends Controller
 
     public function index()
     {
-        $escolas = Escola::all();
+        $escolas = Escola::orderBy('name', 'asc')->paginate(10);
         return view("admin/escola/home", compact('escolas'));
     }
 
@@ -138,7 +138,7 @@ class AdminEscolaController extends Controller
     public function destroy($id){
         try{
             $escola = Escola::find($id);
-            $escola->delete($id);
+            $escola->user()->delete($id);
             $this->auditoriaController->storeDelete(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
