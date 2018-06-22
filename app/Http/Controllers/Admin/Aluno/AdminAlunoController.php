@@ -28,8 +28,8 @@ class AdminAlunoController extends Controller
 
     public function index()
     {
-        $alunos = Aluno::orderBy('name', 'asc')->paginate(10);
-
+        $alunos = Aluno::orderBy('name', 'asc')
+            ->paginate(10);
         return view('admin/aluno/home', compact('alunos'));
     }
 

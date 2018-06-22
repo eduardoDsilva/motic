@@ -70,7 +70,6 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Área</th>
-                        <th>Resumo</th>
                         <th>Categoria</th>
                         <th>Escola</th>
                         <th>Ações</th>
@@ -82,7 +81,6 @@
                             <td>{{$projeto->id}}</td>
                             <td>{{$projeto->titulo}}</td>
                             <td>{{$projeto->area}}</td>
-                            <td class="limit">{{$projeto->resumo}}</td>
                             <td>{{$projeto->categoria->categoria}}</td>
                             <td>{{$projeto->escola->name}}</td>
                             <td>
@@ -90,11 +88,11 @@
                                 <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal" data-tipo="projeto"> <i class="small material-icons">delete</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Rebaixar a projeto suplente"  href="{{ url("/admin/projeto/rebaixa/".$projeto->id) }}"> <i class="small material-icons">arrow_downward</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Avaliadores"  href=""> <i class="small material-icons">contacts</i></a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhum projeto encontrado</td>
                             <td>Nenhum projeto encontrado</td>
                             <td>Nenhum projeto encontrado</td>
                             <td>Nenhum projeto encontrado</td>

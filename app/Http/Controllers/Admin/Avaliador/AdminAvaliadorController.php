@@ -31,7 +31,8 @@ class AdminAvaliadorController extends Controller
 
     public function index()
     {
-        $avaliadores = Avaliador::orderBy('name', 'asc')->paginate(10);
+        $avaliadores = Avaliador::orderBy('name', 'asc')
+            ->paginate(10);
         return view("admin/avaliador/home", compact('avaliadores'));
     }
 
@@ -70,6 +71,15 @@ class AdminAvaliadorController extends Controller
         try{
             $avaliador = Avaliador::find($id);
             return view("admin/avaliador/show", compact('avaliador'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function showAvaliadorDisponivel(){
+        try{
+            $avaliadores = Avaliador::all()->where('projetos','<','3');
+            return view("admin/avaliador/avaliador-disponivel", compact('avaliadores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -127,22 +137,26 @@ class AdminAvaliadorController extends Controller
         }
     }
     
-    public function atribuir(){
+    public function atribuir($id){
         try{
-            $projetos = Projeto::where('ano', '=', '2018')->where('tipo', '=', 'normal')->where('avaliadores', '<','3')->paginate(10);
-            $avaliadores = Avaliador::all();
-            return view('admin/avaliador/atribuir', compact('projetos', 'avaliadores'));
+            $projetos = Projeto::where('ano', '=', '2018')
+                ->where('tipo', '=', 'normal')
+                ->where('avaliadores', '<','3')
+                ->paginate(10);
+            $avaliador = Avaliador::find($id);
+
+            return view('admin/avaliador/atribuir', compact('projetos', 'avaliador'));
         }catch (\Exception $e){
             return "ERRO: " . $e->getMessage();
         }
     }
 
     public function atribui(Request $request){
+        dd('batata');
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($dataForm['projeto_id']);
             $avaliador = Avaliador::find($dataForm['avaliador_id']);
-
             $avaliador->projeto()->attach($projeto->id);
             $qnt = $projeto->avaliadores + 1;
             $projeto->update(['avaliadores' => $qnt]);

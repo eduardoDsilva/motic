@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Avaliador;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AvaliadorCreateFormRequest extends FormRequest
 {

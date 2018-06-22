@@ -28,8 +28,11 @@
     <div class="section container">
         <div class="card-panel">
             <div class="row">
-                <h3 class="center-align">@if(isset($escola)) Editar escola: {{$escola->name}} @else Cadastrar
-                    escola @endif</h3>
+                <h3 class="header center orange-text">Cadastrar escola</h3>
+                <div class="row">
+                    <p class="header col s12 light">- Os campos com ' * ' são de preenchimento obrigatório.</p>
+                </div>
+                <div class="divider"></div>
                     <form class="col s12" method="POST" enctype="multipart/form-data"
                           action="
                             @if(isset($escola)) {{ url("/admin/escola/".$escola->user->id) }}

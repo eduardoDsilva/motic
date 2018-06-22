@@ -13,7 +13,12 @@
     <section class="section container">
         <div class="card-panel">
         <div class="row">
-            <h3 class="center-align">Cadastrar projeto</h3>
+            <h3 class="header center orange-text">Cadastrar projeto</h3>
+            <div class="row">
+                <p class="header col s12 light">- Os campos com ' * ' são de preenchimento obrigatório.</p>
+                <p class="header col s12 light">- Deve-se selecionar exatamente 3 alunos.</p>
+            </div>
+            <div class="divider"></div>
             <article class="col s12">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/cadastro/registro') }}">
 

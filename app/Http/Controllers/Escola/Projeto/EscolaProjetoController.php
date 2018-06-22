@@ -32,7 +32,10 @@ class EscolaProjetoController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->orderBy('titulo', 'asc')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')
+            ->where('tipo','=', 'normal')
+            ->orderBy('titulo', 'asc')
+            ->paginate(10);
 
         return view('escola/projeto/home', compact('projetos'));
     }
@@ -106,8 +109,10 @@ class EscolaProjetoController extends Controller
     public function show($id){
         try{
             $projeto = Projeto::find($id);
-            $alunos = Aluno::all()->where('projeto_id', '=', $projeto->id);
-            $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
+            $alunos = Aluno::all()
+                ->where('projeto_id', '=', $projeto->id);
+            $professores = Professor::all()
+                ->where('projeto_id', '=', $projeto->id);
             return view("escola/projeto/show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -168,7 +173,10 @@ class EscolaProjetoController extends Controller
 
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
+        $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)
+            ->where('categoria_id', '=', $categoria_id)
+            ->where('projeto_id', '=', null)
+            ->get();
         return response()->json($alunos);
     }
 

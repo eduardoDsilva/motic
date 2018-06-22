@@ -63,7 +63,6 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Área</th>
-                        <th>Resumo</th>
                         <th>Categoria</th>
                         <th>Escola</th>
                         <th>Ações</th>
@@ -75,7 +74,6 @@
                             <td>{{$projeto->id}}</td>
                             <td>{{$projeto->titulo}}</td>
                             <td>{{$projeto->area}}</td>
-                            <td class="limit">{{$projeto->resumo}}</td>
                             <td>{{$projeto->categoria->categoria}}</td>
                             <td>{{$projeto->escola->name}}</td>
                             <td>
@@ -87,7 +85,6 @@
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhum projeto suplente encontrado</td>
                             <td>Nenhum projeto suplente encontrado</td>
                             <td>Nenhum projeto suplente encontrado</td>
                             <td>Nenhum projeto suplente encontrado</td>

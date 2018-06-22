@@ -5,8 +5,7 @@
 @section('breadcrumb')
     <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
     <a href="{{{route ('admin/avaliador/home')}}}" class="breadcrumb">Avaliador</a>
-    <a href="{{{route ('admin/avaliador/showAvaliadorDisponivel')}}}" class="breadcrumb">Avaliadores disponíveis</a>
-    <a href="" class="breadcrumb">Atribuir Projeto</a>
+    <a href="{{{route ('admin/avaliador/atribuir')}}}" class="breadcrumb">Atribuir Avaliador</a>
 @endsection
 
 @section('content')
@@ -23,31 +22,35 @@
 
     <div class="section container">
         <div class="card-panel">
-            <h1 class="header center orange-text">Avaliador</h1>
+            <h1 class="header center orange-text">Projetos</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Atribuir projeto ao avaliador {{$avaliador->name}}</h5>
+                <h5 class="header col s12 light">Atribuir um avaliador ao projeto </h5>
             </div>
         </div>
     </div>
 
     <div class="section container">
         <div class="card-panel">
-            <form method="POST" enctype="multipart/form-data" action="{{ route('admin/avaliador/atribui') }}">
+            <form method="post" enctype="multipart/form-data" action="">
                 {{csrf_field()}}
                 <div class="input-field col s12">
-                    <select name="projeto_id">
-                        <option value="" disabled selected>Selecione o projeto</option>
-                        @forelse($projetos as $projeto)
-                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                    <select name="avaliador_id">
+                        <option value="" disabled selected>Selecione o avaliador</option>
+                        @forelse($avaliadores as $avaliador)
+                            <option value="{{$avaliador->id}}">{{$avaliador->name}}</option>
                         @empty
-                            <option value="">Sem projetos disponíveis no sistema</option>
+                            <option value="">Sem avaliadores disponíveis no sistema.</option>
                         @endforelse
                     </select>
-                    <label>Projetos</label>
+                    <label>Avaliadores</label>
                 </div>
+
                 <p class="center-align">
-                    <button id='envia' class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
+                    <button class="waves-effect waves-light btn" type="submit"><i
+                                class="material-icons right">send</i>salvar
+                    </button>
                 </p>
+
             </form>
         </div>
     </div>

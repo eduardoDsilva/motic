@@ -31,7 +31,10 @@ class EscolaSuplenteController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->orderBy('titulo', 'asc')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')
+            ->where('tipo','=', 'suplente')
+            ->orderBy('titulo', 'asc')
+            ->paginate(10);
 
         return view('escola/suplente/home', compact('projetos'));
     }
@@ -47,7 +50,9 @@ class EscolaSuplenteController extends Controller
         $disciplinas = Disciplina::all();
         $escola = Escola::find(Auth::user()->escola->id);
 
-        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+        $projetos = DB::table('projetos')
+            ->select('categoria_id')
+            ->where('escola_id', '=', $escola->id)->get();
         $categoria_id = [];
         foreach($projetos as $projeto){
             $categoria_id[] = $projeto->categoria_id;
@@ -104,8 +109,10 @@ class EscolaSuplenteController extends Controller
     public function show($id){
         try{
             $projeto = Projeto::find($id);
-            $alunos = Aluno::all()->where('projeto_id', '=', $projeto->id);
-            $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
+            $alunos = Aluno::all()
+                ->where('projeto_id', '=', $projeto->id);
+            $professores = Professor::all()
+                ->where('projeto_id', '=', $projeto->id);
             return view("escola/suplente/show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -142,14 +149,13 @@ class EscolaSuplenteController extends Controller
         }
     }
 
-    public function destroy($id, $projeto){
+    public function destroy($id){
         try{
-                DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
-                DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
-                $projeto = Projeto::find($id);
-                $projeto->delete($id);
-                $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
-
+             DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
+             DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
+             $projeto = Projeto::find($id);
+             $projeto->delete($id);
+             $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -181,13 +187,18 @@ class EscolaSuplenteController extends Controller
 
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
+        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))
+            ->where('categoria_id', '=', $categoria_id)
+            ->where('projeto_id', '=', null)
+            ->get();
         return response()->json($alunos);
     }
 
     public function professores(){
         $escola_id = Input::get('escola_id');
-        $professores = Professor::where('escola_id', '=', $escola_id)->where('projeto_id', '=', null)->get();
+        $professores = Professor::where('escola_id', '=', $escola_id)
+            ->where('projeto_id', '=', null)
+            ->get();
         return response()->json($professores);
     }
 

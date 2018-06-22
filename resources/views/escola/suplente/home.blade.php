@@ -64,7 +64,6 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Área</th>
-                        <th>Resumo</th>
                         <th>Categoria</th>
                         <th>Escola</th>
                         <th>Ações</th>
@@ -76,19 +75,16 @@
                             <td>{{$suplente->id}}</td>
                             <td>{{$suplente->titulo}}</td>
                             <td>{{$suplente->area}}</td>
-                            <td class="limit">{{$suplente->resumo}}</td>
                             <td>{{$suplente->categoria->categoria}}</td>
                             <td>{{$suplente->escola->name}}</td>
                             <td>
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("escola/suplente/update/".$suplente->id."/edita") }}"><i class="small material-icons">edit</i></a>
                                 <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i class="small material-icons">delete</i></a>
                                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/escola/suplente/show/".$suplente->id) }}"> <i class="small material-icons">library_books</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Promover a projeto ativo"  href="{{ url("/escola/suplente/promove/".$suplente->id) }}"> <i class="small material-icons">arrow_upward</i></a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhum projeto suplente encontrado</td>
                             <td>Nenhum projeto suplente encontrado</td>
                             <td>Nenhum projeto suplente encontrado</td>
                             <td>Nenhum projeto suplente encontrado</td>

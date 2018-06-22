@@ -13,7 +13,11 @@
     <section class="section container">
         <div class="card-panel">
             <div class="row">
-                <h3 class="center-align">Cadastrar projeto</h3>
+                <h3 class="header center orange-text">Cadastrar projeto suplente</h3>
+                <div class="row">
+                    <p class="header col s12 light">- Os campos com ' * ' são de preenchimento obrigatório.</p>
+                    <p class="header col s12 light">- Deve-se selecionar exatamente 3 alunos.</p>
+                </div>
                 <article class="col s12">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('escola/suplente/cadastro/registro') }}">
 
@@ -22,12 +26,12 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">perm_identity</i>
-                                <label for="nome">Título</label>
+                                <label for="nome">Título *</label>
                                 <input type="text" name="titulo" required>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">perm_identity</i>
-                                <label for="nome">Área</label>
+                                <label for="nome">Área *</label>
                                 <input type="text" name="area" required>
                             </div>
                         </div>
@@ -36,7 +40,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">assignment</i>
                                 <textarea name="resumo" id="textarea1" data-length="240" class="materialize-textarea"></textarea>
-                                <label for="textarea1">Resumo</label>
+                                <label for="textarea1">Resumo *</label>
                             </div>
                         </div>
 
@@ -51,7 +55,7 @@
                                         <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com o administrador.</option>
                                     @endforelse
                                 </select>
-                                <label>Disciplinas</label>
+                                <label>Disciplinas *</label>
                             </div>
                         </div>
 
@@ -73,14 +77,14 @@
                                         <option value="">Nenhuma categoria cadastrada no sistema! Entre em contato com o administrador.</option>
                                     @endforelse
                                 </select>
-                                <label>Categoria</label>
+                                <label>Categoria *</label>
                             </div>
 
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">assignment</i>
                                 <select multiple name="aluno_id[]" id="alunos" required>
                                 </select>
-                                <label>Alunos</label>
+                                <label>Alunos *</label>
                             </div>
                         </div>
 
@@ -96,7 +100,7 @@
                                         <option value="">Nenhum professor cadastrada no sistema.</option>
                                     @endforelse
                                 </select>
-                                <label>Orientador</label>
+                                <label>Orientador *</label>
                             </div>
 
                             <div class="input-field col s6">

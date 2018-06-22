@@ -31,7 +31,10 @@ class AdminSuplenteController extends Controller
 
     public function index()
     {
-        $projetos = Projeto::where('ano', '=', '2018')->where('tipo','=', 'suplente')->orderBy('titulo', 'asc')->paginate(10);
+        $projetos = Projeto::where('ano', '=', '2018')
+            ->where('tipo','=', 'suplente')
+            ->orderBy('titulo', 'asc')
+            ->paginate(10);
         return view('admin/suplente/home', compact('projetos'));
     }
 
@@ -52,7 +55,8 @@ class AdminSuplenteController extends Controller
         $dataForm = $request->all() + ['tipo' => 'suplente'];
         try{
             $escola = Escola::find($dataForm['escola_id']);
-            $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
+            $projeto = Projeto::all()
+                ->where('escola_id', '=', $escola->id);
             if(count($projeto)>=$escola->projetos){
                 dd('não pode mais cadastrar suplentes');
                 }
@@ -93,8 +97,10 @@ class AdminSuplenteController extends Controller
     public function show($id){
         try{
             $projeto = Projeto::find($id);
-            $alunos = Aluno::all()->where('projeto_id', '=', $projeto->id);
-            $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
+            $alunos = Aluno::all()
+                ->where('projeto_id', '=', $projeto->id);
+            $professores = Professor::all()
+                ->where('projeto_id', '=', $projeto->id);
             return view("admin/suplente/show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -157,7 +163,11 @@ class AdminSuplenteController extends Controller
         $escola_id = Input::get('escola_id');
         Session::put('escola_id', $escola_id);
         $escola = $this->escola->find($escola_id);
-        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->where('tipo', '=', 'suplente')->get();
+        $projetos = DB::table('projetos')
+            ->select('categoria_id')
+            ->where('escola_id', '=', $escola->id)
+            ->where('tipo', '=', 'suplente')
+            ->get();
         $categoria_id = [];
         foreach($projetos as $projeto){
             $categoria_id[] = $projeto->categoria_id;
@@ -169,13 +179,18 @@ class AdminSuplenteController extends Controller
 
     public function alunos(){
         $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))->where('categoria_id', '=', $categoria_id)->where('projeto_id', '=', null)->get();
+        $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))
+            ->where('categoria_id', '=', $categoria_id)
+            ->where('projeto_id', '=', null)
+            ->get();
         return response()->json($alunos);
     }
 
     public function professores(){
         $escola_id = Input::get('escola_id');
-        $professores = Professor::where('escola_id', '=', $escola_id)->where('projeto_id', '=', null)->get();
+        $professores = Professor::where('escola_id', '=', $escola_id)
+            ->where('projeto_id', '=', null)
+            ->get();
         return response()->json($professores);
     }
 

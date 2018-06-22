@@ -105,7 +105,7 @@ class ProfessorCreateFormRequest extends FormRequest
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
             'username.alpha_num' => 'Insira um usuário sem números!',
             'username.between' => 'Insira um usuário entre 5 e 20 caracteres!',
-            'username.unique' => 'O campo usuário já está em uso!',
+            'username.unique' => 'Este usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',

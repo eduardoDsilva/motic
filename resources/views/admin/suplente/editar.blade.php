@@ -19,9 +19,9 @@
     <section class="section container">
         <div class="card-panel">
             <div class="row">
-            <h3 class="center-align">Editar suplente {{$suplente->titulo}}</h3>
+            <h3 class="center-align">Editar suplente {{$projeto->titulo}}</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url('admin/suplente/'.$suplente->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url('admin/suplente/'.$projeto->id) }}">
 
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
@@ -31,19 +31,19 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Título</label>
-                            <input type="text" name="titulo" value="{{$suplente->titulo}}" required>
+                            <input type="text" name="titulo" value="{{$projeto->titulo}}" required>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Área</label>
-                            <input type="text" name="area" value="{{$suplente->area}}" required>
+                            <input type="text" name="area" value="{{$projeto->area}}" required>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment</i>
-                            <textarea name="resumo" id="textarea1" class="materialize-textarea">{{$suplente->resumo}}</textarea>
+                            <textarea name="resumo" id="textarea1" class="materialize-textarea">{{$projeto->resumo}}</textarea>
                             <label for="textarea1">Resumo</label>
                         </div>
                     </div>

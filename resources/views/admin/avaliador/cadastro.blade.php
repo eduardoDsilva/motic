@@ -28,7 +28,11 @@
     <section class="section container">
         <div class="card-panel">
         <div class="row">
-            <h3 class="center-align">{{$titulo}}</h3>
+            <h3 class="header center orange-text">Cadastrar avaliador</h3>
+            <div class="row">
+                <p class="header col s12 light">- Os campos com ' * ' são de preenchimento obrigatório.</p>
+            </div>
+            <div class="divider"></div>
             <article class="col s12">
                     <form method="POST" enctype="multipart/form-data" action="@if(isset($avaliador)) {{ url("/admin/avaliador/".$avaliador->user->id) }} @else {{ route('admin/avaliador/registro') }}"@endif>
                 {{csrf_field()}}

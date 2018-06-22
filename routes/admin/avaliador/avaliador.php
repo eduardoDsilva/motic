@@ -16,9 +16,12 @@ Route::prefix('admin/avaliador')->group(function () {
 //create
     Route::post('/cadastro/registro', 'Admin\Avaliador\AdminAvaliadorController@store');
 //create
-    Route::get('/atribuir', 'Admin\Avaliador\AdminAvaliadorController@atribuir')->name('admin/avaliador/atribuir');
+    Route::get('/atribuir/{id}', 'Admin\Avaliador\AdminAvaliadorController@atribuir')->name('admin/avaliador/atribuir/{id}');
+
+    Route::get('/showAvaliadorDisponivel', 'Admin\Avaliador\AdminAvaliadorController@showAvaliadorDisponivel')->name('admin/avaliador/showAvaliadorDisponivel');
 //
 });
+
 Route::post('admin/avaliador/atribui', 'Admin\Avaliador\AdminAvaliadorController@atribui')->name('admin/avaliador/atribui');
 
 

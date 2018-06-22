@@ -33,7 +33,7 @@ class AlunoCreateFormRequest extends FormRequest
             'turma'                 => 'required|alpha_num',
             'cpf'                   => 'sometimes|nullable|digits:11|unique:alunos|unique:professores|unique:avaliadores',
             'email'                 => 'sometimes|nullable|email|unique:users|unique:alunos',
-            'telefone'              => 'sometimes|nullable|integer|digits_between:8, 16',
+            'telefone'              => 'sometimes|nullable|digits_between:8, 16',
             'cep'                   => 'sometimes|nullable|digits:8',
             'bairro'                => 'sometimes|nullable|alpha_num|max:100',
             'rua'                   => 'sometimes|nullable|alpha_num|max:100',
@@ -67,7 +67,6 @@ class AlunoCreateFormRequest extends FormRequest
             'escola_id.exists'  => 'Selecione uma escola válida!',
 
             'telefone.digits_between' => 'Insira um telefone que tenha entre 8 e 16 dígitos!',
-            'telefone.integer' => 'Insira um telefone sem letras!',
 
             'cpf.digits' => 'Insira um CPF de 11 caracteres!',
             'cpf.unique' => 'CPF já cadastrado no sistema!',
