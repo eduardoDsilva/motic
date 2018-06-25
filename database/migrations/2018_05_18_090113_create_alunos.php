@@ -24,6 +24,7 @@ class CreateAlunos extends Migration
             $table->string('telefone')->nullable();
             $table->enum('etapa', ['Educação Infantil', '1° ANO', '2° ANO', '3° ANO', '4° ANO', '5° ANO', '6° ANO', '7° ANO', '8° ANO', '9° ANO', 'EJA', 'ERRO' ])->default('ERRO');
             $table->string('turma', 50);
+            $table->enum('camisa',['PP','P','M','G','GG'])->default('M');
             $table->string('rua')->nullable();
             $table->string('numero')->nullable();
             $table->string('complemento')->nullable();

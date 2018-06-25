@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Disciplina\DisciplinaCreateFormRequest;
 use App\Http\Requests\Admin\Disciplina\DisciplinaUpdateFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminDisciplinaController extends Controller
 {
@@ -47,10 +48,16 @@ class AdminDisciplinaController extends Controller
         }
     }
 
-    public function show(){
+    public function show(Request $request){
+        $dataForm = $request->all();
         try{
-            $disciplinas = disciplina::all();
-            return view("admin/disciplinas/busca/buscar", compact('disciplinas'));
+            if($dataForm['tipo'] == 'id'){
+               $disciplinas = Disciplina::all()->where('id','=',$dataForm['search']);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $disciplinas = Disciplina::where('name', 'like', $filtro)->paginate(10);
+            }
+            return view("admin/disciplinas/home", compact('disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

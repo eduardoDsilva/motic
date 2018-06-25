@@ -33,10 +33,10 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin/disciplina/show") }}">
                     <div class="row">
                         <div class="input-field col s4">
-                            <select required>
+                            <select name="tipo" required>
                                 <option value="" disabled selected>Filtrar por...</option>
                                 <option value="id">ID</option>
                                 <option value="nome">Nome</option>
@@ -45,19 +45,17 @@
                         </div>
 
                         <div class="input-field col s7">
-                            <input id="search" type="search">
+                            <input id="search" type="search" name="search" required>
                             <label for="search">Pesquise no sistema...</label>
                         </div>
                         {{csrf_field()}}
                         <div class="input-field col s1">
-                            <a class="btn-floating "><i class="material-icons">search</i></a>
+                            <button type="submit" class="btn-floating"><i class="material-icons">search</i></button>
                         </div>
                     </div>
                 </form>
             </div>
                 <table class="centered responsive-table highlight bordered">
-
-
                     <thead>
                     <tr>
                         <th>ID</th>

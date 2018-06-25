@@ -12,6 +12,7 @@ use App\professor;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class AdminProfessorController extends Controller
@@ -72,6 +73,36 @@ class AdminProfessorController extends Controller
         try{
             $professor = Professor::find($id);
             return view("admin/professor/show", compact('professor'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            if($dataForm['tipo'] == 'id'){
+                $professores = Professor::where('id','=',$dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $professores = Professor::where('name', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'usuario'){
+                $filtro = $dataForm['search'];
+                $professores = [User::where('username', '=', $filtro)->first()->professor];
+            }else if($dataForm['tipo'] == 'escola'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $professores = [Escola::where('name', 'like', $filtro)->first()->escola];
+            }else if($dataForm['tipo'] == 'email'){
+                $professores = Professor::where('email', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nascimento'){
+                $professores = Professor::where('nascimento', 'like', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'sexo'){
+                $professores = Professor::where('sexo', 'like', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'cpf'){
+                $professores = Professor::where('cpf', '=', $dataForm['search'])->paginate(10);
+            }
+
+            return view('admin/professor/home', compact('professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

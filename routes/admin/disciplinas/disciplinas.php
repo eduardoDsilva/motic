@@ -1,6 +1,6 @@
 <?php
 
-//telas escola
+//telas disciplinas
 Route::prefix('admin/disciplinas')->group(function () {
 //home
     Route::get('/', 'Admin\Disciplinas\AdminDisciplinaController@index')->name('admin/disciplinas/home');
@@ -13,3 +13,6 @@ Route::prefix('admin/disciplinas')->group(function () {
 //create
     Route::post('/cadastro/registro', 'Admin\Disciplinas\AdminDisciplinaController@store')->name('admin/disciplinas/cadastro/registro');
 });
+
+//show
+Route::post('admin/disciplina/show', 'Admin\Disciplinas\AdminDisciplinaController@show')->name('admin/disciplina/show');

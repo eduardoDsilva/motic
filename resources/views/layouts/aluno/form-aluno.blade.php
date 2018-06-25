@@ -68,21 +68,37 @@
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="turma" class="validate" type="text" name="turma"
                                    value="{{$aluno->turma or old('turma')}}" required>
-                            <label data-error="Insira uma turma válida!" data-success="Ok" for="name">Turma</label>
+                            <label data-error="Insira uma turma válida!" data-success="Ok" for="name">Turma *</label>
                         </div>
 
                     </div>
                     <div class="row">
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">confirmation_number</i>
+                            <select name="camisa">
+                                <option value="" disabled selected>Tamanho...</option>
+                                <option value="PP">PP</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
+                            <label>Tamanho da camisa *</label>
+                        </div>
+
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">email</i>
                             <input minlength="10" class='validate' id='email' type="email" name="email"
                                    value="{{$aluno->user->email or old('email')}}">
                             <label data-error="Insira um e-mail válido!" data-success="Ok"
-                                   for="email">Email *</label>
+                                   for="email">Email</label>
                         </div>
 
-                        <div class="input-field col s4">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">local_phone</i>
                             <input id="telefone" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no mínimo 8 números" type="number" name="telefone"
                                    data-length="16" value="{{$aluno->telefone or old('telefone')}}">
@@ -90,12 +106,12 @@
                                    for="telefone">Telefone</label>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <input id="cpf" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números" type="number" name="cpf"
                                    data-length="11" value="{{$aluno->cpf or old('cpf')}}">
                             <label data-error="Insira um cpf válido!" data-success="Ok"
-                                   for="cpf">CPF *</label>
+                                   for="cpf">CPF</label>
                         </div>
 
                     </div>

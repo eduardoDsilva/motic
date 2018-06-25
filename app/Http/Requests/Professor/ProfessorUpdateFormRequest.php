@@ -44,6 +44,7 @@ class ProfessorUpdateFormRequest extends FormRequest
             'pais'                  => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'username'              => 'required|alpha_num|between:5,30',
             'password'              => 'required|alpha_num|min:6|confirmed',
+            'camisa'                => ['required', Rule::in(['P', 'PP', 'M', 'G', 'GG']),],
         ];
     }
 

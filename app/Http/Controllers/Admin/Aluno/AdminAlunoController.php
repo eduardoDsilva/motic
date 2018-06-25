@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Aluno\AlunoCreateFormRequest;
 use App\Http\Requests\Aluno\AlunoUpdateFormRequest;
 use App\Projeto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -58,6 +59,29 @@ class AdminAlunoController extends Controller
         try{
             $aluno = Aluno::find($id);
             return view('admin/aluno/show', compact('aluno'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            if($dataForm['tipo'] == 'id'){
+                $alunos = Aluno::where('id', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $alunos = Aluno::where('name', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'nascimento'){
+                $alunos = Aluno::where('id', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'sexo'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $alunos = Aluno::where('sexo', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'etapa'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $alunos = Aluno::where('etapa', 'like', $filtro)->paginate(10);
+            }
+            return view('admin/aluno/home', compact('alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -4,6 +4,8 @@ Route::prefix('admin/professor')->group(function () {
 //home
     Route::get('/home', 'Admin\Professor\AdminProfessorController@index')->name('admin/professor/home');
 //exibir professor
+    Route::post('/filtrar', 'Admin\Professor\AdminProfessorController@filtrar')->name('admin/professor/filtrar');
+//exibir professor
     Route::get('/show/{id}', 'Admin\Professor\AdminProfessorController@show');
 //update
     Route::post("/{id}", 'Admin\Professor\AdminProfessorController@update');

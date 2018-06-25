@@ -14,7 +14,7 @@
 
 @section('campo-escola')
 
-    <div class="input-field col s4">
+    <div class="input-field col s6">
         <i class="material-icons prefix">people</i>
         <select name="escola_id">
             <option value="{{$escola->id}}" selected>{{$escola->name}}</option>

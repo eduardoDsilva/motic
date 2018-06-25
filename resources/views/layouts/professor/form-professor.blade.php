@@ -28,7 +28,8 @@
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="name" class="validate" type="text" name="name"
                                    value="{{$professor->name or old('name')}}" required>
-                            <label data-error="Insira um nome válido!" data-success="Ok" for="name">Nome do professor *</label>
+                            <label data-error="Insira um nome válido!" data-success="Ok" for="name">Nome do professor
+                                *</label>
                         </div>
 
                         <div class="input-field col s6">
@@ -44,8 +45,12 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
-                                <option value="feminino"  @if (isset($professor) && $professor->sexo == 'feminino') selected @endif>Feminino</option>
-                                <option value="masculino" @if (isset($professor) && $professor->sexo == 'masculino') selected @endif>Masculino</option>
+                                <option value="feminino"
+                                        @if (isset($professor) && $professor->sexo == 'feminino') selected @endif>Feminino
+                                </option>
+                                <option value="masculino"
+                                        @if (isset($professor) && $professor->sexo == 'masculino') selected @endif>Masculino
+                                </option>
                             </select>
                             <label>Sexo *</label>
                         </div>
@@ -54,9 +59,13 @@
                             <i class="material-icons prefix">book</i>
                             <select name="grauDeInstrucao">
                                 <option value="" disabled selected>Grau de Instrução</option>
-                                <option value="Ensino Médio" @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>Ensino Médio
+                                <option value="Ensino Médio"
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>
+                                    Ensino Médio
                                 </option>
-                                <option value="Ensino Superior" @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>Ensino Superior
+                                <option value="Ensino Superior"
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>
+                                    Ensino Superior
                                 </option>
                             </select>
                             <label>Grau de Instrição *</label>
@@ -68,14 +77,32 @@
 
                         @yield('campo-escola')
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">confirmation_number</i>
+                            <select name="camisa">
+                                <option value="" disabled selected>Tamanho...</option>
+                                <option value="PP">PP</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
+                            <label>Tamanho da camisa *</label>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="matricula" class="validate" type="text" name="matricula"
                                    value="{{$professor->matricula or old('matricula')}}" required>
-                            <label data-error="Insira uma matricula válida!" data-success="Ok" for="matricula">Matrícula</label>
+                            <label data-error="Insira uma matricula válida!" data-success="Ok"
+                                   for="matricula">Matrícula</label>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix">email</i>
                             <input minlength="10" class='validate' id='email' type="email" name="email"
                                    value="{{$professor->user->email or old('email')}}" required>
@@ -97,7 +124,8 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF *</label>
-                            <input type="number" name="cpf" data-length="11" value="{{$professor->cpf or old('cpf')}}"required>
+                            <input type="number" name="cpf" data-length="11" value="{{$professor->cpf or old('cpf')}}"
+                                   required>
                         </div>
                     </div>
 
@@ -106,7 +134,9 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
-                            <input id="cep" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no máximo 8 números" type="number" name="cep" data-length="8"
+                            <input id="cep" class="validate tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Somente números e no máximo 8 números" type="number" name="cep"
+                                   data-length="8"
                                    value="{{$professor->cep or old('cep')}}">
                             <label data-error="Insira um cep válido!" data-success="Ok"
                                    for="cep">CEP</label>
@@ -198,7 +228,10 @@
                     </div>
 
                     <div class="fixed-action-btn">
-                        <button type="submit" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i></button>
+                        <button type="submit"
+                                class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                                data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i>
+                        </button>
                     </div>
 
                 </form>

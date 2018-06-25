@@ -12,6 +12,8 @@ use App\Professor;
 use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminEscolaController extends Controller
@@ -78,8 +80,28 @@ class AdminEscolaController extends Controller
             $alunos = Aluno::where('escola_id', '=', $escola->id)->paginate(6);
             $professores = Professor::where('escola_id', '=', $escola->id)->paginate(6);
             $projetos = Projeto::where('escola_id', '=', $escola->id)->paginate(6);
-
             return view('admin/escola/show', compact('escola', 'alunos', 'professores', 'projetos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            if($dataForm['tipo'] == 'id'){
+                $escolas = Escola::where('id', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $escolas = Escola::where('name', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'usuario'){
+                $filtro = $dataForm['search'];
+                $escolas = [User::where('username', '=', $filtro)->first()->escola];
+            }else if($dataForm['tipo'] == 'email'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $escolas = Escola::where('email', 'like', $filtro)->paginate(10);
+            }
+            return view('admin/escola/home', compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

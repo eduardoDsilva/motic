@@ -24,6 +24,7 @@ class CreateProfessores extends Migration
             $table->string('cpf');
             $table->integer('matricula');
             $table->enum('tipo', ['orientador', 'coorientador', 'nenhum'])->default('nenhum');
+            $table->enum('camisa',['PP','P','M','G','GG'])->default('M');
 
             $table->unsignedInteger('escola_id');
             $table->foreign('escola_id')->references('id')->on('escolas')->onDelete('cascade');

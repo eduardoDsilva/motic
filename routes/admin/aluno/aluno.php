@@ -5,6 +5,8 @@ Route::prefix('admin/aluno')->group(function () {
     Route::get('/', 'Admin\Aluno\AdminAlunoController@index')->name('admin/aluno/home');
 //exibir aluno
     Route::get('/show/{id}', 'Admin\Aluno\AdminAlunoController@show');
+    //exibir alunos
+    Route::post('/filtrar', 'Admin\Aluno\AdminAlunoController@filtrar')->name('admin/aluno/filtrar');
 //update
     Route::post("/{id}", 'Admin\Aluno\AdminAlunoController@update');
 //deletar
