@@ -71,7 +71,7 @@
 
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">local_phone</i>
-                                <input id="telefone" class="validate" type="number" name="telefone"
+                                <input id="telefone" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no mínimo 8 números" type="number" name="telefone"
                                        data-length="16" value="{{$escola->telefone or old('telefone')}}"
                                        required>
                                 <label data-error="Insira um telefone válido!" data-success="Ok"
@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">explore</i>
-                                <input class="validate" id="cep" type="number" name="cep" data-length="8"
+                                <input class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no máximo 8 números"  id="cep" type="number" name="cep" data-length="8"
                                        value="{{$escola->user->endereco->cep or old('cep')}}" required>
                                 <label data-error="Insira um cep válido!" data-success="Ok"
                                        for="cep">CEP *</label>
@@ -155,7 +155,8 @@
 
                         <div class="input-field">
                             <i class="material-icons prefix">person</i>
-                            <input id="usuario" class="validate" type="text" name="username"
+                            <input id="usuario" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Insira um usuário com até 30 caracteres"
+                                   type="text" name="username"
                                    value="{{$escola->user->username or old('username')}}" required>
                             <label data-error="Insira um usuário válido!" data-success="Ok"
                                    for="usuario">Usuário *</label>
@@ -164,7 +165,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">person_pin</i>
-                                <input id="password" class="validate" type="password" name="password"
+                                <input id="password" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Insira uma senha com no mínimo 6 caracteres" type="password" name="password"
                                        value="{{old('password')}}" required>
                                 <label data-error="Insira uma senha válida!" data-success="Ok"
                                        for="password">Senha *</label>
@@ -172,7 +173,7 @@
 
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">person_pin</i>
-                                <input class="validate" id="password_confirmation" type="password"
+                                <input class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Confirme sua senha" id="password_confirmation" type="password"
                                        name="password_confirmation" value="{{old('password')}}" required>
                                 <label data-error="Insira uma senha válida!" data-success="Ok"
                                        for="password_confirmation">Confirmar senha *</label>

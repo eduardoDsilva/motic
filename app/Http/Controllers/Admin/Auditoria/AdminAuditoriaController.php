@@ -20,7 +20,6 @@ class AdminAuditoriaController extends Controller
         $auditorias = Auditoria::latest()->paginate(10);
 
         return view('admin/auditoria/home', compact('auditorias'));
-
     }
 
 }

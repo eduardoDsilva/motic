@@ -19,8 +19,7 @@ class CreateAuditorias extends Migration
             $table->longText('descricao');
             $table->string('nome_usuario');
             $table->integer('id_acao');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

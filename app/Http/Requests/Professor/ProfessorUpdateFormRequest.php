@@ -42,7 +42,7 @@ class ProfessorUpdateFormRequest extends FormRequest
             'cidade'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'estado'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'pais'                  => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
-            'username'              => 'required|alpha_num|between:5,20',
+            'username'              => 'required|alpha_num|between:5,30',
             'password'              => 'required|alpha_num|min:6|confirmed',
         ];
     }

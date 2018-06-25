@@ -36,7 +36,7 @@ class EscolaCreateFormRequest extends FormRequest
             'estado'                => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'pais'                  => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'complemento'           => 'sometimes|nullable|alpha_num',
-            'username'              => 'required|alpha_num|between:5,20|unique:users',
+            'username'              => 'required|alpha_num|between:5,30|unique:users',
             'password'              => 'required|alpha_num|min:6|confirmed',
         ];
     }

@@ -41,7 +41,7 @@ class AvaliadorCreateFormRequest extends FormRequest
             'cidade'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'estado'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'pais'                  => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
-            'username'              => 'required|alpha_num|between:5,20|unique:users',
+            'username'              => 'required|alpha_num|between:5,30|unique:users',
             'password'              => 'required|alpha_num|min:6|confirmed',
         ];
     }
