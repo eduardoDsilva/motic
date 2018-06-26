@@ -74,7 +74,7 @@
                                 @forelse ($categorias as $categoria)
                                     <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
                                 @empty
-                                    <option value="">Nenhuma categoria cadastrada no sistema! Entre em contato com o administrador.</option>
+                                    <option value="" disabled selected>Nenhuma categoria cadastrada no sistema! Entre em contato com o administrador.</option>
                                 @endforelse
                             </select>
                             <label>Categoria *</label>
@@ -97,7 +97,7 @@
                                 @forelse ($professores as $professor)
                                     <option value="{{$professor->id}}">{{$professor->name}}</option>
                                 @empty
-                                    <option value="">Nenhum professor cadastrada no sistema.</option>
+                                    <option value="" disabled selected>Nenhum professor cadastrado no sistema.</option>
                                 @endforelse
                             </select>
                             <label>Orientador *</label>
@@ -110,7 +110,7 @@
                             @forelse ($professores as $professor)
                                     <option value="{{$professor->id}}">{{$professor->name}}</option>
                                 @empty
-                                    <option value="">Nenhum professor cadastrada no sistema.</option>
+                                    <option value="" disabled selected>Nenhum professor cadastrado no sistema.</option>
                                 @endforelse
                             </select>
                             <label>Coorientador</label>

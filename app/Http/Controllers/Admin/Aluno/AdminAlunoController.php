@@ -9,9 +9,7 @@ use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Aluno\AlunoCreateFormRequest;
 use App\Http\Requests\Aluno\AlunoUpdateFormRequest;
-use App\Projeto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -183,5 +181,4 @@ class AdminAlunoController extends Controller
         }
         return response()->json($ano);
     }
-
 }

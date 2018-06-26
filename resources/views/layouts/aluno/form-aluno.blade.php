@@ -78,11 +78,11 @@
                             <i class="material-icons prefix">confirmation_number</i>
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
-                                <option value="PP">PP</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
+                                <option value="PP" @if(isset($aluno)) @if($aluno->camisa == 'PP')) required @endif @endif>PP</option>
+                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required @endif @endif>P</option>
+                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required @endif @endif>M</option>
+                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required @endif @endif>G</option>
+                                <option value="GG" @if(isset($aluno)) @if($aluno->camisa == 'GG')) required @endif @endif>GG</option>
                             </select>
                             <label>Tamanho da camisa *</label>
                         </div>

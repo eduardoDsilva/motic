@@ -18,6 +18,7 @@ Route::prefix('admin/aluno')->group(function () {
 //create
     Route::post('/cadastro/registro', 'Admin\Aluno\AdminAlunoController@store')->name('admin/aluno/cadastro/registro');
 });
+
 Route::get('/json-ano','Admin\Aluno\AdminAlunoController@escolaCategoria');
 
 

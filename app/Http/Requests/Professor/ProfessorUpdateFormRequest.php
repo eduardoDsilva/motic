@@ -113,6 +113,8 @@ class ProfessorUpdateFormRequest extends FormRequest
             'password_confirmed.min' => 'A senha deve ter no mínimo 6 caractéres',
             'password_confirmed.alpha_num' => 'Insira uma senha sem caracteres especiais',
             'password_confirmed.confirmed' => 'As senhas devem ser iguais',
+
+            'camisa.required' => 'Selecione um tamanho de camisa para o professor',
         ];
     }
 }

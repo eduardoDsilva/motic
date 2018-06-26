@@ -35,8 +35,8 @@ class AlunoUpdateFormRequest extends FormRequest
             'email'                 => 'sometimes|nullable|email',
             'telefone'              => 'sometimes|nullable|digits_between:8, 16',
             'cep'                   => 'sometimes|nullable|digits:8',
-            'bairro'                => 'sometimes|nullable|alpha_num|max:100',
-            'rua'                   => 'sometimes|nullable|alpha_num|max:100',
+            'bairro'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|max:100',
+            'rua'                   => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|max:100',
             'numero'                => 'digits_between:0,5',
             'complemento'           => 'sometimes|nullable|alpha_num',
             'cidade'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
@@ -61,7 +61,6 @@ class AlunoUpdateFormRequest extends FormRequest
             'etapa.required' => 'O campo etapa é de preencimento obrigatório',
 
             'turma.required' => 'O campo turma é de preencimento obrigatório',
-            'turma.alpha_num' => 'Não insira caracteres especiais',
 
             'escola_id.required' => 'O campo escola é de preenchimento obrigatório!',
             'escola_id.integer'  => 'Selecione uma escola válida!',
@@ -76,10 +75,10 @@ class AlunoUpdateFormRequest extends FormRequest
             'email.email' => 'Insira um e-mail válido!',
 
             'bairro.max' => 'Insira um bairro válido!',
-            'bairro.alpha_num' => 'Não insira caracteres especiais no bairro',
+            'bairro.regex' => 'Não insira caracteres especiais no bairro',
 
             'rua.max' => 'Insira uma rua válida!',
-            'rua.alpha_num' => 'Não insira caracteres especiais na rua!',
+            'rua.regex' => 'Não insira caracteres especiais na rua!',
 
             'numero.digits_between' => 'Insira um número com no máximo 5 dígitos!',
 
@@ -90,6 +89,8 @@ class AlunoUpdateFormRequest extends FormRequest
             'estado.regex' => 'Insira um estado sem caracteres especiais!',
 
             'pais.regex' => 'Insira um país sem caracteres especiais!',
+
+            'camisa.required' => 'Selecione um tamanho de camisa para o aluno',
 
         ];
     }
