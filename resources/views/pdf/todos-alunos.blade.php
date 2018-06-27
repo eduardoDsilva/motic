@@ -32,19 +32,19 @@
 
 <body>
 
-<h2>Alunos</h2>
+<h1>Alunos</h1>
 
 <table>
 
     <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Nascimento</th>
-        <th>Ano/Etapa</th>
-        <th>Escola</th>
-        <th>Turma</th>
-        <th>Projeto</th>
-    </tr>
+        <tr>
+            <th>Nome</th>
+            <th>Nascimento</th>
+            <th>Ano/Etapa</th>
+            <th>Escola</th>
+            <th>Turma</th>
+            <th>Projeto</th>
+        </tr>
     </thead>
     <tbody>
     @forelse ($alunos as $aluno)

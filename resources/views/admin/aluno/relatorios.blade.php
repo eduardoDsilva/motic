@@ -23,50 +23,67 @@
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m6">
-                    <div class="card red darken-3">
+                    <div class="card red darken-3 hoverable">
                         <div class="card-content white-text">
-                            <span class="card-title">Todos os alunos</span>
-                            <p>Clique aqui para gerar um relatório de todos os alunos do sistema.</p>
+                            <span class="card-title">Todos os alunos resumido</span>
+                            <p>Para gerar um relatório de todos os alunos do sistema.</p>
                         </div>
                         <div class="card-action">
-                            <a href="{{route ('admin/aluno/relatorios/todosExibe')}}">Exibir</a>
-                            <a href="{{route ('admin/aluno/relatorios/todosBaixa')}}">Baixar</a>
+                            <a class="btn" href="{{route ('admin/aluno/relatorios/todosExibe')}}">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    <div class="card green darken-3">
+                    <div class="card green darken-3 hoverable">
                         <div class="card-content white-text">
-                            <span class="card-title">Alunos com projeto</span>
-                            <p>Clique aqui para gerar um relatório dos alunos com projeto do sistema.</p>
+                            <span class="card-title">Aluno por escola</span>
+                            <p>Para gerar um relatório dos alunos de cada escola.</p>
                         </div>
                         <div class="card-action">
-                            <a href="#">Exibir</a>
-                            <a href="#">Baixar</a>
-                           </div>
-                    </div>
-                </div>
-                <div class="col s12 m6">
-                    <div class="card blue darken-3">
-                        <div class="card-content white-text">
-                            <span class="card-title">Alunos sem projeto</span>
-                            <p>Clique aqui para gerar um relatório dos alunos sem projeto do sistema.</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">Exibir</a>
-                            <a href="#">Baixar</a>
+                            <a class="btn" href="{{route ('admin/aluno/relatorios/escolaExibe')}}">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    <div class="card purple darken-3">
+                    <div class="card blue darken-3 hoverable">
+                        <form class="" method="post" enctype="multipart/form-data"
+                              action="{{route('admin/aluno/relatorios/alunoExibe')}}">
+                            {{csrf_field()}}
+                            <div class="card-content white-text">
+                                <span class="card-title">Aluno individual</span>
+                                <p>Para gerar um relatório de um aluno específico do sistema, insira o ID abaixo:</p>
+
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">perm_identity</i>
+                                        <select id='id' name="id" required>
+                                            <option value="" disabled selected>Selecione um aluno</option>
+                                        @forelse($alunos as $aluno)
+                                                <option value="{{$aluno->id}}">{{$aluno->name}}</option>
+                                            @empty
+                                                <option value="" disabled selected>Nenhum aluno cadastrado no sistema</option>
+                                            @endforelse
+                                        </select>
+                                        <label data-error="Selecione um aluno válido!" data-success="Ok" for="id">Aluno</label>
+                                    </div>
+                            <br> <br><br>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn" type="submit">Gerar relatório</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card purple darken-3 hoverable">
                         <div class="card-content white-text">
-                            <span class="card-title">Aluno individual</span>
-                            <p>Clique aqui para gerar um relatório de um aluno específico do sistema.</p>
+                            <span class="card-title">Todos alunos completo</span>
+                            <p>Para gerar um relatório de todos os alunos do sistema, com os seguintes dados:</p>
+                            <li>Dados pessoais</li>
+                            <li>Dados escolares</li>
+                            <li>Endereço</li>
                         </div>
                         <div class="card-action">
-                            <a href="#">Exibir</a>
-                            <a href="#">Baixar</a>
+                            <a class="btn" href="{{route ('admin/aluno/relatorios/todosCompletoExibe')}}">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
