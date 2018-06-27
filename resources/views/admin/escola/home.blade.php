@@ -73,9 +73,9 @@
                 @forelse ($escolas as $escola)
                     <tr>
                         <td>{{$escola->id}}</td>
-                        <td>{{$escola->name}}</td>
+                        <td class="limit">{{$escola->name}}</td>
                         <td>{{$escola->telefone}}</td>
-                        <td>{{$escola->user->username}}</td>
+                        <td class="limit">{{$escola->user->username}}</td>
                         <td>
                             <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/edita") }}"><i class="small material-icons">edit</i></a>
                             <a id="deletar" data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$escola->id}}" data-name="{{$escola->name}}" data-tipo="escola"> <i class="small material-icons">delete</i></a>
@@ -93,6 +93,7 @@
                 @endforelse
                 </tbody>
             </table>
+            {{$escolas->links()}}
 
             <!-- Modal Structure -->
             <div id="modal1" class="modal">

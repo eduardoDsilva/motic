@@ -97,7 +97,6 @@
                 @endforelse
                 </tbody>
             </table>
-
             {{$alunos->links()}}
 
             <div class="fixed-action-btn">

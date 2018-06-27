@@ -20,7 +20,7 @@ class AdminAlunoRelatorioController
         return view('admin/aluno/relatorios', compact('alunos'));
     }
 
-    public function todosAlunosExibe()
+    public function alunosResumidoPdf()
     {
         $alunos = Aluno::orderBy('name','asc')->get();
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
@@ -28,7 +28,7 @@ class AdminAlunoRelatorioController
             ->stream('todos-alunos-motic'.date('Y').'.pdf');
     }
 
-    public function escolaAlunosExibe()
+    public function escolaAlunosPdf()
     {
         $escolas = Escola::orderBy('name','asc')->get();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
@@ -36,7 +36,7 @@ class AdminAlunoRelatorioController
             ->stream('todos-alunos-por-escola-motic'.date('Y').'.pdf');
     }
 
-    public function alunoExibe(Request $request)
+    public function alunoPdf(Request $request)
     {
         $dataForm = $request->all();
         $aluno = Aluno::find($dataForm['id']);
@@ -45,7 +45,7 @@ class AdminAlunoRelatorioController
             ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');
     }
 
-    public function todosCompletoExibe()
+    public function alunoCompletoPdf()
     {
         $alunos = Aluno::all();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
