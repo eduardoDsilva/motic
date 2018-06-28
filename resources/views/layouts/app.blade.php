@@ -115,7 +115,7 @@
             }else if(tipo == 'projeto'){
                 $.ajax({
                     type: 'GET',
-                    url: 'projeto/destroy/' + id,
+                    url: 'destroy/' + id,
                     success: function(data) {
                         location.reload();
                     }
@@ -139,7 +139,7 @@
             }else if(tipo == 'suplente'){
                 $.ajax({
                     type: 'GET',
-                    url: 'suplente/destroy/' + id,
+                    url: 'destroy/' + id,
                     success: function(data) {
                         location.reload();
                     }

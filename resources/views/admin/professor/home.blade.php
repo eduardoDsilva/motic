@@ -103,6 +103,7 @@
                 @endforelse
                 </tbody>
             </table>
+            {{$professores->links()}}
 
             <!-- Modal Structure -->
             <div id="modal1" class="modal">

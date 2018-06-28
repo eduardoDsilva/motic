@@ -10,7 +10,7 @@ Route::prefix('admin/professor')->group(function () {
 //update
     Route::post("/{id}", 'Admin\Professor\AdminProfessorController@update');
 //deletar
-    Route::get("/destroy/{id}", "Admin\Professor\AdminProfessorController@destroy");
+    Route::get("/professor/destroy/{id}", "Admin\Professor\AdminProfessorController@destroy");
 //formulario de edita
     Route::get("/update/{id}/edita", "Admin\Professor\AdminProfessorController@edit");
 //formulario de registrar

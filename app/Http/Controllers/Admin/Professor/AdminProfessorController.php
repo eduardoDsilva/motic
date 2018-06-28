@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminProfessorController extends Controller
@@ -87,11 +88,21 @@ class AdminProfessorController extends Controller
                 $filtro = '%'.$dataForm['search'].'%';
                 $professores = Professor::where('name', 'like', $filtro)->paginate(10);
             }else if($dataForm['tipo'] == 'usuario'){
-                $filtro = $dataForm['search'];
-                $professores = [User::where('username', '=', $filtro)->first()->professor];
+                $filtro = '%'.$dataForm['search'].'%';
+                $users = User::where('username', 'like', $filtro)->get();
+                $array[] = null;
+                foreach($users as $id){
+                    $array[] = $id->id;
+                }
+                $professores = Professor::whereIn('user_id', $array)->paginate(10);
             }else if($dataForm['tipo'] == 'escola'){
                 $filtro = '%'.$dataForm['search'].'%';
-                $professores = [Escola::where('name', 'like', $filtro)->first()->escola];
+                $escola = Escola::where('name', 'like', $filtro)->get();
+                $array[] = null;
+                foreach($escola as $id){
+                    $array[] = $id->id;
+                }
+                $professores = Professor::whereIn('escola_id', $array)->paginate(10);
             }else if($dataForm['tipo'] == 'email'){
                 $professores = Professor::where('email', '=', $dataForm['search'])->paginate(10);
             }else if($dataForm['tipo'] == 'nascimento'){

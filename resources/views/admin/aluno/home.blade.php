@@ -41,6 +41,7 @@
                                 <option value="nome">Nome</option>
                                 <option value="nascimento">Nascimento</option>
                                 <option value="sexo">Sexo</option>
+                                <option value="escola">Escola</option>
                                 <option value="etapa">Ano/Etapa</option>
                             </select>
                             <label>Filtros</label>

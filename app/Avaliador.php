@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Avaliador extends Model
 {
 
-    protected $table = 'Avaliadores';
+    protected $table = 'avaliadores';
 
     protected $fillable = [
         'name', 'nascimento', 'sexo', 'telefone', 'grauDeInstrucao', 'cpf', 'instituicao', 'projeto_id', 'user_id',

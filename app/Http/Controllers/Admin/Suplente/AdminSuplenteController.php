@@ -94,6 +94,36 @@ class AdminSuplenteController extends Controller
 
     }
 
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            if($dataForm['tipo'] == 'id'){
+                $projetos = Projeto::where('id', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $projetos = Projeto::where('titulo', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'escola') {
+                $filtro = '%'.$dataForm['search'].'%';
+                $escola = Escola::where('name', 'like', $filtro)->get();
+                foreach($escola as $id){
+                    $array[] = $id->id;
+                }
+                $projetos = Projeto::whereIn('escola_id', $array)->paginate(10);
+            }else if($dataForm['tipo'] == 'categoria'){
+                $categoria = Categoria::where('categoria', '=', $dataForm['search'])->get();
+                $array[] = null;
+                foreach($categoria as $id){
+                    $array[] = $id->id;
+                }
+                $projetos = Projeto::whereIn('categoria_id', $array)->paginate(10);
+            }
+            return view('admin/suplente/home', compact('projetos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+
     public function show($id){
         try{
             $projeto = Projeto::find($id);

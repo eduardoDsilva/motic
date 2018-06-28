@@ -3,14 +3,14 @@
 Route::prefix('admin/projeto')->group(function () {
 //home
     Route::get('/home', 'Admin\Projeto\AdminProjetoController@index')->name('admin/projeto/home');
-//update
-    Route::post("/{id}", 'Admin\Projeto\AdminProjetoController@update');
 //exibir projeto
     Route::get('/show/{id}/suplente', 'Admin\Projeto\AdminProjetoController@showSuplente');
+    //filtrar projetos
+    Route::post('/filtrar', 'Admin\Projeto\AdminProjetoController@filtrar')->name('admin/projeto/filtrar');
 //exibir projeto
     Route::get('/show/{id}', 'Admin\Projeto\AdminProjetoController@show');
 //deletar
-    Route::get("/destroy/{id}/{projeto}", "Admin\Projeto\AdminProjetoController@destroy");
+    Route::get("/destroy/{id}", "Admin\Projeto\AdminProjetoController@destroy");
 //formulario de edita
     Route::get("/update/{id}/edita", "Admin\Projeto\AdminProjetoController@edit");
 //formulario de registrar
@@ -19,6 +19,8 @@ Route::prefix('admin/projeto')->group(function () {
     Route::post('/cadastro/registro', 'Admin\Projeto\AdminProjetoController@store')->name('admin/projeto/cadastro/registro');
     //rebaixa
     Route::get('/rebaixa/{id}', 'Admin\Projeto\AdminProjetoController@rebaixaSuplente');
+    //update
+    Route::post("/{id}", 'Admin\Projeto\AdminProjetoController@update');
 });
     Route::get('/json-categorias-projeto', 'Admin\Projeto\AdminProjetoController@categorias');
 

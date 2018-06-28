@@ -60,12 +60,10 @@
                             <select name="grauDeInstrucao">
                                 <option value="" disabled selected>Grau de Instrução</option>
                                 <option value="Ensino Médio"
-                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>
-                                    Ensino Médio
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>Ensino Médio
                                 </option>
                                 <option value="Ensino Superior"
-                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>
-                                    Ensino Superior
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>Ensino Superior
                                 </option>
                             </select>
                             <label>Grau de Instrição *</label>
@@ -99,7 +97,7 @@
                             <input minlength="2" id="matricula" class="validate" type="text" name="matricula"
                                    value="{{$professor->matricula or old('matricula')}}" required>
                             <label data-error="Insira uma matricula válida!" data-success="Ok"
-                                   for="matricula">Matrícula</label>
+                                   for="matricula">Matrícula *</label>
                         </div>
 
                         <div class="input-field col s6">

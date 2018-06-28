@@ -78,6 +78,14 @@ class AdminAlunoController extends Controller
             }else if($dataForm['tipo'] == 'etapa'){
                 $filtro = '%'.$dataForm['search'].'%';
                 $alunos = Aluno::where('etapa', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'escola'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $escola = Escola::where('name', 'like', $filtro)->get();
+                $array[] = null;
+                foreach($escola as $id){
+                    $array[] = $id->id;
+                }
+                $alunos = Aluno::whereIn('escola_id', $array)->paginate(10);
             }
             return view('admin/aluno/home', compact('alunos'));
         }catch (\Exception $e) {

@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Admin\Projeto;
 
 use App\Aluno;
+use App\Avaliador;
+use App\Categoria;
 use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
@@ -99,6 +101,35 @@ class AdminProjetoController extends Controller
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
             return view("admin/projeto/show", compact('projeto', 'alunos', 'professores'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            if($dataForm['tipo'] == 'id'){
+                $projetos = Projeto::where('id', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $projetos = Projeto::where('titulo', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'escola') {
+                $filtro = '%'.$dataForm['search'].'%';
+                $escola = Escola::where('name', 'like', $filtro)->get();
+                foreach($escola as $id){
+                    $array[] = $id->id;
+                }
+                $projetos = Projeto::whereIn('escola_id', $array)->paginate(10);
+            }else if($dataForm['tipo'] == 'categoria'){
+                $categoria = Categoria::where('categoria', '=', $dataForm['search'])->get();
+                $array[] = null;
+                foreach($categoria as $id){
+                    $array[] = $id->id;
+                }
+                $projetos = Projeto::whereIn('categoria_id', $array)->paginate(10);
+            }
+            return view('admin/projeto/home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
