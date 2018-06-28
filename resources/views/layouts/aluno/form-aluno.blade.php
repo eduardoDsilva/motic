@@ -39,7 +39,6 @@
                             <label for="nascimento">Nascimento</label>
                         </div>
 
-
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
@@ -55,7 +54,6 @@
                             </select>
                             <label>Sexo *</label>
                         </div>
-
                         @yield('campo-escola')
 
                     </div>
@@ -63,7 +61,6 @@
                     <div class="row">
 
                         @yield('campo-etapa')
-
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="turma" class="validate" type="text" name="turma"

@@ -10,7 +10,8 @@
         "copam/phpjasper": "^1.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "neitanod/forceutf8": "~2.0"
+        "neitanod/forceutf8": "~2.0",
+        "orangehill/iseed": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

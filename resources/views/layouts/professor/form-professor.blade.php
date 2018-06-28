@@ -46,10 +46,10 @@
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
                                 <option value="feminino"
-                                        @if (isset($professor) && $professor->sexo == 'feminino') selected @endif>Feminino
+                                        @if(isset($professor))@if($professor->sexo == 'feminino') selected @endif @endif>Feminino
                                 </option>
                                 <option value="masculino"
-                                        @if (isset($professor) && $professor->sexo == 'masculino') selected @endif>Masculino
+                                        @if (isset($professor)) @if($professor->sexo == 'masculino') selected @endif @endif>Masculino
                                 </option>
                             </select>
                             <label>Sexo *</label>
