@@ -34,10 +34,10 @@ class ProfessorUpdateFormRequest extends FormRequest
             'email'                 => 'required|email',
             'cpf'                   => 'required|digits:11',
             'telefone'              => 'required|digits_between:8, 16',
-            'cep'                   => 'required|digits:8',
-            'bairro'                => 'required|string|between:4,100',
-            'rua'                   => 'required|string|between:4,100',
-            'numero'                => 'required|digits_between:1,5',
+            'cep'                   => 'sometimes|nullable|digits:8',
+            'bairro'                => 'sometimes|nullable|string|between:4,100',
+            'rua'                   => 'sometimes|nullable|string|between:4,100',
+            'numero'                => 'sometimes|nullable|digits_between:1,5',
             'complemento'           => 'sometimes|nullable|string',
             'cidade'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'estado'                => 'regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
@@ -55,8 +55,8 @@ class ProfessorUpdateFormRequest extends FormRequest
             'name.regex' => 'Insira um nome sem números!',
             'name.between' => 'Insira um nome entre 3 e 100 caracteres!',
 
-            'naacimento.required' => 'O campo nascimento é de preencimento obrigatório',
-            'naacimento.date' => 'Insira uma data sem letras',
+            'nascimento.required' => 'O campo nascimento é de preencimento obrigatório',
+            'nascimento.date' => 'Insira uma data sem letras',
 
             'sexo.required' => 'O campo sexo é de preencimento obrigatório',
 
@@ -78,18 +78,14 @@ class ProfessorUpdateFormRequest extends FormRequest
             'telefone.required' => 'O campo telefone é de preenchimento obrigatório',
             'telefone.digits_between' => 'Insira um telefone entre 8 e 16 dígitos!',
 
-            'cep.required' => 'O campo CEP é de preenchimento obrigatório',
             'cep.digits' => 'Insira um CEP com 8 dígitos!',
 
-            'bairro.required' => 'O campo bairro é de preenchimento obrigatório!',
             'bairro.between' => 'Insira um bairro que tenha entre 4 e 100 caracteres!',
             'bairro.string' => 'Insira um bairro sem caracteres especiais!',
 
-            'rua.required' => 'O campo rua é de preenchimento obrigatório!',
             'rua.between' => 'Insira uma rua que tenha entre 4 e 100 caracteres!',
             'rua.string' => 'Insira uma rua sem caracteres especiais!',
 
-            'numero.required' => 'O campo número é de preenchimento obrigatório!',
             'numero.digits_between' => 'Insira um número que tenha até 5 dígitos!',
 
             'complemento.string' => 'Insira um complemento sem caracteres especiais!',
