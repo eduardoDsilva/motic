@@ -30,7 +30,7 @@ class AvaliadorCreateFormRequest extends FormRequest
             'sexo'                  => ['required', Rule::in(['masculino', 'feminino']),],
             'grauDeInstrucao'       => ['required', Rule::in(['Técnico', 'Graduado', 'Mestrado', 'Doutorado']),],
             'email'                 => 'required|email|unique:users|unique:alunos',
-            'telefone'              => 'sometimes|nullable|integer|digits_between:8, 16',
+            'telefone'              => 'sometimes|nullable|digits_between:8, 16',
             'instituicao'           => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'cpf'                   => 'sometimes|nullable|digits:11|unique:alunos|unique:professores|unique:avaliadores',
             'cep'                   => 'sometimes|nullable|digits:8',
@@ -65,7 +65,6 @@ class AvaliadorCreateFormRequest extends FormRequest
             'email.unique' => 'E-mail já cadastrado no sistema',
 
             'telefone.digits_between' => 'Insira um telefone que tenha entre 8 e 16 dígitos!',
-            'telefone.integer' => 'Insira um telefone sem letras!',
 
             'insituicao.required' => 'O campo instituição é de preenchimento obrigatório',
             'insituicao.string' => 'Insira uma instituição válida',

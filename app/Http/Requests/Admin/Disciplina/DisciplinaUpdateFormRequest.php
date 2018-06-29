@@ -25,7 +25,7 @@ class DisciplinaUpdateFormRequest extends FormRequest
     {
         return [
             'name'      =>'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/|between:3,100',
-            'descricao' =>'required|max:240|alpha_num',
+            'descricao' =>'required|string',
         ];
     }
 
@@ -39,7 +39,7 @@ class DisciplinaUpdateFormRequest extends FormRequest
 
             'descricao.required' => 'O campo descrição é de preenchimento obrigatório',
             'descricao.max' => 'Insira uma descrição com no máximo 240 caractéres!',
-            'descricao.alpha_num' => 'Insira uma descrição sem caracteres especiais!',
+            'descricao.string' => 'Insira uma descrição sem caracteres especiais!',
         ];
     }
 }

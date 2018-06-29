@@ -129,7 +129,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">explore</i>
                             <input id="cep" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no máximo 8 números" type="number" name="cep" data-length="8"
-                                   value="{{$avaliador->user->endereco->cep or old('cep')}}" required>
+                                   value="{{$avaliador->user->endereco->cep or old('cep')}}">
                             <label data-error="Insira um cep válido!" data-success="Ok"
                                    for="cep">CEP</label>
                         </div>
@@ -137,7 +137,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">business</i>
                             <input id="bairro" class="validate" type="text" name="bairro"
-                                   value="{{$avaliador->user->endereco->bairro or old('bairro')}}" required>
+                                   value="{{$avaliador->user->endereco->bairro or old('bairro')}}">
                             <label data-error="Insira um bairro válido!" data-success="Ok"
                                    for="bairro">Bairro</label>
                         </div>
@@ -147,7 +147,7 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">home</i>
                             <input class="validate" id="rua" type="text" name="rua"
-                                   value="{{$avaliador->user->endereco->rua or old('rua')}}" required>
+                                   value="{{$avaliador->user->endereco->rua or old('rua')}}">
                             <label data-error="Insira uma rua válida!" data-success="Ok"
                                    for="rua">Rua</label>
                         </div>
@@ -155,7 +155,7 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">filter_1</i>
                             <input class="validate" id="numero" type="number" name="numero"
-                                   value="{{$avaliador->user->endereco->numero or old('numero')}}" required>
+                                   value="{{$avaliador->user->endereco->numero or old('numero')}}">
                             <label data-error="Insir a um número válido!" data-success="Ok"
                                    for="numero">N°</label>
                         </div>
@@ -173,7 +173,7 @@
                             <i class="material-icons prefix">location_city</i>
                             <input id="cidade" class="validate" type="text" name="cidade"
                                    value="São Leopoldo"
-                                   value="{{$avaliador->user->endereco->cidade or old('cidade')}}" required>
+                                   value="{{$avaliador->user->endereco->cidade or old('cidade')}}">
                             <label data-error="Insira uma cidade válida!" data-success="Ok"
                                    for="cidade">Cidade</label>
                         </div>
@@ -182,7 +182,7 @@
                             <i class="material-icons prefix">location_city</i>
                             <input id="estado" class="validate" type="text" name="estado"
                                    value="Rio Grande do Sul"
-                                   value="{{$avaliador->user->endereco->estado or old('estado')}}" required>
+                                   value="{{$avaliador->user->endereco->estado or old('estado')}}">
                             <label data-error="Insira um estado válido!" data-success="Ok"
                                    for="estado">Estado</label>
                         </div>
@@ -190,7 +190,7 @@
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <input class="validate" id="pais" type="text" name="pais" value="Brasil"
-                                   value="{{$avaliador->user->endereco->pais or old('pais')}}" required>
+                                   value="{{$avaliador->user->endereco->pais or old('pais')}}">
                             <label data-error="Insira um país válido!" data-success="Ok"
                                    for="pais">País</label>
                         </div>
