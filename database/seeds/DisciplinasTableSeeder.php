@@ -21,57 +21,33 @@ class DisciplinasTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'name' => 'História',
-                'descricao' => 'Descrição da disciplina de História.',
-                'created_at' => '2018-06-29 10:25:43',
-                'updated_at' => '2018-06-29 10:25:43',
+                'descricao' => 'Descrição da disciplina de história',
+                'created_at' => '2018-06-25 13:33:30',
+                'updated_at' => '2018-06-25 13:33:30',
             ),
             1 => 
             array (
                 'id' => 2,
-                'name' => 'Biologia',
-                'descricao' => 'Descrição da disciplina de Biologia.',
-                'created_at' => '2018-06-29 10:26:16',
-                'updated_at' => '2018-06-29 10:26:16',
+                'name' => 'Matemática',
+                'descricao' => 'Descrição da disciplina de Matemáticas',
+                'created_at' => '2018-06-25 13:33:30',
+                'updated_at' => '2018-06-25 13:33:30',
             ),
             2 => 
             array (
                 'id' => 3,
-                'name' => 'Matemática',
-                'descricao' => 'Descrição da disciplina de Matemática.',
-                'created_at' => '2018-06-29 10:26:27',
-                'updated_at' => '2018-06-29 10:26:27',
+                'name' => 'Geografia',
+                'descricao' => 'Descrição da disciplina de Geografia',
+                'created_at' => '2018-06-25 13:33:30',
+                'updated_at' => '2018-06-25 13:33:30',
             ),
             3 => 
             array (
                 'id' => 4,
-                'name' => 'Português',
-                'descricao' => 'Descrição da disciplina de Português.',
-                'created_at' => '2018-06-29 10:26:46',
-                'updated_at' => '2018-06-29 10:26:46',
-            ),
-            4 => 
-            array (
-                'id' => 5,
                 'name' => 'Filosofia',
-                'descricao' => 'Descrição da disciplina de Filosofia.',
-                'created_at' => '2018-06-29 10:27:00',
-                'updated_at' => '2018-06-29 10:27:00',
-            ),
-            5 => 
-            array (
-                'id' => 6,
-                'name' => 'Geografia',
-                'descricao' => 'Descrição da disciplina de Geografia.',
-                'created_at' => '2018-06-29 10:27:12',
-                'updated_at' => '2018-06-29 10:27:12',
-            ),
-            6 => 
-            array (
-                'id' => 7,
-                'name' => 'Sociologia',
-                'descricao' => 'Descrição da disciplina de Sociologia.',
-                'created_at' => '2018-06-29 10:27:32',
-                'updated_at' => '2018-06-29 10:27:32',
+                'descricao' => 'Descrição da disciplina de Filosofia',
+                'created_at' => '2018-06-25 13:33:30',
+                'updated_at' => '2018-06-25 13:33:30',
             ),
         ));
         
