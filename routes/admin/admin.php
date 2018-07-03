@@ -22,11 +22,15 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
 
     require_once ('avaliador/avaliador.php');
 
+    require_once ('avaliador/relatorios.php');
+
     require_once ('projeto/projeto.php');
 
     require_once ('suplente/suplente.php');
 
     require_once ('disciplinas/disciplinas.php');
+
+    require_once ('disciplinas/relatorios.php');
 
 
 });

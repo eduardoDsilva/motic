@@ -61,7 +61,7 @@
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/home')}}}"><i class="material-icons">list</i>Listar avaliadores</a></li>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/registro')}}}"><i class="material-icons">add</i>Cadastrar avaliador</a></li>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/showAvaliadorDisponivel')}}}"><i class="material-icons">cached</i>Avaliador disponível</a></li>
-                                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
+                                    <li><a class="waves-effect waves-blue" href="{{{route ('admin/avaliador/relatorios')}}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                                     <li><div class="divider"></div></li>
                                 </ul>
                             </div>
@@ -75,7 +75,7 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/disciplinas/home')}}}"><i class="material-icons">list</i>Listar disciplinas</a></li>
-                                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
+                                    <li><a class="waves-effect waves-blue" href="{{route ('admin/disciplinas/relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                                     <li><div class="divider"></div></li>
                                 </ul>
                             </div>
@@ -120,8 +120,7 @@
                                 <ul>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/home')}}}"><i class="material-icons">list</i>Listar projetos</a></li>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/projeto/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar projetos</a></li>
-                                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">add</i>Projetos x Avaliadores</a></li>
-                                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
+                                    <li><a class="waves-effect waves-blue" href="{{route ('admin/avaliador/relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                                     <li><div class="divider"></div></li>
                                 </ul>
                             </div>
