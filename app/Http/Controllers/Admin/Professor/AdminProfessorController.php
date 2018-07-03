@@ -8,7 +8,7 @@ use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Requests\Professor\ProfessorCreateFormRequest;
 use App\Http\Requests\Professor\ProfessorUpdateFormRequest;
-use App\professor;
+use App\Professor;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;

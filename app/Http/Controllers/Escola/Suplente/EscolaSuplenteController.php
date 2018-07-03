@@ -52,7 +52,9 @@ class EscolaSuplenteController extends Controller
 
         $projetos = DB::table('projetos')
             ->select('categoria_id')
-            ->where('escola_id', '=', $escola->id)->get();
+            ->where('escola_id', '=', $escola->id)
+            ->where('tipo', '=', 'suplente')
+            ->get();
         $categoria_id = [];
         foreach($projetos as $projeto){
             $categoria_id[] = $projeto->categoria_id;
@@ -63,7 +65,7 @@ class EscolaSuplenteController extends Controller
         return view("escola/suplente/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(ProjetoFormRequest $request){
+    public function store(Request $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find(Auth::user()->escola->id);
@@ -134,7 +136,7 @@ class EscolaSuplenteController extends Controller
         }
     }
 
-    public function update(ProjetoFormRequest $request, $id){
+    public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($id);

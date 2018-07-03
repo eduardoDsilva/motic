@@ -36,19 +36,16 @@
          <th>Tipo</th>
          <th>Descricao</th>
          <th>Usuário Responsável</th>
-         <th>ID do responsável</th>
      </tr>
     @forelse ($registros as $auditoria)
         <tr>
-            <td>{{$auditoria->id}}</td>
-            <td>{{$auditoria->tipo}}</td>
-            <td>{{$auditoria->descricao}}</td>
-            <td>{{$auditoria->nome_usuario}}</td>
-            <td>{{$auditoria->user_id}}</td>
+            <td width="5%">{{$auditoria->id}}</td>
+            <td width="10%">{{$auditoria->tipo}}</td>
+            <td width="65%">{{$auditoria->descricao}}</td>
+            <td width="20%">{{$auditoria->nome_usuario}}</td>
         </tr>
     @empty
         <tr>
-            <td>Nenhum registro encontrado</td>
             <td>Nenhum registro encontrado</td>
             <td>Nenhum registro encontrado</td>
             <td>Nenhum registro encontrado</td>

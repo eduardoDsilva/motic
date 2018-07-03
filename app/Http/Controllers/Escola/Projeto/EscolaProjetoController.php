@@ -17,10 +17,10 @@ use App\Http\Requests\Projeto\ProjetoFormRequest;
 use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class EscolaProjetoController extends Controller
@@ -62,7 +62,7 @@ class EscolaProjetoController extends Controller
         return view("escola/projeto/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
-    public function store(ProjetoFormRequest $request){
+    public function store(Request $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $escola = Escola::find($dataForm['escola_id']);
@@ -133,7 +133,7 @@ class EscolaProjetoController extends Controller
         }
     }
 
-    public function update(ProjetoFormRequest $request, $id){
+    public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
             $projeto = Projeto::find($id);

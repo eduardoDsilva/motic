@@ -58,7 +58,7 @@
                         <th>ID</th>
                         <th>Tipo</th>
                         <th>Descricao</th>
-                        <th>Usuário Responsável</th>
+                        <th>Usuário</th>
                         <th>ID do responsável</th>
                     </tr>
                     </thead>
@@ -67,8 +67,8 @@
                         <tr>
                             <td>{{$auditoria->id}}</td>
                             <td>{{$auditoria->tipo}}</td>
-                            <td width="33%">{{$auditoria->descricao}}</td>
-                            <td>{{$auditoria->nome_usuario}}</td>
+                            <td width="70%">{{$auditoria->descricao}}</td>
+                            <td width="20%">{{$auditoria->nome_usuario}}</td>
                             <td>{{$auditoria->user_id}}</td>
                         </tr>
                     @empty

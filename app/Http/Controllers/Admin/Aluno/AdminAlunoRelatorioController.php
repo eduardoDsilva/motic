@@ -24,7 +24,7 @@ class AdminAlunoRelatorioController
     {
         $alunos = Aluno::orderBy('name','asc')->get();
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.todos-alunos', compact('alunos'))
+            ->loadView('pdf.aluno.todos-alunos', compact('alunos'))
             ->stream('todos-alunos-motic'.date('Y').'.pdf');
     }
 
@@ -32,7 +32,7 @@ class AdminAlunoRelatorioController
     {
         $escolas = Escola::orderBy('name','asc')->get();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.escola-alunos', compact('escolas'))
+            ->loadView('pdf.aluno.escola-alunos', compact('escolas'))
             ->stream('todos-alunos-por-escola-motic'.date('Y').'.pdf');
     }
 
@@ -41,7 +41,7 @@ class AdminAlunoRelatorioController
         $dataForm = $request->all();
         $aluno = Aluno::find($dataForm['id']);
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.aluno-individual', compact('aluno'))
+            ->loadView('pdf.aluno.aluno-individual', compact('aluno'))
             ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');
     }
 
@@ -49,7 +49,7 @@ class AdminAlunoRelatorioController
     {
         $alunos = Aluno::all();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.todos-alunos-completo', compact('alunos'))
+            ->loadView('pdf.aluno.todos-alunos-completo', compact('alunos'))
             ->stream('alunos-completo-'.date('Y').'.pdf');
     }
 

@@ -32,29 +32,27 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("escola/escola/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="">
                     <div class="row">
                         <div class="input-field col s4">
-                            <select required>
+                            <select required name="tipo">
                                 <option value="" disabled selected>Filtrar por...</option>
                                 <option value="id">ID</option>
-                                <option value="user">Usuário</option>
                                 <option value="nome">Nome</option>
-                                <option value="nscimento">Nascimento</option>
+                                <option value="escola">Escola</option>
                                 <option value="sexo">Sexo</option>
-                                <option value="grauDeInstrucao">Grau de instrução</option>
                                 <option value="cpf">CPF</option>
                             </select>
                             <label>Filtros</label>
                         </div>
 
                         <div class="input-field col s7">
-                            <input id="search" type="search">
+                            <input id="search" type="search" name="search" required>
                             <label for="search">Pesquise no sistema...</label>
                         </div>
                         {{csrf_field()}}
                         <div class="input-field col s1">
-                            <a class="btn-floating "><i class="material-icons">search</i></a>
+                            <button type="submit" class="btn-floating"><i class="material-icons">search</i></button>
                         </div>
                     </div>
                 </form>

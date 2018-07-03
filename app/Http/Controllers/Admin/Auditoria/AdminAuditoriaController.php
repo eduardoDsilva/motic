@@ -31,10 +31,10 @@ class AdminAuditoriaController extends Controller
             }else if($dataForm['tipo'] == 'tipo'){
                 $filtro = '%'.$dataForm['search'].'%';
                 $auditorias = Auditoria::where('tipo', 'like', $filtro)->paginate(10);
-            }else if($dataForm['id_user'] == 'user') {
+            }else if($dataForm['tipo'] == 'user') {
                 $filtro = '%' . $dataForm['search'] . '%';
                 $auditorias = Auditoria::where('nome_usuario', 'like', $filtro)->paginate(10);
-            }else if($dataForm['id_user'] == 'user_id') {
+            }else if($dataForm['tipo'] == 'id_user') {
                 $auditorias = Aluno::where('user_id', '=', $dataForm['search'])->paginate(10);
             }
             return view('admin/auditoria/home', compact('auditorias'));

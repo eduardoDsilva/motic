@@ -40,14 +40,14 @@
                             <p>Para gerar um relatório de todos os registros de cada usuário.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin/aluno/relatorios/escolaExibe')}}">Gerar relatório</a>
+                            <a class="btn" disabled href="">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6">
                     <div class="card blue darken-3 hoverable">
                         <form class="" method="post" enctype="multipart/form-data"
-                              action="{{route('admin/aluno/relatorios/alunoExibe')}}">
+                              action="">
                             {{csrf_field()}}
                             <div class="card-content white-text">
                                 <span class="card-title">Registros por usuário individual</span>
@@ -66,7 +66,7 @@
                             <br><br><br>
                             </div>
                             <div class="card-action">
-                                <button class="btn" type="submit">Gerar relatório</button>
+                                <button class="btn" disabled  type="submit">Gerar relatório</button>
                             </div>
                         </form>
                     </div>
@@ -91,7 +91,7 @@
                             </div>
                             <br><br><br>
                             <div class="card-action">
-                        <button class="btn" type="submit">Gerar relatório</button>
+                        <button class="btn" disabled type="submit">Gerar relatório</button>
                     </div>
                     </form>
                     </div>
