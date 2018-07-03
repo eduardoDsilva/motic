@@ -34,15 +34,15 @@ class AvaliadorCreateFormRequest extends FormRequest
             'instituicao'           => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'cpf'                   => 'sometimes|nullable|digits:11|unique:alunos|unique:professores|unique:avaliadores',
             'cep'                   => 'sometimes|nullable|digits:8',
-            'bairro'                => 'sometimes|nullable|alpha_num|max:100',
-            'rua'                   => 'sometimes|nullable|alpha_num|max:100',
+            'bairro'                => 'sometimes|nullable|string|max:100',
+            'rua'                   => 'sometimes|nullable|string|max:100',
             'numero'                => 'sometimes|nullable|digits_between:0,5',
-            'complemento'           => 'sometimes|nullable|alpha_num',
+            'complemento'           => 'sometimes|nullable|string',
             'cidade'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'estado'                => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
             'pais'                  => 'sometimes|nullable|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
-            'username'              => 'required|alpha_num|between:5,30|unique:users',
-            'password'              => 'required|alpha_num|min:6|confirmed',
+            'username'              => 'required|string|between:5,30|unique:users',
+            'password'              => 'required|string|min:6|confirmed',
         ];
     }
 
@@ -78,14 +78,14 @@ class AvaliadorCreateFormRequest extends FormRequest
             'email.unique' => 'E-mail já cadastrado no sistema',
 
             'bairro.max' => 'Insira um bairro válido!',
-            'bairro.alpha_num' => 'Não insira caracteres especiais',
+            'bairro.string' => 'Não insira caracteres especiais',
 
             'rua.max' => 'Insira uma rua válida!',
-            'rua.alpha_num' => 'Não insira caracteres especiais!',
+            'rua.string' => 'Não insira caracteres especiais!',
 
             'numero.digits_between' => 'Insira um número com no máximo 5 dígitos!',
 
-            'complemento.alpha_num' => 'Insira um complemento sem caracteres especiais!',
+            'complemento.string' => 'Insira um complemento sem caracteres especiais!',
 
             'cidade.regex' => 'Insira uma cidade sem caracteres especiais!',
 
@@ -94,18 +94,18 @@ class AvaliadorCreateFormRequest extends FormRequest
             'pais.regex' => 'Insira um país sem caracteres especiais!',
 
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
-            'username.alpha_num' => 'Insira um usuário sem números!',
+            'username.string' => 'Insira um usuário sem números!',
             'username.between' => 'Insira um usuário entre 5 e 20 caracteres!',
             'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',
             'password.confirmed' => 'As senhas devem ser iguais!',
-            'password.alpha_num' => 'Insira uma senha sem caracteres especiais!',
+            'password.string' => 'Insira uma senha sem caracteres especiais!',
 
             'password_confirmed.required' => 'O campo senha é de preenchimento obrigatório!',
             'password_confirmed.min' => 'A senha deve ter no mínimo 6 caractéres',
-            'password_confirmed.alpha_num' => 'Insira uma senha sem caracteres especiais',
+            'password_confirmed.string' => 'Insira uma senha sem caracteres especiais',
             'password_confirmed.confirmed' => 'As senhas devem ser iguais',
         ];
     }

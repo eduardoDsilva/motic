@@ -43,7 +43,8 @@ class AdminAlunoController extends Controller
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
             $aluno = Aluno::create($dataForm);
 
-            $this->auditoriaController->storeCreate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
+            $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $aluno->id);
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi cadastrado com sucesso!");
 
@@ -111,7 +112,9 @@ class AdminAlunoController extends Controller
 
             $aluno = Aluno::find($id);
             $aluno->update($dataForm);
-            $this->auditoriaController->storeUpdate(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
+
+            $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $aluno->id);
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi editado com sucesso!");
 
@@ -126,7 +129,8 @@ class AdminAlunoController extends Controller
         try{
             $aluno = Aluno::find($id);
             $aluno->delete($id);
-            $this->auditoriaController->storeDelete(json_encode($aluno, JSON_UNESCAPED_UNICODE), $aluno->id);
+            $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeDelete($texto, $aluno->id);
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi deletado com sucesso!");
         }catch (\Exception $e) {

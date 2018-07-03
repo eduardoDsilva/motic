@@ -51,13 +51,16 @@ class EscolaProfessorController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeCreate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
+            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $user->id);
 
             $professor = Professor::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate(json_encode($professor, JSON_UNESCAPED_UNICODE), $professor->id);
+            $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $professor->id);
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
+            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $endereco->id);
 
             Session::put('mensagem', "O professor ".$professor->name." foi criado com sucesso!");
 
@@ -100,15 +103,18 @@ class EscolaProfessorController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeUpdate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
+            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $user->id);
 
             $professor = $user->professor;
             $professor->update($dataForm);
-            $this->auditoriaController->storeUpdate(json_encode($professor, JSON_UNESCAPED_UNICODE), $professor->id);
+            $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $professor->id);
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
-            $this->auditoriaController->storeUpdate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
+            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $endereco->id);
 
             Session::put('mensagem', "O professor ".$professor->name." foi editado com sucesso!");
 
@@ -122,7 +128,8 @@ class EscolaProfessorController extends Controller
         try{
             $professor = Professor::find($id);
             $professor->user()->delete($id);
-            $this->auditoriaController->storeDelete(json_encode($professor, JSON_UNESCAPED_UNICODE), $professor->id);
+            $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeDelete($texto, $professor->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

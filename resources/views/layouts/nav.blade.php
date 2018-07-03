@@ -45,7 +45,7 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/auditoria/home')}}}"><i class="material-icons">list</i>Listar auditorias</a></li>
-                                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
+                                    <li><a class="waves-effect waves-blue" href="{{route ('admin/auditoria/relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                                     <li><div class="divider"></div></li>
                                 </ul>
                             </div>

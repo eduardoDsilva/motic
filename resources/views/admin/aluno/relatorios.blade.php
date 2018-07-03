@@ -54,7 +54,6 @@
                                 <p>Para gerar um relatório de um aluno específico do sistema, insira o ID abaixo:</p>
 
                                     <div class="input-field col s12">
-                                        <i class="material-icons prefix">perm_identity</i>
                                         <select id='id' name="id" required>
                                             <option value="" disabled selected>Selecione um aluno</option>
                                         @forelse($alunos as $aluno)

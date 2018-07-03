@@ -50,8 +50,8 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">today</i>
                             <input type="text" class="datepicker" name="nascimento"
-                                   value="{{$avaliador->nascimento or old('nascimento')}}" required>
-                            <label for="nascimento">Nascimento *</label>
+                                   value="{{$avaliador->nascimento or old('nascimento')}}">
+                            <label for="nascimento">Nascimento</label>
                         </div>
 
 
@@ -97,8 +97,7 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix">local_phone</i>
                             <input id="telefone" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no mínimo 8 números" type="number" name="telefone"
-                                   data-length="16" value="{{$avaliador->telefone or old('telefone')}}"
-                                   required>
+                                   data-length="16" value="{{$avaliador->telefone or old('telefone')}}">
                             <label data-error="Insira um telefone válido!" data-success="Ok"
                                    for="telefone">Telefone</label>
                         </div>

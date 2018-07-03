@@ -39,10 +39,7 @@
                                 <option value="" disabled selected>Filtrar por...</option>
                                 <option value="id">ID</option>
                                 <option value="nome">Nome</option>
-                                <option value="usuario">Usuário</option>
                                 <option value="escola">Escola</option>
-                                <option value="email">Email</option>
-                                <option value="nscimento">Nascimento</option>
                                 <option value="sexo">Sexo</option>
                                 <option value="cpf">CPF</option>
                             </select>

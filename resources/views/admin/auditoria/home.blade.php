@@ -26,14 +26,13 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/escola/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/auditoria/filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
-                            <select required>
+                            <select name="tipo" drequired>
                                 <option value="" disabled selected>Filtrar por...</option>
                                 <option value="id">ID</option>
                                 <option value="tipo">Tipo</option>
-                                <option value="descricao">Descrição</option>
                                 <option value="user">Usuário responsável</option>
                                 <option value="id_user">ID do responsável</option>
                             </select>
@@ -41,12 +40,12 @@
                         </div>
 
                         <div class="input-field col s7">
-                            <input id="search" type="search">
+                            <input id="search" type="search" name="search" required>
                             <label for="search">Pesquise no sistema...</label>
                         </div>
                         {{csrf_field()}}
                         <div class="input-field col s1">
-                            <a class="btn-floating "><i class="material-icons">search</i></a>
+                            <button type="submit" class="btn-floating"><i class="material-icons">search</i></button>
                         </div>
                     </div>
                 </form>
@@ -61,7 +60,6 @@
                         <th>Descricao</th>
                         <th>Usuário Responsável</th>
                         <th>ID do responsável</th>
-                        <th>Visualizar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,14 +67,12 @@
                         <tr>
                             <td>{{$auditoria->id}}</td>
                             <td>{{$auditoria->tipo}}</td>
-                            <td class="limit">{{$auditoria->descricao}}</td>
+                            <td width="33%">{{$auditoria->descricao}}</td>
                             <td>{{$auditoria->nome_usuario}}</td>
                             <td>{{$auditoria->user_id}}</td>
-                            <td><a data-target="modal1" id="auditoria" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="#modal1" data-user_id="{{$auditoria->user_id}}" data-tipo="{{$auditoria->tipo}}" data-id="{{$auditoria->id}}" data-descricao="{{$auditoria->descricao}}" data-nome_usuario="{{$auditoria->nome_usuario}}"> <i class="small material-icons">search</i></a></td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhuma auditoria encontrada</td>
                             <td>Nenhuma auditoria encontrada</td>
                             <td>Nenhuma auditoria encontrada</td>
                             <td>Nenhuma auditoria encontrada</td>
@@ -87,33 +83,6 @@
                     </tbody>
                 </table>
                 {{$auditorias->links()}}
-            </div>
-
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <h4>Visualizar</h4>
-                    <table class="centered responsive-table highlight bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Descricao</th>
-                            <th>Usuário Responsável</th>
-                            <th>ID do responsável</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td id="id_auditoria"></td>
-                            <td id="tipo_auditoria"></td>
-                            <td id="descricao_auditoria"></td>
-                            <td id="usuario_auditoria"></td>
-                            <td id="responsavel_auditoria"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>

@@ -97,6 +97,10 @@ class EscolaSuplenteController extends Controller
                 $coorientador->tipo = 'coorientador';
                 $coorientador->save();
             }
+
+            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $projeto->id);
+
             $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
 
             return view('escola/suplente/home', compact('projetos'));
@@ -139,7 +143,8 @@ class EscolaSuplenteController extends Controller
             foreach ($request->only(['disciplina_id']) as $disciplina){
                 $projeto->disciplina()->attach($disciplina);
             }
-            $this->auditoriaController->storeUpdate(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $projeto->id);
 
             Session::put('mensagem', "O suplente ".$projeto->titulo." foi editado com sucesso!");
 
@@ -155,7 +160,8 @@ class EscolaSuplenteController extends Controller
              DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
              $projeto = Projeto::find($id);
              $projeto->delete($id);
-             $this->auditoriaController->storeDelete(json_encode($projeto, JSON_UNESCAPED_UNICODE), $projeto->id);
+             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
+             $this->auditoriaController->storeDelete($texto, $projeto->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -13,7 +13,6 @@ use App\Projeto;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminEscolaController extends Controller
@@ -54,16 +53,19 @@ class AdminEscolaController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeCreate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
+            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $user->id);
 
             $escola = Escola::create($dataForm + ['user_id' => $user->id] + ['projetos' => count($qntProjetos)]);
             foreach ($request->only(['categoria_id']) as $categoria){
                 $escola->categoria()->attach($categoria);
             }
-            $this->auditoriaController->storeCreate(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
+            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $escola->id);
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $this->auditoriaController->storeCreate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
+            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $endereco->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
 
@@ -133,12 +135,13 @@ class AdminEscolaController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $this->auditoriaController->storeUpdate(json_encode($user, JSON_UNESCAPED_UNICODE), $user->id);
+            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $user->id);
 
             $escola = $user->escola;
             $escola->update($dataForm + ['projetos' => count($qntProjetos)]);
-            $this->auditoriaController->storeUpdate(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
-
+            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $escola->id);
             $escola = $user->escola;
             $escola->categoria()->detach();
             foreach ($request->only(['categoria_id']) as $categoria){
@@ -147,7 +150,8 @@ class AdminEscolaController extends Controller
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
-            $this->auditoriaController->storeUpdate(json_encode($endereco, JSON_UNESCAPED_UNICODE), $endereco->id);
+            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $endereco->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
 
@@ -161,7 +165,8 @@ class AdminEscolaController extends Controller
         try{
             $escola = Escola::find($id);
             $escola->user()->delete($id);
-            $this->auditoriaController->storeDelete(json_encode($escola, JSON_UNESCAPED_UNICODE), $escola->id);
+            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeDelete($texto, $escola->id);
 
             Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
         }catch (\Exception $e) {

@@ -38,8 +38,8 @@ class AdminDisciplinaController extends Controller
         $dataForm = $request->all();
         try{
             $disciplinas = Disciplina::create($dataForm);
-            $this->auditoriaController->storeCreate(json_encode($disciplinas, JSON_UNESCAPED_UNICODE), $disciplinas->id);
-
+            $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeCreate($texto, $disciplinas->id);
             return redirect()
                 ->route("admin/disciplinas/home")
                 ->with("success", "disciplina ".$disciplinas->name." adicionada com sucesso");
@@ -77,7 +77,8 @@ class AdminDisciplinaController extends Controller
         try{
             $disciplinas = Disciplina::find($id);
             $disciplinas->update($dataForm);
-            $this->auditoriaController->storeUpdate(json_encode($disciplinas, JSON_UNESCAPED_UNICODE), $disciplinas->id);
+            $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeUpdate($texto, $disciplinas->id);
 
             $disciplinas = Disciplina::all();
             return view('admin/disciplinas/home', compact('disciplinas'));
@@ -90,7 +91,8 @@ class AdminDisciplinaController extends Controller
         try{
             $disciplina = Disciplina::find($id);
             $disciplina->delete($id);
-            $this->auditoriaController->storeDelete(json_encode($disciplina, JSON_UNESCAPED_UNICODE), $disciplina->id);
+            $texto = str_replace(",", ", ", json_encode($disciplina, JSON_UNESCAPED_UNICODE));
+            $this->auditoriaController->storeDelete($texto, $disciplina->id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
