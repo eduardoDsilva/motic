@@ -90,7 +90,7 @@
                                 <ul>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/escola/home')}}}"><i class="material-icons">list</i>Listar escolas</a></li>
                                     <li><a class="waves-effect waves-blue" href="{{{route ('admin/escola/cadastro/registro')}}}"><i class="material-icons">add</i>Cadastrar escola</a></li>
-                                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
+                                    <li><a class="waves-effect waves-blue" href="{{route ('admin/escola/relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                                     <li><div class="divider"></div></li>
                                 </ul>
                             </div>

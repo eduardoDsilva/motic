@@ -34,7 +34,7 @@
             </div>
             <div class="divider"></div>
             <article class="col s12">
-                    <form method="POST" enctype="multipart/form-data" action="@if(isset($avaliador)) {{ url("/admin/avaliador/".$avaliador->user->id) }} @else {{ route('admin/avaliador/registro') }}"@endif>
+                    <form method="POST" enctype="multipart/form-data" action="@if(isset($avaliador)) {{ url("admin/avaliador/".$avaliador->user->id) }} @else {{ route('admin/avaliador/registro') }}"@endif>
                 {{csrf_field()}}
 
                     <h5>Dados básicos</h5>

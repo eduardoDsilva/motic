@@ -100,6 +100,7 @@ class AdminAvaliadorController extends Controller
     }
 
     public function update(AvaliadorUpdateFormRequest $request, $id){
+        dd('batata');
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try{
             $user = User::find($id);

@@ -10,18 +10,18 @@
 
     <div class="section container">
         <div class="card-panel">
-            <h1 class="header center orange-text">Administrador</h1>
+            <h1 class="center orange-text">Administrador</h1>
             <div class="row center">
                 <h5 class="header col s12 light">Bem vindo, {{ Auth::user()->name }}!</h5>
             </div>
         </div>
     </div>
 
-    <div class="section container col s12 m4 l8">
+    <div class="section container col s12 m6 l8">
         <div class="card-panel">
             <div class="row">
                 <a href="{{route ('admin/escola/home')}}">
-                    <div class="col s12 m6">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable red darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">school</i>
@@ -33,7 +33,7 @@
                     </div>
                 </a>
                 <a href="{{route ('admin/projeto/home')}}">
-                    <div class="col s12 m6">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable blue darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">library_add</i>
@@ -45,8 +45,8 @@
                     </div>
                 </a>
                 <a href="{{route ('admin/suplente/home')}}">
-                    <div class="col s12 m4">
-                        <div class="card hoverable indigo darken-3">
+                    <div class="col s12 m6 l4">
+                        <div class="card hoverable pink darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">library_add</i>
                             </div>
@@ -57,7 +57,7 @@
                     </div>
                 </a>
                 <a href="{{route ('admin/disciplinas/home')}}">
-                    <div class="col s12 m4">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable green darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">note</i>
@@ -69,7 +69,7 @@
                     </div>
                 </a>
                 <a href="{{route ('admin/aluno/home')}}">
-                    <div class="col s12 m4">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable purple darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
@@ -81,7 +81,7 @@
                     </div>
                 </a>
                 <a href="{{route ('admin/professor/home')}}">
-                    <div class="col s12 m4">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable teal darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
@@ -92,9 +92,9 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
-                    <div class="col s12 m4">
-                        <div class="card hoverable grey darken-3">
+                <a href="{{route ('admin/auditoria/home')}}">
+                    <div class="col s12 m6 l4">
+                        <div class="card hoverable indigo darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">format_list_bulleted</i>
                             </div>
@@ -105,13 +105,25 @@
                     </div>
                 </a>
                 <a href="{{route ('admin/avaliador/home')}}">
-                    <div class="col s12 m4">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable orange darken-3">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">contacts</i>
                             </div>
                             <div class="card-action white-text">
                                 <span class="card-title">Avaliadores</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="{{{ route('logout') }}}">
+                    <div class="col s12 m6 l4">
+                        <div class="card hoverable grey darken-3">
+                            <div class="card-content black-text center-align">
+                                <i class="large material-icons">exit_to_app</i>
+                            </div>
+                            <div class="card-action white-text">
+                                <span class="card-title">Logout</span>
                             </div>
                         </div>
                     </div>

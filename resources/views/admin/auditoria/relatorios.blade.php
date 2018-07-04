@@ -22,8 +22,8 @@
     <div class="section container col s12 m4 l8">
         <div class="card-panel">
             <div class="row">
-                <div class="col s12 m6">
-                    <div class="card red darken-3 hoverable">
+                <div class="col s12 m12 l6">
+                    <div class="card small red darken-3 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Registros do sistema</span>
                             <p>Para gerar um relatório de todos os registros do sistema.</p>
@@ -33,8 +33,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m6">
-                    <div class="card green darken-3 hoverable">
+                <div class="col s12 m12 l6">
+                    <div class="card small green darken-3 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Registros por usuário</span>
                             <p>Para gerar um relatório de todos os registros de cada usuário.</p>
@@ -44,56 +44,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m6">
-                    <div class="card blue darken-3 hoverable">
-                        <form class="" method="post" enctype="multipart/form-data"
-                              action="">
-                            {{csrf_field()}}
-                            <div class="card-content white-text">
-                                <span class="card-title">Registros por usuário individual</span>
-                                <p>Para gerar um relatório de todos os registros de um único usuário.</p>
-                                    <div class="input-field col s12">
-                                        <select id='id' name="id" required>
-                                            <option value="" disabled selected>Selecione um usuário</option>
-                                        @forelse($usuarios as $usuario)
-                                                <option value="{{$usuario->id}}">{{$usuario->username}} - {{$usuario->name}}</option>
-                                            @empty
-                                                <option value="" disabled selected>Nenhum usuário cadastrado no sistema</option>
-                                            @endforelse
-                                        </select>
-                                        <label data-error="Selecione um usuário válido!" data-success="Ok" for="id">Usuário</label>
-                                    </div>
-                            <br><br><br>
-                            </div>
-                            <div class="card-action">
-                                <button class="btn" disabled  type="submit">Gerar relatório</button>
-                            </div>
-                        </form>
+                <div class="col s12 m12 l6">
+                    <div class="card small blue darken-3 hoverable">
+                        <div class="card-content white-text">
+                            <span class="card-title">Registros por usuário individual</span>
+                            <p>Para gerar um relatório de todos os registros de um único usuário.</p>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn" disabled  type="submit">Gerar relatório</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col s12 m6">
-                    <div class="card purple darken-3 hoverable">
-                        <form class="" method="post" enctype="multipart/form-data"
-                              action="">
-                            {{csrf_field()}}
-                            <div class="card-content white-text">
-                                <span class="card-title">Registros utilizando o filtro de data</span>
-                                <p>Para gerar um relatório de todos os registros de um único usuário.</p>
-                                <div class="input-field col s6">
-                                    <input type="text" class="datepicker" name="nascimento">
-                                    <label for="nascimento">Data inicial</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="text" class="datepicker" name="nascimento">
-                                    <label for="nascimento">Data final</label>
-                                </div>
-                            </div>
-                            <br><br><br>
-                            <div class="card-action">
-                        <button class="btn" disabled type="submit">Gerar relatório</button>
-                    </div>
-                    </form>
+                <div class="col s12 m12 l6">
+                    <div class="card small purple darken-3 hoverable">
+                        <div class="card-content white-text">
+                            <span class="card-title">Registros por usuário individual</span>
+                            <p>Para gerar um relatório de todos os registros de um único usuário.</p>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn" disabled type="submit">Gerar relatório</button>
+                        </div>
                     </div>
                 </div>
                 </div>

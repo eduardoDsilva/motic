@@ -16,7 +16,7 @@ class AdminAlunoRelatorioController
 {
 
     public function index(){
-        $alunos = Aluno::orderBy('name', 'asc')->get();
+        $alunos = Aluno::orderBy('name', 'asc')->paginate();
         return view('admin/aluno/relatorios', compact('alunos'));
     }
 

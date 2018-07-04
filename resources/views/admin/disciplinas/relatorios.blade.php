@@ -22,25 +22,25 @@
     <div class="section container col s12 m4 l8">
         <div class="card-panel">
             <div class="row">
-                <div class="col s12 m6">
-                    <div class="card red darken-3 hoverable">
+                <div class="col s12 m12 l6">
+                    <div class="card small red darken-3 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todas disciplinas</span>
                             <p>Para gerar um relatório de todas disciplinas do sistema.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="">Gerar relatório</a>
+                            <a class="btn" disabled href="">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m6">
-                    <div class="card green darken-3 hoverable">
+                <div class="col s12 m12 l6">
+                    <div class="card small green darken-3 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Trabalhos e disciplinas</span>
                             <p>Para gerar um relatório das disciplinas e trabalhos</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="">Gerar relatório</a>
+                            <a class="btn" disabled href="">Gerar relatório</a>
                         </div>
                     </div>
                 </div>

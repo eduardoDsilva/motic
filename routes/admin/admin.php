@@ -20,6 +20,8 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
 
     require_once ('escola/escola.php');
 
+    require_once ('escola/relatorios.php');
+
     require_once ('avaliador/avaliador.php');
 
     require_once ('avaliador/relatorios.php');

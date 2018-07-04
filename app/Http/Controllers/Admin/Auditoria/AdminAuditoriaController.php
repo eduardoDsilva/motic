@@ -18,9 +18,12 @@ class AdminAuditoriaController extends Controller
     }
     public function index()
     {
-        $auditorias = Auditoria::latest()->paginate(10);
-
-        return view('admin/auditoria/home', compact('auditorias'));
+        try{
+            $auditorias = Auditoria::latest()->paginate(10);
+            return view('admin/auditoria/home', compact('auditorias'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
     public function filtrar(\Illuminate\Http\Request $request){

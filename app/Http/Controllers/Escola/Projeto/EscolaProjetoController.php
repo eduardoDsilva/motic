@@ -11,9 +11,8 @@ namespace App\Http\Controllers\Escola\Projeto;
 use App\Aluno;
 use App\Disciplina;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Projeto\ProjetoFormRequest;
+use App\Http\Controllers\ProjetoController;
 use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
@@ -21,88 +20,56 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
 
 class EscolaProjetoController extends Controller
 {
 
-    private $auditoriaController;
-    private $professor;
-    private $escola;
+    private $projetoController;
 
-    public function index()
+    public function __construct(ProjetoController $projetoController)
     {
-        $projetos = Projeto::where('ano', '=', '2018')
-            ->where('tipo','=', 'normal')
-            ->orderBy('titulo', 'asc')
-            ->paginate(10);
-
-        return view('escola/projeto/home', compact('projetos'));
+        $this->projetoController = $projetoController;
+        $this->middleware('auth');
+        $this->middleware('check.escola');
     }
 
-    public function __construct(AuditoriaController $auditoriaController, Professor $professor, Escola $escola)
-    {
-        $this->auditoriaController = $auditoriaController;
-        $this->escola = $escola;
-        $this->professor = $professor;
+    public function index(){
+        try{
+            $projetos = Projeto::where('ano', '=', '2018')
+                ->where('tipo','=', 'normal')
+                ->orderBy('titulo', 'asc')
+                ->paginate(10);
+
+            return view('escola/projeto/home', compact('projetos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
     public function create(){
-        $disciplinas = Disciplina::all();
-        $escola = Escola::find(Auth::user()->escola->id);
+        try{
+            $disciplinas = Disciplina::all();
+            $escola = Escola::find(Auth::user()->escola->id);
 
-        $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
-        $categoria_id = [];
-        foreach($projetos as $projeto){
-            $categoria_id[] = $projeto->categoria_id;
+            $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+            $categoria_id = [];
+            foreach($projetos as $projeto){
+                $categoria_id[] = $projeto->categoria_id;
+            }
+            $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
+            $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('suplente_id', '=', null);
+
+            return view("escola/projeto/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
         }
-        $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
-        $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('suplente_id', '=', null);
-
-        return view("escola/projeto/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
     }
 
     public function store(Request $request){
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
-            $escola = Escola::find($dataForm['escola_id']);
-            $projeto = Projeto::all()->where('escola_id', '=', $escola->id);
-            if(count($projeto)>=$escola->projetos){
-                dd('não pode mais cadastrar projetos');
-            }
-            $projeto = Projeto::create($dataForm);
-
-            foreach ($request->only(['disciplina_id']) as $disciplina) {
-                $projeto->disciplina()->attach($disciplina);
-            }
-
-            foreach ($request->only(['aluno_id']) as $aluno_id) {
-                $alunos = Aluno::find($aluno_id);
-            }
-
-            foreach ($alunos as $aluno) {
-                $aluno->projeto_id = $projeto->id;
-                $aluno->save();
-            }
-
-            $orientador = Professor::find($dataForm['orientador']);
-            $orientador->projeto_id = $projeto->id;
-            $orientador->tipo = 'orientador';
-            $orientador->save();
-
-            if (isset($dataForm['coorientador'])) {
-                $coorientador = Professor::find($dataForm['coorientador']);
-                $coorientador->projeto_id = $projeto->id;
-                $coorientador->tipo = 'coorientador';
-                $coorientador->save();
-            }
-
-            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $projeto->id);
-
-            $projetos = Projeto::where('ano', '=', '2018')->paginate(10);
-
-            return view('escola/projeto/home', compact('projetos', 'suplentes'));
+            $this->projetoController->store($dataForm);
+            return redirect()->route("escola/projeto/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -136,17 +103,7 @@ class EscolaProjetoController extends Controller
     public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
-            $projeto = Projeto::find($id);
-            $projeto->update($dataForm);
-            $projeto->disciplina()->detach();
-            foreach ($request->only(['disciplina_id']) as $disciplina){
-                $projeto->disciplina()->attach($disciplina);
-            }
-            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $projeto->id);
-
-            Session::put('mensagem', "O projeto ".$projeto->titulo." foi editado com sucesso!");
-
+            $this->projetoController->store($dataForm, $id);
             return redirect()->route("escola/projeto/home");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -155,12 +112,7 @@ class EscolaProjetoController extends Controller
 
     public function destroy($id){
         try{
-            DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
-            DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
-            $projeto = Projeto::find($id);
-            $projeto->delete($id);
-            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $projeto->id);
+            $this->projetoController->destroy($id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -177,12 +129,16 @@ class EscolaProjetoController extends Controller
     }
 
     public function alunos(){
-        $categoria_id = Input::get('categoria_id');
-        $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)
-            ->where('categoria_id', '=', $categoria_id)
-            ->where('projeto_id', '=', null)
-            ->get();
-        return response()->json($alunos);
+        try{
+            $categoria_id = Input::get('categoria_id');
+            $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)
+                ->where('categoria_id', '=', $categoria_id)
+                ->where('projeto_id', '=', null)
+                ->get();
+            return response()->json($alunos);
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
 }

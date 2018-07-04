@@ -142,6 +142,7 @@ class AdminEscolaController extends Controller
             $escola->update($dataForm + ['projetos' => count($qntProjetos)]);
             $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $escola->id);
+
             $escola = $user->escola;
             $escola->categoria()->detach();
             foreach ($request->only(['categoria_id']) as $categoria){

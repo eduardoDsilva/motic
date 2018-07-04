@@ -6,6 +6,7 @@ use App\Dado;
 use App\Endereco;
 use App\Escola;
 use App\Http\Controllers\Auditoria\AuditoriaController;
+use App\Http\Controllers\ProfessorController;
 use App\Http\Requests\Professor\ProfessorCreateFormRequest;
 use App\Http\Requests\Professor\ProfessorUpdateFormRequest;
 use App\Professor;
@@ -19,57 +20,43 @@ use Illuminate\Support\Facades\Session;
 class AdminProfessorController extends Controller
 {
 
-    private $professor;
-    private $auditoriaController;
+    private $professorController;
 
-    use RegistersUsers;
-
-    public function __construct(Professor $professor, AuditoriaController $auditoriaController)
+    public function __construct(ProfessorController $professorController)
     {
-        $this->professor = $professor;
-        $this->auditoriaController = $auditoriaController;
+        $this->professorController = $professorController;
+        $this->middleware('auth');
+        $this->middleware('check.admin');
     }
 
     public function index()
     {
-        $professores = Professor::orderBy('name', 'asc')->paginate(10);
-        return view("admin/professor/home", compact('professores'));
+        try {
+            $professores = Professor::orderBy('name', 'asc')->paginate(10);
+            return view("admin/professor/home", compact('professores'));
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
+        }
     }
 
     public function create(){
-        $escolas = Escola::all();
-        $titulo = 'Cadastrar professor';
+        try {
+            $escolas = Escola::all();
+            $titulo = 'Cadastrar professor';
 
-        return view('admin/professor/cadastro', compact('escolas', 'titulo'));
+            return view('admin/professor/cadastro', compact('escolas', 'titulo'));
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
+        }
     }
 
     public function store(ProfessorCreateFormRequest $request){
-        $dataForm = $request->all()+ ['tipoUser' => 'professor'];
-        try{
-            $user = User::create([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $user->id);
-
-            $professor = Professor::create($dataForm + ['user_id' => $user->id]);
-            $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $professor->id);
-
-            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $endereco->id);
-
-            Session::put('mensagem', "O professor ".$professor->name." foi criado com sucesso!");
-
+        try {
+            $dataForm = $request->all()+ ['tipoUser' => 'professor'];
+            $this->professorController->store($dataForm);
             return redirect()->route("admin/professor/home");
-
-        }catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
         }
     }
 
@@ -83,42 +70,12 @@ class AdminProfessorController extends Controller
     }
 
     public function filtrar(Request $request){
-        $dataForm = $request->all();
-        try{
-            if($dataForm['tipo'] == 'id'){
-                $professores = Professor::where('id','=',$dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
-                $professores = Professor::where('name', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'usuario'){
-                $filtro = '%'.$dataForm['search'].'%';
-                $users = User::where('username', 'like', $filtro)->get();
-                $array[] = null;
-                foreach($users as $id){
-                    $array[] = $id->id;
-                }
-                $professores = Professor::whereIn('user_id', $array)->paginate(10);
-            }else if($dataForm['tipo'] == 'escola'){
-                $filtro = '%'.$dataForm['search'].'%';
-                $escola = Escola::where('name', 'like', $filtro)->get();
-                $array[] = null;
-                foreach($escola as $id){
-                    $array[] = $id->id;
-                }
-                $professores = Professor::whereIn('escola_id', $array)->paginate(10);
-            }else if($dataForm['tipo'] == 'email'){
-                $professores = Professor::where('email', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nascimento'){
-                $professores = Professor::where('nascimento', 'like', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'sexo'){
-                $professores = Professor::where('sexo', 'like', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'cpf'){
-                $professores = Professor::where('cpf', '=', $dataForm['search'])->paginate(10);
-            }
-
+        try {
+            $dataForm = $request->all();
+            $professores = $this->professorController->filtro($dataForm);
             return view('admin/professor/home', compact('professores'));
-        }catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
         }
     }
 
@@ -135,45 +92,20 @@ class AdminProfessorController extends Controller
     }
 
     public function update(ProfessorUpdateFormRequest $request, $id){
-        $dataForm = $request->all() + ['tipoUser' => 'professor'];
-        try{
-            $user = User::find($id);
-            $user->update([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $user->id);
-
-            $professor = $user->professor;
-            $professor->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $professor->id);
-
-            $endereco = $user->endereco;
-            $endereco->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $endereco->id);
-
-            Session::put('mensagem', "O professor ".$professor->name." foi editado com sucesso!");
-
+        try {
+            $dataForm = $request->all() + ['tipoUser' => 'professor'];
+            $this->professorController->update($dataForm, $id);
             return redirect()->route("admin/professor/home");
-        }catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
         }
     }
 
     public function destroy($id){
-        try{
-            $professor = Professor::find($id);
-            $professor->user()->delete($id);
-            $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $professor->id);
-        }catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
+        try {
+            $this->professorController->destroy($id);
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
         }
     }
 
