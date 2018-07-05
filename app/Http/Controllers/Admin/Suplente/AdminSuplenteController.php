@@ -11,10 +11,8 @@ namespace App\Http\Controllers\Admin\Suplente;
 use App\Aluno;
 use App\Disciplina;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\SuplenteController;
-use App\Http\Requests\Projeto\ProjetoFormRequest;
 use App\Http\Requests\Projeto\ProjetoUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
@@ -66,7 +64,7 @@ class AdminSuplenteController extends Controller
         $dataForm = $request->all() + ['tipo' => 'suplente'];
         try{
             $this->suplenteController->store($dataForm);
-            return redirect()->route("admin/suplente/home");
+            return redirect()->route("admin.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -112,7 +110,7 @@ class AdminSuplenteController extends Controller
         $dataForm = $request->all();
         try{
             $this->suplenteController->update($dataForm, $id);
-            return redirect()->route("admin/suplente/home");
+            return redirect()->route("admin.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -130,7 +128,7 @@ class AdminSuplenteController extends Controller
         try{
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'normal']);
-            return redirect()->route("admin/suplente/home");
+            return redirect()->route("admin.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

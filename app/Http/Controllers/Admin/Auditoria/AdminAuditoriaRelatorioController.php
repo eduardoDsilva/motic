@@ -22,7 +22,7 @@ class AdminAuditoriaRelatorioController
         return view('admin/auditoria/relatorios', compact('usuarios'));
     }
 
-    public function todosRegistros()
+    public function todosRegistrosResumido()
     {
         $registros = Auditoria::latest()->get();
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
@@ -32,7 +32,7 @@ class AdminAuditoriaRelatorioController
 
     /*
 
-    public function escolaAlunosPdf()
+    public function todosRegistrosCompleto()
     {
         $escolas = Escola::orderBy('name','asc')->get();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
@@ -40,7 +40,7 @@ class AdminAuditoriaRelatorioController
             ->stream('todos-alunos-por-escola-motic'.date('Y').'.pdf');
     }
 
-    public function alunoPdf(Request $request)
+    public function registrosPorUsuarios()
     {
         $dataForm = $request->all();
         $aluno = Aluno::find($dataForm['id']);
@@ -49,7 +49,7 @@ class AdminAuditoriaRelatorioController
             ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');
     }
 
-    public function alunoCompletoPdf()
+    public function registrosPorUsuario($id)
     {
         $alunos = Aluno::all();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])

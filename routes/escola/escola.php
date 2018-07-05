@@ -2,7 +2,7 @@
 
 Route::middleware(['auth', 'check.escola'])->group(function () {
 
-    Route::get('escola/home', 'Escola\EscolaController@index')->name('escola/home');
+    Route::get('escola/home',['as' => 'escola', 'uses' => 'Escola\EscolaController@index']);
 
     require_once ('aluno/aluno.php');
 

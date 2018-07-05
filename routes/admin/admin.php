@@ -1,26 +1,16 @@
 <?php
 
-//telas admin
-
-//tela principal admin
-
 Route::middleware(['auth', 'check.admin'])->group(function () {
 
-    Route::get('/home',['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
+    Route::get('admin/home',['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
     require_once ('auditoria/auditoria.php');
 
-    require_once('auditoria/relatorios.php');
-
     require_once ('aluno/aluno.php');
-
-    require_once ('aluno/relatorios.php');
 
     require_once ('professor/professor.php');
 
     require_once ('escola/escola.php');
-
-    require_once ('escola/relatorios.php');
 
     require_once ('avaliador/avaliador.php');
 
@@ -31,9 +21,6 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
     require_once ('suplente/suplente.php');
 
     require_once ('disciplinas/disciplinas.php');
-
-    require_once ('disciplinas/relatorios.php');
-
 
 });
 

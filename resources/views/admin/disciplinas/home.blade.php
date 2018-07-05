@@ -116,7 +116,7 @@
 
                 <!-- Modal Structure -->
                 <div id="modal3" class="modal">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplina.create') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplina.store') }}">
                         <div class="modal-content">
                             <h4>Adicionar disciplina</h4>
 

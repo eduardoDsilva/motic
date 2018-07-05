@@ -41,14 +41,14 @@ class AdminDisciplinaController extends Controller
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $disciplinas->id);
             return redirect()
-                ->route("admin/disciplinas/home")
+                ->route("admin.disciplina")
                 ->with("success", "disciplina ".$disciplinas->name." adicionada com sucesso");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function show(Request $request){
+    public function filtrar(Request $request){
         $dataForm = $request->all();
         try{
             if($dataForm['tipo'] == 'id'){

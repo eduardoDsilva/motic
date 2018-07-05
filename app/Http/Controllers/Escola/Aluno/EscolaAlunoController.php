@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Aluno\AlunoCreateFormRequest;
 use App\Http\Requests\Aluno\AlunoUpdateFormRequest;
 use App\Projeto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
@@ -70,7 +71,7 @@ class EscolaAlunoController extends Controller
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $this->alunoController->store($dataForm);
-            return redirect()->route("escola/aluno/home");
+            return redirect()->route("escola.aluno");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -119,9 +120,19 @@ class EscolaAlunoController extends Controller
         $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
         try{
             $alunos = $this->alunoController->update($dataForm, $id);
-            return redirect()->route("escola/aluno/home", compact('alunos'));
+            return redirect()->route("escola.aluno", compact('alunos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        try {
+            $dataForm = $request->all();
+            $alunos = $this->alunoController->filtro($dataForm);
+            return view('escola/aluno/home', compact('alunos'));
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
         }
     }
 

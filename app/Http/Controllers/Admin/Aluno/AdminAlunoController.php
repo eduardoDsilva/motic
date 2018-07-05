@@ -47,7 +47,7 @@ class AdminAlunoController extends Controller
         try {
             $dataForm = $request->all();
             $this->alunoController->store($dataForm);
-            return redirect()->route("admin/aluno/home");
+            return redirect()->route("admin.aluno");
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -87,7 +87,7 @@ class AdminAlunoController extends Controller
         try {
             $dataForm = $request->all() + ['tipoUser' => 'aluno'];
             $alunos = $this->alunoController->update($dataForm, $id);
-            return redirect()->route("admin/aluno/home", compact('alunos'));
+            return redirect()->route("admin.aluno", compact('alunos'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }

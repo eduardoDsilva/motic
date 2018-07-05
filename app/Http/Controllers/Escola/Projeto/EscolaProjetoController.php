@@ -69,7 +69,7 @@ class EscolaProjetoController extends Controller
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
             $this->projetoController->store($dataForm);
-            return redirect()->route("escola/projeto/home");
+            return redirect()->route("escola.projeto");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -104,7 +104,17 @@ class EscolaProjetoController extends Controller
         $dataForm = $request->all();
         try{
             $this->projetoController->store($dataForm, $id);
-            return redirect()->route("escola/projeto/home");
+            return redirect()->route("escola.projeto");
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            $projetos = $this->projetoController->filtrar($dataForm);
+            return view('escola/projeto/home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -122,7 +132,7 @@ class EscolaProjetoController extends Controller
         try{
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'suplente']);
-            return redirect()->route("escola/projeto/home");
+            return redirect()->route("escola.projeto");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -32,7 +32,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin.aluno.filtrar") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.aluno.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select required name="tipo">

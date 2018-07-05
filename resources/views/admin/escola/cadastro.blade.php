@@ -36,7 +36,7 @@
                     <form class="col s12" method="POST" enctype="multipart/form-data"
                           action="
                             @if(isset($escola)) {{ route("admin.escola.update", $escola->user->id) }}
-                            @else {{ route('admin.escola.create') }}
+                            @else {{ route('admin.escola.store') }}
                             @endif ">
                         {{csrf_field()}}
                         <h5>Dados básicos</h5>

@@ -65,7 +65,7 @@ class AdminProjetoController extends Controller
         $dataForm = $request->all();
         try{
             $this->projetoController->store($dataForm);
-            return redirect()->route("admin/projeto/home");
+            return redirect()->route("admin.projeto");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -108,7 +108,7 @@ class AdminProjetoController extends Controller
         $dataForm = $request->all();
         try{
             $this->projetoController->update($dataForm, $id);
-            return redirect()->route("admin/projeto/home");
+            return redirect()->route("admin.projeto");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -126,7 +126,7 @@ class AdminProjetoController extends Controller
         try{
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'suplente']);
-            return redirect()->route("admin/projeto/home");
+            return redirect()->route("admin.projeto");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

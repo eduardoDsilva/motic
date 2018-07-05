@@ -64,7 +64,7 @@ class AdminAvaliadorController extends Controller
 
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi cadastrado com sucesso!");
 
-            return redirect()->route("admin/avaliador/home");
+            return redirect()->route("admin.avaliador");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -127,7 +127,28 @@ class AdminAvaliadorController extends Controller
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi editado com sucesso!");
 
             $avaliadores = $this->avaliador->all();
-            return redirect()->route("admin/avaliador/home", compact('avaliadores'));
+            return redirect()->route("admin.avaliador", compact('avaliadores'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            $avaliadores = null;
+            if($dataForm['tipo'] == 'id'){
+                $avaliadores = Avaliador::where('id', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'nome'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $avaliadores = Avaliador::where('name', 'like', $filtro)->paginate(10);
+            }else if($dataForm['tipo'] == 'cpf'){
+                $avaliadores = Avaliador::where('cpf', '=', $dataForm['search'])->paginate(10);
+            }else if($dataForm['tipo'] == 'sexo'){
+                $filtro = '%'.$dataForm['search'].'%';
+                $avaliadores = Avaliador::where('sexo', 'like', $filtro)->paginate(10);
+            }
+            return view('admin/avaliador/home', compact('avaliadores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

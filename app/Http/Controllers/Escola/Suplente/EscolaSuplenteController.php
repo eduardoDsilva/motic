@@ -74,7 +74,7 @@ class EscolaSuplenteController extends Controller
         try{
             $this->suplenteController->store($dataForm);
 
-            return redirect()->route("escola/suplente/home");
+            return redirect()->route("escola.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -105,12 +105,22 @@ class EscolaSuplenteController extends Controller
         }
     }
 
+    public function filtrar(Request $request){
+        $dataForm = $request->all();
+        try{
+            $projetos = $this->suplenteController->filtrar($dataForm);
+            return view('escola/suplente/home', compact('projetos'));
+        }catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
+    }
+
     public function update(Request $request, $id){
         $dataForm = $request->all();
         try{
             $this->suplenteController->update($dataForm, $id);
 
-            return redirect()->route("escola/suplente/home");
+            return redirect()->route("escola.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -128,7 +138,7 @@ class EscolaSuplenteController extends Controller
         try{
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'normal']);
-            return redirect()->route("escola/suplente/home");
+            return redirect()->route("escola.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

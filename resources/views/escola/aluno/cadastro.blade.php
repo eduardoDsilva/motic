@@ -3,12 +3,12 @@
 @section('titulo','Motic Escola')
 
 @section('breadcrumb')
-    <a href="{{{route ('escola/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('escola/aluno/home')}}}" class="breadcrumb">Alunos</a>
+    <a href="{{route ('escola')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('escola.aluno')}}" class="breadcrumb">Alunos</a>
     @if(isset($aluno))
         <a href="" class="breadcrumb">Editar</a>
     @else
-        <a href="{{{route ('escola/aluno/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('escola/aluno/create')}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 
@@ -38,8 +38,8 @@
 @section('form')
 
     class="col s12" method="POST" enctype="multipart/form-data"
-    action="@if(isset($aluno)){{ url("/escola/aluno/".$aluno->id) }}
-    @else {{ route('escola/aluno/cadastro/registro') }}@endif"
+    action="@if(isset($aluno)){{ route("escola.aluno.edit", $aluno->id) }}
+    @else {{ route('escola.aluno.store') }}@endif"
 
 @endsection
 

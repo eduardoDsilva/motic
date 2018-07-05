@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
     <a href="{{route ('admin.aluno')}}" class="breadcrumb">Alunos</a>
-    <a href="{{route ('admin/aluno/relatorios')}}" class="breadcrumb">Relatórios</a>
+    <a href="{{route ('admin.aluno.relatorios')}}" class="breadcrumb">Relatórios</a>
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
                             <p>Para gerar um relatório de todos os alunos do sistema.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin/aluno/relatorios/todosExibe')}}">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.resumo')}}">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <p>Para gerar um relatório de todos os dados dos alunos do sistema</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin/aluno/relatorios/todosCompletoExibe')}}">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.completo')}}">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <p>Para gerar um relatório dos alunos de cada escola.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin/aluno/relatorios/escolaExibe')}}">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.alunos.por.escola')}}">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
             <h4>Alunos</h4>
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/aluno/filtrar") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.aluno.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select required name="tipo">
@@ -116,11 +116,12 @@
                         <td>{{$aluno->name}}</td>
                         <td>{{$aluno->escola->name}}</td>
                         <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Gerar relatório"  href=""><i class="small material-icons">chrome_reader_mode</i></a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Gerar relatório"  href="{{route ('admin.aluno.relatorio.aluno', $aluno->id)}}"><i class="small material-icons">chrome_reader_mode</i></a>
                         </td>
                     </tr>
                 @empty
                     <tr>
+                        <td>Nenhum aluno encontrado</td>
                         <td>Nenhum aluno encontrado</td>
                         <td>Nenhum aluno encontrado</td>
                         <td>Nenhum aluno encontrado</td>
@@ -129,10 +130,6 @@
                 </tbody>
             </table>
             {{$alunos->links()}}
-
-        </div>
-        <div class="modal-footer">
-            <a class="btn red delete">Ok</a>
         </div>
     </div>
 

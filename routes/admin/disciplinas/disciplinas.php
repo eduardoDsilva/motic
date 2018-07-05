@@ -17,4 +17,6 @@ Route::group(['prefix' => 'admin/disciplina',  'namespace' => 'Admin\Disciplina'
 
     Route::post('store',['as' => 'admin.disciplina.store', 'uses' => 'AdminDisciplinaController@store']);
 
+    Route::get('relatorios',['as' => 'admin.disciplina.relatorios', 'uses' => 'AdminDisciplinaRelatorioController@index']);
+
 });

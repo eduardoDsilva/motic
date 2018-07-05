@@ -10,7 +10,6 @@ namespace App\Http\Controllers\Admin\Aluno;
 
 use App\Aluno;
 use App\Escola;
-use Illuminate\Http\Request;
 
 class AdminAlunoRelatorioController
 {
@@ -20,7 +19,7 @@ class AdminAlunoRelatorioController
         return view('admin/aluno/relatorios', compact('alunos'));
     }
 
-    public function alunosResumidoPdf()
+    public function todosAlunosResumo()
     {
         $alunos = Aluno::orderBy('name','asc')->get();
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
@@ -28,7 +27,7 @@ class AdminAlunoRelatorioController
             ->stream('todos-alunos-motic'.date('Y').'.pdf');
     }
 
-    public function escolaAlunosPdf()
+    public function alunosPorEscola()
     {
         $escolas = Escola::orderBy('name','asc')->get();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
@@ -36,16 +35,15 @@ class AdminAlunoRelatorioController
             ->stream('todos-alunos-por-escola-motic'.date('Y').'.pdf');
     }
 
-    public function alunoPdf(Request $request)
+    public function alunoIndividual($id)
     {
-        $dataForm = $request->all();
-        $aluno = Aluno::find($dataForm['id']);
+        $aluno = Aluno::find($id);
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.aluno.aluno-individual', compact('aluno'))
             ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');
     }
 
-    public function alunoCompletoPdf()
+    public function todosAlunosCompleto()
     {
         $alunos = Aluno::all();
         return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])

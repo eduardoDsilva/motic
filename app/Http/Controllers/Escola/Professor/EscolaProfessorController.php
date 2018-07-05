@@ -13,6 +13,7 @@ use App\Professor;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -53,7 +54,7 @@ class EscolaProfessorController extends Controller
         try{
             $this->professorController->store($dataForm);
 
-            return redirect()->route("escola/professor/home");
+            return redirect()->route("escola.professor");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -80,12 +81,22 @@ class EscolaProfessorController extends Controller
         }
     }
 
+    public function filtrar(Request $request){
+        try {
+            $dataForm = $request->all();
+            $professores = $this->professorController->filtro($dataForm);
+            return view('escola/professor/home', compact('professores'));
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
+        }
+    }
+
     public function update(ProfessorUpdateFormRequest $request, $id){
         $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
         try{
             $this->professorController->update($dataForm);
 
-            return redirect()->route("escola/professor/home");
+            return redirect()->route("escola.professor");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

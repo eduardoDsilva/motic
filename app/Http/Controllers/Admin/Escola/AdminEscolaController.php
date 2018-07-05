@@ -69,7 +69,7 @@ class AdminEscolaController extends Controller
 
             Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
 
-            return redirect()->route("admin/escola/home");
+            return redirect()->route("admin.escola");
 
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -156,7 +156,7 @@ class AdminEscolaController extends Controller
 
             Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
 
-            return redirect()->route("admin/escola/home");
+            return redirect()->route("admin.escola");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -19,4 +19,6 @@ Route::group(['prefix' => 'admin/escola',  'namespace' => 'Admin\Escola'], funct
 
     Route::post('store',['as' => 'admin.escola.store', 'uses' => 'AdminEscolaController@store']);
 
+    Route::get('relatorios',['as' => 'admin.escola.relatorios', 'uses' => 'AdminEscolaRelatorioController@index']);
+
 });

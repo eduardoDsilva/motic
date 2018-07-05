@@ -3,9 +3,9 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('escola/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('escola/projeto/home')}}}" class="breadcrumb">Projetos</a>
-    <a href="{{{route ('escola/projeto/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+    <a href="{{route ('escola')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('escola.projeto')}}" class="breadcrumb">Projetos</a>
+    <a href="{{route ('escola.projeto.create')}}" class="breadcrumb">Cadastro</a>
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                 <p class="header col s12 light">- Deve-se selecionar exatamente 3 alunos.</p>
             </div>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/store') }}">
 
                     <h5>Dados básicos</h5>
 

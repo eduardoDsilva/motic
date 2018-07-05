@@ -35,7 +35,7 @@
 @section('form')
 
     method="POST" enctype="multipart/form-data"
-    action="@if(isset($professor)){{ route("admin.professor.edit", $professor->id) }} @else {{ route('admin.professor.create') }} @endif"
+    action="@if(isset($professor)){{ route("admin.professor.update", $professor->id) }} @else {{ route('admin.professor.store') }} @endif"
 
 @endsection
 

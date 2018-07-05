@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <a href="{{route ('admin')}}}" class="breadcrumb">Home</a>
     <a href="{{route ('admin.escola')}}}" class="breadcrumb">Escolas</a>
-    <a href="{{route ('admin.escola')}}}" class="breadcrumb">Gerar relatórios</a>
+    <a href="{{route ('admin.escola.relatorios')}}}" class="breadcrumb">Gerar relatórios</a>
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
                             <li>Professores, alunos e projetos</li>
                         </div>
                         <div class="card-action">
-                            <a class="btn" disabled href="{{route ('admin/aluno/relatorios/todosCompletoExibe')}}">Gerar relatório</a>
+                            <a class="btn" disabled href=""">Gerar relatório</a>
                         </div>
                     </div>
                 </div>

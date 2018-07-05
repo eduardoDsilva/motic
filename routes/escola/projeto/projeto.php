@@ -1,25 +1,23 @@
 <?php
 
-Route::prefix('escola/projeto')->group(function () {
+Route::group(['prefix' => 'escola/projeto',  'namespace' => 'Escola\Projeto'], function(){
 
-//home
-    Route::get('/home', 'Escola\Projeto\EscolaProjetoController@index')->name('escola/projeto/home');
-//update
-    Route::post("/{id}", 'Escola\Projeto\EscolaProjetoController@update');
-//exibir projeto
-    Route::get('/show/{id}/suplente', 'Escola\Projeto\EscolaProjetoController@showSuplente');
-//exibir projeto
-    Route::get('/show/{id}', 'Escola\Projeto\EscolaProjetoController@show');
-//deletar
-    Route::get("/destroy/{id}/{projeto}", "Admin\Projeto\AdminProjetoController@destroy");
-//formulario de edita
-    Route::get("/update/{id}/edita", "Escola\Projeto\EscolaProjetoController@edit");
-//formulario de registrar
-    Route::get('/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@create')->name('escola/projeto/cadastro/registro');
-//create
-    Route::post('/cadastro/registro', 'Escola\Projeto\EscolaProjetoController@store')->name('escola/projeto/cadastrar');
-    //rebaixa
-    Route::get('/rebaixa/{id}', 'Escola\Projeto\EscolaProjetoController@rebaixaSuplente');
+    Route::get('/',['as' => 'escola.projeto', 'uses' => 'EscolaProjetoController@index']);
+
+    Route::get('show/{id}',['as' => 'escola.projeto.show', 'uses' => 'EscolaProjetoController@show']);
+
+    Route::get('destroy/{id}',['as' => 'escola.projeto.destroy', 'uses' => 'EscolaProjetoController@destroy']);
+
+    Route::get('edit/{id}',['as' => 'escola.projeto.edit', 'uses' => 'EscolaProjetoController@edit']);
+
+    Route::get('create',['as' => 'escola.projeto.create', 'uses' => 'EscolaProjetoController@create']);
+
+    Route::post('update/{id}',['as' => 'escola.projeto.update', 'uses' => 'EscolaProjetoController@update']);
+
+    Route::post('filtrar',['as' => 'escola.projeto.filtrar', 'uses' => 'EscolaProjetoController@filtrar']);
+
+    Route::post('store',['as' => 'escola.projeto.store', 'uses' => 'EscolaProjetoController@store']);
+
 });
 
 Route::get('/json-aluno','Escola\Projeto\EscolaProjetoController@alunos');

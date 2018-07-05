@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
     <a href="{{route ('admin.auditoria')}}" class="breadcrumb">Alunos</a>
-    <a href="{{route ('admin/auditoria/relatorios')}}" class="breadcrumb">Relatórios</a>
+    <a href="{{route ('admin.auditoria.relatorios')}}" class="breadcrumb">Relatórios</a>
 @endsection
 
 @section('content')
@@ -25,11 +25,22 @@
                 <div class="col s12 m12 l6">
                     <div class="card small red darken-3 hoverable">
                         <div class="card-content white-text">
-                            <span class="card-title">Registros do sistema</span>
+                            <span class="card-title">Registros do sistema resumido</span>
+                            <p>Para gerar um relatório de todos os registros do sistema de forma resumida.</p>
+                        </div>
+                        <div class="card-action">
+                            <a class="btn" disabled href="{{route ('admin.auditoria.relatorios.todos.registros.resumido')}}">Gerar relatório</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="card small purple darken-3 hoverable">
+                        <div class="card-content white-text">
+                            <span class="card-title">Registros do sistema completo</span>
                             <p>Para gerar um relatório de todos os registros do sistema.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin/auditoria/relatorios/todos')}}">Gerar relatório</a>
+                            <a class="btn" disabled href="{{route ('admin.auditoria.relatorios.todos.registros.completo')}}">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +51,7 @@
                             <p>Para gerar um relatório de todos os registros de cada usuário.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" disabled href="">Gerar relatório</a>
+                            <a class="btn" disabled href="{{route('admin.auditoria.relatorios.registros.por.usuarios')}}">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
@@ -51,22 +62,11 @@
                             <p>Para gerar um relatório de todos os registros de um único usuário.</p>
                         </div>
                         <div class="card-action">
-                            <button class="btn" disabled  type="submit">Gerar relatório</button>
+                            <button class="btn" disabled href="{{route('admin.auditoria.relatorios.registros.por.usuario')}}" type="submit">Gerar relatório</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col s12 m12 l6">
-                    <div class="card small purple darken-3 hoverable">
-                        <div class="card-content white-text">
-                            <span class="card-title">Registros por usuário individual</span>
-                            <p>Para gerar um relatório de todos os registros de um único usuário.</p>
-                        </div>
-                        <div class="card-action">
-                            <button class="btn" disabled type="submit">Gerar relatório</button>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>

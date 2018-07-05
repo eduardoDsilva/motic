@@ -18,7 +18,18 @@ Route::group(['prefix' => 'admin/aluno',  'namespace' => 'Admin\Aluno'], functio
 
     Route::post('store',['as' => 'admin.aluno.store', 'uses' => 'AdminAlunoController@store']);
 
+    Route::get('relatorios',['as' => 'admin.aluno.relatorios', 'uses' => 'AdminAlunoRelatorioController@index']);
+
+    Route::get('/todos-alunos-resumo',['as' => 'admin.aluno.relatorios.todos.alunos.resumo', 'uses' => 'AdminAlunoRelatorioController@todosAlunosResumo']);
+
+    Route::get('/alunos-por-escola',['as' => 'admin.aluno.relatorios.alunos.por.escola', 'uses' => 'AdminAlunoRelatorioController@alunosPorEscola']);
+
+    Route::get('/todos-alunos-completo',['as' => 'admin.aluno.relatorios.todos.alunos.completo', 'uses' => 'AdminAlunoRelatorioController@todosAlunosCompleto']);
+
+    Route::get('/relatorio-aluno/{id}',['as' => 'admin.aluno.relatorio.aluno', 'uses' => 'AdminAlunoRelatorioController@alunoIndividual']);
+
 });
+
 
 Route::get('/json-ano','Admin\Aluno\AdminAlunoController@escolaCategoria');
 

@@ -3,7 +3,7 @@
 @section('titulo','Motic Escola')
 
 @section('breadcrumb')
-    <a href="{{{route ('escola/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('escola')}}}" class="breadcrumb">Home</a>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
     <div class="section container col s12 m6 l8">
         <div class="card-panel">
             <div class="row">
-                <a href="{{route ('escola/projeto/home')}}">
+                <a href="{{route ('escola.projeto')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable blue darken-2">
                             <div class="card-content black-text center-align">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('escola/aluno/home')}}">
+                <a href="{{route ('escola.aluno')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable pink darken-2">
                             <div class="card-content black-text center-align">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('escola/professor/home')}}">
+                <a href="{{route ('escola.professor')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable orange darken-2">
                             <div class="card-content black-text center-align">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('escola/suplente/home')}}">
+                <a href="{{route ('escola.suplente')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable red darken-2">
                             <div class="card-content black-text center-align">
