@@ -6,7 +6,7 @@
 
 Route::middleware(['auth', 'check.admin'])->group(function () {
 
-    Route::get('admin/home', 'Admin\AdminController@index')->name('admin/home');
+    Route::get('/home',['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
     require_once ('auditoria/auditoria.php');
 

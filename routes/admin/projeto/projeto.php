@@ -1,26 +1,25 @@
 <?php
 
-Route::prefix('admin/projeto')->group(function () {
-//home
-    Route::get('/home', 'Admin\Projeto\AdminProjetoController@index')->name('admin/projeto/home');
-//exibir projeto
-    Route::get('/show/{id}/suplente', 'Admin\Projeto\AdminProjetoController@showSuplente');
-    //filtrar projetos
-    Route::post('/filtrar', 'Admin\Projeto\AdminProjetoController@filtrar')->name('admin/projeto/filtrar');
-//exibir projeto
-    Route::get('/show/{id}', 'Admin\Projeto\AdminProjetoController@show');
-//deletar
-    Route::get("/destroy/{id}", "Admin\Projeto\AdminProjetoController@destroy");
-//formulario de edita
-    Route::get("/update/{id}/edita", "Admin\Projeto\AdminProjetoController@edit");
-//formulario de registrar
-    Route::get('/cadastro/registro', 'Admin\Projeto\AdminProjetoController@create')->name('admin/projeto/cadastro/registro');
-//create
-    Route::post('/cadastro/registro', 'Admin\Projeto\AdminProjetoController@store')->name('admin/projeto/cadastro/registro');
-    //rebaixa
-    Route::get('/rebaixa/{id}', 'Admin\Projeto\AdminProjetoController@rebaixaSuplente');
-    //update
-    Route::post("/{id}", 'Admin\Projeto\AdminProjetoController@update');
+Route::group(['prefix' => 'admin/projeto',  'namespace' => 'Admin\Projeto'], function(){
+
+    Route::get('/',['as' => 'admin.projeto', 'uses' => 'AdminProjetoController@index']);
+
+    Route::get('show/{id}',['as' => 'admin.projeto.show', 'uses' => 'AdminProjetoController@show']);
+
+    Route::get('destroy/{id}',['as' => 'admin.projeto.destroy', 'uses' => 'AdminProjetoController@destroy']);
+
+    Route::get('edit/{id}',['as' => 'admin.projeto.edit', 'uses' => 'AdminProjetoController@edit']);
+
+    Route::get('create',['as' => 'admin.projeto.create', 'uses' => 'AdminProjetoController@create']);
+
+    Route::get('rebaixa/{id}',['as' => 'admin.projeto.rebaixa', 'uses' => 'AdminProjetoController@rebaixaSuplente']);
+
+    Route::post('update/{id}',['as' => 'admin.projeto.update', 'uses' => 'AdminProjetoController@update']);
+
+    Route::post('filtrar',['as' => 'admin.projeto.filtrar', 'uses' => 'AdminProjetoController@filtrar']);
+
+    Route::post('store',['as' => 'admin.projeto.store', 'uses' => 'AdminProjetoController@store']);
+
 });
     Route::get('/json-categorias-projeto', 'Admin\Projeto\AdminProjetoController@categorias');
 

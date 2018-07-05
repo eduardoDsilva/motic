@@ -3,8 +3,8 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/disciplinas/home')}}}" class="breadcrumb">Disciplinas</a>
+    <a href="{{route ('admin')}}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.disciplina')}}}" class="breadcrumb">Disciplinas</a>
     <a href="#" class="breadcrumb">Editar</a>
 @endsection
 
@@ -26,7 +26,7 @@
         <div class="row">
             <h3 class="center-align">Editar Disciplina</h3>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("/admin/disciplinas/".$disciplina->id) }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.disciplina.update", $disciplina->id) }}">
                         <h4>Editar disciplina</h4>
 
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />

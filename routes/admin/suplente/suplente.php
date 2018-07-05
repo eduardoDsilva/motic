@@ -1,26 +1,25 @@
 <?php
 
-Route::prefix('admin/suplente')->group(function () {
-//home
-    Route::get('/home', 'Admin\Suplente\AdminSuplenteController@index')->name('admin/suplente/home');
-    //filtrar projetos
-    Route::post('/filtrar', 'Admin\Suplente\AdminSuplenteController@filtrar')->name('admin/suplente/filtrar');
-//exibir projeto
-    Route::get('/show/{id}/suplente', 'Admin\Suplente\AdminSuplenteController@showSuplente');
-//exibir projeto
-    Route::get('/show/{id}', 'Admin\Suplente\AdminSuplenteController@show');
-//deletar
-    Route::get("/destroy/{id}", "Admin\Suplente\AdminSuplenteController@destroy");
-//formulario de edita
-    Route::get("/update/{id}/edita", "Admin\Suplente\AdminSuplenteController@edit");
-//formulario de registrar
-    Route::get('/cadastro/registro', 'Admin\Suplente\AdminSuplenteController@create')->name('admin/suplente/cadastro/registro');
-//create
-    Route::post('/cadastro/registro', 'Admin\Suplente\AdminSuplenteController@store')->name('admin/suplente/cadastro/registro');
-//promove
-    Route::get('/promove/{id}', 'Admin\Suplente\AdminSuplenteController@promoveSuplente');
-    //update
-    Route::post("/{id}", 'Admin\Suplente\AdminSuplenteController@update');
+Route::group(['prefix' => 'admin/suplente',  'namespace' => 'Admin\Suplente'], function(){
+
+    Route::get('/',['as' => 'admin.suplente', 'uses' => 'AdminSuplenteController@index']);
+
+    Route::get('show/{id}',['as' => 'admin.suplente.show', 'uses' => 'AdminSuplenteController@show']);
+
+    Route::get('destroy/{id}',['as' => 'admin.suplente.destroy', 'uses' => 'AdminSuplenteController@destroy']);
+
+    Route::get('edit/{id}',['as' => 'admin.suplente.edit', 'uses' => 'AdminSuplenteController@edit']);
+
+    Route::get('create',['as' => 'admin.suplente.create', 'uses' => 'AdminSuplenteController@create']);
+
+    Route::get('promove/{id}',['as' => 'admin.suplente.promove', 'uses' => 'AdminSuplenteController@promoveSuplente']);
+
+    Route::post('update/{id}',['as' => 'admin.suplente.update', 'uses' => 'AdminSuplenteController@update']);
+
+    Route::post('filtrar',['as' => 'admin.suplente.filtrar', 'uses' => 'AdminSuplenteController@filtrar']);
+
+    Route::post('store',['as' => 'admin.suplente.store', 'uses' => 'AdminSuplenteController@store']);
+
 });
 Route::get('/json-categorias-suplente','Admin\Suplente\AdminSuplenteController@categorias');
 

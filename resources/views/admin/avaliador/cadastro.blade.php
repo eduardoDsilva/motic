@@ -3,12 +3,12 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/avaliador/home')}}}" class="breadcrumb">Avaliador</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.avaliador')}}" class="breadcrumb">Avaliador</a>
     @if(isset($avaliador))
         <a href="" class="breadcrumb">Editar</a>
     @else
-        <a href="{{{route ('admin/avaliador/registro')}}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('admin.avaliador.create')}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 
@@ -34,7 +34,7 @@
             </div>
             <div class="divider"></div>
             <article class="col s12">
-                    <form method="POST" enctype="multipart/form-data" action="@if(isset($avaliador)) {{ url("admin/avaliador/".$avaliador->user->id) }} @else {{ route('admin/avaliador/registro') }}"@endif>
+                    <form method="POST" enctype="multipart/form-data" action="@if(isset($avaliador)) {{ route("admin.avaliador.update", $avaliador->user->id) }} @else {{ route('admin.avaliador.store') }}"@endif>
                 {{csrf_field()}}
 
                     <h5>Dados básicos</h5>

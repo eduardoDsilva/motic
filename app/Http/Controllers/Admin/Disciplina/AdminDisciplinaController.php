@@ -6,7 +6,7 @@
  * Time: 09:49
  */
 
-namespace App\Http\Controllers\Admin\Disciplinas;
+namespace App\Http\Controllers\Admin\Disciplina;
 
 use App\Disciplina;
 use App\Http\Controllers\Auditoria\AuditoriaController;

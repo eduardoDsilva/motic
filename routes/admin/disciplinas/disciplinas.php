@@ -1,18 +1,20 @@
 <?php
 
-//telas disciplinas
-Route::prefix('admin/disciplinas')->group(function () {
-//home
-    Route::get('/', 'Admin\Disciplinas\AdminDisciplinaController@index')->name('admin/disciplinas/home');
-//update
-    Route::post("/{id}", 'Admin\Disciplinas\AdminDisciplinaController@update');
-//deletar
-    Route::get("/destroy/{id}", "Admin\Disciplinas\AdminDisciplinaController@destroy");
-//formulario de edita
-    Route::get("/update/{id}/edita", "Admin\Disciplinas\AdminDisciplinaController@edit")->name('admin/disciplinas/edita/editar');
-//create
-    Route::post('/cadastro/registro', 'Admin\Disciplinas\AdminDisciplinaController@store')->name('admin/disciplinas/cadastro/registro');
-});
 
-//show
-Route::post('admin/disciplina/show', 'Admin\Disciplinas\AdminDisciplinaController@show')->name('admin/disciplina/show');
+Route::group(['prefix' => 'admin/disciplina',  'namespace' => 'Admin\Disciplina'], function(){
+
+    Route::get('/',['as' => 'admin.disciplina', 'uses' => 'AdminDisciplinaController@index']);
+
+    Route::get('destroy/{id}',['as' => 'admin.disciplina.destroy', 'uses' => 'AdminDisciplinaController@destroy']);
+
+    Route::get('edit/{id}',['as' => 'admin.disciplina.edit', 'uses' => 'AdminDisciplinaController@edit']);
+
+    Route::get('create',['as' => 'admin.disciplina.create', 'uses' => 'AdminDisciplinaController@create']);
+
+    Route::post('update/{id}',['as' => 'admin.disciplina.update', 'uses' => 'AdminDisciplinaController@update']);
+
+    Route::post('filtrar',['as' => 'admin.disciplina.filtrar', 'uses' => 'AdminDisciplinaController@filtrar']);
+
+    Route::post('store',['as' => 'admin.disciplina.store', 'uses' => 'AdminDisciplinaController@store']);
+
+});

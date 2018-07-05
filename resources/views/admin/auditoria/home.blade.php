@@ -3,8 +3,8 @@
 @section('titulo','Motic Admin - Auditoria')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/auditoria/home')}}}" class="breadcrumb">Auditoria</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.auditoria')}}" class="breadcrumb">Auditoria</a>
 @endsection
 
 @section('content')
@@ -26,7 +26,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/auditoria/filtrar") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ url("admin.auditoria.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select name="tipo" drequired>

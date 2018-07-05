@@ -1,20 +1,22 @@
 <?php
 
-Route::prefix('admin/escola')->group(function () {
-    //home
-    Route::get('/', 'Admin\Escola\AdminEscolaController@index')->name('admin/escola/home');
-    //filtrar
-    Route::post("/filtrar", 'Admin\Escola\AdminEscolaController@filtrar')->name('admin/escola/filtrar');
-    //pesquisar
-    Route::get('/show/{id}', 'Admin\Escola\AdminEscolaController@show');
-    //update
-    Route::post("/{id}", 'Admin\Escola\AdminEscolaController@update');
-    //deletar
-    Route::get("/destroy/{id}", "Admin\Escola\AdminEscolaController@destroy");
-    //formulario de edita
-    Route::get("/update/{id}/edita", "Admin\Escola\AdminEscolaController@edit");
-    //formulario de registrar
-    Route::get('/cadastro/registro', 'Admin\Escola\AdminEscolaController@create')->name('admin/escola/cadastro/registro');
-    //create
-    Route::post('/cadastro/registro', 'Admin\Escola\AdminEscolaController@store')->name('admin/escola/cadastro/registro');
+
+Route::group(['prefix' => 'admin/escola',  'namespace' => 'Admin\Escola'], function(){
+
+    Route::get('/',['as' => 'admin.escola', 'uses' => 'AdminEscolaController@index']);
+
+    Route::get('show/{id}',['as' => 'admin.escola.show', 'uses' => 'AdminEscolaController@show']);
+
+    Route::get('destroy/{id}',['as' => 'admin.escola.destroy', 'uses' => 'AdminEscolaController@destroy']);
+
+    Route::get('edit/{id}',['as' => 'admin.escola.edit', 'uses' => 'AdminEscolaController@edit']);
+
+    Route::get('create',['as' => 'admin.escola.create', 'uses' => 'AdminEscolaController@create']);
+
+    Route::post('update/{id}',['as' => 'admin.escola.update', 'uses' => 'AdminEscolaController@update']);
+
+    Route::post('filtrar',['as' => 'admin.escola.filtrar', 'uses' => 'AdminEscolaController@filtrar']);
+
+    Route::post('store',['as' => 'admin.escola.store', 'uses' => 'AdminEscolaController@store']);
+
 });

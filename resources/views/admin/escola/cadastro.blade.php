@@ -3,12 +3,12 @@
 @section('titulo', $titulo)
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/escola/home')}}}" class="breadcrumb">Escolas</a>
+    <a href="{{route ('admin')}}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.escola')}}}" class="breadcrumb">Escolas</a>
     @if(isset($escola))
-        <a href="" class="breadcrumb">Editar</a>
+        <a href="{{route ('admin.escola.edit', $escola->id)}}" class="breadcrumb">Editar</a>
     @else
-        <a href="{{{route ('admin/aluno/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('admin.escola.create')}}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 
@@ -35,8 +35,8 @@
                 <div class="divider"></div>
                     <form class="col s12" method="POST" enctype="multipart/form-data"
                           action="
-                            @if(isset($escola)) {{ url("/admin/escola/".$escola->user->id) }}
-                            @else {{ route('admin/escola/cadastro/registro') }}
+                            @if(isset($escola)) {{ route("admin.escola.update", $escola->user->id) }}
+                            @else {{ route('admin.escola.create') }}
                             @endif ">
                         {{csrf_field()}}
                         <h5>Dados básicos</h5>

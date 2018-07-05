@@ -4,8 +4,8 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/projeto/home')}}}" class="breadcrumb">Projetos</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.projeto')}}" class="breadcrumb">Projetos</a>
 @endsection
 
 @section('banner')
@@ -32,7 +32,7 @@
     <div class="section container">
         <div class="card-panel">
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ url("admin/projeto/filtrar") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.projeto.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select name="tipo" required>
@@ -78,11 +78,10 @@
                                 <td>{{$projeto->categoria->categoria}}</td>
                                 <td>{{$projeto->escola->name}}</td>
                                 <td>
-                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{route ('admin.projeto.edit',$projeto->id)}}"><i class="small material-icons">edit</i></a>
                                     <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal" data-tipo="projeto"> <i class="small material-icons">delete</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/projeto/show/".$projeto->id) }}"> <i class="small material-icons">library_books</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Rebaixar a projeto suplente"  href="{{ url("/admin/projeto/rebaixa/".$projeto->id) }}"> <i class="small material-icons">arrow_downward</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Avaliadores"  href=""> <i class="small material-icons">contacts</i></a>
+                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ route("admin.projeto.show", $projeto->id) }}"> <i class="small material-icons">library_books</i></a>
+                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Rebaixar a projeto suplente"  href="{{ route("admin.projeto.rebaixa", $projeto->id) }}"> <i class="small material-icons">arrow_downward</i></a>
                                 </td>
                             </tr>
                         @empty
@@ -101,15 +100,9 @@
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large red">
-                    <i class="large material-icons">mode_edit</i>
-                </a>
-                <ul>
-                    <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('admin/projeto/cadastro/registro')}}"><i class="material-icons">add</i></a></li>
-                    <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar aluno" href="{{route ('admin/aluno/cadastro/registro')}}"><i class="material-icons">format_quote</i></a></li>
-                    <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar professor" href="{{route ('admin/professor/cadastro/registro')}}"><i class="material-icons">publish</i></a></li>
-                    <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">attach_file</i></a></li>
-                </ul>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('admin.projeto.create')}}"><i class="material-icons">add</i></a>
+                </div>
             </div>
 
         </div>

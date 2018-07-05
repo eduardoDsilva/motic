@@ -1,28 +1,21 @@
 <?php
 
-Route::prefix('admin/avaliador')->group(function () {
-//home
-    Route::get('/', 'Admin\Avaliador\AdminAvaliadorController@index')->name('admin/avaliador/home');
-//exibir aluno
-    Route::get('/show/{id}', 'Admin\Avaliador\AdminAvaliadorController@show');
-//exibir professor
-    Route::post('/filtrar', 'Admin\Avaliador\AdminAvaliadorController@filtrar')->name('admin/avaliador/filtrar');
-//update
-    Route::post("/{id}", 'Admin\Avaliador\AdminAvaliadorController@update');
-//deletar
-    Route::get("/destroy/{id}", "Admin\Avaliador\AdminAvaliadorController@destroy");
-//formulario de edita
-    Route::get("/update/{id}/edita", "Admin\Avaliador\AdminAvaliadorController@edit");
-//formulario de registrar
-    Route::get('/cadastro/registro', 'Admin\Avaliador\AdminAvaliadorController@create')->name('admin/avaliador/registro');
-//create
-    Route::post('/cadastro/registro', 'Admin\Avaliador\AdminAvaliadorController@store')->name('admin/avaliador/registro');
-//create
-    Route::get('/atribuir/{id}', 'Admin\Avaliador\AdminAvaliadorController@atribuir')->name('admin/avaliador/atribuir/{id}');
+Route::group(['prefix' => 'admin/avaliador',  'namespace' => 'Admin\Avaliador'], function(){
 
-    Route::get('/showAvaliadorDisponivel', 'Admin\Avaliador\AdminAvaliadorController@showAvaliadorDisponivel')->name('admin/avaliador/showAvaliadorDisponivel');
-//
+    Route::get('/',['as' => 'admin.avaliador', 'uses' => 'AdminAvaliadorController@index']);
+
+    Route::get('show/{id}',['as' => 'admin.avaliador.show', 'uses' => 'AdminAvaliadorController@show']);
+
+    Route::get('destroy/{id}',['as' => 'admin.avaliador.destroy', 'uses' => 'AdminAvaliadorController@destroy']);
+
+    Route::get('edit/{id}',['as' => 'admin.avaliador.edit', 'uses' => 'AdminAvaliadorController@edit']);
+
+    Route::get('create',['as' => 'admin.avaliador.create', 'uses' => 'AdminAvaliadorController@create']);
+
+    Route::post('update/{id}',['as' => 'admin.avaliador.update', 'uses' => 'AdminAvaliadorController@update']);
+
+    Route::post('filtrar',['as' => 'admin.avaliador.filtrar', 'uses' => 'AdminAvaliadorController@filtrar']);
+
+    Route::post('store',['as' => 'admin.avaliador.store', 'uses' => 'AdminAvaliadorController@store']);
+
 });
-
-Route::post('admin/avaliador/atribui', 'Admin\Avaliador\AdminAvaliadorController@atribui')->name('admin/avaliador/atribui');
-

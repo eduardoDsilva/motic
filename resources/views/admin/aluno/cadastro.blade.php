@@ -3,12 +3,12 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/aluno/home')}}}" class="breadcrumb">Alunos</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.aluno')}}" class="breadcrumb">Alunos</a>
     @if(isset($aluno))
         <a href="" class="breadcrumb">Editar</a>
     @else
-        <a href="{{{route ('admin/aluno/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('admin.aluno.create')}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 
@@ -42,8 +42,8 @@
 @section('form')
 
     class="col s12" method="POST" enctype="multipart/form-data"
-    action="@if(isset($aluno)){{ url("/admin/aluno/".$aluno->id) }}
-    @else {{ route('admin/aluno/cadastro/registro') }}@endif"
+    action="@if(isset($aluno)){{ route('admin.aluno.update', $aluno->id) }}
+    @else {{ route('admin.aluno.store') }}@endif"
 
 @endsection
 

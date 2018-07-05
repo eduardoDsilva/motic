@@ -3,9 +3,9 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/projeto/home')}}}" class="breadcrumb">Projetos</a>
-    <a href="{{{route ('admin/projeto/cadastro/registro')}}}" class="breadcrumb">Cadastro</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.projeto')}}" class="breadcrumb">Projetos</a>
+    <a href="{{route ('admin.projeto.create')}}" class="breadcrumb">Cadastro</a>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
             </div>
             <div class="divider"></div>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('admin/projeto/cadastro/registro') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin.projeto.store') }}">
 
                     <h5>Dados básicos</h5>
 

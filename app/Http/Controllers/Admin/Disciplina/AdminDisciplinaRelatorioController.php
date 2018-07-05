@@ -6,13 +6,13 @@
  * Time: 08:32
  */
 
-namespace App\Http\Controllers\Admin\Disciplinas;
+namespace App\Http\Controllers\Admin\Disciplina;
 
 use App\Aluno;
 use App\Escola;
 use Illuminate\Http\Request;
 
-class AdminDisciplinasRelatorioController
+class AdminDisciplinaRelatorioController
 {
 
     public function index(){

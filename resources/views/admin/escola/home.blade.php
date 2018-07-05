@@ -4,8 +4,8 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/escola/home')}}}" class="breadcrumb">Escolas</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.escola')}}" class="breadcrumb">Escolas</a>
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ route("admin/escola/filtrar") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.escola.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select required name="tipo">
@@ -76,9 +76,9 @@
                         <td>{{$escola->telefone}}</td>
                         <td class="limit">{{$escola->user->username}}</td>
                         <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/escola/update/".$escola->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ route("admin.escola.edit", $escola->id) }}"><i class="small material-icons">edit</i></a>
                             <a id="deletar" data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$escola->id}}" data-name="{{$escola->name}}" data-tipo="escola"> <i class="small material-icons">delete</i></a>
-                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/escola/show/".$escola->id) }}"> <i class="small material-icons">library_books</i></a>
+                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ route("admin.escola.show", $escola->id) }}"> <i class="small material-icons">library_books</i></a>
                         </td>
                     </tr>
                 @empty
@@ -119,7 +119,7 @@
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin/escola/cadastro/registro')}}"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar Escola" href="{{route ('admin.escola.create')}}"><i class="material-icons">add</i></a>
             </div>
         </div>
 

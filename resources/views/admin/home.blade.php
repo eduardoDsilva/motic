@@ -3,7 +3,7 @@
 @section('titulo','Motic Administrador')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
     <div class="section container col s12 m6 l8">
         <div class="card-panel">
             <div class="row">
-                <a href="{{route ('admin/escola/home')}}">
+                <a href="{{route ('admin.escola')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable red darken-3">
                             <div class="card-content black-text center-align">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/projeto/home')}}">
+                <a href="{{route ('admin.projeto')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable blue darken-3">
                             <div class="card-content black-text center-align">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/suplente/home')}}">
+                <a href="{{route ('admin.suplente')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable pink darken-3">
                             <div class="card-content black-text center-align">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/disciplinas/home')}}">
+                <a href="{{route ('admin.disciplina')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable green darken-3">
                             <div class="card-content black-text center-align">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/aluno/home')}}">
+                <a href="{{route ('admin.aluno')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable purple darken-3">
                             <div class="card-content black-text center-align">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/professor/home')}}">
+                <a href="{{route ('admin.professor')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable teal darken-3">
                             <div class="card-content black-text center-align">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/auditoria/home')}}">
+                <a href="{{route ('admin.auditoria')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable indigo darken-3">
                             <div class="card-content black-text center-align">
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('admin/avaliador/home')}}">
+                <a href="{{route ('admin.avaliador')}}">
                     <div class="col s12 m6 l4">
                         <div class="card hoverable orange darken-3">
                             <div class="card-content black-text center-align">

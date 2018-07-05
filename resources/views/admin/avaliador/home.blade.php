@@ -3,8 +3,8 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/avaliador/home')}}}" class="breadcrumb">Avaliador</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.avaliador')}}" class="breadcrumb">Avaliador</a>
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ route("admin/avaliador/filtrar") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.avaliador.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select name="tipo" required>
@@ -74,9 +74,9 @@
                         <td>{{$avaliador->user->name}}</td>
                         <td>{{$avaliador->user->username}}</td>
                         <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("/admin/avaliador/update/".$avaliador->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ route("admin.avaliador.edit", $avaliador->id) }}"><i class="small material-icons">edit</i></a>
                             <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$avaliador->id}}" data-name="{{$avaliador->name}}" data-tipo="avaliador"> <i class="small material-icons">delete</i></a>
-                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ url("/admin/avaliador/show/".$avaliador->id) }}"> <i class="small material-icons">library_books</i></a>
+                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ route("admin.avaliador.show", $avaliador->id) }}"> <i class="small material-icons">library_books</i></a>
                             <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Projetos"  href=""> <i class="small material-icons">view_agenda</i></a>
                         </td>
                     </tr>
@@ -92,7 +92,7 @@
             </table>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Adicionar avaliador" href="{{route ('admin/avaliador/registro')}}"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Adicionar avaliador" href="{{route ('admin.avaliador.create')}}"><i class="material-icons">add</i></a>
             </div>
 
             <!-- Modal Structure -->

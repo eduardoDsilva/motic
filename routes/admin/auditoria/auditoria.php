@@ -1,8 +1,8 @@
 <?php
 
-//telas aluno
+Route::group(['prefix' => 'admin/auditoria',  'namespace' => 'Admin\Auditoria'], function(){
 
-//tela principal do admin-aluno
-Route::get('admin/auditoria/home', 'Admin\Auditoria\AdminAuditoriaController@index')->name('admin/auditoria/home');
+    Route::get('/',['as' => 'admin.auditoria', 'uses' => 'AdminAuditoriaController@index']);
+    Route::post('filtrar',['as' => 'admin.auditoria.filtrar', 'uses' => 'AdminAuditoriaController@filtrar']);
 
-Route::post('admin/auditoria/filtrar', 'Admin\Auditoria\AdminAuditoriaController@filtrar')->name('admin/auditoria/filtrar');
+});

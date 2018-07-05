@@ -3,8 +3,8 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{{route ('admin/home')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('admin/disciplinas/home')}}}" class="breadcrumb">Disciplinas</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.disciplina')}}" class="breadcrumb">Disciplinas</a>
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
         <div class="card-panel">
 
             <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ route("admin/disciplina/show") }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.disciplina.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
                             <select name="tipo" required>
@@ -71,7 +71,7 @@
                             <td>{{$disciplina->name}}</td>
                             <td>{{$disciplina->descricao}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ url("/admin/disciplinas/update/".$disciplina->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ route("admin.disciplina.edit", $disciplina->id) }}"><i class="small material-icons">edit</i></a>
                                 <a data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2" data-id="{{$disciplina->id}}" data-name="{{$disciplina->name}}" data-tipo="disciplina"><i class="small material-icons">delete</i></a>
                             </td>
                         </tr>
@@ -116,7 +116,7 @@
 
                 <!-- Modal Structure -->
                 <div id="modal3" class="modal">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin/disciplinas/cadastro/registro') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplina.create') }}">
                         <div class="modal-content">
                             <h4>Adicionar disciplina</h4>
 
