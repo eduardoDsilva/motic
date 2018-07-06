@@ -17,6 +17,7 @@ class CreateAuditorias extends Migration
             $table->increments('id');
             $table->enum('tipo',['create','update', 'delete'])->default('update');
             $table->longText('descricao');
+            $table->longText('objeto');
             $table->string('nome_usuario');
             $table->integer('id_acao');
             $table->integer('user_id');

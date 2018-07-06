@@ -201,6 +201,8 @@
             $('.modal').modal();
         });
 
+        @yield('modal')
+
         $(".dropdown-button").dropdown();
 
         // Initialize collapse button

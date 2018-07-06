@@ -52,7 +52,7 @@
                                     class="material-icons">list</i>Listar avaliadores</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.avaliador.create')}}"><i
                                     class="material-icons">add</i>Cadastrar avaliador</a></li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin/avaliador/relatorios')}}"><i
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.avaliador.relatorios')}}"><i
                                     class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                     <li>
                         <div class="divider"></div>
@@ -112,7 +112,7 @@
                                     class="material-icons">list</i>Listar professores</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.professor.create')}}"><i
                                     class="material-icons">add</i>Cadastrar professor</a></li>
-                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.professor.relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a>
                     </li>
                     <li>
                         <div class="divider"></div>
@@ -132,7 +132,7 @@
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto')}}"><i class="material-icons">list</i>Listar projetos</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto.create')}}"><i
                                     class="material-icons">add</i>Cadastrar projetos</a></li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin/avaliador/relatorios')}}"><i
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto.relatorios')}}"><i
                                     class="material-icons">chrome_reader_mode</i>Relatórios</a></li>
                     <li>
                         <div class="divider"></div>
@@ -153,7 +153,7 @@
                                     class="material-icons">list</i>Listar suplentes</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.suplente.create')}}"><i
                                     class="material-icons">add</i>Cadastrar suplentes</a></li>
-                    <li><a class="waves-effect waves-blue" href=""><i class="material-icons">chrome_reader_mode</i>Relatórios</a>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.suplente.relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a>
                     </li>
                     <li>
                         <div class="divider"></div>

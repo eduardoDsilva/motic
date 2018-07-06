@@ -31,7 +31,7 @@ class AdminDisciplinaController extends Controller
     public function index()
     {
         $disciplinas = Disciplina::orderBy('name', 'asc')->paginate(10);
-        return view('admin/disciplinas/home', compact('disciplinas'));
+        return view('admin.disciplinas.home', compact('disciplinas'));
     }
 
     public function store(DisciplinaCreateFormRequest $request){
@@ -39,7 +39,7 @@ class AdminDisciplinaController extends Controller
         try{
             $disciplinas = Disciplina::create($dataForm);
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $disciplinas->id);
+            $this->auditoriaController->storeCreate($texto, $disciplinas->id, 'disciplina');
             return redirect()
                 ->route("admin.disciplina")
                 ->with("success", "disciplina ".$disciplinas->name." adicionada com sucesso");
@@ -57,7 +57,7 @@ class AdminDisciplinaController extends Controller
                 $filtro = '%'.$dataForm['search'].'%';
                 $disciplinas = Disciplina::where('name', 'like', $filtro)->paginate(10);
             }
-            return view("admin/disciplinas/home", compact('disciplinas'));
+            return view("admin.disciplinas.home", compact('disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -66,7 +66,7 @@ class AdminDisciplinaController extends Controller
     public function edit($id){
         try{
             $disciplina = disciplina::find($id);
-            return view("admin/disciplinas/editar", compact('disciplina'));
+            return view("admin.disciplinas.editar", compact('disciplina'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -78,10 +78,10 @@ class AdminDisciplinaController extends Controller
             $disciplinas = Disciplina::find($id);
             $disciplinas->update($dataForm);
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $disciplinas->id);
+            $this->auditoriaController->storeUpdate($texto, $disciplinas->id, 'disciplina');
 
             $disciplinas = Disciplina::all();
-            return view('admin/disciplinas/home', compact('disciplinas'));
+            return view('admin.disciplinas.home', compact('disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -92,7 +92,7 @@ class AdminDisciplinaController extends Controller
             $disciplina = Disciplina::find($id);
             $disciplina->delete($id);
             $texto = str_replace(",", ", ", json_encode($disciplina, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $disciplina->id);
+            $this->auditoriaController->storeDelete($texto, $disciplina->id, 'disciplina');
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

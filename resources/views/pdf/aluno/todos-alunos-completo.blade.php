@@ -19,8 +19,12 @@
             padding: 8px;
         }
 
-        h2{
-            font-family: Arial;
+        .motic{
+            float: right;
+            padding-bottom: 20px;
+        }
+        .pmsl{
+            float: left;
         }
 
         .page-break {
@@ -33,6 +37,9 @@
 <body>
 
 @forelse($alunos as $aluno)
+    <img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
+    <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px">
+
     <h1>Aluno {{$aluno->name}}</h1>
 
     <h2>Dados pessoais</h2>

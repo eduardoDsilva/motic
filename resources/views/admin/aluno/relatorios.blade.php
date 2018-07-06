@@ -29,7 +29,7 @@
                             <p>Para gerar um relatório de todos os alunos do sistema.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.resumo')}}">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.resumo')}}" target="_blank">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <p>Para gerar um relatório de todos os dados dos alunos do sistema</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.completo')}}">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.completo')}}" target="_blank">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <p>Para gerar um relatório dos alunos de cada escola.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.aluno.relatorios.alunos.por.escola')}}">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.alunos.por.escola')}}" target="_blank">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -70,67 +70,77 @@
         </div>
     </div>
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Alunos</h4>
+    @if(isset($alunos))
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Alunos</h4>
 
-            <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.aluno.filtrar") }}">
-                    <div class="row">
-                        <div class="input-field col s4">
-                            <select required name="tipo">
-                                <option value="" disabled selected>Filtrar por...</option>
-                                <option value="id">ID</option>
-                                <option value="nome">Nome</option>
-                                <option value="escola">Escola</option>
-                            </select>
-                            <label>Filtros</label>
-                        </div>
+                <div class="col s12 m4 l8">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route("admin.aluno.relatorios.filtrar") }}">
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <select required name="tipo">
+                                    <option value="" disabled selected>Filtrar por...</option>
+                                    <option value="id">ID</option>
+                                    <option value="nome">Nome</option>
+                                    <option value="escola">Escola</option>
+                                </select>
+                                <label>Filtros</label>
+                            </div>
 
-                        <div class="input-field col s7">
-                            <input id="search" type="search" name="search" required>
-                            <label for="search">Pesquise no sistema...</label>
+                            <div class="input-field col s7">
+                                <input id="search" type="search" name="search" required>
+                                <label for="search">Pesquise no sistema...</label>
+                            </div>
+                            {{csrf_field()}}
+                            <div class="input-field col s1">
+                                <button type="submit" class="btn-floating" target="_blank" ><i class="material-icons">search</i></button>
+                            </div>
                         </div>
-                        {{csrf_field()}}
-                        <div class="input-field col s1">
-                            <button type="submit" class="btn-floating"><i class="material-icons">search</i></button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <table class="centered responsive-table highlight bordered">
+
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Escola</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse ($alunos as $aluno)
+                        <tr>
+                            <td>{{$aluno->id}}</td>
+                            <td>{{$aluno->name}}</td>
+                            <td>{{$aluno->escola->name}}</td>
+                            <td>
+                                <a class="modal-trigger tooltipped" target="_blank" data-position="top" data-delay="50" data-tooltip="Gerar relatório"  href="{{route ('admin.aluno.relatorio.aluno', $aluno->id)}}"><i class="small material-icons">chrome_reader_mode</i></a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td>Nenhum aluno encontrado</td>
+                            <td>Nenhum aluno encontrado</td>
+                            <td>Nenhum aluno encontrado</td>
+                            <td>Nenhum aluno encontrado</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+                {{$alunos->links()}}
             </div>
-            <table class="centered responsive-table highlight bordered">
-
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Escola</th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse ($alunos as $aluno)
-                    <tr>
-                        <td>{{$aluno->id}}</td>
-                        <td>{{$aluno->name}}</td>
-                        <td>{{$aluno->escola->name}}</td>
-                        <td>
-                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Gerar relatório"  href="{{route ('admin.aluno.relatorio.aluno', $aluno->id)}}"><i class="small material-icons">chrome_reader_mode</i></a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
-            {{$alunos->links()}}
         </div>
-    </div>
+    @endif
 
+@endsection
+
+@section('modal')
+    @if(isset($modal))
+        $(document).ready(function(){
+            $('#modal1').modal('open');
+        });
+    @endif
 @endsection

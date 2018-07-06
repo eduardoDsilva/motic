@@ -28,7 +28,7 @@ class AdminAlunoController extends Controller
     {
         try {
             $alunos = Aluno::orderBy('name', 'asc')->paginate(10);
-            return view('admin/aluno/home', compact('alunos'));
+            return view('admin.aluno.home', compact('alunos'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -37,7 +37,7 @@ class AdminAlunoController extends Controller
     public function create(){
         try {
             $escolas = Escola::all();
-            return view('admin/aluno/cadastro', compact('escolas'));
+            return view('admin.aluno.cadastro', compact('escolas'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -56,7 +56,7 @@ class AdminAlunoController extends Controller
     public function show($id){
         try{
             $aluno = Aluno::find($id);
-            return view('admin/aluno/show', compact('aluno'));
+            return view('admin.aluno.show', compact('aluno'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -66,7 +66,7 @@ class AdminAlunoController extends Controller
         try {
             $dataForm = $request->all();
             $alunos = $this->alunoController->filtro($dataForm);
-            return view('admin/aluno/home', compact('alunos'));
+            return view('admin.aluno.home', compact('alunos'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -77,7 +77,7 @@ class AdminAlunoController extends Controller
             $aluno = Aluno::find($id);
             $titulo = "Editar aluno: ".$aluno->name;
             $escolas = Escola::all();
-            return view("admin/aluno/cadastro", compact('aluno', 'titulo', 'escolas'));
+            return view("admin.aluno.cadastro", compact('aluno', 'titulo', 'escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

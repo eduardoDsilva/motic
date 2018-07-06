@@ -19,18 +19,25 @@
             padding: 8px;
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .motic{
+            float: right;
+            padding-bottom: 20px;
+        }
+        .pmsl{
+            float: left;
         }
 
-        h2{
-            font-family: Arial;
+        .page-break {
+            page-break-after: always;
         }
     </style>
 
 </head>
 
 <body>
+
+<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
+<img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px">
 
 <h1>Alunos</h1>
 

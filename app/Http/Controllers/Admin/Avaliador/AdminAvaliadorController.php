@@ -33,12 +33,12 @@ class AdminAvaliadorController extends Controller
     {
         $avaliadores = Avaliador::orderBy('name', 'asc')
             ->paginate(10);
-        return view("admin/avaliador/home", compact('avaliadores'));
+        return view("admin.avaliador.home", compact('avaliadores'));
     }
 
     public function create(){
         $titulo = 'Cadastrar avaliador';
-        return view('admin/avaliador/cadastro', compact('titulo'));
+        return view('admin.avaliador.cadastro', compact('titulo'));
     }
 
     public function store(AvaliadorCreateFormRequest $request){
@@ -52,15 +52,15 @@ class AdminAvaliadorController extends Controller
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
             $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $user->id);
+            $this->auditoriaController->storeCreate($texto, $user->id, 'avalaidor');
 
             $avaliador = Avaliador::create($dataForm + ['user_id' => $user->id]);
             $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $avaliador->id);
+            $this->auditoriaController->storeCreate($texto, $avaliador->id, 'avalaidor');
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $endereco->id);
+            $this->auditoriaController->storeCreate($texto, $endereco->id, 'avalaidor');
 
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi cadastrado com sucesso!");
 
@@ -73,7 +73,7 @@ class AdminAvaliadorController extends Controller
     public function show($id){
         try{
             $avaliador = Avaliador::find($id);
-            return view("admin/avaliador/show", compact('avaliador'));
+            return view("admin.avaliador.show", compact('avaliador'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -82,7 +82,7 @@ class AdminAvaliadorController extends Controller
     public function showAvaliadorDisponivel(){
         try{
             $avaliadores = Avaliador::all()->where('projetos','<','3');
-            return view("admin/avaliador/avaliador-disponivel", compact('avaliadores'));
+            return view("admin.avaliador.avaliador-disponivel", compact('avaliadores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -93,7 +93,7 @@ class AdminAvaliadorController extends Controller
             $avaliador = Avaliador::find($id);
             $titulo = 'Editar avaliador: '.$avaliador->name;
 
-            return view("admin/avaliador/cadastro", compact('avaliador', 'titulo'));
+            return view("admin.avaliador.cadastro", compact('avaliador', 'titulo'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -112,17 +112,17 @@ class AdminAvaliadorController extends Controller
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
             $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $user->id);
+            $this->auditoriaController->storeUpdate($texto, $user->id, 'avalaidor');
 
             $avaliador = $user->avaliador;
             $avaliador->update($dataForm);
             $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $avaliador->id);
+            $this->auditoriaController->storeUpdate($texto, $avaliador->id, 'avalaidor');
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $endereco->id);
+            $this->auditoriaController->storeUpdate($texto, $endereco->id, 'avalaidor');
 
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi editado com sucesso!");
 
@@ -148,7 +148,7 @@ class AdminAvaliadorController extends Controller
                 $filtro = '%'.$dataForm['search'].'%';
                 $avaliadores = Avaliador::where('sexo', 'like', $filtro)->paginate(10);
             }
-            return view('admin/avaliador/home', compact('avaliadores'));
+            return view('admin.avaliador.home', compact('avaliadores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -159,7 +159,7 @@ class AdminAvaliadorController extends Controller
             $avaliador = Avaliador::find($id);
             $avaliador->user()->delete($id);
             $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $avaliador->id);
+            $this->auditoriaController->storeDelete($texto, $avaliador->id, 'avalaidor');
 
             Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
         }catch (\Exception $e) {
@@ -175,7 +175,7 @@ class AdminAvaliadorController extends Controller
                 ->paginate(10);
             $avaliador = Avaliador::find($id);
 
-            return view('admin/avaliador/atribuir', compact('projetos', 'avaliador'));
+            return view('admin.avaliador.atribuir', compact('projetos', 'avaliador'));
         }catch (\Exception $e){
             return "ERRO: " . $e->getMessage();
         }

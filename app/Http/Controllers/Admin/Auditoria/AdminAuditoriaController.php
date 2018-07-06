@@ -20,29 +20,19 @@ class AdminAuditoriaController extends Controller
     {
         try{
             $auditorias = Auditoria::latest()->paginate(10);
-            return view('admin/auditoria/home', compact('auditorias'));
+            return view('admin.auditoria.home', compact('auditorias'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
     public function filtrar(\Illuminate\Http\Request $request){
-        $dataForm = $request->all();
-        try{
-            if($dataForm['tipo'] == 'id'){
-                $auditorias = Auditoria::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'tipo'){
-                $filtro = '%'.$dataForm['search'].'%';
-                $auditorias = Auditoria::where('tipo', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'user') {
-                $filtro = '%' . $dataForm['search'] . '%';
-                $auditorias = Auditoria::where('nome_usuario', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'id_user') {
-                $auditorias = Aluno::where('user_id', '=', $dataForm['search'])->paginate(10);
-            }
-            return view('admin/auditoria/home', compact('auditorias'));
-        }catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
+        try {
+            $dataForm = $request->all();
+            $auditorias = $this->auditoriaController->filtro($dataForm);
+            return view('admin.auditoria.home', compact('auditorias'));
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
         }
     }
 

@@ -13,7 +13,7 @@
 @endsection
 
 @section('campo-escola')
-    <div class="input-field col s6">
+    <div class="input-field col s12 m6 l6">
         <i class="material-icons prefix">people</i>
         <select id='escolaAluno' name="escola_id">
             <option value="{{$escola->id}}" selected>{{$escola->name or old('name')}}</option>
@@ -23,7 +23,7 @@
 @endsection
 
 @section('campo-etapa')
-    <div class="input-field col s6">
+    <div class="input-field col s12 m6 l6">
         <i class="material-icons prefix">book</i>
         <select name="etapa">
             <option value="" disabled selected>Ano Letivo</option>

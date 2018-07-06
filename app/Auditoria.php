@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auditoria extends Model
 {
     protected $fillable = [
-        'tipo', 'descricao', 'nome_usuario', 'id_acao', 'user_id',
+        'tipo', 'descricao', 'objeto', 'nome_usuario', 'id_acao', 'user_id',
     ];
 
     public function user()

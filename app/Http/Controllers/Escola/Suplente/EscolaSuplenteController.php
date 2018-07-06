@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: eduardo.dgi
- * Date: 14/05/2018
- * Time: 09:49
- */
+
 
 namespace App\Http\Controllers\Escola\Suplente;
 
@@ -40,7 +35,7 @@ class EscolaSuplenteController extends Controller
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
 
-            return view('escola/suplente/home', compact('projetos'));
+            return view('escola.suplente.home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -63,7 +58,7 @@ class EscolaSuplenteController extends Controller
             $categorias = $escola->categoria->whereNotIn('id', $categoria_id);
             $professores = Professor::all()->where('escola_id', '=', Auth::user()->escola->id)->where('projeto_id', '=', null)->where('projeto_id', '=', null);
 
-            return view("escola/suplente/cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
+            return view("escola.suplente.cadastro", compact('disciplinas', 'escola', 'categorias', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -88,7 +83,7 @@ class EscolaSuplenteController extends Controller
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()
                 ->where('projeto_id', '=', $projeto->id);
-            return view("escola/suplente/show", compact('projeto', 'alunos', 'professores'));
+            return view("escola.suplente.show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -99,7 +94,7 @@ class EscolaSuplenteController extends Controller
             $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar suplente: '.$projeto->titulo;
-            return view("escola/suplente/editar", compact( 'projeto', 'titulo', 'disciplinas'));
+            return view("escola.suplente.editar", compact( 'projeto', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -109,7 +104,7 @@ class EscolaSuplenteController extends Controller
         $dataForm = $request->all();
         try{
             $projetos = $this->suplenteController->filtrar($dataForm);
-            return view('escola/suplente/home', compact('projetos'));
+            return view('escola.suplente.home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

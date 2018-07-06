@@ -28,12 +28,12 @@
                     <h5>Dados básicos</h5>
 
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m12 l6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Título</label>
                             <input type="text" name="titulo" value="{{$projeto->titulo}}" required>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m12 l6">
                             <i class="material-icons prefix">perm_identity</i>
                             <label for="nome">Área</label>
                             <input type="text" name="area" value="{{$projeto->area}}" required>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class='row'>
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m12 l12">
                             <i class="material-icons prefix">assignment</i>
                             <textarea name="resumo" id="textarea1" class="materialize-textarea">{{$projeto->resumo}}</textarea>
                             <label for="textarea1">Resumo</label>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m12 l12">
                             <i class="material-icons prefix">assignment</i>
                             <select multiple name="disciplina_id[]">
                                 <option value="" disabled selected>Selecione as disciplinas</option>

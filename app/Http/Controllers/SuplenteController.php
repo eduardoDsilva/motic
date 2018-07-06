@@ -66,7 +66,7 @@ class SuplenteController extends Controller
             }
 
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $projeto->id);
+            $this->auditoriaController->storeCreate($texto, $projeto->id, 'projeto');
 
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -110,7 +110,7 @@ class SuplenteController extends Controller
                 $projeto->disciplina()->attach($disciplina);
             }
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $projeto->id);
+            $this->auditoriaController->storeUpdate($texto, $projeto->id, 'projeto');
 
             Session::put('mensagem', "O suplente ".$projeto->titulo." foi editado com sucesso!");
 
@@ -126,7 +126,7 @@ class SuplenteController extends Controller
             $projeto = Projeto::find($id);
             $projeto->delete($id);
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $projeto->id);
+            $this->auditoriaController->storeDelete($texto, $projeto->id, 'projeto');
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

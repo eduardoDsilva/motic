@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: eduardo.dgi
- * Date: 14/05/2018
- * Time: 09:49
- */
 
 namespace App\Http\Controllers\Admin\Suplente;
 
@@ -44,7 +38,7 @@ class AdminSuplenteController extends Controller
                 ->where('tipo','=', 'suplente')
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
-            return view('admin/suplente/home', compact('projetos'));
+            return view('admin.suplente.home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -54,7 +48,7 @@ class AdminSuplenteController extends Controller
         try{
             $disciplinas = Disciplina::all();
             $escolas = Escola::all();
-            return view("admin/suplente/cadastro", compact('disciplinas', 'escolas', 'categorias'));
+            return view("admin.suplente.cadastro", compact('disciplinas', 'escolas', 'categorias'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -75,7 +69,7 @@ class AdminSuplenteController extends Controller
         $dataForm = $request->all();
         try{
             $projetos = $this->suplenteController->filtrar($dataForm);
-            return view('admin/suplente/home', compact('projetos'));
+            return view('admin.suplente.home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -89,7 +83,7 @@ class AdminSuplenteController extends Controller
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()
                 ->where('projeto_id', '=', $projeto->id);
-            return view("admin/suplente/show", compact('projeto', 'alunos', 'professores'));
+            return view("admin.suplente.show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -100,7 +94,7 @@ class AdminSuplenteController extends Controller
             $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar suplente: '.$projeto->titulo;
-            return view("admin/suplente/editar", compact( 'projeto', 'titulo', 'disciplinas'));
+            return view("admin.suplente.editar", compact( 'projeto', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

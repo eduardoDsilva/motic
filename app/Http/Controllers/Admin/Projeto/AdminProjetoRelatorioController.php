@@ -6,19 +6,16 @@
  * Time: 08:32
  */
 
-namespace App\Http\Controllers\Admin\Escola;
+namespace App\Http\Controllers\Admin\Projeto;
 
-use App\Aluno;
-use App\Avaliador;
-use App\Escola;
-use Illuminate\Http\Request;
+use App\Projeto;
 
-class AdminEscolaRelatorioController
+class AdminProjetoRelatorioController
 {
 
     public function index(){
-        $escolas = Escola::all();
-        return view('admin.escola.relatorios', compact('escolas'));
+        $projetos = Projeto::where('tipo', '=', 'normal')->paginate(10);
+        return view('admin.projeto.relatorios', compact('projetos'));
     }
 
 /*

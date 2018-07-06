@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: eduardo.dgi
- * Date: 14/05/2018
- * Time: 09:49
- */
 
 namespace App\Http\Controllers\Admin\Projeto;
 
@@ -45,7 +39,7 @@ class AdminProjetoController extends Controller
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
 
-            return view('admin/projeto/home', compact('projetos'));
+            return view('admin.projeto.home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -55,7 +49,7 @@ class AdminProjetoController extends Controller
         try{
             $disciplinas = Disciplina::all();
             $escolas = Escola::all();
-            return view("admin/projeto/cadastro", compact('disciplinas', 'escolas', 'categorias'));
+            return view("admin.projeto.cadastro", compact('disciplinas', 'escolas', 'categorias'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -77,7 +71,7 @@ class AdminProjetoController extends Controller
             $alunos = Aluno::all()
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
-            return view("admin/projeto/show", compact('projeto', 'alunos', 'professores'));
+            return view("admin.projeto.show", compact('projeto', 'alunos', 'professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -87,7 +81,7 @@ class AdminProjetoController extends Controller
         $dataForm = $request->all();
         try{
             $projetos = $this->projetoController->filtrar($dataForm);
-            return view('admin/projeto/home', compact('projetos'));
+            return view('admin.projeto.home', compact('projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -98,7 +92,7 @@ class AdminProjetoController extends Controller
             $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar projeto: '.$projeto->titulo;
-            return view("admin/projeto/editar", compact( 'projeto', 'titulo', 'disciplinas'));
+            return view("admin.projeto.editar", compact( 'projeto', 'titulo', 'disciplinas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

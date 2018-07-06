@@ -19,14 +19,13 @@
             padding: 8px;
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .motic{
+            float: right;
+            padding-bottom: 20px;
         }
-
-        h2{
-            font-family: Arial;
+        .pmsl{
+            float: left;
         }
-
         .page-break {
             page-break-after: always;
         }
@@ -40,6 +39,8 @@
 
 @foreach ($escolas as $escola)
     <h2>{{$escola->name}}</h2>
+    <img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
+    <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px">
     <table>
         <thead>
             <tr>

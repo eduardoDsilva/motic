@@ -10,13 +10,33 @@ namespace App\Http\Controllers\Admin\Aluno;
 
 use App\Aluno;
 use App\Escola;
+use App\Http\Controllers\AlunoController;
+use Illuminate\Http\Request;
 
 class AdminAlunoRelatorioController
 {
 
+    private $alunoController;
+
+    public function __construct(AlunoController $alunoController)
+    {
+        $this->alunoController = $alunoController;
+    }
+
     public function index(){
         $alunos = Aluno::orderBy('name', 'asc')->paginate();
-        return view('admin/aluno/relatorios', compact('alunos'));
+        return view('admin.aluno.relatorios', compact('alunos'));
+    }
+
+    public function filtrar(Request $request){
+        try {
+            $dataForm = $request->all();
+            $alunos = $this->alunoController->filtro($dataForm);
+            $modal = true;
+            return view('admin.aluno.relatorios', compact('alunos', 'modal'));
+        }catch(\Exception $e){
+            return "Erro ". $e->getMessage();
+        }
     }
 
     public function todosAlunosResumo()

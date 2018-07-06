@@ -6,19 +6,17 @@
  * Time: 08:32
  */
 
-namespace App\Http\Controllers\Admin\Escola;
+namespace App\Http\Controllers\Admin\Professor;
 
-use App\Aluno;
-use App\Avaliador;
-use App\Escola;
+use App\Professor;
 use Illuminate\Http\Request;
 
-class AdminEscolaRelatorioController
+class AdminProfessorRelatorioController
 {
 
     public function index(){
-        $escolas = Escola::all();
-        return view('admin.escola.relatorios', compact('escolas'));
+        $professores = Professor::paginate(10);
+        return view('admin.professor.relatorios', compact('professores'));
     }
 
 /*

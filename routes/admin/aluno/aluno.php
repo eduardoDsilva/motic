@@ -16,6 +16,8 @@ Route::group(['prefix' => 'admin/aluno',  'namespace' => 'Admin\Aluno'], functio
 
     Route::post('filtrar',['as' => 'admin.aluno.filtrar', 'uses' => 'AdminAlunoController@filtrar']);
 
+    Route::post('relatorio-filtrar',['as' => 'admin.aluno.relatorios.filtrar', 'uses' => 'AdminAlunoRelatorioController@filtrar']);
+
     Route::post('store',['as' => 'admin.aluno.store', 'uses' => 'AdminAlunoController@store']);
 
     Route::get('relatorios',['as' => 'admin.aluno.relatorios', 'uses' => 'AdminAlunoRelatorioController@index']);

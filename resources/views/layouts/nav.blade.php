@@ -14,6 +14,7 @@
                 <div class="user-view">
                     <div class="background blue">
                     </div>
+                    <img src="{{public_path('images/motic.png')}}">
                     <a href="#!user"><i class="large material-icons">account_circle</i></a>
                     <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
                     <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>

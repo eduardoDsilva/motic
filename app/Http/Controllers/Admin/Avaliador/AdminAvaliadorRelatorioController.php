@@ -18,7 +18,7 @@ class AdminAvaliadorRelatorioController
 
     public function index(){
         $avaliadores = Avaliador::all();
-        return view('admin/avaliador/relatorios', compact('avaliadores'));
+        return view('admin.avaliador.relatorios', compact('avaliadores'));
     }
 
 /*

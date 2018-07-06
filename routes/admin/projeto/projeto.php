@@ -20,6 +20,9 @@ Route::group(['prefix' => 'admin/projeto',  'namespace' => 'Admin\Projeto'], fun
 
     Route::post('store',['as' => 'admin.projeto.store', 'uses' => 'AdminProjetoController@store']);
 
+    Route::get('relatorios',['as' => 'admin.projeto.relatorios', 'uses' => 'AdminProjetoRelatorioController@index']);
+
+
 });
     Route::get('/json-categorias-projeto', 'Admin\Projeto\AdminProjetoController@categorias');
 

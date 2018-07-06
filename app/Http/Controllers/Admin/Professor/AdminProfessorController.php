@@ -33,7 +33,7 @@ class AdminProfessorController extends Controller
     {
         try {
             $professores = Professor::orderBy('name', 'asc')->paginate(10);
-            return view("admin/professor/home", compact('professores'));
+            return view("admin.professor.home", compact('professores'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -44,7 +44,7 @@ class AdminProfessorController extends Controller
             $escolas = Escola::all();
             $titulo = 'Cadastrar professor';
 
-            return view('admin/professor/cadastro', compact('escolas', 'titulo'));
+            return view('admin.professor.cadastro', compact('escolas', 'titulo'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -63,7 +63,7 @@ class AdminProfessorController extends Controller
     public function show($id){
         try{
             $professor = Professor::find($id);
-            return view("admin/professor/show", compact('professor'));
+            return view("admin.professor.show", compact('professor'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -73,7 +73,7 @@ class AdminProfessorController extends Controller
         try {
             $dataForm = $request->all();
             $professores = $this->professorController->filtro($dataForm);
-            return view('admin/professor/home', compact('professores'));
+            return view('admin.professor.home', compact('professores'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }
@@ -85,7 +85,7 @@ class AdminProfessorController extends Controller
             $escolas = Escola::all();
             $titulo = 'Editar professor: '.$professor->name;
 
-            return view("admin/professor/cadastro", compact('professor', 'titulo', 'escolas'));
+            return view("admin.professor.cadastro", compact('professor', 'titulo', 'escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

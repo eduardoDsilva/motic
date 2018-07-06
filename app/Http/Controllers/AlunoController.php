@@ -65,7 +65,7 @@ class AlunoController extends Controller
             $aluno = Aluno::create($dataForm);
 
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $aluno->id);
+            $this->auditoriaController->storeCreate($texto, $aluno->id, 'aluno');
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi cadastrado com sucesso!");
 
@@ -82,7 +82,7 @@ class AlunoController extends Controller
             $aluno->update($dataForm);
 
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $aluno->id);
+            $this->auditoriaController->storeUpdate($texto, $aluno->id, 'aluno');
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi editado com sucesso!");
 
@@ -97,7 +97,7 @@ class AlunoController extends Controller
             $aluno = Aluno::find($id);
             $aluno->delete($id);
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $aluno->id);
+            $this->auditoriaController->storeDelete($texto, $aluno->id, 'aluno');
 
             Session::put('mensagem', "O aluno ".$aluno->name." foi deletado com sucesso!");
         }catch (\Exception $e) {

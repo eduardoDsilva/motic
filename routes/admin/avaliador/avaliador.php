@@ -18,4 +18,6 @@ Route::group(['prefix' => 'admin/avaliador',  'namespace' => 'Admin\Avaliador'],
 
     Route::post('store',['as' => 'admin.avaliador.store', 'uses' => 'AdminAvaliadorController@store']);
 
+    Route::get('relatorios',['as' => 'admin.avaliador.relatorios', 'uses' => 'AdminAvaliadorRelatorioController@index']);
+
 });

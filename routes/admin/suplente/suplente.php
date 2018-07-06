@@ -20,9 +20,12 @@ Route::group(['prefix' => 'admin/suplente',  'namespace' => 'Admin\Suplente'], f
 
     Route::post('store',['as' => 'admin.suplente.store', 'uses' => 'AdminSuplenteController@store']);
 
+    Route::get('relatorios',['as' => 'admin.suplente.relatorios', 'uses' => 'AdminSuplenteRelatorioController@index']);
+
+
 });
-Route::get('/json-categorias-suplente','Admin\Suplente\AdminSuplenteController@categorias');
+    Route::get('/json-categorias-suplente','Admin\Suplente\AdminSuplenteController@categorias');
 
-Route::get('/json-alunos','Admin\Suplente\AdminSuplenteController@alunos');
+    Route::get('/json-alunos','Admin\Suplente\AdminSuplenteController@alunos');
 
-Route::get('/json-professores','Admin\Suplente\AdminSuplenteController@professores');
+    Route::get('/json-professores','Admin\Suplente\AdminSuplenteController@professores');

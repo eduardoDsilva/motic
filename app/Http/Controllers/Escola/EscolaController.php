@@ -24,6 +24,6 @@ class EscolaController extends Controller
      */
     public function index()
     {
-        return view('escola/home');
+        return view('escola.home');
     }
 }

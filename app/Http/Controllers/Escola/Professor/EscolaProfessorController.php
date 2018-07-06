@@ -33,7 +33,7 @@ class EscolaProfessorController extends Controller
     {
         try{
             $professores = Professor::where('escola_id', '=', Auth::user()->escola->id)->orderBy('name', 'asc')->paginate(10);
-            return view("escola/professor/home", compact('professores'));
+            return view("escola.professor.home", compact('professores'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -43,7 +43,7 @@ class EscolaProfessorController extends Controller
         try{
             $escola = Escola::find(Auth::user()->escola->id);
 
-            return view('escola/professor/cadastro', compact('escola'));
+            return view('escola.professor.cadastro', compact('escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -63,7 +63,7 @@ class EscolaProfessorController extends Controller
     public function show($id){
         try{
             $professor = Professor::find($id);
-            return view("escola/professor/show", compact('professor'));
+            return view("escola.professor.show", compact('professor'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -75,7 +75,7 @@ class EscolaProfessorController extends Controller
             $escola = Escola::find(Auth::user()->escola->id);
             $titulo = 'Editar professor: '.$professor->name;
 
-            return view("escola/professor/cadastro", compact('professor', 'titulo', 'escola'));
+            return view("escola.professor.cadastro", compact('professor', 'titulo', 'escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -85,7 +85,7 @@ class EscolaProfessorController extends Controller
         try {
             $dataForm = $request->all();
             $professores = $this->professorController->filtro($dataForm);
-            return view('escola/professor/home', compact('professores'));
+            return view('escola.professor.home', compact('professores'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }

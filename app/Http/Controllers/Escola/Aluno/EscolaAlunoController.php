@@ -31,7 +31,7 @@ class EscolaAlunoController extends Controller
         try{
             $alunos = Aluno::where('escola_id', '=', Auth::user()->escola->id)->orderBy('name', 'asc')->paginate(10);
             $projetos = Projeto::where('escola_id', '=', Auth::user()->escola->id)->paginate(10);
-            return view('escola/aluno/home', compact('alunos', 'projetos'));
+            return view('escola.aluno.home', compact('alunos', 'projetos'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -61,7 +61,7 @@ class EscolaAlunoController extends Controller
                     $ano[] = 'EJA';
                 }
             }
-            return view('escola/aluno/cadastro', compact('escola', 'ano'));
+            return view('escola.aluno.cadastro', compact('escola', 'ano'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -80,7 +80,7 @@ class EscolaAlunoController extends Controller
     public function show($id){
         try{
             $aluno = Aluno::find($id);
-            return view('escola/aluno/show', compact('aluno'));
+            return view('escola.aluno.show', compact('aluno'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -110,7 +110,7 @@ class EscolaAlunoController extends Controller
                     $ano[] = 'EJA';
                 }
             }
-            return view('escola/aluno/cadastro', compact('escola', 'ano', 'aluno'));
+            return view('escola.aluno.cadastro', compact('escola', 'ano', 'aluno'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -130,7 +130,7 @@ class EscolaAlunoController extends Controller
         try {
             $dataForm = $request->all();
             $alunos = $this->alunoController->filtro($dataForm);
-            return view('escola/aluno/home', compact('alunos'));
+            return view('escola.aluno.home', compact('alunos'));
         }catch(\Exception $e){
             return "Erro ". $e->getMessage();
         }

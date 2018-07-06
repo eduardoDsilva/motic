@@ -25,14 +25,14 @@
                     <h5>Dados básicos</h5>
                     <div class="row">
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="name" class="validate" type="text" name="name"
                                    value="{{$aluno->name or old('name')}}" required>
                             <label data-error="Insira um nome válido!" data-success="Ok" for="name">Nome do aluno *</label>
                         </div>
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">today</i>
                             <input type="text" class="datepicker" name="nascimento"
                                    value="{{$aluno->nascimento or old('nascimento')}}">
@@ -41,7 +41,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled selected>Sexo</option>
@@ -61,7 +61,7 @@
                     <div class="row">
 
                         @yield('campo-etapa')
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="turma" class="validate" type="text" name="turma"
                                    value="{{$aluno->turma or old('turma')}}" required>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">confirmation_number</i>
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
@@ -84,7 +84,7 @@
                             <label>Tamanho da camisa *</label>
                         </div>
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">email</i>
                             <input minlength="10" class='validate' id='email' type="email" name="email"
                                    value="{{$aluno->user->email or old('email')}}">
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">local_phone</i>
                             <input id="telefone" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no mínimo 8 números" type="number" name="telefone"
                                    data-length="16" value="{{$aluno->telefone or old('telefone')}}">
@@ -103,7 +103,7 @@
                                    for="telefone">Telefone</label>
                         </div>
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">perm_identity</i>
                             <input id="cpf" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números" type="number" name="cpf"
                                    data-length="11" value="{{$aluno->cpf or old('cpf')}}">
@@ -118,7 +118,7 @@
                     <h5>Endereço</h5>
 
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">explore</i>
                             <input id="cep" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no máximo 8 números" type="number" name="cep" data-length="8"
                                    value="{{$aluno->cep or old('cep')}}">
@@ -126,7 +126,7 @@
                                    for="cep">CEP</label>
                         </div>
 
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">business</i>
                             <input id="bairro" class="validate" type="text" name="bairro"
                                    value="{{$aluno->bairro or old('bairro')}}">
@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s4">
+                        <div class="input-field col s12 m6 l4">
                             <i class="material-icons prefix">home</i>
                             <input class="validate" id="rua" type="text" name="rua"
                                    value="{{$aluno->rua or old('rua')}}">
@@ -144,7 +144,7 @@
                                    for="rua">Rua</label>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s12 m6 l4">
                             <i class="material-icons prefix">filter_1</i>
                             <input class="validate" id="numero" type="number" name="numero"
                                    value="{{$aluno->numero or old('numero')}}">
@@ -152,7 +152,7 @@
                                    for="numero">N°</label>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s12 m12 l4">
                             <i class="material-icons prefix">home</i>
                             <input type="text" name="complemento"
                                    value="{{$aluno->complemento or old('complemento')}}">
@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s4">
+                        <div class="input-field col s12 m12 l4">
                             <i class="material-icons prefix">location_city</i>
                             <input id="cidade" class="validate" type="text" name="cidade"
                                    value="São Leopoldo"
@@ -170,7 +170,7 @@
                                    for="cidade">Cidade</label>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s12 m6 l4">
                             <i class="material-icons prefix">location_city</i>
                             <input id="estado" class="validate" type="text" name="estado"
                                    value="Rio Grande do Sul"
@@ -179,7 +179,7 @@
                                    for="estado">Estado</label>
                         </div>
 
-                        <div class="input-field col s4">
+                        <div class="input-field col s12 m6 l4">
                             <i class="material-icons prefix">location_city</i>
                             <input class="validate" id="pais" type="text" name="pais" value="Brasil"
                                    value="{{$aluno->pais or old('pais')}}">

@@ -18,4 +18,6 @@ Route::group(['prefix' => 'admin/professor',  'namespace' => 'Admin\Professor'],
 
     Route::post('store',['as' => 'admin.professor.store', 'uses' => 'AdminProfessorController@store']);
 
+    Route::get('relatorios',['as' => 'admin.professor.relatorios', 'uses' => 'AdminProfessorRelatorioController@index']);
+
 });
