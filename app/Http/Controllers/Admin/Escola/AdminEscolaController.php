@@ -2,31 +2,23 @@
 namespace App\Http\Controllers\Admin\Escola;
 use App\Aluno;
 use App\Categoria;
-use App\Endereco;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EscolaController;
 use App\Http\Requests\Admin\Escola\EscolaCreateFormRequest;
 use App\Http\Requests\Admin\Escola\EscolaUpdateFormRequest;
 use App\Professor;
 use App\Projeto;
-use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class AdminEscolaController extends Controller
 {
 
-    private $escola;
-    private $auditoriaController;
+    private $escolaController;
 
-    use RegistersUsers;
-
-    public function __construct(Escola $escola, AuditoriaController $auditoriaController)
+    public function __construct(EscolaController $escolaController)
     {
-        $this->escola = $escola;
-        $this->auditoriaController = $auditoriaController;
+        $this->escolaController = $escolaController;
     }
 
     public function index()
@@ -43,34 +35,10 @@ class AdminEscolaController extends Controller
     }
 
     public function store(EscolaCreateFormRequest $request){
-        $dataForm = $request->all() + ['tipoUser' => 'escola'];
-        $qntProjetos = $dataForm['categoria_id'];
         try{
-            $user = User::create([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $user->id, 'escola');
-
-            $escola = Escola::create($dataForm + ['user_id' => $user->id] + ['projetos' => count($qntProjetos)]);
-            foreach ($request->only(['categoria_id']) as $categoria){
-                $escola->categoria()->attach($categoria);
-            }
-            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $escola->id, 'escola');
-
-            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $endereco->id, 'escola');
-
-            Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
-
+            $dataForm = $request->all() + ['tipoUser' => 'escola'];
+            $this->escolaController->store($dataForm);
             return redirect()->route("admin.escola");
-
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -89,20 +57,9 @@ class AdminEscolaController extends Controller
     }
 
     public function filtrar(Request $request){
-        $dataForm = $request->all();
         try{
-            if($dataForm['tipo'] == 'id'){
-                $escolas = Escola::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
-                $escolas = Escola::where('name', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'usuario'){
-                $filtro = $dataForm['search'];
-                $escolas = [User::where('username', '=', $filtro)->first()->escola];
-            }else if($dataForm['tipo'] == 'email'){
-                $filtro = '%'.$dataForm['search'].'%';
-                $escolas = Escola::where('email', 'like', $filtro)->paginate(10);
-            }
+            $dataForm = $request->all();
+            $escolas = $this->escolaController->filtro($dataForm);
             return view('admin.escola.home', compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -124,39 +81,10 @@ class AdminEscolaController extends Controller
     }
 
     public function update(EscolaUpdateFormRequest $request, $id){
-        $dataForm = $request->all() + ['tipoUser' => 'escola'];
-        $qntProjetos = $dataForm['categoria_id'];
         try{
-            $user = User::find($id);
-            $user->update([
-                'name' => $dataForm['name'],
-                'username' => $dataForm['username'],
-                'email' => $dataForm['email'],
-                'password' => bcrypt($dataForm['password']),
-                'tipoUser' => $dataForm['tipoUser'],
-            ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $user->id, 'escola');
-
-            $escola = $user->escola;
-            $escola->update($dataForm + ['projetos' => count($qntProjetos)]);
-            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $escola->id, 'escola');
-
-            $escola = $user->escola;
-            $escola->categoria()->detach();
-            foreach ($request->only(['categoria_id']) as $categoria){
-                $escola->categoria()->attach($categoria);
-            }
-
-            $endereco = $user->endereco;
-            $endereco->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $endereco->id, 'escola');
-
-            Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
-
-            return redirect()->route("admin.escola");
+            $dataForm = $request->all() + ['tipoUser' => 'escola'];
+            $escolas = $this->escolaController->update($dataForm, $id);
+            return redirect()->route("admin.escola", compact('escolas'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -164,12 +92,7 @@ class AdminEscolaController extends Controller
 
     public function destroy($id){
         try{
-            $escola = Escola::find($id);
-            $escola->user()->delete($id);
-            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $escola->id, 'escola');
-
-            Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
+            $this->escolaController->destroy($id);
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

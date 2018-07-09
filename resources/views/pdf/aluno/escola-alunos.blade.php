@@ -4,7 +4,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Todos alunos</title>
+    <title>Alunos por escola</title>
 
     <style>
         table {
@@ -21,7 +21,6 @@
 
         .motic{
             float: right;
-            padding-bottom: 20px;
         }
         .pmsl{
             float: left;
@@ -29,38 +28,40 @@
         .page-break {
             page-break-after: always;
         }
+
+        .header{
+            width: 100%;
+            height: 320px;
+            padding-bottom: 20px;
+        }
     </style>
 
 </head>
 
 <body>
 
-<h1>Alunos</h1>
-
 @foreach ($escolas as $escola)
+    <div class="header">
+    <!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
+        <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
+    </div>
     <h2>{{$escola->name}}</h2>
-    <img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
-    <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px">
     <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Nascimento</th>
-                <th>Ano/Etapa</th>
-                <th>Turma</th>
-                <th>Projeto</th>
-            </tr>
-        </thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nascimento</th>
+            <th>Ano/Etapa</th>
+            <th>Turma</th>
+            <th>Projeto</th>
+        </tr>
         @foreach ($escola->aluno as $aluno)
-            <tbody>
-                <tr>
-                    <td>{{$aluno->name}}</td>
-                    <td>{{$aluno->nascimento}}</td>
-                    <td>{{$aluno->etapa}}</td>
-                    <td>{{$aluno->turma}}</td>
-                    <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
-                </tr>
-            </tbody>
+        <tr>
+            <td>{{$aluno->name}}</td>
+            <td>{{$aluno->nascimento}}</td>
+            <td>{{$aluno->etapa}}</td>
+            <td>{{$aluno->turma}}</td>
+            <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
+        </tr>
         @endforeach
     </table>
     <div class="page-break"></div>

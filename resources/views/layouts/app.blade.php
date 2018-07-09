@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <!--Import motic.css-->
+        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
         <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{{ csrf_token() }}}">
         <!--Let browser know website is optimized for mobile-->
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="icon" href="http://example.org/img/favicon.ico" type="image/x-icon"/>
 
         <title>@yield('titulo')</title>
 
@@ -37,22 +33,13 @@
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">Prefeitura Municipal de São Leopoldo</h5>
-                    <p class="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    <p class="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                     </p>
 
 
                 </div>
                 <div class="col l3 s12">
                     <h5 class="white-text">Sobre</h5>
-                    <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-                <div class="col l3 s12">
-                    <h5 class="white-text">Conheça</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -155,7 +142,7 @@
             }else if (tipo == 'disciplina'){
                 $.ajax({
                     type: 'GET',
-                    url: 'disciplinas/destroy/' + id,
+                    url: 'disciplina/destroy/' + id,
                     success: function(data) {
                         location.reload();
                     }

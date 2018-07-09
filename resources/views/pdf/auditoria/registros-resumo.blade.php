@@ -4,7 +4,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Todos alunos</title>
+    <title>Registros</title>
 
     <style>
         table {
@@ -19,6 +19,10 @@
             padding: 8px;
         }
 
+        h2{
+            font-family: Arial;
+        }
+
         .motic{
             float: right;
             padding-bottom: 20px;
@@ -26,7 +30,6 @@
         .pmsl{
             float: left;
         }
-
         .page-break {
             page-break-after: always;
         }
@@ -42,32 +45,39 @@
 
 <body>
 
-
 <div class="header">
 <!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
         <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
 </div>
-    <h2>Alunos do sistema</h2>
-    <table>
+
+<h1>Registros</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Objeto</th>
+        <th>Usuário Responsável</th>
+        <th>Data</th>
+    </tr>
+    @forelse ($registros as $auditoria)
         <tr>
-            <th>Nome</th>
-            <th>Nascimento</th>
-            <th>Ano/Etapa</th>
-            <th>Escola</th>
-            <th>Turma</th>
-            <th>Projeto</th>
+            <td>{{$auditoria->id}}</td>
+            <td>{{$auditoria->tipo}}</td>
+            <td>{{$auditoria->objeto}}</td>
+            <td>{{$auditoria->nome_usuario}}</td>
+            <td>{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>
         </tr>
-        @foreach ($alunos as $aluno)
+    @empty
         <tr>
-            <td>{{$aluno->name}}</td>
-            <td>{{$aluno->nascimento}}</td>
-            <td>{{$aluno->etapa}}</td>
-            <td>{{$aluno->escola->name}}</td>
-            <td>{{$aluno->turma}}</td>
-            <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
+            <td>Nenhum registro encontrado</td>
+            <td>Nenhum registro encontrado</td>
+            <td>Nenhum registro encontrado</td>
+            <td>Nenhum registro encontrado</td>
+            <td>Nenhum registro encontrado</td>
         </tr>
-        @endforeach
-    </table>
+    @endforelse
+</table>
 
 </body>
 </html>

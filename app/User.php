@@ -42,9 +42,4 @@ class User extends Authenticatable
         return $this->hasOne(Professor::class);
     }
 
-    public function auditoria()
-    {
-        return $this->hasOne(Auditoria::class);
-    }
-
 }

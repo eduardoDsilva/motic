@@ -4,7 +4,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Todos alunos</title>
+    <title>Registros</title>
 
     <style>
         table {
@@ -26,7 +26,6 @@
         .pmsl{
             float: left;
         }
-
         .page-break {
             page-break-after: always;
         }
@@ -38,56 +37,45 @@
         }
     </style>
 
+
 </head>
 
 <body>
 
-@foreach($alunos as $aluno)
+@foreach($escolas as $escola)
+
     <div class="header">
     <!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
         <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
     </div>
-    <h1>{{$aluno->name}}</h1>
 
-    <h2>Dados pessoais</h2>
-
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Nascimento</th>
-            <th>Sexo</th>
-            <th>CPF</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-        </tr>
-        <tr>
-            <td>{{$aluno->name}}</td>
-            <td>{{$aluno->nascimento}}</td>
-            <td>{{$aluno->sexo}}</td>
-            <td>{{$aluno->cpf}}</td>
-            <td>{{$aluno->email}}</td>
-            <td>{{$aluno->telefone}}</td>
-        </tr>
-    </table>
-
-    <h2>Dados escolares</h2>
+    <h2>Escola {{$escola->name}}</h2>
 
     <table>
-        <tr>
-            <th>Escola</th>
-            <th>Etapa/ano</th>
-            <th>Turma</th>
-        </tr>
-        <tr>
-            <td>{{$aluno->escola->name}}</td>
-            <td>{{$aluno->etapa}}</td>
-            <td>{{$aluno->turma}}</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Categorias</th>
+                <th>Usuário</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{$escola->id}}</td>
+                <td>{{$escola->name}}</td>
+                <td>{{$escola->telefone}}</td>
+                <td>@foreach($escola->categoria as $c){{$c->categoria.', '}}@endforeach</td>
+                <td>{{$escola->user->username}}</td>
+            </tr>
+        </tbody>
     </table>
 
     <h2>Endereço</h2>
 
     <table>
+        <thead>
         <tr>
             <th>Rua</th>
             <th>Número</th>
@@ -97,19 +85,21 @@
             <th>Estado</th>
             <th>País</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
-            <td>{{$aluno->rua}}</td>
-            <td>{{$aluno->numero}}</td>
-            <td>{{$aluno->bairro}}</td>
-            <td>{{$aluno->cep}}</td>
-            <td>{{$aluno->cidade}}</td>
-            <td>{{$aluno->estado}}</td>
-            <td>{{$aluno->pais}}</td>
+            <td>{{$escola->user->endereco->rua}}</td>
+            <td>{{$escola->user->endereco->numero}}</td>
+            <td>{{$escola->user->endereco->bairro}}</td>
+            <td>{{$escola->user->endereco->cep}}</td>
+            <td>{{$escola->user->endereco->cidade}}</td>
+            <td>{{$escola->user->endereco->estado}}</td>
+            <td>{{$escola->user->endereco->pais}}</td>
         </tr>
+        </tbody>
     </table>
     <div class="page-break"></div>
 
 @endforeach
-
 </body>
 </html>

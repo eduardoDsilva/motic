@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo','Motic Administrador')
+@section('titulo','Motic')
 
 @section('breadcrumb')
     <a href="{{route ('admin')}}" class="breadcrumb">Home</a>

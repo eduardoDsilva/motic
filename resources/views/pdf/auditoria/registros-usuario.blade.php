@@ -4,7 +4,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Todos alunos</title>
+    <title>Registros</title>
 
     <style>
         table {
@@ -19,6 +19,11 @@
             padding: 8px;
         }
 
+        h2{
+            font-family: Arial;
+        }
+
+
         .motic{
             float: right;
             padding-bottom: 20px;
@@ -26,7 +31,6 @@
         .pmsl{
             float: left;
         }
-
         .page-break {
             page-break-after: always;
         }
@@ -41,33 +45,49 @@
 </head>
 
 <body>
-
-
 <div class="header">
 <!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
         <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
 </div>
-    <h2>Alunos do sistema</h2>
+
+@if($registro == null)
+
+    <h1>Usuário sem registros</h1>
     <table>
         <tr>
-            <th>Nome</th>
-            <th>Nascimento</th>
-            <th>Ano/Etapa</th>
-            <th>Escola</th>
-            <th>Turma</th>
-            <th>Projeto</th>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Descricao</th>
+            <th>Objeto</th>
+            <th>Data</th>
         </tr>
-        @foreach ($alunos as $aluno)
         <tr>
-            <td>{{$aluno->name}}</td>
-            <td>{{$aluno->nascimento}}</td>
-            <td>{{$aluno->etapa}}</td>
-            <td>{{$aluno->escola->name}}</td>
-            <td>{{$aluno->turma}}</td>
-            <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
+            <td width="5%"></td>
+            <td width="10%"></td>
+            <td width="45%"></td>
+            <td width="10%"></td>
+            <td width="25%"></td>
         </tr>
-        @endforeach
     </table>
+@else
+<h1>Registros do usuário {{$registro->nome_usuario}}</h1>
 
+<table>
+     <tr>
+         <th>ID</th>
+         <th>Tipo</th>
+         <th>Descricao</th>
+         <th>Objeto</th>
+         <th>Data</th>
+     </tr>
+        <tr>
+            <td width="5%">{{$registro->id}}</td>
+            <td width="10%">{{$registro->tipo}}</td>
+            <td width="45%">{{$registro->descricao}}</td>
+            <td width="10%">{{$registro->objeto}}</td>
+            <td width="25%">{{ date('d-m-Y H:i:s', strtotime($registro->created_at)) }}</td>
+        </tr>
+</table>
+@endif
 </body>
 </html>

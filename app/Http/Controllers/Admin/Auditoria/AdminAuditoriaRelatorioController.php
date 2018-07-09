@@ -37,6 +37,30 @@ class AdminAuditoriaRelatorioController
             ->stream('todos-registros-motic'.date('Y').'.pdf');
     }
 
+   public function registroIndividual($id)
+   {
+       $registros = Auditoria::where('id','=',$id)->get();
+       return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
+           ->loadView('pdf.auditoria.registro-individual', compact('registros'))
+           ->stream('todos-registros-motic'.date('Y').'.pdf');
+   }
+
+   public function registrosResumo()
+   {
+       $registros = Auditoria::latest()->get();
+       return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
+           ->loadView('pdf.auditoria.registros-resumo', compact('registros'))
+           ->stream('todos-registros-motic'.date('Y').'.pdf');
+   }
+
+    public function registrosUsuario($id)
+    {
+        $registro = Auditoria::where('user_id', '=', $id)->first();
+        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
+            ->loadView('pdf.auditoria.registros-usuario', compact('registro'))
+            ->stream('todos-registros-motic'.date('Y').'.pdf');
+    }
+
     public function filtrar(Request $request){
         try {
             $dataForm = $request->all();
@@ -66,33 +90,6 @@ class AdminAuditoriaRelatorioController
             return "ERRO: " . $e->getMessage();
         }
     }
-
-    /*
-    public function todosRegistrosCompleto()
-    {
-        $escolas = Escola::orderBy('name','asc')->get();
-        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.escola-alunos', compact('escolas'))
-            ->stream('todos-alunos-por-escola-motic'.date('Y').'.pdf');
-    }
-
-    public function registrosPorUsuarios()
-    {
-        $dataForm = $request->all();
-        $aluno = Aluno::find($dataForm['id']);
-        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.aluno-individual', compact('aluno'))
-            ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');
-    }
-
-    public function registrosPorUsuario($id)
-    {
-        $alunos = Aluno::all();
-        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
-            ->loadView('pdf.todos-alunos-completo', compact('alunos'))
-            ->stream('alunos-completo-'.date('Y').'.pdf');
-    }
-*/
 
 
 }

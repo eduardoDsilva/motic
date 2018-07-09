@@ -32,7 +32,7 @@
                             <li>Professores, alunos e projetos</li>
                         </div>
                         <div class="card-action">
-                            <a class="btn" disabled href=""">Gerar relatório</a>
+                            <a class="btn" href="{{route ('admin.escola.relatorios.todas.escolas')}}">Gerar relatório</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <p>Para gerar um relatório de todos os alunos da escola.</p>
                         </div>
                         <div class="card-action">
-                            <button class="btn" disabled type="submit">Gerar relatório</button>
+                            <button class="btn" disabled href="">Gerar relatório</button>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                             <p>Para gerar um relatório com os dados de uma escola específica.</p>
                         </div>
                         <div class="card-action">
-                            <button class="btn" disabled type="submit">Gerar relatório</button>
+                            <button class="btn" disabled href="">Gerar relatório</button>
                         </div>
                         </form>
                     </div>
@@ -69,7 +69,7 @@
                             <p>Para gerar um relatório de todos os projetos da escola.</p>
                         </div>
                         <div class="card-action">
-                            <button class="btn" disabled type="submit">Gerar relatório</button>
+                            <button class="btn" disabled href="">Gerar relatório</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             <p>Para gerar um relatório de todos os professores da escola.</p>
                         </div>
                         <div class="card-action">
-                            <button class="btn" disabled type="submit">Gerar relatório</button>
+                            <button class="btn" disabled href="">Gerar relatório</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <p>Para gerar um relatório de todos os avaliadores vinculados à escola.</p>
                         </div>
                         <div class="card-action">
-                            <button class="btn" disabled type="submit">Gerar relatório</button>
+                            <button class="btn" disabled href="">Gerar relatório</button>
                         </div>
                     </div>
                 </div>

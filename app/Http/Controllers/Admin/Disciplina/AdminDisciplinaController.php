@@ -26,6 +26,8 @@ class AdminDisciplinaController extends Controller
     {
         $this->disciplinas = $disciplina;
         $this->auditoriaController = $auditoriaController;
+        $this->middleware('auth');
+        $this->middleware('check.admin');
     }
 
     public function index()

@@ -14,11 +14,11 @@ Route::group(['prefix' => 'admin/auditoria',  'namespace' => 'Admin\Auditoria'],
 
     Route::get('relatorios/todos-registros',['as' => 'admin.auditoria.relatorios.todos.registros', 'uses' => 'AdminAuditoriaRelatorioController@todosRegistros']);
 
-    Route::get('relatorios/registro-individual',['as' => 'admin.auditoria.relatorios.registro.individual', 'uses' => 'AdminAuditoriaRelatorioController@registroIndividual']);
+    Route::get('relatorios/registro-individual/{id}',['as' => 'admin.auditoria.relatorios.registro.individual', 'uses' => 'AdminAuditoriaRelatorioController@registroIndividual']);
 
-    Route::get('relatorios/registros-por-usuarios',['as' => 'admin.auditoria.relatorios.registros.por.usuarios', 'uses' => 'AdminAuditoriaRelatorioController@registrosPorUsuarios']);
+    Route::get('relatorios/registros-por-usuarios',['as' => 'admin.auditoria.relatorios.registros.resumo', 'uses' => 'AdminAuditoriaRelatorioController@registrosResumo']);
 
-    Route::get('relatorios/registros-por-usuario',['as' => 'admin.auditoria.relatorios.registros.por.usuario', 'uses' => 'AdminAuditoriaRelatorioController@registrosPorUsuario']);
+    Route::get('relatorios/registros-usuario/{id}',['as' => 'admin.auditoria.relatorios.registros.usuario', 'uses' => 'AdminAuditoriaRelatorioController@registrosUsuario']);
 
 
 
