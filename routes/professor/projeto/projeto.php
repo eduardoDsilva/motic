@@ -1,6 +1,7 @@
 <?php
 
-Route::prefix('professor/projeto')->group(function () {
+Route::group(['prefix' => 'professor/projeto',  'namespace' => 'Professor\Projeto'], function(){
 
-    Route::get('/', 'Professor\Projeto\ProfessorProjetoController@index')->name('professor/projeto/home');
+    Route::get('/',['as' => 'professor.projeto', 'uses' => 'ProfessorProjetoController@index']);
+
 });

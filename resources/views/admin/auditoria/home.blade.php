@@ -60,6 +60,7 @@
                         <th>Descricao</th>
                         <th>Objeto</th>
                         <th>Usuário</th>
+                        <th>Data</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,14 +71,16 @@
                             <td width="70%">{{$auditoria->descricao}}</td>
                             <td>{{$auditoria->objeto}}</td>
                             <td width="20%">{{$auditoria->nome_usuario}}</td>
+                            <td width="15%">{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhuma auditoria encontrada</td>
-                            <td>Nenhuma auditoria encontrada</td>
-                            <td>Nenhuma auditoria encontrada</td>
-                            <td>Nenhuma auditoria encontrada</td>
-                            <td>Nenhuma auditoria encontrada</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
                         </tr>
                     @endforelse
                     </tbody>

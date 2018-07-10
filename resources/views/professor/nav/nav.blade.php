@@ -1,11 +1,11 @@
 <li class="white">
-    <a class="collapsible-header" href="{{route ('professor/home')}}"><i class="small material-icons">home</i>Home</a>
+    <a class="collapsible-header" href="{{route ('professor')}}"><i class="small material-icons">home</i>Home</a>
 </li>
 <li class="white">
-    <a class="collapsible-header" href="{{route ('professor/projeto/home')}}"><i class="small material-icons">home</i>Projetos</a>
+    <a class="collapsible-header" href="{{route ('professor.projeto')}}"><i class="small material-icons">home</i>Projetos</a>
 </li>
 <li class="white">
-    <a class="collapsible-header" href="{{route ('professor/conta/home')}}"><i class="small material-icons">home</i>Conta</a>
+    <a class="collapsible-header" href="{{route ('professor.conta')}}"><i class="small material-icons">home</i>Conta</a>
 </li>
 <li class="white">
     <a class="collapsible-header" href="{{ route('logout') }}" onclick="event.preventDefault();

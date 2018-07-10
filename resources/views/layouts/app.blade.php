@@ -5,6 +5,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="<?php echo asset('css/materialize.css')?>" type="text/css">
         <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

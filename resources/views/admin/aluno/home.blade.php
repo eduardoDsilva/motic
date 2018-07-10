@@ -88,12 +88,13 @@
                     </tr>
                 @empty
                     <tr>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
-                        <td>Nenhum aluno encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>

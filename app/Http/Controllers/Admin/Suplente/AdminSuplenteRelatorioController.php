@@ -8,13 +8,13 @@
 
 namespace App\Http\Controllers\Admin\Suplente;
 
-use App\Suplente;
+use App\Projeto;
 
 class AdminSuplenteRelatorioController
 {
 
     public function index(){
-        $proejtos = Suplente::where('tipo', '=', 'suplente')->paginate(10);
+        $projetos = Projeto::where('tipo', '=', 'suplente')->paginate(10);
         return view('admin.suplente.relatorios', compact('projetos'));
     }
 

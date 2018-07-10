@@ -82,10 +82,10 @@
                     </tr>
                 @empty
                     <tr>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
-                        <td>Nenhum avaliador encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>

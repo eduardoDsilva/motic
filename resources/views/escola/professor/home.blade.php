@@ -86,12 +86,12 @@
                     </tr>
                 @empty
                     <tr>
-                        <td>Nenhum professor encontrado</td>
-                        <td>Nenhum professor encontrado</td>
-                        <td>Nenhum professor encontrado</td>
-                        <td>Nenhum professor encontrado</td>
-                        <td>Nenhum professor encontrado</td>
-                        <td>Nenhum professor encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>

@@ -3,9 +3,9 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{route ('admin/home')}}" class="breadcrumb">Home</a>
-    <a href="{{route ('admin/suplente/home')}}" class="breadcrumb">Suplentes</a>
-    <a href="{{route ('admin/professor/relatorios')}}" class="breadcrumb">Relatórios</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.suplente')}}" class="breadcrumb">Suplentes</a>
+    <a href="{{route ('admin.suplente.relatorios')}}" class="breadcrumb">Relatórios</a>
 @endsection
 
 @section('content')

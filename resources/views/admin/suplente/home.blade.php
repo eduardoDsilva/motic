@@ -80,12 +80,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhum projeto suplente encontrado</td>
-                            <td>Nenhum projeto suplente encontrado</td>
-                            <td>Nenhum projeto suplente encontrado</td>
-                            <td>Nenhum projeto suplente encontrado</td>
-                            <td>Nenhum projeto suplente encontrado</td>
-                            <td>Nenhum projeto suplente encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
                         </tr>
                     @endforelse
                     </tbody>

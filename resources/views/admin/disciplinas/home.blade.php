@@ -77,11 +77,10 @@
                         </tr>
                     @empty
                         <tr>
-                            <td>Nenhuma disciplina encontrada</td>
-                            <td>Nenhuma disciplina encontrada</td>
-                            <td>Nenhuma disciplina encontrada</td>
-                            <td>Nenhuma disciplina encontrada</td>
-                            <td>Nenhuma disciplina encontrada</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
                         </tr>
                     @endforelse
                     </tbody>

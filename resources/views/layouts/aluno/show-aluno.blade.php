@@ -16,121 +16,60 @@
         </div>
     </div>
 </div>
+<div class="container">
 
-<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card-panel hoverable">
+            <div class="row">
+                <div class="card-content">
+                    <ul class="collection with-header col s12 m12 l6">
+                        <li class="collection-header"><h4 class="center-align">Dados pessoais</h4></li>
+                        <li class="collection-item">Nome: {{$aluno->name}}</li>
+                        <li class="collection-item">Nascimento: {{$aluno->nascimento}}</li>
+                        <li class="collection-item">Sexo: {{$aluno->sexo}}</li>
+                        <li class="collection-item">E-mail: {{$aluno->email}}</li>
+                        <li class="collection-item">Telefone: {{$aluno->telefone}}</li>
+                        <li class="collection-item">Escola: {{$aluno->escola->name}}</li>
+                        <li class="collection-item">Ano/Etapa: {{$aluno->etapa}}</li>
+                        <li class="collection-item">Turma: {{$aluno->turma}}</li>
+                    </ul>
+                    <ul class="collection with-header col s12 m12 l6">
+                        <li class="collection-header"><h4 class="center-align">Endereço</h4></li>
+                        <li class="collection-item">Rua: {{$aluno->rua}}</li>
+                        <li class="collection-item">Número: {{$aluno->numero}}</li>
+                        <li class="collection-item">Bairro: {{$aluno->bairro}}</li>
+                        <li class="collection-item">Complemento: {{$aluno->complemento}}</li>
+                        <li class="collection-item">CEP: {{$aluno->cep}}</li>
+                        <li class="collection-item">Cidade: {{$aluno->cidade}}</li>
+                        <li class="collection-item">Estado: {{$aluno->estado}}</li>
+                        <li class="collection-item">País: {{$aluno->pais}}</li>
+                    </ul>
+                    <ul class="collection with-header col s12 m12 l12">
+                        <li class="collection-header"><h4 class="center-align">Projeto</h4></li>
+                        @if(isset($aluno->projeto->titulo))
+                            <li class="collection-item">Título: {{$aluno->projeto->titulo}}</li>
+                            <li class="collection-item">Área: {{$aluno->projeto->area}}</li>
+                            <li class="collection-item">Resumo: {{$aluno->projeto->resumo}}</li>
+                            <li class="collection-item">Disciplinas: @foreach($aluno->projeto->disciplina as $disciplina) {{$disciplina->name.", "}}@endforeach</li>
 
-    <div class="col s12 m12">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Aluno</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Nascimento</th>
-                        <th>Sexo</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>Ano/Etapa</th>
-                        <th>Turma</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{$aluno->id}}</td>
-                        <td>{{$aluno->name}}</td>
-                        <td>{{$aluno->nascimento}}</td>
-                        <td>{{$aluno->sexo}}</td>
-                        <td>{{($aluno->email == null ? "Aluno sem e-mail" : $aluno->email)}}</td>
-                        <td>{{($aluno->telefone == null ? "Aluno sem telefone" : $aluno->telefone)}}</td>
-                        <td>{{$aluno->etapa}}</td>
-                        <td>{{$aluno->turma}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                            <li class="collection-header"><h4 class="center-align">Alunos</h4></li>
+                            @foreach($aluno->projeto->aluno as $a)
+                                <li class="collection-item">{{$a->name}}</li>
+                            @endforeach
+                            <li class="collection-header"><h4 class="center-align">Professores</h4></li>
+                            @foreach($aluno->projeto->professor as $professor)
+                                <li class="collection-item">{{$professor->name}} - {{$professor->tipo}}</li>
+                            @endforeach
+                            <li class="collection-header"><h4 class="center-align">Escola</h4></li>
+                            <li class="collection-item">{{$aluno->projeto->escola->name}}</li>
+                        @else
+                            <li class="collection-item"><span class="center-align">Aluno sem projeto</span></li>
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col s12 m12">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Endereço</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>Rua</th>
-                        <th>Número</th>
-                        <th>Bairro</th>
-                        <th>Complemento</th>
-                        <th>CEP</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
-                        <th>País</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{($aluno->rua == null ? "Aluno sem rua" : $aluno->rua)}}</td>
-                        <td>{{($aluno->numero == null ? "Aluno sem número" : $aluno->numero)}}</td>
-                        <td>{{($aluno->bairro == null ? "Aluno sem bairro" : $aluno->bairro)}}</td>
-                        <td>{{($aluno->complemento == null ? "Aluno sem complemento" : $aluno->complemento)}}</td>
-                        <td>{{($aluno->cep == null ? "Aluno sem CEP" : $aluno->cep)}}</td>
-                        <td>{{($aluno->cidade == null ? "Aluno sem cidade" : $aluno->cidade)}}</td>
-                        <td>{{($aluno->estado == null ? "Aluno sem estado" : $aluno->estado)}}</td>
-                        <td>{{($aluno->pais == null ? "Aluno sem país" : $aluno->pais)}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col s12 m4">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Escola</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Escola</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{$aluno->escola->id}}</td>
-                        <td>{{$aluno->escola->name}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col s12 m8">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Projeto</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Projeto</th>
-                        <th>Área</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{(isset($aluno->projeto->id)  == null ? "Aluno sem projeto" : $aluno->projeto->id)}}</td>
-                        <td>{{(isset($aluno->projeto->titulo)  == null ? "Aluno sem projeto" : $aluno->projeto->titulo)}}</td>
-                        <td>{{(isset($aluno->projeto->area)  == null ? "Aluno sem projeto" : $aluno->projeto->area)}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
+</div>
 </div>

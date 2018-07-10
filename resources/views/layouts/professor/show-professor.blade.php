@@ -17,128 +17,62 @@
     </div>
 </div>
 
-<div class="row">
+<div class="container">
 
-    <div class="col s12 m12">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Professor</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Usuário</th>
-                        <th>Nascimento</th>
-                        <th>Sexo</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>Grau de Instrução</th>
-                        <th>CPF</th>
-                        <th>Matrícula</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{$professor->id}}</td>
-                        <td>{{$professor->name}}</td>
-                        <td>{{$professor->user->username}}</td>
-                        <td>{{$professor->nascimento}}</td>
-                        <td>{{$professor->sexo}}</td>
-                        <td>{{($professor->email == null ? "Professor sem e-mail" : $professor->email)}}</td>
-                        <td>{{($professor->telefone == null ? "Professor sem telefone" : $professor->telefone)}}</td>
-                        <td>{{$professor->grauDeInstrucao}}</td>
-                        <td>{{$professor->cpf}}</td>
-                        <td>{{$professor->matricula}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+    <div class="col s12 m12 l12">
+        <div class="card-panel hoverable">
+            <div class="row">
+                <div class="card-content">
+                    <ul class="collection with-header col s12 m12 l6">
+                        <li class="collection-header"><h4 class="center-align">Dados pessoais</h4></li>
+                        <li class="collection-item">Nome: {{$professor->name}}</li>
+                        <li class="collection-item">Nascimento: {{$professor->nascimento}}</li>
+                        <li class="collection-item">Sexo: {{$professor->sexo}}</li>
+                        <li class="collection-item">E-mail: {{$professor->user->email}}</li>
+                        <li class="collection-item">Telefone: {{$professor->telefone}}</li>
+                        <li class="collection-item">Escola: {{$professor->escola->name}}</li>
+                        <li class="collection-item">CPF: {{$professor->cpf}}</li>
+                        <li class="collection-item">Matrícula: {{$professor->matricula}}</li>
+                        <li class="collection-item">Usuário: {{$professor->user->username}}</li>
+                    </ul>
+                    <ul class="collection with-header col s12 m12 l6">
+                        <li class="collection-header"><h4 class="center-align">Endereço</h4></li>
+                        <li class="collection-item">ID: @if(isset($professor->user->endereco->id)){{$professor->user->endereco->id}}@endif</li>
+                        <li class="collection-item">Rua: @if(isset($professor->user->endereco->rua)){{$professor->user->endereco->rua}}@endif</li>
+                        <li class="collection-item">Número: @if(isset($professor->user->endereco->numero)){{$professor->user->endereco->numero}}@endif</li>
+                        <li class="collection-item">Bairro: @if(isset($professor->user->endereco->bairro)){{$professor->user->endereco->bairro}}@endif</li>
+                        <li class="collection-item">Complemento: @if(isset($professor->user->endereco->complemento)){{$professor->user->endereco->complemento}}@endif</li>
+                        <li class="collection-item">CEP: @if(isset($professor->user->endereco->cep)){{$professor->user->endereco->cep}}@endif</li>
+                        <li class="collection-item">Cidade: @if(isset($professor->user->endereco->cidade)){{$professor->user->endereco->cidade}}@endif</li>
+                        <li class="collection-item">Estado: @if(isset($professor->user->endereco->estado)){{$professor->user->endereco->estado}}@endif</li>
+                        <li class="collection-item">País: @if(isset($professor->user->endereco->pais)){{$professor->user->endereco->pais}}@endif</li>
+                    </ul>
+                    <ul class="collection with-header col s12 m12 l12">
+                        <li class="collection-header"><h4 class="center-align">Projeto</h4></li>
+                        @if(isset($professor->projeto->titulo))
+                            <li class="collection-item">Título: {{$professor->projeto->titulo}}</li>
+                            <li class="collection-item">Área: {{$professor->projeto->area}}</li>
+                            <li class="collection-item">Resumo: {{$professor->projeto->resumo}}</li>
+                            <li class="collection-item">Disciplinas: @foreach($professor->projeto->disciplina as $disciplina) {{$disciplina->name.", "}}@endforeach</li>
+
+                            <li class="collection-header"><h4 class="center-align">Alunos</h4></li>
+                            @foreach($professor->projeto->aluno as $a)
+                                <li class="collection-item">{{$a->name}}</li>
+                            @endforeach
+                            <li class="collection-header"><h4 class="center-align">Professores</h4></li>
+                            @foreach($professor->projeto->professor as $p)
+                                <li class="collection-item">{{$p->name}} - {{$p->tipo}}</li>
+                            @endforeach
+                            <li class="collection-header"><h4 class="center-align">Escola</h4></li>
+                            <li class="collection-item">{{$professor->projeto->escola->name}}</li>
+                        @else
+                            <li class="collection-item"><span class="center-align">Professor sem projeto</span></li>
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col s12 m12">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Endereço</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>Rua</th>
-                        <th>Número</th>
-                        <th>Bairro</th>
-                        <th>Complemento</th>
-                        <th>CEP</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
-                        <th>País</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{($professor->user->endereco->rua == null ? "Professor sem rua" : $professor->user->endereco->rua)}}</td>
-                        <td>{{($professor->user->endereco->numero == null ? "Professor sem número" : $professor->user->endereco->numero)}}</td>
-                        <td>{{($professor->user->endereco->bairro == null ? "Professor sem bairro" : $professor->user->endereco->bairro)}}</td>
-                        <td>{{($professor->user->endereco->complemento == null ? "Professor sem complemento" : $professor->user->endereco->omplemento)}}</td>
-                        <td>{{($professor->user->endereco->cep == null ? "Professor sem CEP" : $professor->user->endereco->cep)}}</td>
-                        <td>{{($professor->user->endereco->cidade == null ? "Professor sem cidade" : $professor->user->endereco->cidade)}}</td>
-                        <td>{{($professor->user->endereco->estado == null ? "Professor sem estado" : $professor->user->endereco->estado)}}</td>
-                        <td>{{($professor->user->endereco->pais == null ? "Professor sem país" : $professor->user->endereco->pais)}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col s12 m4">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Escola</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Escola</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{$professor->escola->id}}</td>
-                        <td>{{$professor->escola->name}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col s12 m8">
-        <div class="card hoverable">
-            <div class="card-content">
-                <span class="card-title center-align">Projeto</span>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Projeto</th>
-                        <th>Área</th>
-                        <th>Estande</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{{(isset($professor->projeto->id)  == null ? "Professor sem projeto" : $professor->projeto->id)}}</td>
-                        <td>{{(isset($professor->projeto->titulo)  == null ? "Professor sem projeto" : $professor->projeto->titulo)}}</td>
-                        <td>{{(isset($professor->projeto->area)  == null ? "Professor sem projeto" : $professor->projeto->area)}}</td>
-                        <td>{{(isset($professor->projeto->estande) == null ? "Professor sem projeto" : $professor->projeto->estande)}}</td>
-                        <td>{{(isset($professor->projeto->status)  == null ? "Professor sem projeto" : $professor->projeto->status)}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
+</div>
 </div>

@@ -83,11 +83,11 @@
                     </tr>
                 @empty
                     <tr>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
-                        <td>Nenhuma escola encontrada</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
                     </tr>
                 @endforelse
                 </tbody>

@@ -29,112 +29,38 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="container">
 
-        <div class="col s12 m12">
-            <div class="card hoverable">
-                <div class="card-content">
-                    <span class="card-title center-align">Avaliador</span>
-                    <table class="centered responsive-table highlight bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Usuário</th>
-                            <th>Nascimento</th>
-                            <th>Sexo</th>
-                            <th>E-mail</th>
-                            <th>Telefone</th>
-                            <th>Grau de Instrução</th>
-                            <th>CPF</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{$avaliador->id}}</td>
-                                <td>{{$avaliador->name}}</td>
-                                <td>{{$avaliador->user->username}}</td>
-                                <td>{{$avaliador->nascimento}}</td>
-                                <td>{{$avaliador->sexo}}</td>
-                                <td>{{$avaliador->user->email}}</td>
-                                <td>{{$avaliador->telefone}}</td>
-                                <td>{{$avaliador->grauDeInstrucao}}</td>
-                                <td>{{$avaliador->cpf}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m12">
-            <div class="card hoverable">
-                <div class="card-content">
-                    <span class="card-title center-align">Endereço</span>
-                    <table class="centered responsive-table highlight bordered">
-                        <thead>
-                        <tr>
-                            <th>Rua</th>
-                            <th>Número</th>
-                            <th>Bairro</th>
-                            <th>Complemento</th>
-                            <th>CEP</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>País</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{($avaliador->user->endereco->rua == null ? "Professor sem rua" : $avaliador->user->endereco->rua)}}</td>
-                                <td>{{($avaliador->user->endereco->numero == null ? "Professor sem número" : $avaliador->user->endereco->numero)}}</td>
-                                <td>{{($avaliador->user->endereco->bairro == null ? "Professor sem bairro" : $avaliador->user->endereco->bairro)}}</td>
-                                <td>{{($avaliador->user->endereco->complemento == null ? "Professor sem complemento" : $avaliador->user->endereco->omplemento)}}</td>
-                                <td>{{($avaliador->user->endereco->cep == null ? "Professor sem CEP" : $avaliador->user->endereco->cep)}}</td>
-                                <td>{{($avaliador->user->endereco->cidade == null ? "Professor sem cidade" : $avaliador->user->endereco->cidade)}}</td>
-                                <td>{{($avaliador->user->endereco->estado == null ? "Professor sem estado" : $avaliador->user->endereco->estado)}}</td>
-                                <td>{{($avaliador->user->endereco->pais == null ? "Professor sem país" : $avaliador->user->endereco->pais)}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m12">
-            <div class="card hoverable">
-                <div class="card-content">
-                    <span class="card-title center-align">Projetos</span>
-                    <table class="centered responsive-table highlight bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Projeto</th>
-                                <th>Área</th>
-                                <th>Estande</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @forelse($avaliador->projeto() as $projeto)
-                            <tr>
-                                <td>{{(isset($projeto->id)  == null ? "Avaliador sem projeto" : $projeto->id)}}</td>
-                                <td>{{(isset($projeto->titulo)  == null ? "Avaliador sem projeto" : $projeto->titulo)}}</td>
-                                <td>{{(isset($projeto->area)  == null ? "Avaliador sem projeto" : $projeto->area)}}</td>
-                                <td>{{(isset($projeto->estande) == null ? "Avaliador sem projeto" : $projeto->estande)}}</td>
-                                <td>{{(isset($projeto->status)  == null ? "Avaliador sem projeto" : $projeto->status)}}</td>
-                            </tr>
-                        </tbody>
-                        @empty
-                            <tr>
-                                <td>Avaliador sem projeto</td>
-                                <td>Avaliador sem projeto</td>
-                                <td>Avaliador sem projeto</td>
-                                <td>Avaliador sem projeto</td>
-                                <td>Avaliador sem projeto</td>
-                            </tr>
-                        @endforelse
-                    </table>
+        <div class="col s12 m12 l12">
+            <div class="card-panel hoverable">
+                <div class="row">
+                    <div class="card-content">
+                        <ul class="collection with-header col s12 m12 l6">
+                            <li class="collection-header"><h4 class="center-align">Dados pessoais</h4></li>
+                            <li class="collection-item">Nome: {{$avaliador->name}}</li>
+                            <li class="collection-item">Nascimento: {{$avaliador->nascimento}}</li>
+                            <li class="collection-item">Sexo: {{$avaliador->sexo}}</li>
+                            <li class="collection-item">E-mail: {{$avaliador->user->email}}</li>
+                            <li class="collection-item">Telefone: {{$avaliador->telefone}}</li>
+                            <li class="collection-item">Grau de Instrução: {{$avaliador->grauDeInstrucao}}</li>
+                            <li class="collection-item">CPF: {{$avaliador->cpf}}</li>
+                            <li class="collection-item">Usuário: {{$avaliador->user->username}}</li>
+                        </ul>
+                        <ul class="collection with-header col s12 m12 l6">
+                            <li class="collection-header"><h4 class="center-align">Endereço</h4></li>
+                            <li class="collection-item">Rua:  @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->rua}}@endif</li>
+                            <li class="collection-item">Número: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->numero}}@endif</li>
+                            <li class="collection-item">Bairro: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->bairro}}@endif</li>
+                            <li class="collection-item">Complemento: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->complemento}}@endif</li>
+                            <li class="collection-item">CEP: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->cep}}@endif</li>
+                            <li class="collection-item">Cidade: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->cidade}}@endif</li>
+                            <li class="collection-item">Estado: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->estado}}@endif</li>
+                            <li class="collection-item">País: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->pais}}@endif</li>
+                        </ul>
+                        <ul class="collection with-header col s12 m12 l12">
+                            <li class="collection-header"><h4 class="center-align">Projetos</h4></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
