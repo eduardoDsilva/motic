@@ -19,18 +19,20 @@
             padding: 8px;
         }
 
-        .motic{
+        .motic {
             float: right;
             padding-bottom: 20px;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
+
         .page-break {
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;
@@ -53,22 +55,22 @@
 
     <table>
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Categorias</th>
-                <th>Usuário</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Categorias</th>
+            <th>Usuário</th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{$escola->id}}</td>
-                <td>{{$escola->name}}</td>
-                <td>{{$escola->telefone}}</td>
-                <td>@foreach($escola->categoria as $c){{$c->categoria.', '}}@endforeach</td>
-                <td>{{$escola->user->username}}</td>
-            </tr>
+        <tr>
+            <td>{{$escola->id}}</td>
+            <td>{{$escola->name}}</td>
+            <td>{{$escola->telefone}}</td>
+            <td>@foreach($escola->categoria as $c){{$c->categoria.', '}}@endforeach</td>
+            <td>{{$escola->user->username}}</td>
+        </tr>
         </tbody>
     </table>
 

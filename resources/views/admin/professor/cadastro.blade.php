@@ -41,6 +41,6 @@
 
 @section('content')
 
-@includeIf('layouts.professor.form-professor')
+    @includeIf('layouts.professor.form-professor')
 
 @endsection

@@ -72,10 +72,20 @@
                             <td>{{$projeto->categoria->categoria}}</td>
                             <td>{{$projeto->escola->name}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ route("admin.suplente.edit", $projeto->id) }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i class="small material-icons">delete</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ route("admin.suplente.show", $projeto->id) }}"> <i class="small material-icons">library_books</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Promover a projeto ativo"  href="{{ route("admin.suplente.promove", $projeto->id) }}"> <i class="small material-icons">arrow_upward</i></a>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Editar" href="{{ route("admin.suplente.edit", $projeto->id) }}"><i
+                                            class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top"
+                                   data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$projeto->id}}"
+                                   data-name="{{$projeto->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i
+                                            class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"
+                                   href="{{ route("admin.suplente.show", $projeto->id) }}"> <i
+                                            class="small material-icons">library_books</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Promover a projeto ativo"
+                                   href="{{ route("admin.suplente.promove", $projeto->id) }}"> <i
+                                            class="small material-icons">arrow_upward</i></a>
                             </td>
                         </tr>
                     @empty
@@ -95,7 +105,9 @@
 
             <div class="fixed-action-btn">
                 <div class="fixed-action-btn">
-                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar projeto suplente" href="{{route ('admin.suplente.create')}}"><i class="material-icons">add</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                       data-position="top" data-delay="50" data-tooltip="Adicionar projeto suplente"
+                       href="{{route ('admin.suplente.create')}}"><i class="material-icons">add</i></a>
                 </div>
             </div>
 

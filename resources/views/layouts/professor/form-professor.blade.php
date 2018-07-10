@@ -46,10 +46,12 @@
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
                                 <option value="feminino"
-                                        @if(isset($professor))@if($professor->sexo == 'feminino') selected @endif @endif>Feminino
+                                        @if(isset($professor))@if($professor->sexo == 'feminino') selected @endif @endif>
+                                    Feminino
                                 </option>
                                 <option value="masculino"
-                                        @if (isset($professor)) @if($professor->sexo == 'masculino') selected @endif @endif>Masculino
+                                        @if (isset($professor)) @if($professor->sexo == 'masculino') selected @endif @endif>
+                                    Masculino
                                 </option>
                             </select>
                             <label>Sexo *</label>
@@ -60,10 +62,12 @@
                             <select name="grauDeInstrucao">
                                 <option value="" disabled selected>Grau de Instrução</option>
                                 <option value="Ensino Médio"
-                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>Ensino Médio
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>
+                                    Ensino Médio
                                 </option>
                                 <option value="Ensino Superior"
-                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>Ensino Superior
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>
+                                    Ensino Superior
                                 </option>
                             </select>
                             <label>Grau de Instrição *</label>
@@ -79,11 +83,21 @@
                             <i class="material-icons prefix">confirmation_number</i>
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
-                                <option value="PP" @if(isset($professor)) @if($professor->camisa == 'PP')) required @endif @endif>PP</option>
-                                <option value="P" @if(isset($professor)) @if($professor->camisa == 'P')) required @endif @endif>P</option>
-                                <option value="M" @if(isset($professor)) @if($professor->camisa == 'M')) required @endif @endif>M</option>
-                                <option value="G" @if(isset($professor)) @if($professor->camisa == 'G')) required @endif @endif>G</option>
-                                <option value="GG" @if(isset($professor)) @if($professor->camisa == 'GG')) required @endif @endif>GG</option>
+                                <option value="PP" @if(isset($professor)) @if($professor->camisa == 'PP'))
+                                        required @endif @endif>PP
+                                </option>
+                                <option value="P" @if(isset($professor)) @if($professor->camisa == 'P'))
+                                        required @endif @endif>P
+                                </option>
+                                <option value="M" @if(isset($professor)) @if($professor->camisa == 'M'))
+                                        required @endif @endif>M
+                                </option>
+                                <option value="G" @if(isset($professor)) @if($professor->camisa == 'G'))
+                                        required @endif @endif>G
+                                </option>
+                                <option value="GG" @if(isset($professor)) @if($professor->camisa == 'GG'))
+                                        required @endif @endif>GG
+                                </option>
                             </select>
                             <label>Tamanho da camisa *</label>
                         </div>
@@ -120,7 +134,7 @@
                         </div>
 
                         <div class="input-field col s12 m6 l6">
-                        <i class="material-icons prefix">perm_identity</i>
+                            <i class="material-icons prefix">perm_identity</i>
                             <label for="cpf">CPF *</label>
                             <input type="number" name="cpf" data-length="11" value="{{$professor->cpf or old('cpf')}}"
                                    required>
@@ -207,7 +221,8 @@
                     <div class="input-field col s12 m12 l12">
                         <i class="material-icons prefix">person</i>
                         <label for="username">Usuário *</label>
-                        <input type="text" name="username" value="{{$professor->user->username or old('username')}}" required>
+                        <input type="text" name="username" value="{{$professor->user->username or old('username')}}"
+                               required>
                     </div>
 
                     <div class="row">

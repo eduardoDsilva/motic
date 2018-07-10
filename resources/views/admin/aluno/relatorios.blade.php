@@ -29,7 +29,8 @@
                             <p>Para gerar um relatório de todos os alunos do sistema.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.resumo')}}" target="_blank">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.resumo')}}"
+                               target="_blank">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +41,8 @@
                             <p>Para gerar um relatório de todos os dados dos alunos do sistema</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.completo')}}" target="_blank">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.todos.alunos.completo')}}"
+                               target="_blank">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +53,8 @@
                             <p>Para gerar um relatório dos alunos de cada escola.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.aluno.relatorios.alunos.por.escola')}}" target="_blank">Relatório</a>
+                            <a class="btn" href="{{route ('admin.aluno.relatorios.alunos.por.escola')}}"
+                               target="_blank">Relatório</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +65,9 @@
                             <p>Para gerar um relatório de um aluno específico do sistema, insira o ID abaixo:</p>
                         </div>
                         <div class="card-action">
-                            <button class="modal-trigger btn" type="submit" data-target="modal1" href="#modal1" >Relatório</button>
+                            <button class="modal-trigger btn" type="submit" data-target="modal1" href="#modal1">
+                                Relatório
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -77,7 +82,8 @@
                 <h4>Alunos</h4>
 
                 <div class="col s12 m4 l8">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route("admin.aluno.relatorios.filtrar") }}">
+                    <form method="POST" enctype="multipart/form-data"
+                          action="{{ route("admin.aluno.relatorios.filtrar") }}">
                         <div class="row">
                             <div class="input-field col s4">
                                 <select required name="tipo">
@@ -95,7 +101,8 @@
                             </div>
                             {{csrf_field()}}
                             <div class="input-field col s1">
-                                <button type="submit" class="btn-floating" target="_blank" ><i class="material-icons">search</i></button>
+                                <button type="submit" class="btn-floating" target="_blank"><i class="material-icons">search</i>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -117,7 +124,10 @@
                             <td>{{$aluno->name}}</td>
                             <td>{{$aluno->escola->name}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" target="_blank" data-position="top" data-delay="50" data-tooltip="Gerar relatório"  href="{{route ('admin.aluno.relatorio.aluno', $aluno->id)}}"><i class="small material-icons">chrome_reader_mode</i></a>
+                                <a class="modal-trigger tooltipped" target="_blank" data-position="top" data-delay="50"
+                                   data-tooltip="Gerar relatório"
+                                   href="{{route ('admin.aluno.relatorio.aluno', $aluno->id)}}"><i
+                                            class="small material-icons">chrome_reader_mode</i></a>
                             </td>
                         </tr>
                     @empty
@@ -140,7 +150,7 @@
 @section('modal')
     @if(isset($modal))
         $(document).ready(function(){
-            $('#modal1').modal('open');
+        $('#modal1').modal('open');
         });
     @endif
 @endsection

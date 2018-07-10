@@ -19,11 +19,12 @@
             padding: 8px;
         }
 
-        .motic{
+        .motic {
             float: right;
             padding-bottom: 20px;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
 
@@ -31,7 +32,7 @@
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;
@@ -47,17 +48,17 @@
 <!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
         <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
 </div>
-    <h2>Alunos do sistema</h2>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Nascimento</th>
-            <th>Ano/Etapa</th>
-            <th>Escola</th>
-            <th>Turma</th>
-            <th>Projeto</th>
-        </tr>
-        @foreach ($alunos as $aluno)
+<h2>Alunos do sistema</h2>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Nascimento</th>
+        <th>Ano/Etapa</th>
+        <th>Escola</th>
+        <th>Turma</th>
+        <th>Projeto</th>
+    </tr>
+    @foreach ($alunos as $aluno)
         <tr>
             <td>{{$aluno->name}}</td>
             <td>{{$aluno->nascimento}}</td>
@@ -66,8 +67,8 @@
             <td>{{$aluno->turma}}</td>
             <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
         </tr>
-        @endforeach
-    </table>
+    @endforeach
+</table>
 
 </body>
 </html>

@@ -50,7 +50,8 @@
                             <li class="collection-item">Título: {{$aluno->projeto->titulo}}</li>
                             <li class="collection-item">Área: {{$aluno->projeto->area}}</li>
                             <li class="collection-item">Resumo: {{$aluno->projeto->resumo}}</li>
-                            <li class="collection-item">Disciplinas: @foreach($aluno->projeto->disciplina as $disciplina) {{$disciplina->name.", "}}@endforeach</li>
+                            <li class="collection-item">
+                                Disciplinas: @foreach($aluno->projeto->disciplina as $disciplina) {{$disciplina->name.", "}}@endforeach</li>
 
                             <li class="collection-header"><h4 class="center-align">Alunos</h4></li>
                             @foreach($aluno->projeto->aluno as $a)

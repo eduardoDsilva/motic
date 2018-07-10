@@ -29,107 +29,115 @@ class AdminAlunoController extends Controller
         try {
             $alunos = Aluno::orderBy('name', 'asc')->paginate(10);
             return view('admin.aluno.home', compact('alunos'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function create(){
+    public function create()
+    {
         try {
             $escolas = Escola::all();
             return view('admin.aluno.cadastro', compact('escolas'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function store(AlunoCreateFormRequest $request){
+    public function store(AlunoCreateFormRequest $request)
+    {
         try {
             $dataForm = $request->all();
             $this->alunoController->store($dataForm);
             return redirect()->route("admin.aluno");
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function show($id){
-        try{
+    public function show($id)
+    {
+        try {
             $aluno = Aluno::find($id);
             return view('admin.aluno.show', compact('aluno'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar(Request $request){
+    public function filtrar(Request $request)
+    {
         try {
             $dataForm = $request->all();
             $alunos = $this->alunoController->filtro($dataForm);
             return view('admin.aluno.home', compact('alunos'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function edit($id){
-        try{
+    public function edit($id)
+    {
+        try {
             $aluno = Aluno::find($id);
-            $titulo = "Editar aluno: ".$aluno->name;
+            $titulo = "Editar aluno: " . $aluno->name;
             $escolas = Escola::all();
             return view("admin.aluno.cadastro", compact('aluno', 'titulo', 'escolas'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(AlunoUpdateFormRequest $request, $id){
+    public function update(AlunoUpdateFormRequest $request, $id)
+    {
         try {
             $dataForm = $request->all() + ['tipoUser' => 'aluno'];
             $alunos = $this->alunoController->update($dataForm, $id);
             return redirect()->route("admin.aluno", compact('alunos'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             $this->alunoController->destroy($id);
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function escolaCategoria(){
+    public function escolaCategoria()
+    {
         try {
             $escola_id = Input::get('escola_id');
             $escola = Escola::find($escola_id);
             $categorias = $escola->categoria;
             $ano = [];
-            foreach ($categorias as $categoria){
-                if($categoria->id == 1){
+            foreach ($categorias as $categoria) {
+                if ($categoria->id == 1) {
                     $ano[] = 'Educação Infantil';
-                }else if($categoria->id == 2){
+                } else if ($categoria->id == 2) {
                     $ano[] = '1° ANO';
                     $ano[] = '2° ANO';
                     $ano[] = '3° ANO';
-                }else if($categoria->id == 3){
+                } else if ($categoria->id == 3) {
                     $ano[] = '4° ANO';
                     $ano[] = '5° ANO';
                     $ano[] = '6° ANO';
-                }else if($categoria->id == 4){
+                } else if ($categoria->id == 4) {
                     $ano[] = '7° ANO';
                     $ano[] = '8° ANO';
                     $ano[] = '9° ANO';
-                }else if($categoria->id == 5){
+                } else if ($categoria->id == 5) {
                     $ano[] = 'EJA';
-                }else{
+                } else {
                 }
             }
             return response()->json($ano);
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 }

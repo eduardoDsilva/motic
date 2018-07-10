@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin\Escola;
+
 use App\Aluno;
 use App\Categoria;
 use App\Escola;
@@ -27,73 +29,80 @@ class AdminEscolaController extends Controller
         return view("admin.escola.home", compact('escolas'));
     }
 
-    public function create(){
+    public function create()
+    {
         $categorias = Categoria::all();
         $titulo = 'Cadastrar escola';
 
         return view('admin.escola.cadastro', compact('categorias', 'titulo'));
     }
 
-    public function store(EscolaCreateFormRequest $request){
-        try{
+    public function store(EscolaCreateFormRequest $request)
+    {
+        try {
             $dataForm = $request->all() + ['tipoUser' => 'escola'];
             $this->escolaController->store($dataForm);
             return redirect()->route("admin.escola");
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function show($id){
-        try{
+    public function show($id)
+    {
+        try {
             $escola = Escola::find($id);
             $alunos = Aluno::where('escola_id', '=', $escola->id)->paginate(6);
             $professores = Professor::where('escola_id', '=', $escola->id)->paginate(6);
             $projetos = Projeto::where('escola_id', '=', $escola->id)->paginate(6);
             return view('admin.escola.show', compact('escola', 'alunos', 'professores', 'projetos'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar(Request $request){
-        try{
+    public function filtrar(Request $request)
+    {
+        try {
             $dataForm = $request->all();
             $escolas = $this->escolaController->filtro($dataForm);
             return view('admin.escola.home', compact('escolas'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function edit($id){
-        try{
+    public function edit($id)
+    {
+        try {
             $escola = Escola::find($id);
             $categorias = Categoria::all();
-            $titulo = 'Editar avalaidor: '.$escola->name;
-            foreach ($escola->categoria as $id){
+            $titulo = 'Editar avalaidor: ' . $escola->name;
+            foreach ($escola->categoria as $id) {
                 $categoria_escola[] = $id->pivot->categoria_id;
             }
             return view("admin.escola.cadastro", compact('escola', 'categorias', 'titulo', 'categoria_escola'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(EscolaUpdateFormRequest $request, $id){
-        try{
+    public function update(EscolaUpdateFormRequest $request, $id)
+    {
+        try {
             $dataForm = $request->all() + ['tipoUser' => 'escola'];
             $escolas = $this->escolaController->update($dataForm, $id);
             return redirect()->route("admin.escola", compact('escolas'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $this->escolaController->destroy($id);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

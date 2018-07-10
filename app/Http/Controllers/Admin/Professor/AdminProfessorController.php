@@ -34,78 +34,85 @@ class AdminProfessorController extends Controller
         try {
             $professores = Professor::orderBy('name', 'asc')->paginate(10);
             return view("admin.professor.home", compact('professores'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function create(){
+    public function create()
+    {
         try {
             $escolas = Escola::all();
             $titulo = 'Cadastrar professor';
 
             return view('admin.professor.cadastro', compact('escolas', 'titulo'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function store(ProfessorCreateFormRequest $request){
+    public function store(ProfessorCreateFormRequest $request)
+    {
         try {
-            $dataForm = $request->all()+ ['tipoUser' => 'professor'];
+            $dataForm = $request->all() + ['tipoUser' => 'professor'];
             $this->professorController->store($dataForm);
             return redirect()->route("admin.professor");
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function show($id){
-        try{
+    public function show($id)
+    {
+        try {
             $professor = Professor::find($id);
             return view("admin.professor.show", compact('professor'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar(Request $request){
+    public function filtrar(Request $request)
+    {
         try {
             $dataForm = $request->all();
             $professores = $this->professorController->filtro($dataForm);
             return view('admin.professor.home', compact('professores'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function edit($id){
-        try{
+    public function edit($id)
+    {
+        try {
             $professor = Professor::find($id);
             $escolas = Escola::all();
-            $titulo = 'Editar professor: '.$professor->name;
+            $titulo = 'Editar professor: ' . $professor->name;
 
             return view("admin.professor.cadastro", compact('professor', 'titulo', 'escolas'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(ProfessorUpdateFormRequest $request, $id){
+    public function update(ProfessorUpdateFormRequest $request, $id)
+    {
         try {
             $dataForm = $request->all() + ['tipoUser' => 'professor'];
             $this->professorController->update($dataForm, $id);
             return redirect()->route("admin.professor");
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             $this->professorController->destroy($id);
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 

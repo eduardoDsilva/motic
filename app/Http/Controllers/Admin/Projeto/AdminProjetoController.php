@@ -32,101 +32,111 @@ class AdminProjetoController extends Controller
         $this->middleware('check.admin');
     }
 
-    public function index(){
-        try{
+    public function index()
+    {
+        try {
             $projetos = Projeto::where('ano', '=', '2018')
                 ->where('tipo', '=', 'normal')
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
 
             return view('admin.projeto.home', compact('projetos'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function create(){
-        try{
+    public function create()
+    {
+        try {
             $disciplinas = Disciplina::all();
             $escolas = Escola::all();
             return view("admin.projeto.cadastro", compact('disciplinas', 'escolas', 'categorias'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $dataForm = $request->all();
-        try{
+        try {
             $this->projetoController->store($dataForm);
             return redirect()->route("admin.projeto");
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function show($id){
-        try{
+    public function show($id)
+    {
+        try {
             $projeto = Projeto::find($id);
             $alunos = Aluno::all()
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
             return view("admin.projeto.show", compact('projeto', 'alunos', 'professores'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar(Request $request){
+    public function filtrar(Request $request)
+    {
         $dataForm = $request->all();
-        try{
+        try {
             $projetos = $this->projetoController->filtrar($dataForm);
             return view('admin.projeto.home', compact('projetos'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function edit($id){
-        try{
+    public function edit($id)
+    {
+        try {
             $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
-            $titulo = 'Editar projeto: '.$projeto->titulo;
-            return view("admin.projeto.editar", compact( 'projeto', 'titulo', 'disciplinas'));
-        }catch (\Exception $e) {
+            $titulo = 'Editar projeto: ' . $projeto->titulo;
+            return view("admin.projeto.editar", compact('projeto', 'titulo', 'disciplinas'));
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $dataForm = $request->all();
-        try{
+        try {
             $this->projetoController->update($dataForm, $id);
             return redirect()->route("admin.projeto");
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $this->projetoController->destroy($id);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function rebaixaSuplente($id){
-        try{
+    public function rebaixaSuplente($id)
+    {
+        try {
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'suplente']);
             return redirect()->route("admin.projeto");
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function categorias(){
+    public function categorias()
+    {
         try {
             $escola_id = Input::get('escola_id');
             Session::put('escola_id', $escola_id);
@@ -139,33 +149,35 @@ class AdminProjetoController extends Controller
             $categoria = $escola->categoria->whereNotIn('id', $categoria_id);
 
             return response()->json($categoria);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
 
     }
 
-    public function alunos(){
-        try{
+    public function alunos()
+    {
+        try {
             $categoria_id = Input::get('categoria_id');
             $alunos = Aluno::where('escola_id', '=', Session::get('escola_id'))
                 ->where('categoria_id', '=', $categoria_id)
                 ->where('projeto_id', '=', null)
                 ->get();
             return response()->json($alunos);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function professores(){
-        try{
+    public function professores()
+    {
+        try {
             $escola_id = Input::get('escola_id');
             $professores = Professor::where('escola_id', '=', $escola_id)
                 ->where('projeto_id', '=', null)
                 ->get();
             return response()->json($professores);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

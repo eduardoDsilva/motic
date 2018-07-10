@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('titulo','Motic Admin')
@@ -60,40 +59,50 @@
             <div class="row">
                 <table class="centered responsive-table highlight bordered">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Área</th>
-                            <th>Categoria</th>
-                            <th>Escola</th>
-                            <th>Ações</th>
-                        </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Área</th>
+                        <th>Categoria</th>
+                        <th>Escola</th>
+                        <th>Ações</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @forelse ($projetos as $projeto)
-                            <tr>
-                                <td>{{$projeto->id}}</td>
-                                <td>{{$projeto->titulo}}</td>
-                                <td>{{$projeto->area}}</td>
-                                <td>{{$projeto->categoria->categoria}}</td>
-                                <td>{{$projeto->escola->name}}</td>
-                                <td>
-                                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{route ('admin.projeto.edit',$projeto->id)}}"><i class="small material-icons">edit</i></a>
-                                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$projeto->id}}" data-name="{{$projeto->titulo}}" data-projeto="normal" data-tipo="projeto"> <i class="small material-icons">delete</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ route("admin.projeto.show", $projeto->id) }}"> <i class="small material-icons">library_books</i></a>
-                                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Rebaixar a projeto suplente"  href="{{ route("admin.projeto.rebaixa", $projeto->id) }}"> <i class="small material-icons">arrow_downward</i></a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td>Nenhum registro encontrado</td>
-                                <td>Nenhum registro encontrado</td>
-                                <td>Nenhum registro encontrado</td>
-                                <td>Nenhum registro encontrado</td>
-                                <td>Nenhum registro encontrado</td>
-                                <td>Nenhum registro encontrado</td>
-                            </tr>
-                        @endforelse
+                    @forelse ($projetos as $projeto)
+                        <tr>
+                            <td>{{$projeto->id}}</td>
+                            <td>{{$projeto->titulo}}</td>
+                            <td>{{$projeto->area}}</td>
+                            <td>{{$projeto->categoria->categoria}}</td>
+                            <td>{{$projeto->escola->name}}</td>
+                            <td>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Editar" href="{{route ('admin.projeto.edit',$projeto->id)}}"><i
+                                            class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top"
+                                   data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$projeto->id}}"
+                                   data-name="{{$projeto->titulo}}" data-projeto="normal" data-tipo="projeto"> <i
+                                            class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"
+                                   href="{{ route("admin.projeto.show", $projeto->id) }}"> <i
+                                            class="small material-icons">library_books</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Rebaixar a projeto suplente"
+                                   href="{{ route("admin.projeto.rebaixa", $projeto->id) }}"> <i
+                                            class="small material-icons">arrow_downward</i></a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                            <td>Nenhum registro encontrado</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
                 {{$projetos->links()}}
@@ -101,7 +110,9 @@
 
             <div class="fixed-action-btn">
                 <div class="fixed-action-btn">
-                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar projeto" href="{{route ('admin.projeto.create')}}"><i class="material-icons">add</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                       data-position="top" data-delay="50" data-tooltip="Adicionar projeto"
+                       href="{{route ('admin.projeto.create')}}"><i class="material-icons">add</i></a>
                 </div>
             </div>
 

@@ -18,7 +18,7 @@ class Projeto extends Model
 
     public function disciplina()
     {
-        return $this->belongsToMany(Disciplina::class,  'projetos_disciplinas');
+        return $this->belongsToMany(Disciplina::class, 'projetos_disciplinas');
     }
 
     public function aluno()

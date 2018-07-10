@@ -37,15 +37,24 @@
                     </ul>
                     <ul class="collection with-header col s12 m12 l6">
                         <li class="collection-header"><h4 class="center-align">Endereço</h4></li>
-                        <li class="collection-item">ID: @if(isset($professor->user->endereco->id)){{$professor->user->endereco->id}}@endif</li>
-                        <li class="collection-item">Rua: @if(isset($professor->user->endereco->rua)){{$professor->user->endereco->rua}}@endif</li>
-                        <li class="collection-item">Número: @if(isset($professor->user->endereco->numero)){{$professor->user->endereco->numero}}@endif</li>
-                        <li class="collection-item">Bairro: @if(isset($professor->user->endereco->bairro)){{$professor->user->endereco->bairro}}@endif</li>
-                        <li class="collection-item">Complemento: @if(isset($professor->user->endereco->complemento)){{$professor->user->endereco->complemento}}@endif</li>
-                        <li class="collection-item">CEP: @if(isset($professor->user->endereco->cep)){{$professor->user->endereco->cep}}@endif</li>
-                        <li class="collection-item">Cidade: @if(isset($professor->user->endereco->cidade)){{$professor->user->endereco->cidade}}@endif</li>
-                        <li class="collection-item">Estado: @if(isset($professor->user->endereco->estado)){{$professor->user->endereco->estado}}@endif</li>
-                        <li class="collection-item">País: @if(isset($professor->user->endereco->pais)){{$professor->user->endereco->pais}}@endif</li>
+                        <li class="collection-item">
+                            ID: @if(isset($professor->user->endereco->id)){{$professor->user->endereco->id}}@endif</li>
+                        <li class="collection-item">
+                            Rua: @if(isset($professor->user->endereco->rua)){{$professor->user->endereco->rua}}@endif</li>
+                        <li class="collection-item">
+                            Número: @if(isset($professor->user->endereco->numero)){{$professor->user->endereco->numero}}@endif</li>
+                        <li class="collection-item">
+                            Bairro: @if(isset($professor->user->endereco->bairro)){{$professor->user->endereco->bairro}}@endif</li>
+                        <li class="collection-item">
+                            Complemento: @if(isset($professor->user->endereco->complemento)){{$professor->user->endereco->complemento}}@endif</li>
+                        <li class="collection-item">
+                            CEP: @if(isset($professor->user->endereco->cep)){{$professor->user->endereco->cep}}@endif</li>
+                        <li class="collection-item">
+                            Cidade: @if(isset($professor->user->endereco->cidade)){{$professor->user->endereco->cidade}}@endif</li>
+                        <li class="collection-item">
+                            Estado: @if(isset($professor->user->endereco->estado)){{$professor->user->endereco->estado}}@endif</li>
+                        <li class="collection-item">
+                            País: @if(isset($professor->user->endereco->pais)){{$professor->user->endereco->pais}}@endif</li>
                     </ul>
                     <ul class="collection with-header col s12 m12 l12">
                         <li class="collection-header"><h4 class="center-align">Projeto</h4></li>
@@ -53,7 +62,8 @@
                             <li class="collection-item">Título: {{$professor->projeto->titulo}}</li>
                             <li class="collection-item">Área: {{$professor->projeto->area}}</li>
                             <li class="collection-item">Resumo: {{$professor->projeto->resumo}}</li>
-                            <li class="collection-item">Disciplinas: @foreach($professor->projeto->disciplina as $disciplina) {{$disciplina->name.", "}}@endforeach</li>
+                            <li class="collection-item">
+                                Disciplinas: @foreach($professor->projeto->disciplina as $disciplina) {{$disciplina->name.", "}}@endforeach</li>
 
                             <li class="collection-header"><h4 class="center-align">Alunos</h4></li>
                             @foreach($professor->projeto->aluno as $a)

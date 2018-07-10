@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +9,7 @@ class Escola extends Model
     protected $fillable = [
         'name', 'telefone', 'projetos', 'user_id',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,7 +27,7 @@ class Escola extends Model
 
     public function categoria()
     {
-        return $this->belongsToMany(Categoria::class, 'escolas_categorias', 'escola_id','categoria_id');
+        return $this->belongsToMany(Categoria::class, 'escolas_categorias', 'escola_id', 'categoria_id');
     }
 
     public function projeto()

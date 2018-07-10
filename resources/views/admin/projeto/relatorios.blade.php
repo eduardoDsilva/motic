@@ -62,7 +62,9 @@
                             <p>Para gerar um relatório dos projetos por categoria do sistema./p>
                         </div>
                         <div class="card-action">
-                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1" href="#modal1" >Relatório</button>
+                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1"
+                                    href="#modal1">Relatório
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -73,7 +75,9 @@
                             <p>Para gerar um relatório dos projetos por disciplinas do sistema./p>
                         </div>
                         <div class="card-action">
-                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1" href="#modal1" >Relatório</button>
+                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1"
+                                    href="#modal1">Relatório
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -84,7 +88,9 @@
                             <p>Para gerar um relatório de um projeto específico do sistema./p>
                         </div>
                         <div class="card-action">
-                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1" href="#modal1" >Relatório</button>
+                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1"
+                                    href="#modal1">Relatório
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -139,7 +145,10 @@
                             <td>{{$projeto->titulo}}</td>
                             <td>{{$projeto->escola->name}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i class="small material-icons">edit</i></a>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Editar"
+                                   href="{{ url("admin/projeto/update/".$projeto->id."/edita") }}"><i
+                                            class="small material-icons">edit</i></a>
                             </td>
                         </tr>
                     @empty
@@ -154,10 +163,10 @@
                 </table>
                 {{$projetos->links()}}
 
+            </div>
+            <div class="modal-footer">
+                <a class="btn red delete">Ok</a>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a class="btn red delete">Ok</a>
-        </div>
-    </div>
 
 @endsection

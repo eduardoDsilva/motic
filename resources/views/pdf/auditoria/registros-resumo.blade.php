@@ -19,22 +19,24 @@
             padding: 8px;
         }
 
-        h2{
+        h2 {
             font-family: Arial;
         }
 
-        .motic{
+        .motic {
             float: right;
             padding-bottom: 20px;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
+
         .page-break {
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;

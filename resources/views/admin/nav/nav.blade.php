@@ -8,7 +8,8 @@
                         class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
             <div class="collapsible-body">
                 <ul>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.aluno')}}"><i class="material-icons">list</i>Listar alunos</a></li>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.aluno')}}"><i class="material-icons">list</i>Listar
+                            alunos</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.aluno.create')}}"><i
                                     class="material-icons">add</i>Cadastrar aluno</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.aluno.relatorios')}}"><i
@@ -88,7 +89,8 @@
                         class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
             <div class="collapsible-body">
                 <ul>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.escola')}}"><i class="material-icons">list</i>Listar escolas</a></li>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.escola')}}"><i class="material-icons">list</i>Listar
+                            escolas</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.escola.create')}}"><i
                                     class="material-icons">add</i>Cadastrar escola</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.escola.relatorios')}}"><i
@@ -112,7 +114,8 @@
                                     class="material-icons">list</i>Listar professores</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.professor.create')}}"><i
                                     class="material-icons">add</i>Cadastrar professor</a></li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.professor.relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.professor.relatorios')}}"><i
+                                    class="material-icons">chrome_reader_mode</i>Relatórios</a>
                     </li>
                     <li>
                         <div class="divider"></div>
@@ -129,7 +132,8 @@
                 <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
             <div class="collapsible-body">
                 <ul>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto')}}"><i class="material-icons">list</i>Listar projetos</a></li>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto')}}"><i class="material-icons">list</i>Listar
+                            projetos</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto.create')}}"><i
                                     class="material-icons">add</i>Cadastrar projetos</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.projeto.relatorios')}}"><i
@@ -153,7 +157,8 @@
                                     class="material-icons">list</i>Listar suplentes</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.suplente.create')}}"><i
                                     class="material-icons">add</i>Cadastrar suplentes</a></li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.suplente.relatorios')}}"><i class="material-icons">chrome_reader_mode</i>Relatórios</a>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.suplente.relatorios')}}"><i
+                                    class="material-icons">chrome_reader_mode</i>Relatórios</a>
                     </li>
                     <li>
                         <div class="divider"></div>

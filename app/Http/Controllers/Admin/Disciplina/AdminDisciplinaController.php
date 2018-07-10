@@ -36,47 +36,51 @@ class AdminDisciplinaController extends Controller
         return view('admin.disciplinas.home', compact('disciplinas'));
     }
 
-    public function store(DisciplinaCreateFormRequest $request){
+    public function store(DisciplinaCreateFormRequest $request)
+    {
         $dataForm = $request->all();
-        try{
+        try {
             $disciplinas = Disciplina::create($dataForm);
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $disciplinas->id, 'disciplina');
             return redirect()
                 ->route("admin.disciplina")
-                ->with("success", "disciplina ".$disciplinas->name." adicionada com sucesso");
-        }catch (\Exception $e) {
+                ->with("success", "disciplina " . $disciplinas->name . " adicionada com sucesso");
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar(Request $request){
+    public function filtrar(Request $request)
+    {
         $dataForm = $request->all();
-        try{
-            if($dataForm['tipo'] == 'id'){
-               $disciplinas = Disciplina::all()->where('id','=',$dataForm['search']);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
+        try {
+            if ($dataForm['tipo'] == 'id') {
+                $disciplinas = Disciplina::all()->where('id', '=', $dataForm['search']);
+            } else if ($dataForm['tipo'] == 'nome') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $disciplinas = Disciplina::where('name', 'like', $filtro)->paginate(10);
             }
             return view("admin.disciplinas.home", compact('disciplinas'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function edit($id){
-        try{
+    public function edit($id)
+    {
+        try {
             $disciplina = disciplina::find($id);
             return view("admin.disciplinas.editar", compact('disciplina'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(DisciplinaUpdateFormRequest $request, $id){
+    public function update(DisciplinaUpdateFormRequest $request, $id)
+    {
         $dataForm = $request->all();
-        try{
+        try {
             $disciplinas = Disciplina::find($id);
             $disciplinas->update($dataForm);
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
@@ -84,18 +88,19 @@ class AdminDisciplinaController extends Controller
 
             $disciplinas = Disciplina::all();
             return view('admin.disciplinas.home', compact('disciplinas'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $disciplina = Disciplina::find($id);
             $disciplina->delete($id);
             $texto = str_replace(",", ", ", json_encode($disciplina, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $disciplina->id, 'disciplina');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

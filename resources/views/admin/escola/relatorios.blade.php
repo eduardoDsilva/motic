@@ -32,7 +32,8 @@
                             <li>Professores, alunos e projetos</li>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.escola.relatorios.todas.escolas')}}">Gerar relatório</a>
+                            <a class="btn" href="{{route ('admin.escola.relatorios.todas.escolas')}}">Gerar
+                                relatório</a>
                         </div>
                     </div>
                 </div>

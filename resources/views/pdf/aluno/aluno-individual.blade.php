@@ -19,18 +19,20 @@
             padding: 8px;
         }
 
-        .motic{
+        .motic {
             float: right;
             padding-bottom: 20px;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
+
         .page-break {
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;
@@ -50,22 +52,22 @@
 <h2>Dados pessoais</h2>
 
 <table>
-        <tr>
-            <th>Nome</th>
-            <th>Nascimento</th>
-            <th>Sexo</th>
-            <th>CPF</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-        </tr>
-        <tr>
-            <td>{{$aluno->name}}</td>
-            <td>{{$aluno->nascimento}}</td>
-            <td>{{$aluno->sexo}}</td>
-            <td>{{$aluno->cpf}}</td>
-            <td>{{$aluno->email}}</td>
-            <td>{{$aluno->telefone}}</td>
-        </tr>
+    <tr>
+        <th>Nome</th>
+        <th>Nascimento</th>
+        <th>Sexo</th>
+        <th>CPF</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+    </tr>
+    <tr>
+        <td>{{$aluno->name}}</td>
+        <td>{{$aluno->nascimento}}</td>
+        <td>{{$aluno->sexo}}</td>
+        <td>{{$aluno->cpf}}</td>
+        <td>{{$aluno->email}}</td>
+        <td>{{$aluno->telefone}}</td>
+    </tr>
 </table>
 
 <h2>Dados escolares</h2>

@@ -39,7 +39,8 @@
                         <div class='row'>
                             <div class="input-field col s12 m12 l12">
                                 <i class="material-icons prefix">assignment</i>
-                                <textarea name="resumo" id="textarea1" data-length="240" class="materialize-textarea"></textarea>
+                                <textarea name="resumo" id="textarea1" data-length="240"
+                                          class="materialize-textarea"></textarea>
                                 <label for="textarea1">Resumo *</label>
                             </div>
                         </div>
@@ -52,7 +53,9 @@
                                     @forelse ($disciplinas as $disciplina)
                                         <option value="{{$disciplina->id}}">{{$disciplina->name}}</option>
                                     @empty
-                                        <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com o administrador.</option>
+                                        <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com
+                                            o administrador.
+                                        </option>
                                     @endforelse
                                 </select>
                                 <label>Disciplinas *</label>
@@ -74,7 +77,9 @@
                                     @forelse ($categorias as $categoria)
                                         <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
                                     @empty
-                                        <option value="" disabled selected>Nenhuma categoria cadastrada no sistema! Entre em contato com o administrador.</option>
+                                        <option value="" disabled selected>Nenhuma categoria cadastrada no sistema!
+                                            Entre em contato com o administrador.
+                                        </option>
                                     @endforelse
                                 </select>
                                 <label>Categoria *</label>
@@ -97,7 +102,8 @@
                                     @forelse ($professores as $professor)
                                         <option value="{{$professor->id}}">{{$professor->name}}</option>
                                     @empty
-                                        <option value="" disabled selected>Nenhum professor cadastrado no sistema.</option>
+                                        <option value="" disabled selected>Nenhum professor cadastrado no sistema.
+                                        </option>
                                     @endforelse
                                 </select>
                                 <label>Orientador *</label>
@@ -110,7 +116,8 @@
                                     @forelse ($professores as $professor)
                                         <option value="{{$professor->id}}">{{$professor->name}}</option>
                                     @empty
-                                        <option value="" disabled selected>Nenhum professor cadastrada no sistema.</option>
+                                        <option value="" disabled selected>Nenhum professor cadastrada no sistema.
+                                        </option>
                                     @endforelse
                                 </select>
                                 <label>Coorientador</label>
@@ -121,7 +128,10 @@
                         {{csrf_field()}}
 
                         <div class="fixed-action-btn">
-                            <button disabled id="envia" type="submit" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i></button>
+                            <button disabled id="envia" type="submit"
+                                    class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                                    data-position="top" data-delay="50" data-tooltip="Cadastrar"><i
+                                        class="material-icons">add_circle_outline</i></button>
                         </div>
 
                     </form>

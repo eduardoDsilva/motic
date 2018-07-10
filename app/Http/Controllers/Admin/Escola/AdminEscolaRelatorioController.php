@@ -13,7 +13,8 @@ use App\Escola;
 class AdminEscolaRelatorioController
 {
 
-    public function index(){
+    public function index()
+    {
         $escolas = Escola::all();
         return view('admin.escola.relatorios', compact('escolas'));
     }
@@ -21,13 +22,10 @@ class AdminEscolaRelatorioController
 
     public function todasEscolas()
     {
-        $escolas = Escola::orderBy('name','asc')->get();
-        //foreach($escolas as $escola){
-         //   dd($escola->categoria);
-       // }
+        $escolas = Escola::orderBy('name', 'asc')->get();
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.escola.todas-escolas', compact('escolas'))
-            ->stream('todas-escolas-motic'.date('Y').'.pdf');
+            ->stream('todas-escolas-motic' . date('Y') . '.pdf');
     }
     /*
         public function escolaAlunosPdf()

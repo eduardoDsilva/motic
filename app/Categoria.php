@@ -12,7 +12,7 @@ class Categoria extends Model
 
     public function escola()
     {
-        return $this->belongsToMany(Escola::class,  'escolas_categorias', 'escola_id', 'categoria_id');
+        return $this->belongsToMany(Escola::class, 'escolas_categorias', 'escola_id', 'categoria_id');
     }
 
     public function aluno()

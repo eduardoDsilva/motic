@@ -23,15 +23,16 @@
 
     <section class="section container">
         <div class="card-panel">
-        <div class="row">
-            <h3 class="center-align">Editar Disciplina</h3>
-            <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route("admin.disciplina.update", $disciplina->id) }}">
+            <div class="row">
+                <h3 class="center-align">Editar Disciplina</h3>
+                <article class="col s12">
+                    <form method="POST" enctype="multipart/form-data"
+                          action="{{ route("admin.disciplina.update", $disciplina->id) }}">
                         <h4>Editar disciplina</h4>
 
-                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}"/>
 
-                    <div class="row">
+                        <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">book</i>
                                 <label for="nome">Nome</label>
@@ -41,15 +42,18 @@
                         <div class='row'>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">assignment</i>
-                                <textarea data-length="240" name="descricao" id="textarea1" class="materialize-textarea">{{$disciplina->descricao}}</textarea>
+                                <textarea data-length="240" name="descricao" id="textarea1"
+                                          class="materialize-textarea">{{$disciplina->descricao}}</textarea>
                                 <label for="textarea1">Descrição</label>
                             </div>
                         </div>
-                    <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
-                </form>
+                        <button class="waves-effect waves-light btn" type="submit"><i
+                                    class="material-icons right">send</i>salvar
+                        </button>
+                    </form>
 
-            </article>
-        </div>
+                </article>
+            </div>
         </div>
     </section>
 

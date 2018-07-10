@@ -34,47 +34,49 @@ class ProfessorController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function filtro($dataForm){
-        try{
-            if($dataForm['tipo'] == 'id'){
-                $professores = Professor::where('id','=',$dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
+    public function filtro($dataForm)
+    {
+        try {
+            if ($dataForm['tipo'] == 'id') {
+                $professores = Professor::where('id', '=', $dataForm['search'])->paginate(10);
+            } else if ($dataForm['tipo'] == 'nome') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $professores = Professor::where('name', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'usuario'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'usuario') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $users = User::where('username', 'like', $filtro)->get();
                 $array[] = null;
-                foreach($users as $id){
+                foreach ($users as $id) {
                     $array[] = $id->id;
                 }
                 $professores = Professor::whereIn('user_id', $array)->paginate(10);
-            }else if($dataForm['tipo'] == 'escola'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'escola') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $escola = Escola::where('name', 'like', $filtro)->get();
                 $array[] = null;
-                foreach($escola as $id){
+                foreach ($escola as $id) {
                     $array[] = $id->id;
                 }
                 $professores = Professor::whereIn('escola_id', $array)->paginate(10);
-            }else if($dataForm['tipo'] == 'email'){
+            } else if ($dataForm['tipo'] == 'email') {
                 $professores = Professor::where('email', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nascimento'){
+            } else if ($dataForm['tipo'] == 'nascimento') {
                 $professores = Professor::where('nascimento', 'like', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'sexo'){
+            } else if ($dataForm['tipo'] == 'sexo') {
                 $professores = Professor::where('sexo', 'like', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'cpf'){
+            } else if ($dataForm['tipo'] == 'cpf') {
                 $professores = Professor::where('cpf', '=', $dataForm['search'])->paginate(10);
             }
 
             return $professores;
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function store($dataForm){
-        try{
+    public function store($dataForm)
+    {
+        try {
             $user = User::create([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
@@ -93,15 +95,16 @@ class ProfessorController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $endereco->id, 'professor');
 
-            Session::put('mensagem', "O professor ".$professor->name." foi criado com sucesso!");
+            Session::put('mensagem', "O professor " . $professor->name . " foi criado com sucesso!");
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update($dataForm, $id){
-        try{
+    public function update($dataForm, $id)
+    {
+        try {
             $user = User::find($id);
             $user->update([
                 'name' => $dataForm['name'],
@@ -123,20 +126,21 @@ class ProfessorController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $endereco->id, 'professor');
 
-            Session::put('mensagem', "O professor ".$professor->name." foi editado com sucesso!");
+            Session::put('mensagem', "O professor " . $professor->name . " foi editado com sucesso!");
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $professor = Professor::find($id);
             $professor->user()->delete($id);
             $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $professor->id, 'professor');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

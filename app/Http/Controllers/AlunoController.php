@@ -29,53 +29,56 @@ class AlunoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function filtro($dataForm){
-        try{
-            if($dataForm['tipo'] == 'id'){
+    public function filtro($dataForm)
+    {
+        try {
+            if ($dataForm['tipo'] == 'id') {
                 $alunos = Aluno::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'nome') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $alunos = Aluno::where('name', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'nascimento'){
+            } else if ($dataForm['tipo'] == 'nascimento') {
                 $alunos = Aluno::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'sexo'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'sexo') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $alunos = Aluno::where('sexo', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'etapa'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'etapa') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $alunos = Aluno::where('etapa', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'escola'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'escola') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $escola = Escola::where('name', 'like', $filtro)->get();
                 $array[] = null;
-                foreach($escola as $id){
+                foreach ($escola as $id) {
                     $array[] = $id->id;
                 }
                 $alunos = Aluno::whereIn('escola_id', $array)->paginate(10);
             }
             return $alunos;
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function store($dataForm){
-        try{
+    public function store($dataForm)
+    {
+        try {
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
             $aluno = Aluno::create($dataForm);
 
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $aluno->id, 'aluno');
 
-            Session::put('mensagem', "O aluno ".$aluno->name." foi cadastrado com sucesso!");
+            Session::put('mensagem', "O aluno " . $aluno->name . " foi cadastrado com sucesso!");
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update($dataForm, $id){
-        try{
+    public function update($dataForm, $id)
+    {
+        try {
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
 
             $aluno = Aluno::find($id);
@@ -84,51 +87,53 @@ class AlunoController extends Controller
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $aluno->id, 'aluno');
 
-            Session::put('mensagem', "O aluno ".$aluno->name." foi editado com sucesso!");
+            Session::put('mensagem', "O aluno " . $aluno->name . " foi editado com sucesso!");
 
             return Aluno::paginate(10);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $aluno = Aluno::find($id);
             $aluno->delete($id);
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $aluno->id, 'aluno');
 
-            Session::put('mensagem', "O aluno ".$aluno->name." foi deletado com sucesso!");
-        }catch (\Exception $e) {
+            Session::put('mensagem', "O aluno " . $aluno->name . " foi deletado com sucesso!");
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    private function categoriaAluno($ano){
-        if($ano == 'Educação Infantil'){
+    private function categoriaAluno($ano)
+    {
+        if ($ano == 'Educação Infantil') {
             return '1';
-        }else if($ano == '1° ANO') {
+        } else if ($ano == '1° ANO') {
             return '2';
-        }else if($ano == '2° ANO') {
+        } else if ($ano == '2° ANO') {
             return '2';
-        }else if($ano == '3° ANO') {
+        } else if ($ano == '3° ANO') {
             return '2';
-        }else if($ano == '4° ANO') {
+        } else if ($ano == '4° ANO') {
             return '3';
-        }else if($ano == '5° ANO') {
+        } else if ($ano == '5° ANO') {
             return '3';
-        }else if($ano == '6° ANO') {
+        } else if ($ano == '6° ANO') {
             return '3';
-        }else if($ano == '7° ANO') {
+        } else if ($ano == '7° ANO') {
             return '4';
-        }else if($ano == '8° ANO') {
+        } else if ($ano == '8° ANO') {
             return '4';
-        }else if($ano == '9° ANO') {
+        } else if ($ano == '9° ANO') {
             return '4';
-        }else if($ano == 'EJA') {
+        } else if ($ano == 'EJA') {
             return '5';
-        }else{
+        } else {
             dd('erro');
         }
     }

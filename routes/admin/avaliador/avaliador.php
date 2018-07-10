@@ -1,23 +1,23 @@
 <?php
 
-Route::group(['prefix' => 'admin/avaliador',  'namespace' => 'Admin\Avaliador'], function(){
+Route::group(['prefix' => 'admin/avaliador', 'namespace' => 'Admin\Avaliador'], function () {
 
-    Route::get('/',['as' => 'admin.avaliador', 'uses' => 'AdminAvaliadorController@index']);
+    Route::get('/', ['as' => 'admin.avaliador', 'uses' => 'AdminAvaliadorController@index']);
 
-    Route::get('show/{id}',['as' => 'admin.avaliador.show', 'uses' => 'AdminAvaliadorController@show']);
+    Route::get('show/{id}', ['as' => 'admin.avaliador.show', 'uses' => 'AdminAvaliadorController@show']);
 
-    Route::get('destroy/{id}',['as' => 'admin.avaliador.destroy', 'uses' => 'AdminAvaliadorController@destroy']);
+    Route::get('destroy/{id}', ['as' => 'admin.avaliador.destroy', 'uses' => 'AdminAvaliadorController@destroy']);
 
-    Route::get('edit/{id}',['as' => 'admin.avaliador.edit', 'uses' => 'AdminAvaliadorController@edit']);
+    Route::get('edit/{id}', ['as' => 'admin.avaliador.edit', 'uses' => 'AdminAvaliadorController@edit']);
 
-    Route::get('create',['as' => 'admin.avaliador.create', 'uses' => 'AdminAvaliadorController@create']);
+    Route::get('create', ['as' => 'admin.avaliador.create', 'uses' => 'AdminAvaliadorController@create']);
 
-    Route::post('update/{id}',['as' => 'admin.avaliador.update', 'uses' => 'AdminAvaliadorController@update']);
+    Route::post('update/{id}', ['as' => 'admin.avaliador.update', 'uses' => 'AdminAvaliadorController@update']);
 
-    Route::post('filtrar',['as' => 'admin.avaliador.filtrar', 'uses' => 'AdminAvaliadorController@filtrar']);
+    Route::post('filtrar', ['as' => 'admin.avaliador.filtrar', 'uses' => 'AdminAvaliadorController@filtrar']);
 
-    Route::post('store',['as' => 'admin.avaliador.store', 'uses' => 'AdminAvaliadorController@store']);
+    Route::post('store', ['as' => 'admin.avaliador.store', 'uses' => 'AdminAvaliadorController@store']);
 
-    Route::get('relatorios',['as' => 'admin.avaliador.relatorios', 'uses' => 'AdminAvaliadorRelatorioController@index']);
+    Route::get('relatorios', ['as' => 'admin.avaliador.relatorios', 'uses' => 'AdminAvaliadorRelatorioController@index']);
 
 });

@@ -36,14 +36,16 @@ class AdminAvaliadorController extends Controller
         return view("admin.avaliador.home", compact('avaliadores'));
     }
 
-    public function create(){
+    public function create()
+    {
         $titulo = 'Cadastrar avaliador';
         return view('admin.avaliador.cadastro', compact('titulo'));
     }
 
-    public function store(AvaliadorCreateFormRequest $request){
+    public function store(AvaliadorCreateFormRequest $request)
+    {
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
-        try{
+        try {
             $user = User::create([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
@@ -62,47 +64,51 @@ class AdminAvaliadorController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $endereco->id, 'avalaidor');
 
-            Session::put('mensagem', "O avaliador ".$avaliador->name." foi cadastrado com sucesso!");
+            Session::put('mensagem', "O avaliador " . $avaliador->name . " foi cadastrado com sucesso!");
 
             return redirect()->route("admin.avaliador");
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function show($id){
-        try{
+    public function show($id)
+    {
+        try {
             $avaliador = Avaliador::find($id);
             return view("admin.avaliador.show", compact('avaliador'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function showAvaliadorDisponivel(){
-        try{
-            $avaliadores = Avaliador::all()->where('projetos','<','3');
+    public function showAvaliadorDisponivel()
+    {
+        try {
+            $avaliadores = Avaliador::all()->where('projetos', '<', '3');
             return view("admin.avaliador.avaliador-disponivel", compact('avaliadores'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function edit($id){
-        try{
+    public function edit($id)
+    {
+        try {
             $avaliador = Avaliador::find($id);
-            $titulo = 'Editar avaliador: '.$avaliador->name;
+            $titulo = 'Editar avaliador: ' . $avaliador->name;
 
             return view("admin.avaliador.cadastro", compact('avaliador', 'titulo'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update(AvaliadorUpdateFormRequest $request, $id){
+    public function update(AvaliadorUpdateFormRequest $request, $id)
+    {
         dd('batata');
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
-        try{
+        try {
             $user = User::find($id);
             $user->update([
                 'name' => $dataForm['name'],
@@ -124,67 +130,71 @@ class AdminAvaliadorController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $endereco->id, 'avalaidor');
 
-            Session::put('mensagem', "O avaliador ".$avaliador->name." foi editado com sucesso!");
+            Session::put('mensagem', "O avaliador " . $avaliador->name . " foi editado com sucesso!");
 
             $avaliadores = $this->avaliador->all();
             return redirect()->route("admin.avaliador", compact('avaliadores'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar(Request $request){
+    public function filtrar(Request $request)
+    {
         $dataForm = $request->all();
-        try{
+        try {
             $avaliadores = null;
-            if($dataForm['tipo'] == 'id'){
+            if ($dataForm['tipo'] == 'id') {
                 $avaliadores = Avaliador::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'nome') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $avaliadores = Avaliador::where('name', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'cpf'){
+            } else if ($dataForm['tipo'] == 'cpf') {
                 $avaliadores = Avaliador::where('cpf', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'sexo'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'sexo') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $avaliadores = Avaliador::where('sexo', 'like', $filtro)->paginate(10);
             }
             return view('admin.avaliador.home', compact('avaliadores'));
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $avaliador = Avaliador::find($id);
             $avaliador->user()->delete($id);
             $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $avaliador->id, 'avalaidor');
 
-            Session::put('mensagem', "O avaliador ".$avaliador->name." foi deletado com sucesso!");
-        }catch (\Exception $e) {
+            Session::put('mensagem', "O avaliador " . $avaliador->name . " foi deletado com sucesso!");
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
-    
-    public function atribuir($id){
-        try{
+
+    public function atribuir($id)
+    {
+        try {
             $projetos = Projeto::where('ano', '=', '2018')
                 ->where('tipo', '=', 'normal')
-                ->where('avaliadores', '<','3')
+                ->where('avaliadores', '<', '3')
                 ->paginate(10);
             $avaliador = Avaliador::find($id);
 
             return view('admin.avaliador.atribuir', compact('projetos', 'avaliador'));
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function atribui(Request $request){
+    public function atribui(Request $request)
+    {
         dd('batata');
         $dataForm = $request->all();
-        try{
+        try {
             $projeto = Projeto::find($dataForm['projeto_id']);
             $avaliador = Avaliador::find($dataForm['avaliador_id']);
             $avaliador->projeto()->attach($projeto->id);
@@ -192,7 +202,7 @@ class AdminAvaliadorController extends Controller
             $projeto->update(['avaliadores' => $qnt]);
 
             return view('admin/avaliador/atribuir');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

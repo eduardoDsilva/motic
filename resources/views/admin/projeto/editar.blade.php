@@ -21,9 +21,10 @@
             <div class="row">
                 <h3 class="center-align">Editar projeto {{$projeto->titulo}}</h3>
                 <article class="col s12">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.projeto.update', $projeto->id) }}">
+                    <form method="POST" enctype="multipart/form-data"
+                          action="{{ route('admin.projeto.update', $projeto->id) }}">
 
-                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}"/>
 
                         <h5>Dados básicos</h5>
 
@@ -43,7 +44,8 @@
                         <div class='row'>
                             <div class="input-field col s12 m12 l12">
                                 <i class="material-icons prefix">assignment</i>
-                                <textarea name="resumo" id="textarea1" class="materialize-textarea">{{$projeto->resumo}}</textarea>
+                                <textarea name="resumo" id="textarea1"
+                                          class="materialize-textarea">{{$projeto->resumo}}</textarea>
                                 <label for="textarea1">Resumo</label>
                             </div>
                         </div>
@@ -56,7 +58,9 @@
                                     @forelse ($disciplinas as $disciplina)
                                         <option value="{{$disciplina->id}}">{{$disciplina->name}}</option>
                                     @empty
-                                        <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com o administrador.</option>
+                                        <option value="">Nenhuma disciplina cadastrada no sistema! Entre em contato com
+                                            o administrador.
+                                        </option>
                                     @endforelse
                                 </select>
                                 <label>Disciplinas</label>
@@ -66,7 +70,8 @@
                         {{csrf_field()}}
 
                         <p class="center-align">
-                            <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
+                            <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar
+                            </button>
                         </p>
 
                     </form>

@@ -43,7 +43,8 @@
                             <li class="collection-item">N° de trabalhos: {{count($escola->projeto)}}</li>
                             <li class="collection-item">N° de alunos: {{count($escola->aluno)}}</li>
                             <li class="collection-item">N° de professores: {{count($escola->professor)}}</li>
-                            <li class="collection-item">Categorias: @forelse($escola->categoria as $categoria){{$categoria->categoria.", "}}
+                            <li class="collection-item">
+                                Categorias: @forelse($escola->categoria as $categoria){{$categoria->categoria.", "}}
                                 @empty
                                     Categorias: Escola sem categorias! Contate o administrador do sistema!
                                 @endforelse

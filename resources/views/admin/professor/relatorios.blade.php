@@ -14,7 +14,8 @@
         <div class="card-panel">
             <h1 class="header center orange-text">Relatórios</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Esses são os relatórios disponíveis para os professores do sistema!</h5>
+                <h5 class="header col s12 light">Esses são os relatórios disponíveis para os professores do
+                    sistema!</h5>
             </div>
         </div>
     </div>
@@ -62,7 +63,9 @@
                             <p>Para gerar um relatório de um professor específico do sistema./p>
                         </div>
                         <div class="card-action">
-                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1" href="#modal1" >Relatório</button>
+                            <button class="modal-trigger btn" disabled type="submit" data-target="modal1"
+                                    href="#modal1">Relatório
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -118,7 +121,8 @@
                         <td>{{$professor->name}}</td>
                         <td>{{$professor->escola->name}}</td>
                         <td>
-                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href=""> <i class="small material-icons">library_books</i></a>
+                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar" href="">
+                                <i class="small material-icons">library_books</i></a>
                         </td>
                     </tr>
 

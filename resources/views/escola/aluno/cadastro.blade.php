@@ -28,7 +28,8 @@
         <select name="etapa">
             <option value="" disabled selected>Ano Letivo</option>
             @foreach($ano as $a)
-                <option value="{{$a}}" @if(isset($aluno)) @if($aluno->etapa == $a) selected @endif @endif>{{$a}}</option>
+                <option value="{{$a}}"
+                        @if(isset($aluno)) @if($aluno->etapa == $a) selected @endif @endif>{{$a}}</option>
             @endforeach
         </select>
         <label>Ano Letivo *</label>

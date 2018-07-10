@@ -19,17 +19,19 @@
             padding: 8px;
         }
 
-        .motic{
+        .motic {
             float: right;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
+
         .page-break {
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;
@@ -55,13 +57,13 @@
             <th>Projeto</th>
         </tr>
         @foreach ($escola->aluno as $aluno)
-        <tr>
-            <td>{{$aluno->name}}</td>
-            <td>{{$aluno->nascimento}}</td>
-            <td>{{$aluno->etapa}}</td>
-            <td>{{$aluno->turma}}</td>
-            <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
-        </tr>
+            <tr>
+                <td>{{$aluno->name}}</td>
+                <td>{{$aluno->nascimento}}</td>
+                <td>{{$aluno->etapa}}</td>
+                <td>{{$aluno->turma}}</td>
+                <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
+            </tr>
         @endforeach
     </table>
     <div class="page-break"></div>

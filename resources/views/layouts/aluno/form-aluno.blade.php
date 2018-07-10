@@ -29,7 +29,8 @@
                             <i class="material-icons prefix">perm_identity</i>
                             <input minlength="2" id="name" class="validate" type="text" name="name"
                                    value="{{$aluno->name or old('name')}}" required>
-                            <label data-error="Insira um nome válido!" data-success="Ok" for="name">Nome do aluno *</label>
+                            <label data-error="Insira um nome válido!" data-success="Ok" for="name">Nome do aluno
+                                *</label>
                         </div>
 
                         <div class="input-field col s12 m6 l6">
@@ -46,10 +47,12 @@
                             <select name="sexo">
                                 <option value="" disabled selected>Sexo</option>
                                 <option value="feminino"
-                                        @if(isset($aluno)) @if($aluno->sexo == 'feminino') selected @endif @endif>Feminino
+                                        @if(isset($aluno)) @if($aluno->sexo == 'feminino') selected @endif @endif>
+                                    Feminino
                                 </option>
                                 <option value="masculino"
-                                        @if(isset($aluno)) @if($aluno->sexo == 'masculino') selected @endif @endif>Masculino
+                                        @if(isset($aluno)) @if($aluno->sexo == 'masculino') selected @endif @endif>
+                                    Masculino
                                 </option>
                             </select>
                             <label>Sexo *</label>
@@ -75,11 +78,21 @@
                             <i class="material-icons prefix">confirmation_number</i>
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
-                                <option value="PP" @if(isset($aluno)) @if($aluno->camisa == 'PP')) required @endif @endif>PP</option>
-                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required @endif @endif>P</option>
-                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required @endif @endif>M</option>
-                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required @endif @endif>G</option>
-                                <option value="GG" @if(isset($aluno)) @if($aluno->camisa == 'GG')) required @endif @endif>GG</option>
+                                <option value="PP" @if(isset($aluno)) @if($aluno->camisa == 'PP'))
+                                        required @endif @endif>PP
+                                </option>
+                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required @endif @endif>
+                                    P
+                                </option>
+                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required @endif @endif>
+                                    M
+                                </option>
+                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required @endif @endif>
+                                    G
+                                </option>
+                                <option value="GG" @if(isset($aluno)) @if($aluno->camisa == 'GG'))
+                                        required @endif @endif>GG
+                                </option>
                             </select>
                             <label>Tamanho da camisa *</label>
                         </div>
@@ -97,7 +110,8 @@
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">local_phone</i>
-                            <input id="telefone" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no mínimo 8 números" type="number" name="telefone"
+                            <input id="telefone" class="validate tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Somente números e no mínimo 8 números" type="number" name="telefone"
                                    data-length="16" value="{{$aluno->telefone or old('telefone')}}">
                             <label data-error="Insira um telefone válido!" data-success="Ok"
                                    for="telefone">Telefone</label>
@@ -105,7 +119,8 @@
 
                         <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">perm_identity</i>
-                            <input id="cpf" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números" type="number" name="cpf"
+                            <input id="cpf" class="validate tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Somente números" type="number" name="cpf"
                                    data-length="11" value="{{$aluno->cpf or old('cpf')}}">
                             <label data-error="Insira um cpf válido!" data-success="Ok"
                                    for="cpf">CPF</label>
@@ -120,7 +135,9 @@
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">explore</i>
-                            <input id="cep" class="validate tooltipped" data-position="top" data-delay="50" data-tooltip="Somente números e no máximo 8 números" type="number" name="cep" data-length="8"
+                            <input id="cep" class="validate tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Somente números e no máximo 8 números" type="number" name="cep"
+                                   data-length="8"
                                    value="{{$aluno->cep or old('cep')}}">
                             <label data-error="Insira um cep válido!" data-success="Ok"
                                    for="cep">CEP</label>
@@ -189,7 +206,10 @@
                     </div>
                 </div>
                 <div class="fixed-action-btn">
-                    <button type="submit" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i></button>
+                    <button type="submit"
+                            class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                            data-position="top" data-delay="50" data-tooltip="Cadastrar"><i class="material-icons">add_circle_outline</i>
+                    </button>
                 </div>
 
             </form>

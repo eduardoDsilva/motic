@@ -14,7 +14,8 @@
         <div class="card-panel">
             <h1 class="header center orange-text">Relatórios</h1>
             <div class="row center">
-                <h5 class="header col s12 light">Esses são os relatórios disponíveis para os avaliadores do sistema!</h5>
+                <h5 class="header col s12 light">Esses são os relatórios disponíveis para os avaliadores do
+                    sistema!</h5>
             </div>
         </div>
     </div>
@@ -67,11 +68,11 @@
                         <div class="card-action">
                             <button class="btn" disabled type="submit">Gerar relatório</button>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 @endsection

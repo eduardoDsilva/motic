@@ -31,29 +31,31 @@ class EscolaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function filtro($dataForm){
-        try{
-            if($dataForm['tipo'] == 'id'){
+    public function filtro($dataForm)
+    {
+        try {
+            if ($dataForm['tipo'] == 'id') {
                 $escolas = Escola::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'nome') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $escolas = Escola::where('name', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'usuario'){
+            } else if ($dataForm['tipo'] == 'usuario') {
                 $filtro = $dataForm['search'];
                 $escolas = [User::where('username', '=', $filtro)->first()->escola];
-            }else if($dataForm['tipo'] == 'email'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'email') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $escolas = Escola::where('email', 'like', $filtro)->paginate(10);
             }
             return $escolas;
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function store($dataForm){
+    public function store($dataForm)
+    {
         $qntProjetos = $dataForm['categoria_id'];
-        try{
+        try {
             $user = User::create([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
@@ -65,7 +67,7 @@ class EscolaController extends Controller
             $this->auditoriaController->storeCreate($texto, $user->id, 'escola');
 
             $escola = Escola::create($dataForm + ['user_id' => $user->id] + ['projetos' => count($qntProjetos)]);
-            foreach ($dataForm['categoria_id'] as $categoria){
+            foreach ($dataForm['categoria_id'] as $categoria) {
                 $escola->categoria()->attach($categoria);
             }
             $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
@@ -75,16 +77,17 @@ class EscolaController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $endereco->id, 'escola');
 
-            Session::put('mensagem', "A escola ".$escola->name." foi cadastrada com sucesso!");
-        }catch (\Exception $e) {
+            Session::put('mensagem', "A escola " . $escola->name . " foi cadastrada com sucesso!");
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
 
     }
 
-    public function update($dataForm, $id){
+    public function update($dataForm, $id)
+    {
         $qntProjetos = $dataForm['categoria_id'];
-        try{
+        try {
             $user = User::find($id);
             $user->update([
                 'name' => $dataForm['name'],
@@ -103,7 +106,7 @@ class EscolaController extends Controller
 
             $escola = $user->escola;
             $escola->categoria()->detach();
-            foreach ($dataForm['categoria_id'] as $categoria){
+            foreach ($dataForm['categoria_id'] as $categoria) {
                 $escola->categoria()->attach($categoria);
             }
 
@@ -112,22 +115,23 @@ class EscolaController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $endereco->id, 'escola');
 
-            Session::put('mensagem', "A escola ".$escola->name." foi editada com sucesso!");
+            Session::put('mensagem', "A escola " . $escola->name . " foi editada com sucesso!");
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $escola = Escola::find($id);
             $escola->user()->delete($id);
             $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $escola->id, 'escola');
 
-            Session::put('mensagem', "A escola ".$escola->name." foi deletada com sucesso!");
-        }catch (\Exception $e) {
+            Session::put('mensagem', "A escola " . $escola->name . " foi deletada com sucesso!");
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

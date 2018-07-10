@@ -31,12 +31,13 @@ class ProjetoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store($dataForm){
-        try{
+    public function store($dataForm)
+    {
+        try {
             $escola = Escola::find($dataForm['escola_id']);
             $projeto = Projeto::all()
                 ->where('escola_id', '=', $escola->id);
-            if(count($projeto)>=$escola->projetos){
+            if (count($projeto) >= $escola->projetos) {
                 dd('não pode mais cadastrar projetos');
             }
             $projeto = Projeto::create($dataForm);
@@ -67,66 +68,69 @@ class ProjetoController extends Controller
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $projeto->id, 'projeto');
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function filtrar($dataForm){
-        try{
-            if($dataForm['tipo'] == 'id'){
+    public function filtrar($dataForm)
+    {
+        try {
+            if ($dataForm['tipo'] == 'id') {
                 $projetos = Projeto::where('id', '=', $dataForm['search'])->paginate(10);
-            }else if($dataForm['tipo'] == 'nome'){
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'nome') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $projetos = Projeto::where('titulo', 'like', $filtro)->paginate(10);
-            }else if($dataForm['tipo'] == 'escola') {
-                $filtro = '%'.$dataForm['search'].'%';
+            } else if ($dataForm['tipo'] == 'escola') {
+                $filtro = '%' . $dataForm['search'] . '%';
                 $escola = Escola::where('name', 'like', $filtro)->get();
-                foreach($escola as $id){
+                foreach ($escola as $id) {
                     $array[] = $id->id;
                 }
                 $projetos = Projeto::whereIn('escola_id', $array)->paginate(10);
-            }else if($dataForm['tipo'] == 'categoria'){
+            } else if ($dataForm['tipo'] == 'categoria') {
                 $categoria = Categoria::where('categoria', '=', $dataForm['search'])->get();
                 $array[] = null;
-                foreach($categoria as $id){
+                foreach ($categoria as $id) {
                     $array[] = $id->id;
                 }
                 $projetos = Projeto::whereIn('categoria_id', $array)->paginate(10);
             }
             return $projetos;
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function update($dataForm, $id){
-        try{
+    public function update($dataForm, $id)
+    {
+        try {
             $projeto = Projeto::find($id);
             $projeto->update($dataForm);
             $projeto->disciplina()->detach();
-            foreach ($dataForm['disciplina_id'] as $disciplina){
+            foreach ($dataForm['disciplina_id'] as $disciplina) {
                 $projeto->disciplina()->attach($disciplina);
             }
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $projeto->id, 'projeto');
 
-            Session::put('mensagem', "O projeto ".$projeto->titulo." foi editado com sucesso!");
+            Session::put('mensagem', "O projeto " . $projeto->titulo . " foi editado com sucesso!");
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }
 
-    public function destroy($id){
-        try{
-            DB::update('update alunos set projeto_id = ? where projeto_id = ?',[null,$id]);
-            DB::update('update professores set projeto_id = ? where projeto_id = ?',[null,$id]);
+    public function destroy($id)
+    {
+        try {
+            DB::update('update alunos set projeto_id = ? where projeto_id = ?', [null, $id]);
+            DB::update('update professores set projeto_id = ? where projeto_id = ?', [null, $id]);
             $projeto = Projeto::find($id);
             $projeto->delete($id);
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $projeto->id, 'projeto');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
     }

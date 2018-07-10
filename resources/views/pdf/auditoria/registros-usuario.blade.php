@@ -19,23 +19,24 @@
             padding: 8px;
         }
 
-        h2{
+        h2 {
             font-family: Arial;
         }
 
-
-        .motic{
+        .motic {
             float: right;
             padding-bottom: 20px;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
+
         .page-break {
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;
@@ -70,16 +71,16 @@
         </tr>
     </table>
 @else
-<h1>Registros do usuário {{$registro->nome_usuario}}</h1>
+    <h1>Registros do usuário {{$registro->nome_usuario}}</h1>
 
-<table>
-     <tr>
-         <th>ID</th>
-         <th>Tipo</th>
-         <th>Descricao</th>
-         <th>Objeto</th>
-         <th>Data</th>
-     </tr>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Descricao</th>
+            <th>Objeto</th>
+            <th>Data</th>
+        </tr>
         <tr>
             <td width="5%">{{$registro->id}}</td>
             <td width="10%">{{$registro->tipo}}</td>
@@ -87,7 +88,7 @@
             <td width="10%">{{$registro->objeto}}</td>
             <td width="25%">{{ date('d-m-Y H:i:s', strtotime($registro->created_at)) }}</td>
         </tr>
-</table>
+    </table>
 @endif
 </body>
 </html>

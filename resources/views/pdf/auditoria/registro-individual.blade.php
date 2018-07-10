@@ -19,22 +19,24 @@
             padding: 8px;
         }
 
-        h2{
+        h2 {
             font-family: Arial;
         }
 
-        .motic{
+        .motic {
             float: right;
             padding-bottom: 20px;
         }
-        .pmsl{
+
+        .pmsl {
             float: left;
         }
+
         .page-break {
             page-break-after: always;
         }
 
-        .header{
+        .header {
             width: 100%;
             height: 320px;
             padding-bottom: 20px;
@@ -53,14 +55,14 @@
     <h1>Registro - {{$auditoria->id}}</h1>
 
     <table>
-    <tr>
-         <th>ID</th>
-         <th>Tipo</th>
-         <th>Descricao</th>
-         <th>Usuário Responsável</th>
-         <th>Objeto</th>
-         <th>Data</th>
-     </tr>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Descricao</th>
+            <th>Usuário Responsável</th>
+            <th>Objeto</th>
+            <th>Data</th>
+        </tr>
         <tr>
             <td width="5%">{{$auditoria->id}}</td>
             <td width="10%">{{$auditoria->tipo}}</td>
@@ -69,7 +71,7 @@
             <td width="15%">{{$auditoria->nome_usuario}}</td>
             <td width="15%">{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>
         </tr>
-</table>
+    </table>
 @endforeach
 </body>
 </html>

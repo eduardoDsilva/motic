@@ -2,15 +2,15 @@
 
 Route::middleware(['auth', 'check.escola'])->group(function () {
 
-    Route::get('escola/home',['as' => 'escola', 'uses' => 'Escola\EscolaController@index']);
+    Route::get('escola/home', ['as' => 'escola', 'uses' => 'Escola\EscolaController@index']);
 
-    require_once ('aluno/aluno.php');
+    require_once('aluno/aluno.php');
 
-    require_once ('professor/professor.php');
+    require_once('professor/professor.php');
 
-    require_once ('projeto/projeto.php');
+    require_once('projeto/projeto.php');
 
-    require_once ('suplente/suplente.php');
+    require_once('suplente/suplente.php');
 
 });
 

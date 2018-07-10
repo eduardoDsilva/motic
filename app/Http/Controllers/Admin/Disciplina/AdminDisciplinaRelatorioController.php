@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 class AdminDisciplinaRelatorioController
 {
 
-    public function index(){
+    public function index()
+    {
         return view('admin/disciplinas/relatorios');
     }
 

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('titulo','Motic Escola')
@@ -73,9 +72,16 @@
                             <td>{{$suplente->categoria->categoria}}</td>
                             <td>{{$suplente->escola->name}}</td>
                             <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"  href="{{ route("escola.suplente.edit", $suplente->id) }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar"  href="#modal1" data-id="{{$suplente->id}}" data-name="{{$suplente->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i class="small material-icons">delete</i></a>
-                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"  href="{{ route("escola.suplente.show", $suplente->id) }}"> <i class="small material-icons">library_books</i></a>
+                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                                   data-tooltip="Editar" href="{{ route("escola.suplente.edit", $suplente->id) }}"><i
+                                            class="small material-icons">edit</i></a>
+                                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top"
+                                   data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$suplente->id}}"
+                                   data-name="{{$suplente->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i
+                                            class="small material-icons">delete</i></a>
+                                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"
+                                   href="{{ route("escola.suplente.show", $suplente->id) }}"> <i
+                                            class="small material-icons">library_books</i></a>
                             </td>
                         </tr>
                     @empty
@@ -95,7 +101,9 @@
 
             <div class="fixed-action-btn">
                 <div class="fixed-action-btn">
-                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar projeto suplente" href="{{route ('escola.suplente.create')}}"><i class="material-icons">add</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                       data-position="top" data-delay="50" data-tooltip="Adicionar projeto suplente"
+                       href="{{route ('escola.suplente.create')}}"><i class="material-icons">add</i></a>
                 </div>
             </div>
 

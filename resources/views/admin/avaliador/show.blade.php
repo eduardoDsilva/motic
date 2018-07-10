@@ -48,14 +48,22 @@
                         </ul>
                         <ul class="collection with-header col s12 m12 l6">
                             <li class="collection-header"><h4 class="center-align">Endereço</h4></li>
-                            <li class="collection-item">Rua:  @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->rua}}@endif</li>
-                            <li class="collection-item">Número: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->numero}}@endif</li>
-                            <li class="collection-item">Bairro: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->bairro}}@endif</li>
-                            <li class="collection-item">Complemento: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->complemento}}@endif</li>
-                            <li class="collection-item">CEP: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->cep}}@endif</li>
-                            <li class="collection-item">Cidade: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->cidade}}@endif</li>
-                            <li class="collection-item">Estado: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->estado}}@endif</li>
-                            <li class="collection-item">País: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->pais}}@endif</li>
+                            <li class="collection-item">
+                                Rua: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->rua}}@endif</li>
+                            <li class="collection-item">
+                                Número: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->numero}}@endif</li>
+                            <li class="collection-item">
+                                Bairro: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->bairro}}@endif</li>
+                            <li class="collection-item">
+                                Complemento: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->complemento}}@endif</li>
+                            <li class="collection-item">
+                                CEP: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->cep}}@endif</li>
+                            <li class="collection-item">
+                                Cidade: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->cidade}}@endif</li>
+                            <li class="collection-item">
+                                Estado: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->estado}}@endif</li>
+                            <li class="collection-item">
+                                País: @if(isset($avaliador->user->endereco->id)){{$avaliador->user->endereco->pais}}@endif</li>
                         </ul>
                         <ul class="collection with-header col s12 m12 l12">
                             <li class="collection-header"><h4 class="center-align">Projetos</h4></li>

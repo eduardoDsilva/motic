@@ -55,96 +55,106 @@
                     </div>
                 </form>
             </div>
-                <table class="centered responsive-table highlight bordered">
-                    <thead>
+            <table class="centered responsive-table highlight bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descricao</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($disciplinas as $disciplina)
                     <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Descricao</th>
-                        <th>Ações</th>
+                        <td>{{$disciplina->id}}</td>
+                        <td>{{$disciplina->name}}</td>
+                        <td>{{$disciplina->descricao}}</td>
+                        <td>
+                            <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                               data-tooltip="Editar" href="{{ route("admin.disciplina.edit", $disciplina->id) }}"><i
+                                        class="small material-icons">edit</i></a>
+                            <a data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                               data-tooltip="Deletar" href="#modal2" data-id="{{$disciplina->id}}"
+                               data-name="{{$disciplina->name}}" data-tipo="disciplina"><i class="small material-icons">delete</i></a>
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @forelse ($disciplinas as $disciplina)
-                        <tr>
-                            <td>{{$disciplina->id}}</td>
-                            <td>{{$disciplina->name}}</td>
-                            <td>{{$disciplina->descricao}}</td>
-                            <td>
-                                <a class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Editar" href="{{ route("admin.disciplina.edit", $disciplina->id) }}"><i class="small material-icons">edit</i></a>
-                                <a data-target="modal2" class="modal-trigger tooltipped" data-position="top" data-delay="50" data-tooltip="Deletar" href="#modal2" data-id="{{$disciplina->id}}" data-name="{{$disciplina->name}}" data-tipo="disciplina"><i class="small material-icons">delete</i></a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td>Nenhum registro encontrado</td>
-                            <td>Nenhum registro encontrado</td>
-                            <td>Nenhum registro encontrado</td>
-                            <td>Nenhum registro encontrado</td>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
+                @empty
+                    <tr>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                        <td>Nenhum registro encontrado</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
 
-                <div class="fixed-action-btn">
-                    <a data-target="modal3" data-target="modal3" class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger" data-position="top" data-delay="50" data-tooltip="Adicionar disciplina" href="#modal3"><i class="material-icons">add</i></a>
+            <div class="fixed-action-btn">
+                <a data-target="modal3" data-target="modal3"
+                   class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
+                   data-position="top" data-delay="50" data-tooltip="Adicionar disciplina" href="#modal3"><i
+                            class="material-icons">add</i></a>
+            </div>
+
+            <!-- Modal Structure -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <h4>Deletar</h4>
+                    <p>Você tem certeza que deseja deletar a disciplina abaixo?</p>
+                    <div class="row">
+                        <label for="id_delete">ID</label>
+                        <div class="input-field col s12">
+                            <input disabled class="validate" type="number" id="id_delete">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="name_delete">Nome da disciplina</label>
+                        <div class="input-field col s12">
+                            <input disabled class="validate" type="text" id="name_delete">
+                        </div>
+                    </div>
                 </div>
+                <div class="modal-footer">
+                    <a class="btn red delete">Sim</a>
+                </div>
+            </div>
 
-                <!-- Modal Structure -->
-                <div id="modal2" class="modal">
+            <!-- Modal Structure -->
+            <div id="modal3" class="modal">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplina.store') }}">
                     <div class="modal-content">
-                        <h4>Deletar</h4>
-                        <p>Você tem certeza que deseja deletar a disciplina abaixo?</p>
+                        <h4>Adicionar disciplina</h4>
+
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}"/>
+
                         <div class="row">
-                            <label for="id_delete">ID</label>
-                            <div class="input-field col s12">
-                                <input disabled class="validate" type="number" id="id_delete">
+                            <div class="input-field col s12 m12 l12">
+                                <i class="material-icons prefix">book</i>
+                                <label for="nome">Nome</label>
+                                <input type="text" name="name" required>
                             </div>
                         </div>
-                        <div class="row">
-                            <label for="name_delete">Nome da disciplina</label>
-                            <div class="input-field col s12">
-                                <input disabled class="validate" type="text" id="name_delete">
+                        <div class='row'>
+                            <div class="input-field col s12 m12 l12">
+                                <i class="material-icons prefix">assignment</i>
+                                <textarea name="descricao" data-length="240" id="textarea1"
+                                          class="materialize-textarea"></textarea>
+                                <label for="textarea1">Descrição</label>
+                                <input disabled class="validate" hidden type="text" id="tipo">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn red delete">Sim</a>
+                        <button class="waves-effect waves-light btn" type="submit"><i
+                                    class="material-icons right">send</i>salvar
+                        </button>
                     </div>
-                </div>
-
-                <!-- Modal Structure -->
-                <div id="modal3" class="modal">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.disciplina.store') }}">
-                        <div class="modal-content">
-                            <h4>Adicionar disciplina</h4>
-
-                            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-
-                            <div class="row">
-                                <div class="input-field col s12 m12 l12">
-                                    <i class="material-icons prefix">book</i>
-                                    <label for="nome">Nome</label>
-                                    <input type="text" name="name" required>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class="input-field col s12 m12 l12">
-                                    <i class="material-icons prefix">assignment</i>
-                                    <textarea name="descricao" data-length="240" id="textarea1" class="materialize-textarea"></textarea>
-                                    <label for="textarea1">Descrição</label>
-                                    <input disabled class="validate" hidden type="text" id="tipo">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i>salvar</button>
-                        </div>
-                    </form>
-                </div>
-
+                </form>
             </div>
+
         </div>
+    </div>
     </div>
 
 @endsection

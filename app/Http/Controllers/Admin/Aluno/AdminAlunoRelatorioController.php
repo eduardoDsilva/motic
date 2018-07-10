@@ -23,54 +23,55 @@ class AdminAlunoRelatorioController
         $this->alunoController = $alunoController;
     }
 
-    public function index(){
+    public function index()
+    {
         $alunos = Aluno::orderBy('name', 'asc')->paginate();
         return view('admin.aluno.relatorios', compact('alunos'));
     }
 
-    public function filtrar(Request $request){
+    public function filtrar(Request $request)
+    {
         try {
             $dataForm = $request->all();
             $alunos = $this->alunoController->filtro($dataForm);
             $modal = true;
             return view('admin.aluno.relatorios', compact('alunos', 'modal'));
-        }catch(\Exception $e){
-            return "Erro ". $e->getMessage();
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
         }
     }
 
     public function todosAlunosResumo()
     {
-        $alunos = Aluno::orderBy('name','asc')->get();
+        $alunos = Aluno::orderBy('name', 'asc')->get();
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.aluno.todos-alunos', compact('alunos'))
-            ->stream('todos-alunos-motic'.date('Y').'.pdf');
+            ->stream('todos-alunos-motic' . date('Y') . '.pdf');
     }
 
     public function alunosPorEscola()
     {
-        $escolas = Escola::orderBy('name','asc')->get();
-        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
+        $escolas = Escola::orderBy('name', 'asc')->get();
+        return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.aluno.escola-alunos', compact('escolas'))
-            ->stream('todos-alunos-por-escola-motic'.date('Y').'.pdf');
+            ->stream('todos-alunos-por-escola-motic' . date('Y') . '.pdf');
     }
 
     public function alunoIndividual($id)
     {
         $aluno = Aluno::find($id);
-        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
+        return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.aluno.aluno-individual', compact('aluno'))
-            ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');
+            ->stream('aluno-' . $aluno->name . '-' . date('Y') . '.pdf');
     }
 
     public function todosAlunosCompleto()
     {
         $alunos = Aluno::all();
-        return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
+        return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.aluno.todos-alunos-completo', compact('alunos'))
-            ->stream('alunos-completo-'.date('Y').'.pdf');
+            ->stream('alunos-completo-' . date('Y') . '.pdf');
     }
-
 
 
 }
