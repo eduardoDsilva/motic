@@ -21,7 +21,7 @@
         <div class="card-panel">
             <div class="row">
                 <a href="{{route ('escola.projeto')}}">
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6 l6">
                         <div class="card hoverable blue darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">library_add</i>
@@ -33,8 +33,8 @@
                     </div>
                 </a>
                 <a href="{{route ('escola.aluno')}}">
-                    <div class="col s12 m6 l4">
-                        <div class="card hoverable pink darken-2">
+                    <div class="col s12 m6 l6">
+                        <div class="card hoverable purple darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
                             </div>
@@ -45,8 +45,8 @@
                     </div>
                 </a>
                 <a href="{{route ('escola.professor')}}">
-                    <div class="col s12 m6 l4">
-                        <div class="card hoverable orange darken-2">
+                    <div class="col s12 m6 l6">
+                        <div class="card hoverable green darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
                             </div>
@@ -57,7 +57,7 @@
                     </div>
                 </a>
                 <a href="{{route ('escola.suplente')}}">
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6 l6">
                         <div class="card hoverable red darken-2">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">library_add</i>

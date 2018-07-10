@@ -55,8 +55,8 @@ class AdminSuplenteController extends Controller
     }
 
     public function store(Request $request){
-        $dataForm = $request->all() + ['tipo' => 'suplente'];
         try{
+            $dataForm = $request->all() + ['tipo' => 'suplente'];
             $this->suplenteController->store($dataForm);
             return redirect()->route("admin.suplente");
         }catch (\Exception $e) {

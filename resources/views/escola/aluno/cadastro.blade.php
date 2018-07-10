@@ -8,7 +8,7 @@
     @if(isset($aluno))
         <a href="" class="breadcrumb">Editar</a>
     @else
-        <a href="{{route ('escola/aluno/create')}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('escola.aluno.create')}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 
@@ -37,8 +37,8 @@
 
 @section('form')
 
-    class="col s12" method="POST" enctype="multipart/form-data"
-    action="@if(isset($aluno)){{ route("escola.aluno.edit", $aluno->id) }}
+    class="col s12" method="post" enctype="multipart/form-data"
+    action="@if(isset($aluno)){{ route('escola.aluno.update', $aluno->id) }}
     @else {{ route('escola.aluno.store') }}@endif"
 
 @endsection

@@ -19,7 +19,7 @@
                 <p class="header col s12 light">- Deve-se selecionar exatamente 3 alunos.</p>
             </div>
             <article class="col s12">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('escola/projeto/store') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('escola.projeto.store') }}">
 
                     <h5>Dados básicos</h5>
 

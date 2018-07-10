@@ -42,7 +42,6 @@ class EscolaProfessorController extends Controller
     public function create(){
         try{
             $escola = Escola::find(Auth::user()->escola->id);
-
             return view('escola.professor.cadastro', compact('escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -50,10 +49,9 @@ class EscolaProfessorController extends Controller
     }
 
     public function store(ProfessorCreateFormRequest $request){
-        $dataForm = $request->all()+ ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
         try{
+            $dataForm = $request->all()+ ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
             $this->professorController->store($dataForm);
-
             return redirect()->route("escola.professor");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -74,7 +72,6 @@ class EscolaProfessorController extends Controller
             $professor = Professor::find($id);
             $escola = Escola::find(Auth::user()->escola->id);
             $titulo = 'Editar professor: '.$professor->name;
-
             return view("escola.professor.cadastro", compact('professor', 'titulo', 'escola'));
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -92,10 +89,9 @@ class EscolaProfessorController extends Controller
     }
 
     public function update(ProfessorUpdateFormRequest $request, $id){
-        $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
         try{
+            $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
             $this->professorController->update($dataForm);
-
             return redirect()->route("escola.professor");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

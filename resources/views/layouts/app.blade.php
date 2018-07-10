@@ -102,7 +102,7 @@
             }else if(tipo == 'projeto'){
                 $.ajax({
                     type: 'GET',
-                    url: 'destroy/' + id,
+                    url: 'projeto/destroy/' + id,
                     success: function(data) {
                         location.reload();
                     }

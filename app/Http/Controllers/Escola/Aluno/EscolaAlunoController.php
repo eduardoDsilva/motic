@@ -68,8 +68,8 @@ class EscolaAlunoController extends Controller
     }
 
     public function store(AlunoCreateFormRequest $request){
-        $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
+            $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
             $this->alunoController->store($dataForm);
             return redirect()->route("escola.aluno");
         }catch (\Exception $e) {
@@ -117,8 +117,8 @@ class EscolaAlunoController extends Controller
     }
 
     public function update(AlunoUpdateFormRequest $request, $id){
-        $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
         try{
+            $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
             $alunos = $this->alunoController->update($dataForm, $id);
             return redirect()->route("escola.aluno", compact('alunos'));
         }catch (\Exception $e) {

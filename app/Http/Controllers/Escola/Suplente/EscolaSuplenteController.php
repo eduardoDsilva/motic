@@ -65,10 +65,9 @@ class EscolaSuplenteController extends Controller
     }
 
     public function store(Request $request){
-        $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try{
+            $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id] + ['tipo' => 'suplente'];
             $this->suplenteController->store($dataForm);
-
             return redirect()->route("escola.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -111,10 +110,9 @@ class EscolaSuplenteController extends Controller
     }
 
     public function update(Request $request, $id){
-        $dataForm = $request->all();
         try{
+            $dataForm = $request->all();
             $this->suplenteController->update($dataForm, $id);
-
             return redirect()->route("escola.suplente");
         }catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
