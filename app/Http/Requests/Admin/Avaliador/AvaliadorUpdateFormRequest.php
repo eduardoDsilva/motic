@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Avaliador;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AvaliadorCreateFormRequest extends FormRequest
+class AvaliadorUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +32,7 @@ class AvaliadorCreateFormRequest extends FormRequest
             'email'                 => 'required|email',
             'telefone'              => 'sometimes|nullable|digits_between:8, 16',
             'instituicao'           => 'required|regex:/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/',
-            'cpf'                   => 'sometimes|nullable|digits:11|unique:alunos|unique:professores|unique:avaliadores',
+            'cpf'                   => 'sometimes|nullable|digits:11',
             'cep'                   => 'sometimes|nullable|digits:8',
             'bairro'                => 'sometimes|nullable|string|max:100',
             'rua'                   => 'sometimes|nullable|string|max:100',
@@ -62,7 +62,6 @@ class AvaliadorCreateFormRequest extends FormRequest
 
             'email.required' => 'O campo email é de preenchimento obrigatório!',
             'email.email' => 'Insira um e-mail válido!',
-            'email.unique' => 'E-mail já cadastrado no sistema',
 
             'telefone.digits_between' => 'Insira um telefone que tenha entre 8 e 16 dígitos!',
 
@@ -70,12 +69,10 @@ class AvaliadorCreateFormRequest extends FormRequest
             'insituicao.string' => 'Insira uma instituição válida',
 
             'cpf.digits' => 'Insira um CPF de 11 caracteres!',
-            'cpf.unique' => 'CPF já cadastrado no sistema!',
 
             'cep.digits' => 'Insira um cep válido!',
 
             'email.email' => 'Insira um e-mail válido!',
-            'email.unique' => 'E-mail já cadastrado no sistema',
 
             'bairro.max' => 'Insira um bairro válido!',
             'bairro.string' => 'Não insira caracteres especiais',
@@ -96,7 +93,6 @@ class AvaliadorCreateFormRequest extends FormRequest
             'username.required' => 'O campo usuário é de preenchimento obrigatório!',
             'username.string' => 'Insira um usuário sem números!',
             'username.between' => 'Insira um usuário entre 5 e 20 caracteres!',
-            'username.unique' => 'O campo usuário já está em uso!',
 
             'password.required' => 'O campo senha é de preenchimento obrigatório!',
             'password.min' => 'A senha deve ter no mínimo 6 caractéres',

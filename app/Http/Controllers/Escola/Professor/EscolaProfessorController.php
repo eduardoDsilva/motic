@@ -50,7 +50,7 @@ class EscolaProfessorController extends Controller
 
     public function store(ProfessorCreateFormRequest $request){
         try{
-            $dataForm = $request->all()+ ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
+            $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
             $this->professorController->store($dataForm);
             return redirect()->route("escola.professor");
         }catch (\Exception $e) {

@@ -45,7 +45,11 @@ class EscolaProjetoController extends Controller
             $disciplinas = Disciplina::all();
             $escola = Escola::find(Auth::user()->escola->id);
 
-            $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
+            $projetos = DB::table('projetos')
+                ->select('categoria_id')
+                ->where('escola_id', '=', $escola->id)
+                ->where('tipo', '=', 'normal')
+                ->get();
             $categoria_id = [];
             foreach($projetos as $projeto){
                 $categoria_id[] = $projeto->categoria_id;
