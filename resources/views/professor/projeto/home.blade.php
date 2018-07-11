@@ -9,14 +9,12 @@
 
 @section('content')
 
-    <div class="section container">
-        <div class="card-panel">
-            <h1 class="header center orange-text">Projeto</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Esse é o projeto que você faz parte.</h5>
-            </div>
-        </div>
-    </div>
+@section('titulo-header', 'Projeto')
+
+@section('conteudo-header', 'Esse é o projeto que você faz parte')
+
+@includeIf('_layouts._sub-titulo')
+
     <div class="section container">
         <div class="card-panel">
             <div class="row">

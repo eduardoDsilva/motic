@@ -33,6 +33,16 @@
 
 @section('content')
 
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+@section('titulo-header', 'Cadastrar escola')
+
+@section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório")
+
+@includeIf('_layouts._sub-titulo')
+
     @includeIf('_layouts._professor._form-professor')
 
 @endsection

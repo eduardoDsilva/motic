@@ -8,14 +8,15 @@
 
 @section('content')
 
-    <div class="section container">
-        <div class="card-panel">
-            <h1 class="header center orange-text">Professor</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Bem vindo, {{ Auth::user()->name }}!</h5>
-            </div>
-        </div>
-    </div>
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+@section('titulo-header', 'Professor')
+
+@section('conteudo-header', 'Bem vindo, '.Auth::user()->name)
+
+@includeIf('_layouts._sub-titulo')
 
     <div class="section container col s12 m6 l8">
         <div class="card-panel">

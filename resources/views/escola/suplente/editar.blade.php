@@ -16,6 +16,16 @@
         </div>
     @endif
 
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+@section('titulo-header', 'Editar projeto suplente')
+
+@section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório.")
+
+@includeIf('_layouts._sub-titulo')
+
     <section class="section container">
         <div class="card-panel">
             <div class="row">

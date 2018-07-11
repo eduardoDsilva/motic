@@ -46,6 +46,16 @@
 
 @section('content')
 
-    @include('layouts.aluno.form-aluno')
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+@section('titulo-header', 'Cadastrar aluno')
+
+@section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório.")
+
+@includeIf('_layouts._sub-titulo')
+
+    @include('_layouts._aluno._form-aluno')
 
 @endsection

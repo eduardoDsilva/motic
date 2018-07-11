@@ -16,10 +16,19 @@
         </div>
     @endif
 
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+    @section('titulo-header', 'Editar projeto')
+
+    @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório.")
+
+    @includeIf('_layouts._sub-titulo')
+
     <section class="section container">
         <div class="card-panel">
             <div class="row">
-                <h3 class="center-align">Editar projeto {{$projeto->titulo}}</h3>
                 <article class="col s12">
                     <form method="POST" enctype="multipart/form-data"
                           action="{{ route('admin.projeto.update', $projeto->id) }}">
@@ -31,12 +40,12 @@
                         <div class="row">
                             <div class="input-field col s12 m12 l6">
                                 <i class="material-icons prefix">perm_identity</i>
-                                <label for="nome">Título</label>
+                                <label for="nome">Título *</label>
                                 <input type="text" name="titulo" value="{{$projeto->titulo}}" required>
                             </div>
                             <div class="input-field col s12 m12 l6">
                                 <i class="material-icons prefix">perm_identity</i>
-                                <label for="nome">Área</label>
+                                <label for="nome">Área */label>
                                 <input type="text" name="area" value="{{$projeto->area}}" required>
                             </div>
                         </div>
@@ -46,7 +55,7 @@
                                 <i class="material-icons prefix">assignment</i>
                                 <textarea name="resumo" id="textarea1"
                                           class="materialize-textarea">{{$projeto->resumo}}</textarea>
-                                <label for="textarea1">Resumo</label>
+                                <label for="textarea1">Resumo *</label>
                             </div>
                         </div>
 
@@ -63,7 +72,7 @@
                                         </option>
                                     @endforelse
                                 </select>
-                                <label>Disciplinas</label>
+                                <label>Disciplinas *</label>
                             </div>
                         </div>
 

@@ -10,14 +10,14 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        <div class="center-align">
-            <div class="chip green">
-                {{Session::get('mensagem')}}
-                <i class="close material-icons">close</i>
-            </div>
+    if(Session::get('mensagem'))
+    <div class="center-align">
+        <div class="chip green">
+            {{Session::get('mensagem')}}
+            <i class="close material-icons">close</i>
         </div>
-        {{Session::forget('mensagem')}}
+    </div>
+    {{Session::forget('mensagem')}}
     @endif
 
     <div class="section container">

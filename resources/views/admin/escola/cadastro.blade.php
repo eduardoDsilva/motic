@@ -25,14 +25,19 @@
         </div>
     @endif
 
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+    @section('titulo-header', 'Cadastrar escola')
+
+    @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório")
+
+    @includeIf('_layouts._sub-titulo')
+
     <div class="section container">
         <div class="card-panel">
             <div class="row">
-                <h3 class="header center orange-text">Cadastrar escola</h3>
-                <div class="row">
-                    <p class="header col s12 light">- Os campos com ' * ' são de preenchimento obrigatório.</p>
-                </div>
-                <div class="divider"></div>
                 <form class="col s12" method="POST" enctype="multipart/form-data"
                       action="
                             @if(isset($escola)) {{ route("admin.escola.update", $escola->user->id) }}

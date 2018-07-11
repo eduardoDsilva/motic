@@ -21,10 +21,7 @@
 <body>
 
 <header>
-    <nav class="nav blue">
         @include('_layouts._nav')
-    </nav>
-
 </header>
 
 <main>
@@ -39,8 +36,6 @@
                 <p class="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 </p>
-
-
             </div>
             <div class="col l3 s12">
                 <h5 class="white-text">Sobre</h5>

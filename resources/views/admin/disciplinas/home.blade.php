@@ -20,14 +20,15 @@
         </div>
     @endif
 
-    <div class="section container">
-        <div class="card-panel">
-            <h1 class="header center orange-text">Disciplinas</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Essas são as disciplinas cadastradas no sistema!</h5>
-            </div>
-        </div>
-    </div>
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+    @section('titulo-header', 'Disciplinas')
+
+    @section('conteudo-header', "Essas são as disciplinas cadastradas no sistema!")
+
+    @includeIf('_layouts._sub-titulo')
 
     <div class="section container">
         <div class="card-panel">

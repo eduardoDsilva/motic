@@ -10,15 +10,15 @@
 
 @section('content')
 
-    <div class="section container">
-        <div class="card-panel">
-            <h1 class="header center orange-text">Relatórios</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">Esses são os relatórios disponíveis para os professores do
-                    sistema!</h5>
-            </div>
-        </div>
-    </div>
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+    @section('titulo-header', 'Relatórios professores')
+
+    @section('conteudo-header', 'Esses são os relatórios dos professores disponíveis no sistema!')
+
+    @includeIf('_layouts._sub-titulo')
 
     <div class="section container col s12 m4 l8">
         <div class="card-panel">

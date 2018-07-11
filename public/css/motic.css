@@ -1,9 +1,13 @@
-body{
-    background-color:#F0F0F0;
+body {
+    background-color: #F0F0F0;
     padding-left: 300px;
 }
 
-@media only screen and (max-width : 992px) {
+.color-nav {
+    background-color: #F0F0F0;
+}
+
+@media only screen and (max-width: 992px) {
     header, main, footer, body {
         padding-left: 0;
     }

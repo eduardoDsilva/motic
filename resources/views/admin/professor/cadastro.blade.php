@@ -14,6 +14,16 @@
 
 @section('campo-escola')
 
+    @if(Session::get('mensagem'))
+        @include('_layouts._mensagem-erro')
+    @endif
+
+    @section('titulo-header', 'Cadastrar escola')
+
+    @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório")
+
+    @includeIf('_layouts._sub-titulo')
+
     <div class="input-field col s12 m6 l6">
         <i class="material-icons prefix">people</i>
         <select name="escola_id">

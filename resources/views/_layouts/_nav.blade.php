@@ -1,9 +1,16 @@
-<div class="container">
     <div class="navbar-fixed">
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <div class="col s12">
-            @yield('breadcrumb')
-        </div>
+        <nav>
+            <div class="blue">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <div class="col s12">
+                            @yield('breadcrumb')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <ul class="side-nav fixed" id="mobile-demo">
@@ -12,9 +19,9 @@
         @else
             <li>
                 <div class="user-view blue">
-                    <a href="#!user"><i class="large material-icons">account_circle</i></a>
-                    <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
-                    <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
+                    <h1 class="white-text flow-text">MOTIC</h1>
+                    <span class="white-text name">{{ Auth::user()->name }}</span>
+                    <span class="white-text email">{{ Auth::user()->email }}</span>
                 </div>
             </li>
             @if(Auth::user()->tipoUser == 'admin')
@@ -28,5 +35,4 @@
             @endif
         @endif
     </ul>
-</div>
-</div>
+
