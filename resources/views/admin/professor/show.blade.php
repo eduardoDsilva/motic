@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('_layouts._app')
 
 @section('titulo','Motic Admin')
 
@@ -10,6 +10,6 @@
 
 @section('content')
 
-    @includeIf('layouts.professor.show-professor')
+    @includeIf('_layouts._professor._show-professor')
 
 @endsection

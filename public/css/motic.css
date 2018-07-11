@@ -3,10 +3,6 @@ body{
     padding-left: 300px;
 }
 
-.batata{
-    background-color:#F0F0F0;
-}
-
 @media only screen and (max-width : 992px) {
     header, main, footer, body {
         padding-left: 0;

@@ -22,7 +22,7 @@
 
 <header>
     <nav class="nav blue">
-        @include('layouts.nav')
+        @include('_layouts._nav')
     </nav>
 
 </header>
