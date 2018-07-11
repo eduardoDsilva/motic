@@ -63,28 +63,11 @@
 <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(document).on('click', '#auditoria', function () {
-        $('#id_auditoria').html('');
-        $('#id_auditoria').append($(this).data('id'));
-        $('#tipo_auditoria').html('');
-        $('#tipo_auditoria').append($(this).data('tipo'));
-        $('#descricao_auditoria').html('');
-        $('#descricao_auditoria').append($(this).data('descricao'));
-        $('#usuario_auditoria').html('');
-        $('#usuario_auditoria').append($(this).data('user_id'));
-        $('#responsavel_auditoria').html('');
-        $('#responsavel_auditoria').append($(this).data('nome_usuario'));
-    });
+    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(b).9(\'d\',\'#f\',h(){$(\'#4\').1(\'\');$(\'#4\').2($(3).0(\'a\'));$(\'#5\').1(\'\');$(\'#5\').2($(3).0(\'c\'));$(\'#6\').1(\'\');$(\'#6\').2($(3).0(\'e\'));$(\'#7\').1(\'\');$(\'#7\').2($(3).0(\'g\'));$(\'#8\').1(\'\');$(\'#8\').2($(3).0(\'i\'))});',19,19,'data|html|append|this|id_auditoria|tipo_auditoria|descricao_auditoria|usuario_auditoria|responsavel_auditoria|on|id|document|tipo|click|descricao|auditoria|user_id|function|nome_usuario'.split('|'),0,{}))
 </script>
 
 <script type="text/javascript">
-    $(document).on('click', '.modal-trigger', function () {
-        $('#id_delete').val($(this).data('id'));
-        $('#name_delete').val($(this).data('name'));
-        $('#projeto').val($(this).data('projeto'));
-        $('#tipo').val($(this).data('tipo'));
-    });
-
+    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(e).7(\'d\',\'.9-8\',5(){$(\'#6\').0($(2).1(\'a\'));$(\'#b\').0($(2).1(\'c\'));$(\'#4\').0($(2).1(\'4\'));$(\'#3\').0($(2).1(\'3\'))});',15,15,'val|data|this|tipo|projeto|function|id_delete|on|trigger|modal|id|name_delete|name|click|document'.split('|'),0,{}))
     $('.modal-footer').on('click', '.delete', function () {
         id = $('#id_delete').val();
         projeto = $('#projeto').val();
@@ -152,71 +135,28 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
-        $('#alunos').change(function (event) {
-            var alunos = $('#alunos').val();
-            if (alunos.length == 3) {
-                $("#envia").prop("disabled", false);
-            } else if (alunos.length > 3) {
-                $("#envia").prop("disabled", true);
-                alert("Selecione no máximo 3 alunos");
-            } else {
-                $("#envia").prop("disabled", true);
-            }
+    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(f).b(5(){$(\'#0\').g(5(a){c 0=$(\'#0\').d();6(0.7==3){$("#1").2("4",e)}8 6(0.7>3){$("#1").2("4",9);h("i j kál 3 0")}8{$("#1").2("4",9)}})});',22,22,'alunos|envia|prop||disabled|function|if|length|else|true|event|ready|var|val|false|document|change|alert|Selecione|no|m|ximo'.split('|'),0,{}))
 
-        });
-    });
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(1).2(3(){$(\'4.0\').0({5:6})});',7,7,'tabs|document|ready|function|ul|swipeable|true'.split('|'),0,{}))
 
-    $(document).ready(function () {
-        $('ul.tabs').tabs({
-            swipeable: true
-        });
-    });
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(1).2(3(){$(\'.0\').0()});',4,4,'sidenav|document|ready|function'.split('|'),0,{}))
 
-    $(document).ready(function () {
-        $('.sidenav').sidenav();
-    });
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'.3\').4({5:6})});',7,7,'document|ready|function|tooltipped|tooltip|delay|50'.split('|'),0,{}))
 
-    $(document).ready(function () {
-        $('.tooltipped').tooltip({delay: 50});
-    });
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-    $(document).ready(function () {
-        $('.modal').modal();
-    });
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'3\').4()});',5,5,'document|ready|function|select|material_select'.split('|'),0,{}))
+
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(1).2(3(){$(\'.0\').0()});',4,4,'modal|document|ready|function'.split('|'),0,{}))
 
     @yield('modal')
 
-    $(".dropdown-button").dropdown();
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(".0-1").0();',2,2,'dropdown|button'.split('|'),0,{}))
 
-    // Initialize collapse button
-    $(".button-collapse").sideNav();
-    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-    //$('.collapsible').collapsible();
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(".0-1").2();',3,3,'button|collapse|sideNav'.split('|'),0,{}))
 
-    $('.datepicker').pickadate({
-        monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-        weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-        today: 'Hoje',
-        clear: 'Limpar',
-        close: 'Pronto',
-        labelMonthNext: 'Próximo mês',
-        labelMonthPrev: 'Mês anterior',
-        labelMonthSelect: 'Selecione um mês',
-        labelYearSelect: 'Selecione um ano',
-        selectMonths: true,
-        selectYears: 100,
-        max: new Date(2018, 7, 14),
-        format: 'dd-mm-yyyy'
-    });
-    $(document).ready(function () {
-        $('.modal-trigger').leanModal();
-    });
+    eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(\'.L\').G({w:[\'A\',\'K\',\'0ço\',\'Z\',\'13\',\'15\',\'6\',\'8\',\'9\',\'b\',\'c\',\'d\'],e:[\'f\',\'g\',\'0\',\'h\',\'i\',\'j\',\'k\',\'l\',\'n\',\'p\',\'q\',\'r\'],t:[\'u\',\'v\',\'1ça\',\'x\',\'y\',\'z\',\'2áB\'],C:[\'E\',\'F\',\'1\',\'5\',\'H\',\'I\',\'2\'],J:[\'D\',\'S\',\'T\',\'Q\',\'Q\',\'S\',\'S\'],N:\'O\',P:\'R\',U:\'V\',W:\'XóY mês\',10:\'Mês 11\',12:\'3 4 mês\',16:\'3 4 17\',18:19,1a:1b,1c:1d 1e(1f,7,14),1g:\'1h-1i-1j\'});',62,82,'Mar|Ter|Sab|Selecione|um|Qua|Julho||Agosto|Setembro||Outubro|Novembro|Dezembro|monthsShort|Jan|Fev|Abr|Mai|Jun|Jul|Ago||Set||Out|Nov|Dez||weekdaysFull|Domingo|Segunda|monthsFull|Quarta|Quinta|Sexta|Janeiro|do|weekdaysShort||Dom|Seg|pickadate|Qui|Sex|weekdaysLetter|Fevereiro|datepicker||today|Hoje|clear||Limpar|||close|Pronto|labelMonthNext|Pr|ximo|Abril|labelMonthPrev|anterior|labelMonthSelect|Maio||Junho|labelYearSelect|ano|selectMonths|true|selectYears|100|max|new|Date|2018|format|dd|mm|yyyy'.split('|'),0,{}))
+
+    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'.3-4\').5()});',6,6,'document|ready|function|modal|trigger|leanModal'.split('|'),0,{}))
+
 </script>
 
 </body>

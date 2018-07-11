@@ -39,14 +39,8 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled selected>Sexo</option>
-                                <option value="feminino"
-                                        @if(isset($aluno)) @if($aluno->sexo == 'feminino') selected @endif @endif>
-                                    Feminino
-                                </option>
-                                <option value="masculino"
-                                        @if(isset($aluno)) @if($aluno->sexo == 'masculino') selected @endif @endif>
-                                    Masculino
-                                </option>
+                                <option value="feminino" @if(isset($aluno))@if($aluno->sexo=='feminino')selected@endif@endif></option>
+                                <option value="masculino" @if(isset($aluno))@if($aluno->sexo=='masculino')selected@endif@endif>Masculino</option>
                             </select>
                             <label>Sexo *</label>
                         </div>
