@@ -15,6 +15,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
 class EscolaProfessorController extends Controller
@@ -64,6 +65,7 @@ class EscolaProfessorController extends Controller
     {
         try {
             $professor = Professor::find($id);
+            $this->authorize('show', $professor);
             return view("escola.professor.show", compact('professor'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -76,6 +78,7 @@ class EscolaProfessorController extends Controller
             $professor = Professor::find($id);
             $escola = Escola::find(Auth::user()->escola->id);
             $titulo = 'Editar professor: ' . $professor->name;
+            $this->authorize('edit', $professor);
             return view("escola.professor.cadastro", compact('professor', 'titulo', 'escola'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -107,6 +110,8 @@ class EscolaProfessorController extends Controller
     public function destroy($id)
     {
         try {
+            $professor = Professor::find($id);
+            $this->authorize('destroy', $professor);
             $this->professorController->destroy($id);
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

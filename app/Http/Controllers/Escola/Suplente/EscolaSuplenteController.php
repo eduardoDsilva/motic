@@ -13,6 +13,7 @@ use App\Projeto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
@@ -82,6 +83,7 @@ class EscolaSuplenteController extends Controller
     {
         try {
             $projeto = Projeto::find($id);
+            $this->authorize('show', $projeto);
             $alunos = Aluno::all()
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()
@@ -97,6 +99,7 @@ class EscolaSuplenteController extends Controller
         try {
             $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
+            $this->authorize('edit', $projeto);
             $titulo = 'Editar suplente: ' . $projeto->titulo;
             return view("escola.suplente.editar", compact('projeto', 'titulo', 'disciplinas'));
         } catch (\Exception $e) {
@@ -129,7 +132,9 @@ class EscolaSuplenteController extends Controller
     public function destroy($id)
     {
         try {
-            $this->suplenteController->destroy($id);
+            $projeto = Projeto::find($id);
+            $this->authorize('destroy', $projeto);
+            $this->projetoController->destroy($id);
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

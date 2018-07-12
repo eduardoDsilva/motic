@@ -176,9 +176,9 @@
             <div class="collapsible-body">
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.config.inscricoes')}}"><i
-                                    class="material-icons">list</i>Período de inscrições</a></li>
+                                    class="material-icons">access_time</i>Período de inscrições</a></li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.config.avaliacoes')}}"><i
-                                    class="material-icons">add</i>Período de avaliações</a></li>
+                                    class="material-icons">access_time</i>Período de avaliações</a></li>
                     <li>
                         <div class="divider"></div>
                     </li>

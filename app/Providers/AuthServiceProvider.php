@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Aluno;
+use App\Professor;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,11 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Aluno' => 'App\Policies\AlunoPolicy',
+        'App\Avaliador' => 'App\Policies\AvaliadorPolicy',
+        'App\Escola' => 'App\Policies\EscolaPolicy',
+        'App\Professor' => 'App\Policies\ProfessorPolicy',
+        'App\Projeto' => 'App\Policies\ProjetoPolicy',
     ];
 
     /**
@@ -25,6 +31,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
     }
 }

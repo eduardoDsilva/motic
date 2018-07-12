@@ -13,6 +13,7 @@ use App\Projeto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Gate;
 
 class EscolaAlunoController extends Controller
 {
@@ -83,7 +84,9 @@ class EscolaAlunoController extends Controller
     {
         try {
             $aluno = Aluno::find($id);
+            $this->authorize('show', $aluno);
             return view('escola.aluno.show', compact('aluno'));
+
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -93,6 +96,7 @@ class EscolaAlunoController extends Controller
     {
         try {
             $aluno = Aluno::find($id);
+
             $escola = Escola::find(Auth::user()->escola->id);
             $categorias = $escola->categoria;
             foreach ($categorias as $categoria) {
@@ -114,6 +118,9 @@ class EscolaAlunoController extends Controller
                     $ano[] = 'EJA';
                 }
             }
+
+            $this->authorize('edit', $aluno);
+
             return view('escola.aluno.cadastro', compact('escola', 'ano', 'aluno'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -145,6 +152,8 @@ class EscolaAlunoController extends Controller
     public function destroy($id)
     {
         try {
+            $aluno = Aluno::find($id);
+            $this->authorize('destroy', $aluno);
             $this->alunoController->destroy($id);
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
