@@ -29,9 +29,9 @@
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.professor')}}"><i
                                     class="material-icons">list</i>Listar professores</a></li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('escola.professor.create')}}"><i
-                                    class="material-icons">add</i>Cadastrar professor</a></li>
-                    <li>
+                        <li><a class="waves-effect waves-blue" href="{{route ('escola.professor.create')}}"><i
+                                        class="material-icons">add</i>Cadastrar professor</a></li>
+                        <li>
                         <div class="divider"></div>
                     </li>
                 </ul>

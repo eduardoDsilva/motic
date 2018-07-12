@@ -86,7 +86,6 @@ class EscolaAlunoController extends Controller
             $aluno = Aluno::find($id);
             $this->authorize('show', $aluno);
             return view('escola.aluno.show', compact('aluno'));
-
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
