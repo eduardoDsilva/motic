@@ -15,6 +15,7 @@ use App\Http\Requests\Admin\Disciplina\DisciplinaCreateFormRequest;
 use App\Http\Requests\Admin\Disciplina\DisciplinaUpdateFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AdminDisciplinaController extends Controller
 {
@@ -86,6 +87,7 @@ class AdminDisciplinaController extends Controller
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $disciplinas->id, 'disciplina');
 
+            Session::put('mensagem', 'A disciplina '.$disciplinas->name.' foi editada com sucesso!');
             $disciplinas = Disciplina::all();
             return view('admin.disciplinas.home', compact('disciplinas'));
         } catch (\Exception $e) {
@@ -100,6 +102,8 @@ class AdminDisciplinaController extends Controller
             $disciplina->delete($id);
             $texto = str_replace(",", ", ", json_encode($disciplina, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $disciplina->id, 'disciplina');
+            Session::put('mensagem', 'A disciplina '.$disciplina->name.' foi deletada com sucesso!');
+
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

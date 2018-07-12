@@ -130,6 +130,7 @@ class AdminSuplenteController extends Controller
         try {
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'normal']);
+            Session::put('mensagem', 'O projeto '.$projeto->titulo.' foi promovido para titular com sucesso!');
             return redirect()->route("admin.suplente");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

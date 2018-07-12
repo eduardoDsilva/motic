@@ -3,12 +3,12 @@
 @section('titulo', $titulo)
 
 @section('breadcrumb')
-    <a href="{{route ('admin')}}}" class="breadcrumb">Home</a>
-    <a href="{{route ('admin.escola')}}}" class="breadcrumb">Escolas</a>
+    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('admin.escola')}}" class="breadcrumb">Escolas</a>
     @if(isset($escola))
         <a href="{{route ('admin.escola.edit', $escola->id)}}" class="breadcrumb">Editar</a>
     @else
-        <a href="{{route ('admin.escola.create')}}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('admin.escola.create')}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 

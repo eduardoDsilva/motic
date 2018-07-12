@@ -68,6 +68,9 @@ class ProjetoController extends Controller
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $projeto->id, 'projeto');
 
+            Session::put('mensagem', "O projeto ".$projeto->titulo." foi salvo com sucesso!");
+
+
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
@@ -130,6 +133,9 @@ class ProjetoController extends Controller
             $projeto->delete($id);
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $projeto->id, 'projeto');
+
+            Session::put('mensagem', "O projeto ".$projeto->titulo." foi deletado com sucesso!");
+
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

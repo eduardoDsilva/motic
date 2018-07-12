@@ -68,6 +68,8 @@ class SuplenteController extends Controller
 
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $projeto->id, 'projeto');
+            Session::put('mensagem', 'O projeto suplente '.$projeto->titulo.' foi salvo com sucesso!');
+
 
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -115,7 +117,7 @@ class SuplenteController extends Controller
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeUpdate($texto, $projeto->id, 'projeto');
 
-            Session::put('mensagem', "O suplente " . $projeto->titulo . " foi editado com sucesso!");
+            Session::put('mensagem', "O projeto suplente " . $projeto->titulo . " foi editado com sucesso!");
 
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -131,6 +133,8 @@ class SuplenteController extends Controller
             $projeto->delete($id);
             $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $projeto->id, 'projeto');
+            Session::put('mensagem', "O projeto suplente ".$projeto->titulo." foi deletado com sucesso!");
+
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

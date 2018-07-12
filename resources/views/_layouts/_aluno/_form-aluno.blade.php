@@ -39,8 +39,14 @@
                             <i class="material-icons prefix">people</i>
                             <select name="sexo">
                                 <option value="" disabled selected>Sexo</option>
-                                <option value="feminino" @if(isset($aluno))@if($aluno->sexo=='feminino')selected@endif@endif></option>
-                                <option value="masculino" @if(isset($aluno))@if($aluno->sexo=='masculino')selected@endif@endif>Masculino</option>
+                                <option value="feminino"
+                                        @if(isset($aluno)) @if($aluno->sexo=='feminino') selected @endif @endif
+                                >Feminino
+                                </option>
+                                <option value="masculino"
+                                        @if(isset($aluno)) @if($aluno->sexo=='masculino') selected @endif @endif
+                                >Masculino
+                                </option>
                             </select>
                             <label>Sexo *</label>
                         </div>
@@ -66,16 +72,17 @@
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
                                 <option value="PP" @if(isset($aluno)) @if($aluno->camisa == 'PP'))
-                                        required @endif @endif>PP
+                                        required @endif @endif
+                                >PP
                                 </option>
-                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required @endif @endif>
-                                    P
+                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required @endif @endif
+                                >P
                                 </option>
-                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required @endif @endif>
-                                    M
+                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required @endif @endif
+                                >M
                                 </option>
-                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required @endif @endif>
-                                    G
+                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required @endif @endif
+                                >G
                                 </option>
                                 <option value="GG" @if(isset($aluno)) @if($aluno->camisa == 'GG'))
                                         required @endif @endif>GG

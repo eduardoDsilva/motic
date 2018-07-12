@@ -153,7 +153,37 @@
 
     eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(".0-1").2();',3,3,'button|collapse|sideNav'.split('|'),0,{}))
 
-    eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(\'.L\').G({w:[\'A\',\'K\',\'0ço\',\'Z\',\'13\',\'15\',\'6\',\'8\',\'9\',\'b\',\'c\',\'d\'],e:[\'f\',\'g\',\'0\',\'h\',\'i\',\'j\',\'k\',\'l\',\'n\',\'p\',\'q\',\'r\'],t:[\'u\',\'v\',\'1ça\',\'x\',\'y\',\'z\',\'2áB\'],C:[\'E\',\'F\',\'1\',\'5\',\'H\',\'I\',\'2\'],J:[\'D\',\'S\',\'T\',\'Q\',\'Q\',\'S\',\'S\'],N:\'O\',P:\'R\',U:\'V\',W:\'XóY mês\',10:\'Mês 11\',12:\'3 4 mês\',16:\'3 4 17\',18:19,1a:1b,1c:1d 1e(1f,7,14),1g:\'1h-1i-1j\'});',62,82,'Mar|Ter|Sab|Selecione|um|Qua|Julho||Agosto|Setembro||Outubro|Novembro|Dezembro|monthsShort|Jan|Fev|Abr|Mai|Jun|Jul|Ago||Set||Out|Nov|Dez||weekdaysFull|Domingo|Segunda|monthsFull|Quarta|Quinta|Sexta|Janeiro|do|weekdaysShort||Dom|Seg|pickadate|Qui|Sex|weekdaysLetter|Fevereiro|datepicker||today|Hoje|clear||Limpar|||close|Pronto|labelMonthNext|Pr|ximo|Abril|labelMonthPrev|anterior|labelMonthSelect|Maio||Junho|labelYearSelect|ano|selectMonths|true|selectYears|100|max|new|Date|2018|format|dd|mm|yyyy'.split('|'),0,{}))
+    $('.datepicker').pickadate({
+        monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+        today: 'Hoje',
+        clear: 'Limpar',
+        close: 'Pronto',
+        labelMonthNext: 'Próximo mês',
+        labelMonthPrev: 'Mês anterior',
+        labelMonthSelect: 'Selecione um mês',
+        labelYearSelect: 'Selecione um ano',
+        selectMonths: true,
+        selectYears: 100,
+        max: undefined,
+        format: 'dd-mm-yyyy'
+    });
+
+    $('.timepicker').pickatime({
+        default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+        fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+        twelvehour: false, // Use AM/PM or 24-hour format
+        donetext: 'OK', // text for done-button
+        cleartext: 'Limpar', // text for clear-button
+        canceltext: 'Cancelar', // Text for cancel-button,
+        container: undefined, // ex. 'body' will append picker to body
+        autoclose: false, // automatic close timepicker
+        ampmclickable: false, // make AM PM clickable
+        aftershow: function(){} //Function for after opening timepicker
+    });
 
     eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'.3-4\').5()});',6,6,'document|ready|function|modal|trigger|leanModal'.split('|'),0,{}))
 

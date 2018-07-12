@@ -8,7 +8,7 @@
     @if(isset($professor))
         <a href="" class="breadcrumb">Editar</a>
     @else
-        <a href="{{{route ('escola.professor.create')}}}" class="breadcrumb">Cadastro</a>
+        <a href="{{route ('escola.professor.create')}}" class="breadcrumb">Cadastro</a>
     @endif
 @endsection
 

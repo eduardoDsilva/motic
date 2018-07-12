@@ -169,6 +169,25 @@
     </ul>
 </li>
 <li class="white">
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">settings</i>Configurações<i
+                        class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.inscricoes')}}"><i
+                                    class="material-icons">list</i>Período de inscrições</a></li>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.avaliacoes')}}"><i
+                                    class="material-icons">add</i>Período de avaliações</a></li>
+                    <li>
+                        <div class="divider"></div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</li>
+<li class="white">
     <a class="collapsible-header" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"> <i
                 class="small material-icons">exit_to_app</i>Logout

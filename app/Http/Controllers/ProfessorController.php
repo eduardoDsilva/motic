@@ -140,6 +140,7 @@ class ProfessorController extends Controller
             $professor->user()->delete($id);
             $texto = str_replace(",", ", ", json_encode($professor, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeDelete($texto, $professor->id, 'professor');
+            Session::put('mensagem', "O professor ".$professor->name." foi deletado com sucesso!");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

@@ -64,7 +64,7 @@ class AdminAvaliadorController extends Controller
             $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $endereco->id, 'avalaidor');
 
-            Session::put('mensagem', "O avaliador " . $avaliador->name . " foi cadastrado com sucesso!");
+            Session::put('mensagem', "O avaliador " . $avaliador->name . " foi salvo com sucesso!");
 
             return redirect()->route("admin.avaliador");
         } catch (\Exception $e) {
@@ -106,7 +106,6 @@ class AdminAvaliadorController extends Controller
 
     public function update(AvaliadorUpdateFormRequest $request, $id)
     {
-        dd('batata');
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try {
             $user = User::find($id);

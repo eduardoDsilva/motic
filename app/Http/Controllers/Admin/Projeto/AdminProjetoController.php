@@ -129,6 +129,7 @@ class AdminProjetoController extends Controller
         try {
             $projeto = Projeto::find($id);
             $projeto->update(['tipo' => 'suplente']);
+            Session::put('mensagem', 'O projeto '.$projeto->titulo.' foi rebaixado para suplente com sucesso!');
             return redirect()->route("admin.projeto");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

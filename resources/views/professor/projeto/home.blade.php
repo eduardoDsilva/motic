@@ -3,8 +3,8 @@
 @section('titulo','Motic Professor')
 
 @section('breadcrumb')
-    <a href="{{{route ('professor')}}}" class="breadcrumb">Home</a>
-    <a href="{{{route ('professor.projeto')}}}" class="breadcrumb">Home</a>
+    <a href="{{route ('professor')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('professor.projeto')}}" class="breadcrumb">Home</a>
 @endsection
 
 @section('content')
