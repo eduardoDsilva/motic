@@ -72,20 +72,20 @@
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
                                 <option value="PP" @if(isset($aluno)) @if($aluno->camisa == 'PP'))
-                                        required @endif @endif
+                                        required selected @endif @endif
                                 >PP
                                 </option>
-                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required @endif @endif
+                                <option value="P" @if(isset($aluno)) @if($aluno->camisa == 'P')) required selected @endif @endif
                                 >P
                                 </option>
-                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required @endif @endif
+                                <option value="M" @if(isset($aluno)) @if($aluno->camisa == 'M')) required selected @endif @endif
                                 >M
                                 </option>
-                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required @endif @endif
+                                <option value="G" @if(isset($aluno)) @if($aluno->camisa == 'G')) required selected @endif @endif
                                 >G
                                 </option>
                                 <option value="GG" @if(isset($aluno)) @if($aluno->camisa == 'GG'))
-                                        required @endif @endif>GG
+                                        required selected @endif @endif>GG
                                 </option>
                             </select>
                             <label>Tamanho da camisa *</label>

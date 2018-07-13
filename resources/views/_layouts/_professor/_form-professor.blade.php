@@ -79,19 +79,19 @@
                             <select name="camisa">
                                 <option value="" disabled selected>Tamanho...</option>
                                 <option value="PP" @if(isset($professor)) @if($professor->camisa == 'PP'))
-                                        required @endif @endif>PP
+                                        required selected @endif @endif>PP
                                 </option>
                                 <option value="P" @if(isset($professor)) @if($professor->camisa == 'P'))
-                                        required @endif @endif>P
+                                        required selected @endif @endif>P
                                 </option>
                                 <option value="M" @if(isset($professor)) @if($professor->camisa == 'M'))
-                                        required @endif @endif>M
+                                        required selected @endif @endif>M
                                 </option>
                                 <option value="G" @if(isset($professor)) @if($professor->camisa == 'G'))
-                                        required @endif @endif>G
+                                        required selected @endif @endif>G
                                 </option>
                                 <option value="GG" @if(isset($professor)) @if($professor->camisa == 'GG'))
-                                        required @endif @endif>GG
+                                        required selected @endif @endif>GG
                                 </option>
                             </select>
                             <label>Tamanho da camisa *</label>
