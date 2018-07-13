@@ -30,7 +30,7 @@
         <div class="row">
             @includeIf('_layouts._projeto._tabela-projeto')
         </div>
-
+        @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
         <div class="fixed-action-btn">
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light red tooltipped  modal-trigger"
@@ -38,6 +38,8 @@
                    href="{{route ('escola.projeto.create')}}"><i class="material-icons">add</i></a>
             </div>
         </div>
+
+            @endcan
 
     </div>
 </div>

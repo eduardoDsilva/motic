@@ -44,6 +44,8 @@ class EscolaProjetoController extends Controller
 
     public function create()
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $disciplinas = Disciplina::all();
             $escola = Escola::find(Auth::user()->escola->id);
@@ -68,6 +70,8 @@ class EscolaProjetoController extends Controller
 
     public function store(Request $request)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
         try {
             $this->projetoController->store($dataForm);
@@ -80,9 +84,11 @@ class EscolaProjetoController extends Controller
 
     public function show($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
+        $projeto = Projeto::find($id);
+        $this->authorize('show', $projeto);
         try {
-            $projeto = Projeto::find($id);
-            $this->authorize('show', $projeto);
             $alunos = Aluno::all()
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()
@@ -95,10 +101,12 @@ class EscolaProjetoController extends Controller
 
     public function edit($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
+        $projeto = Projeto::find($id);
+        $this->authorize('edit', $projeto);
         try {
-            $projeto = Projeto::find($id);
             $disciplinas = Disciplina::all();
-            $this->authorize('edit', $projeto);
             $titulo = 'Editar projeto: ' . $projeto->titulo;
             return view("escola.projeto.editar", compact('projeto', 'titulo', 'disciplinas'));
 
@@ -109,8 +117,10 @@ class EscolaProjetoController extends Controller
 
     public function update(Request $request, $id)
     {
-        $dataForm = $request->all();
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
+            $dataForm = $request->all();
             $this->projetoController->store($dataForm, $id);
             return redirect()->route("escola.projeto");
         } catch (\Exception $e) {
@@ -131,21 +141,12 @@ class EscolaProjetoController extends Controller
 
     public function destroy($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
+        $projeto = Projeto::find($id);
+        $this->authorize('destroy', $projeto);
         try {
-            $projeto = Projeto::find($id);
-            $this->authorize('destroy', $projeto);
             $this->projetoController->destroy($id);
-        } catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
-        }
-    }
-
-    public function rebaixaSuplente($id)
-    {
-        try {
-            $projeto = Projeto::find($id);
-            $projeto->update(['tipo' => 'suplente']);
-            return redirect()->route("escola.projeto");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

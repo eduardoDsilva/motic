@@ -13,7 +13,6 @@ use App\Projeto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Gate;
 
 class EscolaAlunoController extends Controller
 {
@@ -40,6 +39,8 @@ class EscolaAlunoController extends Controller
 
     public function create()
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $escola = Escola::find(Auth::user()->escola->id);
             $categorias = $escola->categoria;
@@ -71,6 +72,8 @@ class EscolaAlunoController extends Controller
 
     public function store(AlunoCreateFormRequest $request)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $dataForm = $request->all() + ['escola_id' => Auth::user()->escola->id];
             $this->alunoController->store($dataForm);
@@ -82,9 +85,9 @@ class EscolaAlunoController extends Controller
 
     public function show($id)
     {
+        $aluno = Aluno::find($id);
+        $this->authorize('show', $aluno);
         try {
-            $aluno = Aluno::find($id);
-            $this->authorize('show', $aluno);
             return view('escola.aluno.show', compact('aluno'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -93,9 +96,12 @@ class EscolaAlunoController extends Controller
 
     public function edit($id)
     {
+        $aluno = Aluno::find($id);
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
+        $this->authorize('edit', $aluno);
         try {
             $aluno = Aluno::find($id);
-
             $escola = Escola::find(Auth::user()->escola->id);
             $categorias = $escola->categoria;
             foreach ($categorias as $categoria) {
@@ -117,9 +123,6 @@ class EscolaAlunoController extends Controller
                     $ano[] = 'EJA';
                 }
             }
-
-            $this->authorize('edit', $aluno);
-
             return view('escola.aluno.cadastro', compact('escola', 'ano', 'aluno'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -128,6 +131,8 @@ class EscolaAlunoController extends Controller
 
     public function update(AlunoUpdateFormRequest $request, $id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $dataForm = $request->all() + ['tipoUser' => 'aluno'] + ['escola_id' => Auth::user()->escola->id];
             $alunos = $this->alunoController->update($dataForm, $id);
@@ -150,9 +155,11 @@ class EscolaAlunoController extends Controller
 
     public function destroy($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $aluno = Aluno::find($id);
+        $this->authorize('view', $inscricao);
+        $this->authorize('destroy', $aluno);
         try {
-            $aluno = Aluno::find($id);
-            $this->authorize('destroy', $aluno);
             $this->alunoController->destroy($id);
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

@@ -31,6 +31,7 @@
         <div class="row">
             @includeIf('_layouts._suplente._tabela-suplente')
         </div>
+        @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
 
         <div class="fixed-action-btn">
             <div class="fixed-action-btn">
@@ -39,6 +40,7 @@
                    href="{{route ('escola.suplente.create')}}"><i class="material-icons">add</i></a>
             </div>
         </div>
+        @endcan
 
     </div>
 </div>

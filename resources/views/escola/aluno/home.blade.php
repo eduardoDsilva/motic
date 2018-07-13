@@ -29,14 +29,15 @@
         <div class="row">
             @includeIf('_layouts._aluno._tabela-aluno')
         </div>
-        <div class="fixed-action-btn">
+        @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
+            <div class="fixed-action-btn">
 
             <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="top"
                data-delay="50" data-tooltip="Adicionar aluno"
                href="{{route ('escola.aluno.create')}}">
                 <i class="material-icons">add</i></a>
         </div>
-
+        @endcan
     </div>
 </div>
 

@@ -2,7 +2,9 @@
     <div class="input-field col s12 m12 l4">
         <select name="tipo" required>
             <option value="" disabled selected>Filtrar por...</option>
+            @if(Auth::user()->tipoUser == 'admin')
             <option value="id">ID</option>
+            @endif
             <option value="nome">Nome</option>
             @if(Auth::user()->tipoUser == 'admin')
                 <option value="escola">Escola</option>

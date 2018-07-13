@@ -25,16 +25,18 @@
             <td>{{($professor->projeto_id == null ? ($professor->suplente_id == null ? "Professor sem projeto" : $professor->suplente->titulo) : $professor->projeto->titulo)}}</td>
             <td>{{($professor->projeto_id == null ? ($professor->suplente_id == null ? "Professor sem projeto" : $professor->tipo) : $professor->tipo)}}</td>
             <td>
-                <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
-                   data-tooltip="Editar"
-                   href=@if(Auth::user()->tipoUser == 'escola') "{{ route('escola.professor.edit', $professor->id) }}">
-                    @elseif(Auth::user()->tipoUser == 'admin')
-                        "{{ route('admin.professor.edit', $professor->id) }}">@endif<i
-                            class="small material-icons">edit</i></a>
-                <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50"
-                   data-tooltip="Deletar" href="#modal1" data-id="{{$professor->id}}"
-                   data-name="{{$professor->name}}" data-tipo="professor"> <i
-                            class="small material-icons">delete</i></a>
+                @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
+                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                       data-tooltip="Editar"
+                       href=@if(Auth::user()->tipoUser == 'escola') "{{ route('escola.professor.edit', $professor->id) }}">
+                        @elseif(Auth::user()->tipoUser == 'admin')
+                            "{{ route('admin.professor.edit', $professor->id) }}">@endif<i
+                                class="small material-icons">edit</i></a>
+                    <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                       data-tooltip="Deletar" href="#modal1" data-id="{{$professor->id}}"
+                       data-name="{{$professor->name}}" data-tipo="professor"> <i
+                                class="small material-icons">delete</i></a>
+                @endcan
                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"
                    href=@if(Auth::user()->tipoUser == 'escola') "{{ route('escola.professor.show', $professor->id) }}">
                     @elseif(Auth::user()->tipoUser == 'admin')
@@ -51,7 +53,7 @@
             <td>Nenhum registro encontrado</td>
             <td>Nenhum registro encontrado</td>
             @if(Auth::user()->tipoUser == 'admin')
-            <td>Nenhum registro encontrado</td>
+                <td>Nenhum registro encontrado</td>
             @endif
             <td>Nenhum registro encontrado</td>
         </tr>

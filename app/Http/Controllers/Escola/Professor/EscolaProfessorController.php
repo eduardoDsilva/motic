@@ -42,6 +42,8 @@ class EscolaProfessorController extends Controller
 
     public function create()
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $escola = Escola::find(Auth::user()->escola->id);
             return view('escola.professor.cadastro', compact('escola'));
@@ -52,6 +54,8 @@ class EscolaProfessorController extends Controller
 
     public function store(ProfessorCreateFormRequest $request)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
             $this->professorController->store($dataForm);
@@ -63,9 +67,11 @@ class EscolaProfessorController extends Controller
 
     public function show($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $professor = Professor::find($id);
+        $this->authorize('view', $inscricao);
+        $this->authorize('show', $professor);
         try {
-            $professor = Professor::find($id);
-            $this->authorize('show', $professor);
             return view("escola.professor.show", compact('professor'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -74,11 +80,13 @@ class EscolaProfessorController extends Controller
 
     public function edit($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $professor = Professor::find($id);
+        $this->authorize('view', $inscricao);
+        $this->authorize('edit', $professor);
         try {
-            $professor = Professor::find($id);
             $escola = Escola::find(Auth::user()->escola->id);
             $titulo = 'Editar professor: ' . $professor->name;
-            $this->authorize('edit', $professor);
             return view("escola.professor.cadastro", compact('professor', 'titulo', 'escola'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -98,6 +106,8 @@ class EscolaProfessorController extends Controller
 
     public function update(ProfessorUpdateFormRequest $request, $id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
         try {
             $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
             $this->professorController->update($dataForm);
@@ -109,9 +119,11 @@ class EscolaProfessorController extends Controller
 
     public function destroy($id)
     {
+        $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $inscricao);
+        $professor = Professor::find($id);
+        $this->authorize('destroy', $professor);
         try {
-            $professor = Professor::find($id);
-            $this->authorize('destroy', $professor);
             $this->professorController->destroy($id);
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();

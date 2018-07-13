@@ -22,7 +22,8 @@
             <td>{{$projeto->escola->name}}</td>
             @endif
             <td>
-                <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
+                @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
+                    <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
                    data-tooltip="Editar" href=@if(Auth::user()->tipoUser == 'escola') "{{ route('escola.suplente.edit', $projeto->id) }}">
                     @elseif(Auth::user()->tipoUser == 'admin') "{{ route('admin.suplente.edit', $projeto->id) }}">@endif<i
                             class="small material-icons">edit</i></a>
@@ -30,6 +31,7 @@
                    data-delay="50" data-tooltip="Deletar" href="#modal1" data-id="{{$projeto->id}}"
                    data-name="{{$projeto->titulo}}" data-projeto="suplente" data-tipo="suplente"> <i
                             class="small material-icons">delete</i></a>
+                @endcan
                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"
                    href=@if(Auth::user()->tipoUser == 'escola') "{{ route('escola.suplente.show', $projeto->id) }}">
                     @elseif(Auth::user()->tipoUser == 'admin') "{{ route('admin.suplente.show', $projeto->id) }}">@endif <i

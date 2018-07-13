@@ -10,9 +10,11 @@
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.aluno')}}"><i class="material-icons">list</i>Listar
                             alunos</a></li>
+                    @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.aluno.create')}}"><i
                                     class="material-icons">add</i>Cadastrar aluno</a></li>
                     <li>
+                     @endcan
                         <div class="divider"></div>
                     </li>
                 </ul>
@@ -29,9 +31,11 @@
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.professor')}}"><i
                                     class="material-icons">list</i>Listar professores</a></li>
+                    @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
                         <li><a class="waves-effect waves-blue" href="{{route ('escola.professor.create')}}"><i
                                         class="material-icons">add</i>Cadastrar professor</a></li>
                         <li>
+                    @endcan
                         <div class="divider"></div>
                     </li>
                 </ul>
@@ -48,9 +52,11 @@
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.projeto')}}"><i
                                     class="material-icons">list</i>Listar projetos</a></li>
+                    @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.projeto.create')}}"><i
                                     class="material-icons">add</i>Cadastrar projetos</a></li>
                     <li>
+                    @endcan
                         <div class="divider"></div>
                     </li>
                 </ul>
@@ -67,9 +73,11 @@
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.suplente')}}"><i
                                     class="material-icons">list</i>Listar suplente</a></li>
+                    @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
                     <li><a class="waves-effect waves-blue" href="{{route ('escola.suplente.create')}}"><i
                                     class="material-icons">add</i>Cadastrar suplentes</a></li>
                     <li>
+                    @endcan
                         <div class="divider"></div>
                     </li>
                 </ul>

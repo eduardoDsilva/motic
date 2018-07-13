@@ -17,20 +17,23 @@ class InscricaoPolicy
      * @param  \App\Inscricao  $inscricao
      * @return mixed
      */
-    public function view(User $user)
+    public function view(User $user, Inscricao $inscricao)
     {
-        $inscricao = Inscricao::latest()->get();
-        $data = new DateTime();
-        $nova_data = date('Y-m-d', strtotime($data));
+        if ($user->tipoUser == 'admin') {
+            return true;
+        }
+
+        $data = new \DateTime();
+        $nova_data = date('Y-m-d', strtotime($data->format('Y-m-d')));
 
         $de = date('Y-m-d', strtotime($inscricao->data_inicio));
         $ate = date('Y-m-d', strtotime($inscricao->data_fim));
 
         if(($nova_data >= $de) && ($nova_data <= $ate)) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
 
     }
 
