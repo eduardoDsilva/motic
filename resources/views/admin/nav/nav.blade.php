@@ -180,6 +180,9 @@
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.config.avaliacoes')}}"><i
                                     class="material-icons">access_time</i>Período de avaliações</a></li>
                     <li>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.pdf')}}"><i
+                                    class="material-icons">insert_drive_file</i>PDF's</a></li>
+                    <li>
                         <div class="divider"></div>
                     </li>
                 </ul>
