@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
     <a href="{{route ('admin.config.pdf')}}" class="breadcrumb">PDF's</a>
-    <a href="{{route ('admin.config.termos')}}" class="breadcrumb">Termos das escolas</a>
+    <a href="{{route ('admin.config.termos')}}" class="breadcrumb">Regras e regulamentos</a>
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
 
 @section('titulo-header', "PDF's")
 
-@section('conteudo-header', "Esses são os PDF's disponíveis no sistema.")
+@section('conteudo-header', "Essas são as regras e os regulamentos disponíveis no sistema.")
 
 @includeIf('_layouts._sub-titulo')
 
@@ -26,51 +26,63 @@
             <div class="row">
                 <div class="col s12 m12">
                     <div class="card small blue darken-3">
-                        <div class="card-content white-text">
-                            <span class="card-title">Regras de autorização e segurança</span>
-                            <blockquote>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                            </blockquote>
-                            <form action="#">
+                        <form enctype="multipart/form-data" method="post"
+                              action="{{route ('admin.config.regras_de_autorizacao') }}">
+                            {{csrf_field()}}
+                            <div class="card-content white-text">
+                                <span class="card-title">Regras de autorização e segurança</span>
+                                <blockquote>
+                                    A Comissão Organizadora da MOTIC SÃO LEO faz o controle dos projetos em exposição
+                                    para garantir a adequação às regras da própria MOTIC e, posteriormente, da MOSTRATEC
+                                    Júnior, conforme as orientações que seguem.
+                                </blockquote>
                                 <div class="file-field input-field">
                                     <div class="btn">
                                         <span>PDF</span>
-                                        <input type="file">
+                                        <input type="file" name="pdf" id="pdf">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
+                                        <input class="file-path validate" type="text" name="pdf" id="pdf" required>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="card-action">
-                            <a class="btn" href="#">Enviar</a>
-                        </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn" type='submit'>Enviar</button>
+                                <a class="btn" target="_blank" href="{{url('storage/regras/regras-motic.pdf')}}">Visualizar</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
                 <div class="col s12 m12">
                     <div class="card small red darken-3">
-                        <div class="card-content white-text">
-                            <span class="card-title">Regulamento da MOTIC</span>
-                            <blockquote>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                            </blockquote>
-                            <form action="#">
+                        <form enctype="multipart/form-data" method="post"
+                              action="{{route ('admin.config.regulamento') }}">
+                            {{csrf_field()}}
+                            <div class="card-content white-text">
+                                <span class="card-title">Regulamento da MOTIC</span>
+                                <blockquote>
+                                    A Mostra de Tecnologia e Inovação com Ciências - MOTIC SÃO LEO é um evento aberto à
+                                    Rede
+                                    Municipal de Ensino de São Leopoldo, voltado à difusão e à promoção da pesquisa e da
+                                    investigação científica em seus níveis de ensino.
+                                </blockquote>
                                 <div class="file-field input-field">
                                     <div class="btn">
                                         <span>PDF</span>
-                                        <input type="file">
+                                        <input type="file" name="pdf" id="pdf">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
+                                        <input class="file-path validate" type="text" name="pdf" id="pdf" required>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="card-action">
-                            <a class="btn" href="#">Enviar</a>
-                        </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn" type='submit'>Enviar</button>
+                                <a class="btn" target="_blank"
+                                   href="{{url('storage/regulamentos/regulamento-motic.pdf')}}">Visualizar</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
