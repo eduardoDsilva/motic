@@ -24,7 +24,7 @@
 
             <div class="row">
                 <div class="col s12 m6">
-                    <div class="card small blue darken-3">
+                    <div class="card small blue darken-4">
                         <div class="card-content white-text">
                             <span class="card-title">Termos das escolas</span>
                             <p>I am a very simple card. I am good at containing small bits of information.
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="col s12 m6">
-                    <div class="card small red darken-3">
+                    <div class="card small red darken-4">
                         <div class="card-content white-text">
                             <span class="card-title">Regras e regulamentos</span>
                             <p>I am a very simple card. I am good at containing small bits of information.

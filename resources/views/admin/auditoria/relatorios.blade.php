@@ -24,7 +24,7 @@
     <div class="card-panel">
         <div class="row">
             <div class="col s12 m12 l6">
-                <div class="card small red darken-3 hoverable">
+                <div class="card small red darken-4 hoverable">
                     <div class="card-content white-text">
                         <span class="card-title">Registros do sistema completo</span>
                         <p>Para gerar um relatório de todos os registros do sistema.</p>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="col s12 m12 l6">
-                <div class="card small purple darken-3 hoverable">
+                <div class="card small purple darken-4 hoverable">
                     <div class="card-content white-text">
                         <span class="card-title">Registro individual</span>
                         <p>Para gerar um relatório de um registro do sistema.</p>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col s12 m12 l6">
-                <div class="card small green darken-3 hoverable">
+                <div class="card small green darken-4 hoverable">
                     <div class="card-content white-text">
                         <span class="card-title">Registros do sistema resumo</span>
                         <p>Para gerar um relatório dos registros do sistema de forma resumida.</p>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="col s12 m12 l6">
-                <div class="card small blue darken-3 hoverable">
+                <div class="card small blue darken-4 hoverable">
                     <div class="card-content white-text">
                         <span class="card-title">Registros por usuário</span>
                         <p>Para gerar um relatório de todos os registros de um único usuário.</p>

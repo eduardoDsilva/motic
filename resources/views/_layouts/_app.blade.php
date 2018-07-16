@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body class="grey lighten-2">
 
 <header>
         @include('_layouts._nav')
@@ -28,7 +28,7 @@
     @yield('content')
 </main>
 
-<footer class="page-footer teal">
+<footer class="page-footer blue darken-3">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -134,6 +134,10 @@
 </script>
 
 <script type="text/javascript">
+
+
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+
 
     eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(f).b(5(){$(\'#0\').g(5(a){c 0=$(\'#0\').d();6(0.7==3){$("#1").2("4",e)}8 6(0.7>3){$("#1").2("4",9);h("i j kál 3 0")}8{$("#1").2("4",9)}})});',22,22,'alunos|envia|prop||disabled|function|if|length|else|true|event|ready|var|val|false|document|change|alert|Selecione|no|m|ximo'.split('|'),0,{}))
 

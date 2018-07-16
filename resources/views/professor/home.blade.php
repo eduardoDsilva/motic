@@ -23,7 +23,7 @@
             <div class="row">
                 <a href="{{route ('professor.projeto')}}">
                     <div class="col s12 m6">
-                        <div class="card hoverable blue darken-2">
+                        <div class="card hoverable blue darken-4">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">library_add</i>
                             </div>
@@ -35,7 +35,7 @@
                 </a>
                 <a href="{{route ('professor.conta')}}">
                     <div class="col s12 m6">
-                        <div class="card hoverable pink darken-2">
+                        <div class="card hoverable pink darken-4">
                             <div class="card-content black-text center-align">
                                 <i class="large material-icons">person</i>
                             </div>

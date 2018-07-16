@@ -1,6 +1,6 @@
 @extends('_layouts._app')
 
-@section('titulo','Login')
+@section('titulo','MOTIC - Login')
 
 @section('breadcrumb')
     <a href="{{{route ('home-inicio')}}}" class="breadcrumb">Home</a>
@@ -8,15 +8,18 @@
 @endsection
 
 @section('content')
+
+    <div class="section container">
+        <div class="card-panel">
+            <h1 class="header center orange-text">Login</h1>
+        </div>
+    </div>
+
     <div class="container">
         <div class="section">
             <div class="col s12 z-depth-4 card-panel">
-
-                <h3 class="center">Entrar</h3>
                 <div class="row">
-
                     <form class="" action="{{route('login')}}" method="post">
-
                         <div class="input-field">
                             <i class="material-icons prefix">person</i>
                             <input type="text" name="email">
@@ -27,7 +30,6 @@
                             <input type="password" name="password">
                             <label>Senha</label>
                         </div>
-
                         {{csrf_field()}}
 
                         <div class="row">

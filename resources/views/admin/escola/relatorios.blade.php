@@ -24,7 +24,7 @@
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <div class="card small red darken-3 hoverable">
+                    <div class="card small red darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title flow text">Todas escolas</span>
                             <p>Para gerar um relatório completo de todas escolas do sistema.</p>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col s12 m12 l6">
-                    <div class="card small pink darken-3 hoverable">
+                    <div class="card small pink darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title flow text">Alunos da escola</span>
                             <p>Para gerar um relatório de todos os alunos da escola.</p>
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="col s12 m12 l6">
-                    <div class="card small indigo darken-3 hoverable">
+                    <div class="card small indigo darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title flow text">Escola específica</span>
                             <p>Para gerar um relatório com os dados de uma escola específica.</p>
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="col s12 m12 l6">
-                    <div class="card small blue darken-3 hoverable">
+                    <div class="card small blue darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title flow text">Projetos da escola</span>
                             <p>Para gerar um relatório de todos os projetos da escola.</p>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="col s12 m12 l6">
-                    <div class="card small green darken-3 hoverable">
+                    <div class="card small green darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title flow text">Professores da escola</span>
                             <p>Para gerar um relatório de todos os professores da escola.</p>
@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="col s12 m12 l6">
-                    <div class="card small purple darken-3 hoverable">
+                    <div class="card small purple darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title flow text">Avaliadores da escola</span>
                             <p>Para gerar um relatório de todos os avaliadores vinculados à escola.</p>

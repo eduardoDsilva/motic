@@ -24,7 +24,7 @@
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <div class="card small red darken-3 hoverable">
+                    <div class="card small red darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todos os projetos de forma resumida</span>
                             <p>Para gerar um relatório de todos os projetos do sistema.</p>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small pink darken-3 hoverable">
+                    <div class="card small pink darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todos projetos completo</span>
                             <p>Para gerar um relatório de todos os dados dos projetos do sistema</p>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small indigo darken-3 hoverable">
+                    <div class="card small indigo darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Projetos por escola</span>
                             <p>Para gerar um relatório dos professores de cada escola.</p>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small blue darken-3 hoverable">
+                    <div class="card small blue darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Projeto por categoria</span>
                             <p>Para gerar um relatório dos projetos por categoria do sistema./p>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small green darken-3 hoverable">
+                    <div class="card small green darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Projeto por disciplina</span>
                             <p>Para gerar um relatório dos projetos por disciplinas do sistema./p>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small purple darken-3 hoverable">
+                    <div class="card small purple darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Projeto individual</span>
                             <p>Para gerar um relatório de um projeto específico do sistema./p>

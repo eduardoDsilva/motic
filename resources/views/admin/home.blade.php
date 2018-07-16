@@ -23,7 +23,7 @@
         <div class="row">
             <a href="{{route ('admin.escola')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable red darken-3">
+                    <div class="card hoverable red darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">school</i>
                         </div>
@@ -35,7 +35,7 @@
             </a>
             <a href="{{route ('admin.projeto')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable blue darken-3">
+                    <div class="card hoverable blue darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">library_add</i>
                         </div>
@@ -47,7 +47,7 @@
             </a>
             <a href="{{route ('admin.suplente')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable pink darken-3">
+                    <div class="card hoverable pink darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">library_add</i>
                         </div>
@@ -59,7 +59,7 @@
             </a>
             <a href="{{route ('admin.disciplina')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable green darken-3">
+                    <div class="card hoverable green darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">note</i>
                         </div>
@@ -71,7 +71,7 @@
             </a>
             <a href="{{route ('admin.aluno')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable purple darken-3">
+                    <div class="card hoverable purple darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">person</i>
                         </div>
@@ -83,7 +83,7 @@
             </a>
             <a href="{{route ('admin.professor')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable teal darken-3">
+                    <div class="card hoverable teal darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">person</i>
                         </div>
@@ -95,7 +95,7 @@
             </a>
             <a href="{{route ('admin.auditoria')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable indigo darken-3">
+                    <div class="card hoverable indigo darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">format_list_bulleted</i>
                         </div>
@@ -107,7 +107,7 @@
             </a>
             <a href="{{route ('admin.avaliador')}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable orange darken-3">
+                    <div class="card hoverable orange darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">contacts</i>
                         </div>
@@ -119,7 +119,7 @@
             </a>
             <a href="{{{ route('logout') }}}">
                 <div class="col s12 m6 l4">
-                    <div class="card hoverable grey darken-3">
+                    <div class="card hoverable grey darken-4">
                         <div class="card-content black-text center-align">
                             <i class="large material-icons">exit_to_app</i>
                         </div>

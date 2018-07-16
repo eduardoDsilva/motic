@@ -25,12 +25,12 @@
 
             <div class="row">
                 <div class="col s12 m12">
-                    <div class="card small blue darken-3">
+                    <div class="card small blue darken-4">
                         <form enctype="multipart/form-data" method="post"
                               action="{{route ('admin.config.termo-maior') }}">
                             {{csrf_field()}}
                             <div class="card-content white-text">
-                                <span class="card-title">Termo de Autorização de Uso de Imagem para maior de idade</span>
+                                <span class="card-title">Termo de autorização de uso de imagem para maior de idade</span>
                                 <blockquote>
                                     Termo de autorização e consentimento de uso da imagem, voz e nome para maior de
                                     idade.
@@ -54,12 +54,12 @@
                 </div>
 
                 <div class="col s12 m12">
-                    <div class="card small red darken-3">
+                    <div class="card small red darken-4">
                         <form enctype="multipart/form-data" method="post"
                               action="{{route ('admin.config.termo-menor') }}">
                             {{csrf_field()}}
                             <div class="card-content white-text">
-                                <span class="card-title">Termo de auditozação de uso de imagem para menor de idade</span>
+                                <span class="card-title">Termo de autorização de uso de imagem para menor de idade</span>
                                 <blockquote>
                                     Termo de autorização e consentimento de uso da imagem, voz e nome para menor ou
                                     maior incapaz.
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="col s12 m12">
-                    <div class="card small green darken-3">
+                    <div class="card small green darken-4">
                         <form enctype="multipart/form-data" method="post"
                               action="{{route ('admin.config.contrato-convivencia') }}">
                             {{csrf_field()}}

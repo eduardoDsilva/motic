@@ -25,12 +25,12 @@
 
             <div class="row">
                 <div class="col s12 m12">
-                    <div class="card small blue darken-3">
+                    <div class="card small blue darken-4">
                         <form enctype="multipart/form-data" method="post"
                               action="{{route ('admin.config.regras_de_autorizacao') }}">
                             {{csrf_field()}}
                             <div class="card-content white-text">
-                                <span class="card-title">Regras de autorização e segurança</span>
+                                <span class="card-title">Regras de exposição e segurança</span>
                                 <blockquote>
                                     A Comissão Organizadora da MOTIC SÃO LEO faz o controle dos projetos em exposição
                                     para garantir a adequação às regras da própria MOTIC e, posteriormente, da MOSTRATEC
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="col s12 m12">
-                    <div class="card small red darken-3">
+                    <div class="card small red darken-4">
                         <form enctype="multipart/form-data" method="post"
                               action="{{route ('admin.config.regulamento') }}">
                             {{csrf_field()}}
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="col s12 m12">
-                    <div class="card small green darken-3">
+                    <div class="card small green darken-4">
                         <form enctype="multipart/form-data" method="post"
                               action="{{route ('admin.config.ficha-de-avaliacao') }}">
                             {{csrf_field()}}

@@ -24,7 +24,7 @@
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <div class="card small red darken-3 hoverable">
+                    <div class="card small red darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todos os professores resumido</span>
                             <p>Para gerar um relatório de todos os professores do sistema.</p>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small purple darken-3 hoverable">
+                    <div class="card small purple darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todos professores completo</span>
                             <p>Para gerar um relatório de todos os dados dos professores do sistema</p>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small green darken-3 hoverable">
+                    <div class="card small green darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Professor por escola</span>
                             <p>Para gerar um relatório dos professores de cada escola.</p>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small blue darken-3 hoverable">
+                    <div class="card small blue darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Professor individual</span>
                             <p>Para gerar um relatório de um professor específico do sistema./p>

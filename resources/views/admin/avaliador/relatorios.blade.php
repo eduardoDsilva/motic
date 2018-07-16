@@ -24,7 +24,7 @@
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <div class="card small red darken-3 hoverable">
+                    <div class="card small red darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Avaliadores e projetos</span>
                             <p>Para gerar um relatório de todos os avaliadores do sistema por projeto</p>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small green darken-3 hoverable">
+                    <div class="card small green darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Avaliadores e escolas</span>
                             <p>Para gerar um relatório dos avaliadores por escola.</p>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small purple darken-3 hoverable">
+                    <div class="card small purple darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todos os avaliadores</span>
                             <p>Para gerar um relatório de todos os avaliadores do sistema com os seguintes dados:</p>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small blue darken-3 hoverable">
+                    <div class="card small blue darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Avaliador específico</span>
                             <p>Para gerar um relatório completo de um avaliador:</p>

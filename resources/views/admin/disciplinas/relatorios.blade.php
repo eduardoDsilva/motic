@@ -24,7 +24,7 @@
         <div class="card-panel">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <div class="card small red darken-3 hoverable">
+                    <div class="card small red darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Todas disciplinas</span>
                             <p>Para gerar um relatório de todas disciplinas do sistema.</p>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="card small green darken-3 hoverable">
+                    <div class="card small green darken-4 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">Trabalhos e disciplinas</span>
                             <p>Para gerar um relatório das disciplinas e trabalhos</p>

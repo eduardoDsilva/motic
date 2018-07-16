@@ -1,6 +1,6 @@
     <div class="navbar-fixed">
         <nav>
-            <div class="blue">
+            <div class="blue darken-3">
                 <div class="container">
                     <div class="nav-wrapper">
                         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -15,10 +15,20 @@
 
     <ul class="side-nav fixed" id="mobile-demo">
         @if (Auth::guest())
+            <li>
+                <div class="user-view blue darken-3">
+                    <h1 class="white-text">MOTIC</h1>
+                    <span class="white-text name">SMED</span>
+                    <span class="white-text email">São Leopoldo</span>
+                </div>
+            </li>
+            <li><a href="">Home</a></li>
             <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href="">Sobre</a></li>
+            <li><a href="">Contato</a></li>
         @else
             <li>
-                <div class="user-view blue">
+                <div class="user-view blue darken-3">
                     <h1 class="white-text flow-text">MOTIC</h1>
                     <span class="white-text name">{{ Auth::user()->name }}</span>
                     <span class="white-text email">{{ Auth::user()->email }}</span>
