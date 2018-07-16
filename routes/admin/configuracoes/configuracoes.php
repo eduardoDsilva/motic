@@ -26,5 +26,7 @@ Route::group(['prefix' => 'admin/config', 'namespace' => 'Admin\Configuracoes'],
 
     Route::post('contrato-de-convivencia/carrega', ['as' => 'admin.config.contrato-convivencia', 'uses' => 'AdminConfigPdfController@carregaContratoConvivencia']);
 
+    Route::post('ficha-de-avaliacao/carrega', ['as' => 'admin.config.ficha-de-avaliacao', 'uses' => 'AdminConfigPdfController@carregaFichaDeAvaliacao']);
+
 
 });

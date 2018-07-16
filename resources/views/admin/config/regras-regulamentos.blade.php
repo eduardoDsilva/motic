@@ -85,6 +85,37 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="col s12 m12">
+                    <div class="card small green darken-3">
+                        <form enctype="multipart/form-data" method="post"
+                              action="{{route ('admin.config.ficha-de-avaliacao') }}">
+                            {{csrf_field()}}
+                            <div class="card-content white-text">
+                                <span class="card-title">Ficha de avaliação</span>
+                                <blockquote>
+                                    Essa é a ficha de avaliação que estará disponível para os avaliadores do sistema e,
+                                    também, para a impressão no dia da avaliação caso seja necessário um documento
+                                    físico.
+                                </blockquote>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>PDF</span>
+                                        <input type="file" name="pdf" id="pdf">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" name="pdf" id="pdf" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn" type='submit'>Enviar</button>
+                                <a class="btn" target="_blank"
+                                   href="{{url('storage/termos/ficha-de-avaliacao-motic.pdf')}}">Visualizar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </div>

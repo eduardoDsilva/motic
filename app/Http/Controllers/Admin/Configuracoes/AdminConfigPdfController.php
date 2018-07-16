@@ -121,6 +121,21 @@ class AdminConfigPdfController extends Controller
         }
     }
 
+    public function carregaFichaDeAvaliacao(Request $request)
+    {
+        try {
+            if ($request->file('pdf')) {
+                $extensao = $request->pdf->extension();
+                $nameFile = "ficha-de-avaliacao-motic.$extensao";
+                $request->pdf->storeAs('termos', $nameFile);
+                return redirect()->back();
+            }
+
+        } catch (\Exception $e) {
+            return "Erro " . $e->getMessage();
+        }
+    }
+
     public function store()
     {
         //
