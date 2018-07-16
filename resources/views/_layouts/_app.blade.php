@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
+    <link rel="stylesheet" href="<?php echo asset('css/materialize.css')?>" type="text/css">
     <link type="text/css" rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
           media="screen,projection"/>
-    <link rel="stylesheet" href="<?php echo asset('css/materialize.css')?>" type="text/css">
-    <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
-    <!--Let browser know website is optimized for mobile-->
+
+    @if(Auth::guest())
+
+    @else
+
+        <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
+    @endif
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <link rel="icon" href="http://example.org/img/favicon.ico" type="image/x-icon"/>
-
     <title>@yield('titulo')</title>
 
 </head>
@@ -21,14 +22,14 @@
 <body class="grey lighten-2">
 
 <header>
-        @include('_layouts._nav')
+    @include('_layouts._nav')
 </header>
 
 <main>
     @yield('content')
 </main>
 
-<footer class="page-footer blue darken-3">
+<footer class="page-footer blue darken-4">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -63,11 +64,45 @@
 <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
 
 <script type="text/javascript">
-    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(b).9(\'d\',\'#f\',h(){$(\'#4\').1(\'\');$(\'#4\').2($(3).0(\'a\'));$(\'#5\').1(\'\');$(\'#5\').2($(3).0(\'c\'));$(\'#6\').1(\'\');$(\'#6\').2($(3).0(\'e\'));$(\'#7\').1(\'\');$(\'#7\').2($(3).0(\'g\'));$(\'#8\').1(\'\');$(\'#8\').2($(3).0(\'i\'))});',19,19,'data|html|append|this|id_auditoria|tipo_auditoria|descricao_auditoria|usuario_auditoria|responsavel_auditoria|on|id|document|tipo|click|descricao|auditoria|user_id|function|nome_usuario'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = function (c) {
+            return c.toString(a)
+        };
+        if (!''.replace(/^/, String)) {
+            while (c--) r[e(c)] = k[c] || e(c);
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(b).9(\'d\',\'#f\',h(){$(\'#4\').1(\'\');$(\'#4\').2($(3).0(\'a\'));$(\'#5\').1(\'\');$(\'#5\').2($(3).0(\'c\'));$(\'#6\').1(\'\');$(\'#6\').2($(3).0(\'e\'));$(\'#7\').1(\'\');$(\'#7\').2($(3).0(\'g\'));$(\'#8\').1(\'\');$(\'#8\').2($(3).0(\'i\'))});', 19, 19, 'data|html|append|this|id_auditoria|tipo_auditoria|descricao_auditoria|usuario_auditoria|responsavel_auditoria|on|id|document|tipo|click|descricao|auditoria|user_id|function|nome_usuario'.split('|'), 0, {}))
 </script>
 
 <script type="text/javascript">
-    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(e).7(\'d\',\'.9-8\',5(){$(\'#6\').0($(2).1(\'a\'));$(\'#b\').0($(2).1(\'c\'));$(\'#4\').0($(2).1(\'4\'));$(\'#3\').0($(2).1(\'3\'))});',15,15,'val|data|this|tipo|projeto|function|id_delete|on|trigger|modal|id|name_delete|name|click|document'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = function (c) {
+            return c.toString(a)
+        };
+        if (!''.replace(/^/, String)) {
+            while (c--) r[e(c)] = k[c] || e(c);
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(e).7(\'d\',\'.9-8\',5(){$(\'#6\').0($(2).1(\'a\'));$(\'#b\').0($(2).1(\'c\'));$(\'#4\').0($(2).1(\'4\'));$(\'#3\').0($(2).1(\'3\'))});', 15, 15, 'val|data|this|tipo|projeto|function|id_delete|on|trigger|modal|id|name_delete|name|click|document'.split('|'), 0, {}))
     $('.modal-footer').on('click', '.delete', function () {
         id = $('#id_delete').val();
         projeto = $('#projeto').val();
@@ -139,23 +174,145 @@
     $('.carousel.carousel-slider').carousel({fullWidth: true});
 
 
-    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(f).b(5(){$(\'#0\').g(5(a){c 0=$(\'#0\').d();6(0.7==3){$("#1").2("4",e)}8 6(0.7>3){$("#1").2("4",9);h("i j kál 3 0")}8{$("#1").2("4",9)}})});',22,22,'alunos|envia|prop||disabled|function|if|length|else|true|event|ready|var|val|false|document|change|alert|Selecione|no|m|ximo'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = function (c) {
+            return c.toString(a)
+        };
+        if (!''.replace(/^/, String)) {
+            while (c--) r[e(c)] = k[c] || e(c);
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(f).b(5(){$(\'#0\').g(5(a){c 0=$(\'#0\').d();6(0.7==3){$("#1").2("4",e)}8 6(0.7>3){$("#1").2("4",9);h("i j kál 3 0")}8{$("#1").2("4",9)}})});', 22, 22, 'alunos|envia|prop||disabled|function|if|length|else|true|event|ready|var|val|false|document|change|alert|Selecione|no|m|ximo'.split('|'), 0, {}))
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(1).2(3(){$(\'4.0\').0({5:6})});',7,7,'tabs|document|ready|function|ul|swipeable|true'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(1).2(3(){$(\'4.0\').0({5:6})});', 7, 7, 'tabs|document|ready|function|ul|swipeable|true'.split('|'), 0, {}))
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(1).2(3(){$(\'.0\').0()});',4,4,'sidenav|document|ready|function'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(1).2(3(){$(\'.0\').0()});', 4, 4, 'sidenav|document|ready|function'.split('|'), 0, {}))
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'.3\').4({5:6})});',7,7,'document|ready|function|tooltipped|tooltip|delay|50'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(0).1(2(){$(\'.3\').4({5:6})});', 7, 7, 'document|ready|function|tooltipped|tooltip|delay|50'.split('|'), 0, {}))
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'3\').4()});',5,5,'document|ready|function|select|material_select'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(0).1(2(){$(\'3\').4()});', 5, 5, 'document|ready|function|select|material_select'.split('|'), 0, {}))
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(1).2(3(){$(\'.0\').0()});',4,4,'modal|document|ready|function'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(1).2(3(){$(\'.0\').0()});', 4, 4, 'modal|document|ready|function'.split('|'), 0, {}))
 
     @yield('modal')
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(".0-1").0();',2,2,'dropdown|button'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(".0-1").0();', 2, 2, 'dropdown|button'.split('|'), 0, {}))
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(".0-1").2();',3,3,'button|collapse|sideNav'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(".0-1").2();', 3, 3, 'button|collapse|sideNav'.split('|'), 0, {}))
 
     $('.datepicker').pickadate({
         monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -186,10 +343,26 @@
         container: undefined, // ex. 'body' will append picker to body
         autoclose: false, // automatic close timepicker
         ampmclickable: false, // make AM PM clickable
-        aftershow: function(){} //Function for after opening timepicker
+        aftershow: function () {
+        } //Function for after opening timepicker
     });
 
-    eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(0).1(2(){$(\'.3-4\').5()});',6,6,'document|ready|function|modal|trigger|leanModal'.split('|'),0,{}))
+    eval(function (p, a, c, k, e, r) {
+        e = String;
+        if (!''.replace(/^/, String)) {
+            while (c--) r[c] = k[c] || c;
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('$(0).1(2(){$(\'.3-4\').5()});', 6, 6, 'document|ready|function|modal|trigger|leanModal'.split('|'), 0, {}))
 
 </script>
 
