@@ -36,7 +36,7 @@ class AdminConfigAvaliacoesController extends Controller
             $avaliacao = Avaliacao::create($dataForm);
 
             $texto = str_replace(",", ", ", json_encode($avaliacao, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $avaliacao->id, 'periodo_avaliacao');
+            $this->auditoriaController->storeCreate($texto, $avaliacao->id, 'avaliacao');
             Session::put('mensagem', "O período de avaliação foi salvo com sucesso!");
             return redirect()->route("admin.config.avaliacoes");
         } catch (\Exception $e) {

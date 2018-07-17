@@ -36,7 +36,7 @@ class AdminConfigInscricoesController extends Controller
             $inscricao = Inscricao::create($dataForm);
 
             $texto = str_replace(",", ", ", json_encode($inscricao, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $inscricao->id, 'periodo_inscricao');
+            $this->auditoriaController->storeCreate($texto, $inscricao->id, 'inscricao');
             Session::put('mensagem', "O período de inscrição foi salvo com sucesso!");
             return redirect()->route("admin.config.inscricoes");
         } catch (\Exception $e) {

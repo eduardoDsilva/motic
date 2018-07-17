@@ -41,12 +41,12 @@
                             <select name="sexo">
                                 <option value="" disabled>Sexo</option>
                                 <option value="feminino"
-                                        @if(isset($professor))@if($professor->sexo == 'feminino') selected @endif @endif>
-                                    Feminino
+                                        @if(isset($professor))@if($professor->sexo == 'feminino') selected @endif @endif
+                                >Feminino
                                 </option>
                                 <option value="masculino"
-                                        @if (isset($professor)) @if($professor->sexo == 'masculino') selected @endif @endif>
-                                    Masculino
+                                        @if (isset($professor)) @if($professor->sexo == 'masculino') selected @endif @endif
+                                >Masculino
                                 </option>
                             </select>
                             <label>Sexo *</label>
@@ -57,12 +57,12 @@
                             <select name="grauDeInstrucao">
                                 <option value="" disabled selected>Grau de Instrução</option>
                                 <option value="Ensino Médio"
-                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif>
-                                    Ensino Médio
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Médio') selected @endif
+                                >Ensino Médio
                                 </option>
                                 <option value="Ensino Superior"
-                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif>
-                                    Ensino Superior
+                                        @if (isset($professor) && $professor->grauDeInstrucao == 'Ensino Superior') selected @endif
+                                >Ensino Superior
                                 </option>
                             </select>
                             <label>Grau de Instrição *</label>
@@ -212,14 +212,15 @@
                     </div>
 
                     <h5>Usuário</h5>
+                    <div class="row">
 
-                    <div class="input-field col s12 m12 l12">
-                        <i class="material-icons prefix">person</i>
-                        <label for="username">Usuário *</label>
-                        <input type="text" name="username" value="{{$professor->user->username or old('username')}}"
-                               required>
+                        <div class="input-field col s12 m12 l12">
+                            <i class="material-icons prefix">person</i>
+                            <label for="username">Usuário *</label>
+                            <input type="text" name="username" value="{{$professor->user->username or old('username')}}"
+                                   required>
+                        </div>
                     </div>
-
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
                             <i class="material-icons prefix">lock</i>

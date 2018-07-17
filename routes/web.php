@@ -1,9 +1,8 @@
 <?php
 
-//tela inicial do sistema
-Route::get('/', function () {
-    return view('welcome');
-})->name('home-inicio');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/regulamento', 'HomeController@regulamento')->name('regulamento');
 
 require_once('auth/auth.php');
 

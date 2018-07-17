@@ -8,9 +8,8 @@
           media="screen,projection"/>
 
     @if(Auth::guest())
-
+        <link rel="stylesheet" href="<?php echo asset('css/teste.css')?>" type="text/css">
     @else
-
         <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
     @endif
 
@@ -32,13 +31,13 @@
 <footer class="page-footer blue darken-4">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col l9 s9 m9">
                 <h5 class="white-text">Prefeitura Municipal de São Leopoldo</h5>
                 <p class="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 </p>
             </div>
-            <div class="col l3 s12">
+            <div class="col l3 s3 m3">
                 <h5 class="white-text">Sobre</h5>
                 <ul>
                     <li><a class="white-text" href="#!">Link 1</a></li>
@@ -63,7 +62,12 @@
 
 <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
 
+<link rel="shortcut icon" href="{{ url('images/motic-favicon.ico') }}">
+
 <script type="text/javascript">
+
+    $('.carousel.carousel-slider').carousel({fullWidth: true, indicators: true});
+
     eval(function (p, a, c, k, e, r) {
         e = function (c) {
             return c.toString(a)

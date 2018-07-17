@@ -121,7 +121,7 @@ class EscolaProjetoController extends Controller
         $this->authorize('view', $inscricao);
         try {
             $dataForm = $request->all();
-            $this->projetoController->store($dataForm, $id);
+            $this->projetoController->update($dataForm, $id);
             return redirect()->route("escola.projeto");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -144,7 +144,7 @@ class EscolaProjetoController extends Controller
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
         $projeto = Projeto::find($id);
-        $this->authorize('destroy', $projeto);
+        $this->authorize('delete', $projeto);
         try {
             $this->projetoController->destroy($id);
         } catch (\Exception $e) {

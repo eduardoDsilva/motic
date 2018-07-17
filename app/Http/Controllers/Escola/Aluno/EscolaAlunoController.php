@@ -158,7 +158,7 @@ class EscolaAlunoController extends Controller
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $aluno = Aluno::find($id);
         $this->authorize('view', $inscricao);
-        $this->authorize('destroy', $aluno);
+        $this->authorize('delete', $aluno);
         try {
             $this->alunoController->destroy($id);
         } catch (\Exception $e) {

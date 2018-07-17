@@ -110,7 +110,7 @@ class EscolaProfessorController extends Controller
         $this->authorize('view', $inscricao);
         try {
             $dataForm = $request->all() + ['tipoUser' => 'professor'] + ['escola_id' => Auth::user()->escola->id];
-            $this->professorController->update($dataForm);
+            $this->professorController->update($dataForm, $id);
             return redirect()->route("escola.professor");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -122,7 +122,7 @@ class EscolaProfessorController extends Controller
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
         $professor = Professor::find($id);
-        $this->authorize('destroy', $professor);
+        $this->authorize('delete', $professor);
         try {
             $this->professorController->destroy($id);
         } catch (\Exception $e) {

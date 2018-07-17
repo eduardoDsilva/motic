@@ -3,7 +3,7 @@
 @section('titulo','MOTIC - Login')
 
 @section('breadcrumb')
-    <a href="{{{route ('home-inicio')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('home')}}}" class="breadcrumb">Home</a>
     <a href="{{{route ('login')}}}" class="breadcrumb">Login</a>
 @endsection
 
