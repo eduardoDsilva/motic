@@ -17,7 +17,6 @@ class CreateInscricoesTable extends Migration
             $table->increments('id');
             $table->string('data_inicio')->nullable();
             $table->string('data_fim')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }

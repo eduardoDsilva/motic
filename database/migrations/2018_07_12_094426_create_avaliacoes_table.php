@@ -19,7 +19,6 @@ class CreateAvaliacoesTable extends Migration
             $table->string('hora_inicio')->nullable();
             $table->string('data_fim')->nullable();
             $table->string('hora_fim')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }
