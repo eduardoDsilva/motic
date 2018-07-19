@@ -2,10 +2,6 @@
 
 @section('titulo','Motic - Regulamento')
 
-@section('breadcrumb')
-    <a href="{{{route ('home')}}}" class="breadcrumb">Home</a>
-@endsection
-
 @section('content')
 
     <div class="section container">

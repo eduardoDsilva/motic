@@ -17,5 +17,9 @@
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-table": "^10.1.0",
+    "@ckeditor/ckeditor5-upload": "^10.0.2"
   }
 }

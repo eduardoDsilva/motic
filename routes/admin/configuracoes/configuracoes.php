@@ -30,3 +30,13 @@ Route::group(['prefix' => 'admin/config', 'namespace' => 'Admin\Configuracoes'],
 
 
 });
+
+Route::get('admin/config/config/gerencia/pagina-inicial', ['as' => 'admin.config.gerencia.pagina-inicial', 'uses' => 'Admin\Conteudo\ConteudoController@index']);
+
+Route::get('admin/config/config/gerencia/sobre', ['as' => 'admin.config.gerencia.sobre', 'uses' => 'Admin\Conteudo\ConteudoController@sobre']);
+
+Route::get('admin/config/config/gerencia/contato', ['as' => 'admin.config.gerencia.contato', 'uses' => 'Admin\Conteudo\ConteudoController@contato']);
+
+Route::post('/gerencia/sobre/store', ['as' => 'admin.config.gerencia.sobre.store', 'uses' => 'Admin\Conteudo\ConteudoController@sobreStore']);
+
+Route::post('/gerencia/contato/store', ['as' => 'admin.config.gerencia.contato.store', 'uses' => 'Admin\Conteudo\ConteudoController@contatoStore']);

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Contato;
+use App\Sobre;
 
 class HomeController extends Controller
 {
@@ -28,5 +29,17 @@ class HomeController extends Controller
     public function regulamento()
     {
         return view('regulamento');
+    }
+
+    public function contato()
+    {
+        $contato = Contato::latest()->first();
+        return view('contato', compact('contato'));
+    }
+
+    public function sobre()
+    {
+        $sobre = Sobre::latest()->first();
+        return view('sobre', compact('sobre'));
     }
 }

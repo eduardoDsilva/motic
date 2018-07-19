@@ -183,6 +183,9 @@
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.config.pdf')}}"><i
                                     class="material-icons">insert_drive_file</i>PDF's</a></li>
                     <li>
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.gerencia.pagina-inicial')}}"><i
+                                    class="material-icons">insert_drive_file</i>Gerenciar home-page</a></li>
+                    <li>
                         <div class="divider"></div>
                     </li>
                 </ul>

@@ -14,7 +14,7 @@
         <tr>
             <td>{{$auditoria->id}}</td>
             <td>{{$auditoria->tipo}}</td>
-            <td width="70%">{{$auditoria->descricao}}</td>
+            <td width="70%">{{str_limit($auditoria->descricao), 80, ' (...)'}}</td>
             <td>{{$auditoria->objeto}}</td>
             <td width="20%">{{$auditoria->nome_usuario}}</td>
             <td width="15%">{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>

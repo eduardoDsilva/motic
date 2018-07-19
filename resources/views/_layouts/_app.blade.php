@@ -13,7 +13,13 @@
         <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
     @endif
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/translations/pt-br.js"></script>
+
     <title>@yield('titulo')</title>
 
 </head>
