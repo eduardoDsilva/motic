@@ -10,10 +10,6 @@
 @section('content')
 
 @section('content')
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
 
 @section('titulo-header', 'Escolas')
 
@@ -24,6 +20,9 @@
     <div class="section container">
         <div class="card-panel">
             <div class="col s12 m4 l8">
+                @if(Session::get('mensagem'))
+                    @include('_layouts._mensagem-erro')
+                @endif
                 <form method="POST" enctype="multipart/form-data" action="{{ route("admin.escola.filtrar") }}">
                     @includeIf('_layouts._escola._filtro-escola')
                 </form>

@@ -45,8 +45,13 @@
 
 @foreach($alunos as $aluno)
     <div class="header">
-    <!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
-        <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
+       <!-- <img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px"> -->
+           PREFEITURA MUNICIPAL DE SÃO LEOPOLDO
+           Estado do Rio Grande do Sul
+           SECRETARIA MUNICIPAL DE EDUCAÇÃO
+           Praça Tiradentes, 119 – Centro São Leopoldo - RS – Cep: 93010-020
+           Fone: (0xx51) 22000800 E-mail: smed@saoleopoldo.rs.gov.br
+        <!--<img src="{{public_path('images/motic-logo.png')}}" class="motic" width="1200px" height="300px"> -->
     </div>
     <h1>{{$aluno->name}}</h1>
 

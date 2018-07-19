@@ -28,9 +28,8 @@ class ConteudoController extends Controller
 
     public function index()
     {
-        $conteudos = Conteudo::latest()->first();
 
-        return view('admin.config.pagina-inicial', compact('conteudos'));
+        return view('admin.config.pagina-inicial');
     }
 
     public function sobre()

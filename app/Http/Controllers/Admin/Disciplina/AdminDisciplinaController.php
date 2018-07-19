@@ -44,9 +44,9 @@ class AdminDisciplinaController extends Controller
             $disciplinas = Disciplina::create($dataForm);
             $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
             $this->auditoriaController->storeCreate($texto, $disciplinas->id, 'disciplina');
+            Session::put('mensagem', "Disciplina " . $disciplinas->name . " adicionada com sucesso!");
             return redirect()
-                ->route("admin.disciplina")
-                ->with("success", "disciplina " . $disciplinas->name . " adicionada com sucesso");
+                ->route("admin.disciplina");
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

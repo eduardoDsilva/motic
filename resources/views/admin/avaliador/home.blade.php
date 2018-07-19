@@ -9,10 +9,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
 @section('titulo-header', 'Avaliadores')
 
 @section('conteudo-header', 'Esses são os avaliadores cadastrados no sistema!')
@@ -21,8 +17,10 @@
 
 <div class="section container">
     <div class="card-panel">
-
         <div class="col s12 m4 l8">
+            @if(Session::get('mensagem'))
+                @include('_layouts._mensagem-erro')
+            @endif
             <form method="POST" enctype="multipart/form-data" action="{{ route("admin.avaliador.filtrar") }}">
                 @includeIf('_layouts._avaliador._filtro-avaliador')
             </form>

@@ -45,8 +45,8 @@
 
 
 <div class="header">
-<!--<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
-        <img src="{{public_path('images/motic.png')}}" class="motic" width="1200px" height="300px"> -->
+<img src="{{public_path('images/LOGO_PMSL.png')}}" class="pmsl" width="1000px" height="300px">
+        <img src="{{public_path('images/motic-logo.png')}}" class="motic" width="1200px" height="300px">
 </div>
 <h2>Alunos do sistema</h2>
 <table>
