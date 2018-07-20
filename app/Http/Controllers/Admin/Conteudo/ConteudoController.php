@@ -9,7 +9,6 @@
 namespace App\Http\Controllers\Admin\Conteudo;
 
 use App\Contato;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Sobre;
 use Illuminate\Http\Request;
@@ -17,11 +16,8 @@ use Illuminate\Http\Request;
 class ConteudoController extends Controller
 {
 
-    private $auditoriaController;
-
-    public function __construct(AuditoriaController $auditoriaController)
+    public function __construct()
     {
-        $this->auditoriaController = $auditoriaController;
         $this->middleware('auth');
         $this->middleware('check.admin');
     }
@@ -52,9 +48,6 @@ class ConteudoController extends Controller
             $dataForm = $request->all();
             $sobre = Sobre::create($dataForm);
 
-            $texto = str_replace(",", ", ", json_encode($sobre, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $sobre->id, 'conteudo');
-
             $response = array(
                 'status' => 'success',
                 'msg' => $request->message,
@@ -71,9 +64,6 @@ class ConteudoController extends Controller
         try {
             $dataForm = $request->all();
             $contato = Contato::create($dataForm);
-
-            $texto = str_replace(",", ", ", json_encode($contato, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $contato->id, 'conteudo');
 
             $response = array(
                 'status' => 'success',

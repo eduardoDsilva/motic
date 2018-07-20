@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Avaliador;
 use App\Avaliador;
 use App\Dado;
 use App\Endereco;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Avaliador\AvaliadorCreateFormRequest;
 use App\Http\Requests\Admin\Avaliador\AvaliadorUpdateFormRequest;
@@ -19,14 +18,12 @@ class AdminAvaliadorController extends Controller
 {
 
     private $avaliador;
-    private $auditoriaController;
 
     use RegistersUsers;
 
-    public function __construct(Avaliador $avaliador, AuditoriaController $auditoriaController)
+    public function __construct(Avaliador $avaliador)
     {
         $this->avaliador = $avaliador;
-        $this->auditoriaController = $auditoriaController;
     }
 
     public function index()
@@ -53,16 +50,10 @@ class AdminAvaliadorController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $user->id, 'avalaidor');
 
             $avaliador = Avaliador::create($dataForm + ['user_id' => $user->id]);
-            $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $avaliador->id, 'avalaidor');
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $endereco->id, 'avalaidor');
 
             Session::put('mensagem', "O avaliador " . $avaliador->name . " foi salvo com sucesso!");
 
@@ -116,18 +107,12 @@ class AdminAvaliadorController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $user->id, 'avalaidor');
 
             $avaliador = $user->avaliador;
             $avaliador->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $avaliador->id, 'avalaidor');
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $endereco->id, 'avalaidor');
 
             Session::put('mensagem', "O avaliador " . $avaliador->name . " foi editado com sucesso!");
 
@@ -165,8 +150,6 @@ class AdminAvaliadorController extends Controller
         try {
             $avaliador = Avaliador::find($id);
             $avaliador->user()->delete($id);
-            $texto = str_replace(",", ", ", json_encode($avaliador, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $avaliador->id, 'avalaidor');
 
             Session::put('mensagem', "O avaliador " . $avaliador->name . " foi deletado com sucesso!");
         } catch (\Exception $e) {

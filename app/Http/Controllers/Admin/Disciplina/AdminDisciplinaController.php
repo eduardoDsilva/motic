@@ -9,24 +9,20 @@
 namespace App\Http\Controllers\Admin\Disciplina;
 
 use App\Disciplina;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Disciplina\DisciplinaCreateFormRequest;
 use App\Http\Requests\Admin\Disciplina\DisciplinaUpdateFormRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminDisciplinaController extends Controller
 {
 
     private $disciplinas;
-    private $auditoriaController;
 
-    public function __construct(Disciplina $disciplina, AuditoriaController $auditoriaController)
+    public function __construct(Disciplina $disciplina)
     {
         $this->disciplinas = $disciplina;
-        $this->auditoriaController = $auditoriaController;
         $this->middleware('auth');
         $this->middleware('check.admin');
     }
@@ -42,8 +38,6 @@ class AdminDisciplinaController extends Controller
         $dataForm = $request->all();
         try {
             $disciplinas = Disciplina::create($dataForm);
-            $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $disciplinas->id, 'disciplina');
             Session::put('mensagem', "Disciplina " . $disciplinas->name . " adicionada com sucesso!");
             return redirect()
                 ->route("admin.disciplina");
@@ -84,8 +78,6 @@ class AdminDisciplinaController extends Controller
         try {
             $disciplinas = Disciplina::find($id);
             $disciplinas->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($disciplinas, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $disciplinas->id, 'disciplina');
 
             Session::put('mensagem', 'A disciplina '.$disciplinas->name.' foi editada com sucesso!');
             $disciplinas = Disciplina::all();
@@ -100,8 +92,6 @@ class AdminDisciplinaController extends Controller
         try {
             $disciplina = Disciplina::find($id);
             $disciplina->delete($id);
-            $texto = str_replace(",", ", ", json_encode($disciplina, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $disciplina->id, 'disciplina');
             Session::put('mensagem', 'A disciplina '.$disciplina->name.' foi deletada com sucesso!');
 
         } catch (\Exception $e) {

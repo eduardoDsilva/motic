@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\Escola\Professor;
 
 use App\Dado;
-use App\Endereco;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Requests\Professor\ProfessorCreateFormRequest;
 use App\Http\Requests\Professor\ProfessorUpdateFormRequest;
 use App\Professor;
 use App\Http\Controllers\Controller;
-use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Session;
 
 class EscolaProfessorController extends Controller
 {

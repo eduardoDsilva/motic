@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
-
+        OwenIt\Auditing\AuditingServiceProvider::class,
 
 
         /*

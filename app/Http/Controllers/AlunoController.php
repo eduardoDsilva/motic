@@ -67,7 +67,7 @@ class AlunoController extends Controller
             $aluno = Aluno::create($dataForm);
 
             $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $aluno->id, 'aluno');
+            $this->auditoriaController->storeCreate($aluno, $aluno->id, 'aluno');
 
             Session::put('mensagem', "O aluno " . $aluno->name . " foi cadastrado com sucesso!");
 

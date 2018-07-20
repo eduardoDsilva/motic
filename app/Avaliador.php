@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Avaliador extends Model
+class Avaliador extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'avaliadores';
 
@@ -26,5 +28,12 @@ class Avaliador extends Model
     public function suplente()
     {
         return $this->belongsToMany(Suplente::class);
+    }
+
+    public function generateTags(): array
+    {
+        return [
+            $this->user->username,
+        ];
     }
 }

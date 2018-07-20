@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Escola extends Model
+class Escola extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     protected $fillable = [
         'name', 'telefone', 'projetos', 'user_id',
     ];
@@ -35,4 +37,11 @@ class Escola extends Model
         return $this->hasMany(Projeto::class);
     }
 
+    public function generateTags(): array
+    {
+        return [
+           // $this->categoria->categoria,
+            $this->user->username,
+        ];
+    }
 }
