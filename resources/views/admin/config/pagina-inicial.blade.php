@@ -41,11 +41,13 @@
                             <p>Aqui você poderá gerenciar os conteúdos da aba 'contato' da página inicial.</p>
                         </div>
                         <div class="card-action">
-                            <a class="btn" href="{{route ('admin.config.gerencia.contato')}}">Clique aqui para acessar</a>
+                            <a class="btn" href="{{route ('admin.config.gerencia.contato')}}">Clique aqui para
+                                acessar</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 

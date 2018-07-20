@@ -28,8 +28,8 @@
 
                 <div id="editor">
                     @if(isset($sobre))
-                    {!! $sobre->sobre !!}
-                        @endif
+                        {!! $sobre->sobre !!}
+                    @endif
                 </div>
                 <br>
                 <button id='submit' class="center waves-effect waves-light btn" type="submit"><i
@@ -38,39 +38,40 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        DecoupledEditor
-            .create(document.querySelector('#editor'), {
-                language: 'pt-br'
-            })
-            .then(editor => {
-                const toolbarContainer = document.querySelector('#toolbar-container');
+    DecoupledEditor
+        .create(document.querySelector('#editor'), {
+            language: 'pt-br'
+        })
+        .then(editor => {
+            const toolbarContainer = document.querySelector('#toolbar-container');
 
-                toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
 
-                document.querySelector('#submit').addEventListener('click', () => {
-                    const editorData = editor.getData();
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content')
-                    $.ajax({
-                        /* the route pointing to the post function */
-                        url: '/gerencia/sobre/store',
-                        type: 'POST',
-                        data: {_token: CSRF_TOKEN, sobre: editorData},
-                        dataType: 'JSON',
-                        success: function () {
-                            Materialize.toast("Conteúdo atualizado com sucesso", 4000);
-                        }
-                    });
-
+            document.querySelector('#submit').addEventListener('click', () => {
+                const editorData = editor.getData();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content')
+                $.ajax({
+                    /* the route pointing to the post function */
+                    url: '/gerencia/sobre/store',
+                    type: 'POST',
+                    data: {_token: CSRF_TOKEN, sobre: editorData},
+                    dataType: 'JSON',
+                    success: function () {
+                        Materialize.toast("Conteúdo atualizado com sucesso", 4000);
+                    }
                 });
 
-            })
-            .catch(error => {
-                console.error(error);
             });
 
-    </script>
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+</script>
 
 @endsection
