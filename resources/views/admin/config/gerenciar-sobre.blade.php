@@ -27,7 +27,9 @@
                 <div id="toolbar-container"></div>
 
                 <div id="editor">
+                    @if(isset($sobre))
                     {!! $sobre->sobre !!}
+                        @endif
                 </div>
                 <br>
                 <button id='submit' class="center waves-effect waves-light btn" type="submit"><i

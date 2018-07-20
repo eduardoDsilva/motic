@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Aluno;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use Illuminate\Support\Facades\Session;
 
 class AlunoController extends Controller
@@ -15,11 +14,9 @@ class AlunoController extends Controller
      * @return void
      */
 
-    private $auditoriaController;
 
-    public function __construct(AuditoriaController $auditoriaController)
+    public function __construct()
     {
-        $this->auditoriaController = $auditoriaController;
         $this->middleware('auth');
     }
 
@@ -66,9 +63,6 @@ class AlunoController extends Controller
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
             $aluno = Aluno::create($dataForm);
 
-            $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($aluno, $aluno->id, 'aluno');
-
             Session::put('mensagem', "O aluno " . $aluno->name . " foi cadastrado com sucesso!");
 
         } catch (\Exception $e) {
@@ -84,9 +78,6 @@ class AlunoController extends Controller
             $aluno = Aluno::find($id);
             $aluno->update($dataForm);
 
-            $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $aluno->id, 'aluno');
-
             Session::put('mensagem', "O aluno " . $aluno->name . " foi editado com sucesso!");
 
             return Aluno::paginate(10);
@@ -100,8 +91,6 @@ class AlunoController extends Controller
         try {
             $aluno = Aluno::find($id);
             $aluno->delete($id);
-            $texto = str_replace(",", ", ", json_encode($aluno, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $aluno->id, 'aluno');
 
             Session::put('mensagem', "O aluno " . $aluno->name . " foi deletado com sucesso!");
         } catch (\Exception $e) {

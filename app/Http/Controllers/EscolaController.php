@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Endereco;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\User;
 use Illuminate\Support\Facades\Session;
 
@@ -16,11 +15,9 @@ class EscolaController extends Controller
      * @return void
      */
 
-    private $auditoriaController;
 
-    public function __construct(AuditoriaController $auditoriaController)
+    public function __construct()
     {
-        $this->auditoriaController = $auditoriaController;
         $this->middleware('auth');
         $this->middleware('auth.admin');
     }
@@ -63,19 +60,13 @@ class EscolaController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $user->id, 'escola');
 
             $escola = Escola::create($dataForm + ['user_id' => $user->id] + ['projetos' => count($qntProjetos)]);
             foreach ($dataForm['categoria_id'] as $categoria) {
                 $escola->categoria()->attach($categoria);
             }
-            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $escola->id, 'escola');
 
             $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $endereco->id, 'escola');
 
             Session::put('mensagem', "A escola " . $escola->name . " foi cadastrada com sucesso!");
         } catch (\Exception $e) {
@@ -96,13 +87,9 @@ class EscolaController extends Controller
                 'password' => bcrypt($dataForm['password']),
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
-            $texto = str_replace(",", ", ", json_encode($user, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $user->id, 'escola');
 
             $escola = $user->escola;
             $escola->update($dataForm + ['projetos' => count($qntProjetos)]);
-            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $escola->id, 'escola');
 
             $escola = $user->escola;
             $escola->categoria()->detach();
@@ -112,8 +99,6 @@ class EscolaController extends Controller
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
-            $texto = str_replace(",", ", ", json_encode($endereco, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $endereco->id, 'escola');
 
             Session::put('mensagem', "A escola " . $escola->name . " foi editada com sucesso!");
 
@@ -127,8 +112,6 @@ class EscolaController extends Controller
         try {
             $escola = Escola::find($id);
             $escola->user()->delete($id);
-            $texto = str_replace(",", ", ", json_encode($escola, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $escola->id, 'escola');
 
             Session::put('mensagem', "A escola " . $escola->name . " foi deletada com sucesso!");
         } catch (\Exception $e) {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Aluno;
 use App\Escola;
-use App\Http\Controllers\Auditoria\AuditoriaController;
 use App\Professor;
 use App\Projeto;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +16,9 @@ class ProjetoController extends Controller
      *
      * @return void
      */
-    private $auditoriaController;
 
-    public function __construct(AuditoriaController $auditoriaController)
+    public function __construct()
     {
-        $this->auditoriaController = $auditoriaController;
         $this->middleware('auth');
     }
 
@@ -64,9 +61,6 @@ class ProjetoController extends Controller
                 $coorientador->tipo = 'coorientador';
                 $coorientador->save();
             }
-
-            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeCreate($texto, $projeto->id, 'projeto');
 
             Session::put('mensagem', "O projeto ".$projeto->titulo." foi salvo com sucesso!");
 
@@ -114,8 +108,6 @@ class ProjetoController extends Controller
             foreach ($dataForm['disciplina_id'] as $disciplina) {
                 $projeto->disciplina()->attach($disciplina);
             }
-            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeUpdate($texto, $projeto->id, 'projeto');
 
             Session::put('mensagem', "O projeto " . $projeto->titulo . " foi editado com sucesso!");
 
@@ -131,8 +123,6 @@ class ProjetoController extends Controller
             DB::update('update professores set projeto_id = ? where projeto_id = ?', [null, $id]);
             $projeto = Projeto::find($id);
             $projeto->delete($id);
-            $texto = str_replace(",", ", ", json_encode($projeto, JSON_UNESCAPED_UNICODE));
-            $this->auditoriaController->storeDelete($texto, $projeto->id, 'projeto');
 
             Session::put('mensagem', "O projeto ".$projeto->titulo." foi deletado com sucesso!");
 
