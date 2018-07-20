@@ -26,8 +26,7 @@
                     <div class="card small blue darken-4">
                         <div class="card-content white-text">
                             <span class="card-title">Sobre</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
+                            <p>Aqui você poderá gerenciar os conteúdos da aba 'sobre' da página inicial.</p>
                         </div>
                         <div class="card-action">
                             <a class="btn" href="{{route ('admin.config.gerencia.sobre')}}">Clique aqui para acessar</a>
@@ -39,8 +38,7 @@
                     <div class="card small red darken-4">
                         <div class="card-content white-text">
                             <span class="card-title">Contato</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
+                            <p>Aqui você poderá gerenciar os conteúdos da aba 'contato' da página inicial.</p>
                         </div>
                         <div class="card-action">
                             <a class="btn" href="{{route ('admin.config.gerencia.contato')}}">Clique aqui para acessar</a>

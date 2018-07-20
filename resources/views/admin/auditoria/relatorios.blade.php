@@ -26,48 +26,23 @@
             <div class="col s12 m12 l6">
                 <div class="card small red darken-4 hoverable">
                     <div class="card-content white-text">
-                        <span class="card-title">Registros do sistema completo</span>
+                        <span class="card-title">Todos registros</span>
                         <p>Para gerar um relatório de todos os registros do sistema.</p>
                     </div>
                     <div class="card-action">
                         <a class="btn" target="_blank"
-                           href="{{route ('admin.auditoria.relatorios.todos.registros')}}">Gerar relatório</a>
+                           href="{{route ('admin.auditoria.registros')}}">Gerar relatório</a>
                     </div>
                 </div>
             </div>
             <div class="col s12 m12 l6">
                 <div class="card small purple darken-4 hoverable">
                     <div class="card-content white-text">
-                        <span class="card-title">Registro individual</span>
-                        <p>Para gerar um relatório de um registro do sistema.</p>
+                        <span class="card-title">Registro por usuário</span>
+                        <p>Para gerar um relatório dos registros de um usuário do sistema.</p>
                     </div>
                     <div class="card-action">
-                        <button class="modal-trigger btn" target="_blank" data-target="modal" href="#modal1"
-                                type="submit">Gerar relatório
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m12 l6">
-                <div class="card small green darken-4 hoverable">
-                    <div class="card-content white-text">
-                        <span class="card-title">Registros do sistema resumo</span>
-                        <p>Para gerar um relatório dos registros do sistema de forma resumida.</p>
-                    </div>
-                    <div class="card-action">
-                        <a class="btn" target="_blank"
-                           href="{{route('admin.auditoria.relatorios.registros.resumo')}}">Gerar relatório</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m12 l6">
-                <div class="card small blue darken-4 hoverable">
-                    <div class="card-content white-text">
-                        <span class="card-title">Registros por usuário</span>
-                        <p>Para gerar um relatório de todos os registros de um único usuário.</p>
-                    </div>
-                    <div class="card-action">
-                        <button class="modal-trigger btn" target="_blank" data-target="modal2" href="#modal2"
+                        <button class="modal-trigger btn" data-target="modal" href="#modal2"
                                 type="submit">Gerar relatório
                         </button>
                     </div>
@@ -79,25 +54,6 @@
 </div>
 </div>
 
-@if(isset($auditorias))
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Auditorias</h4>
-
-            <div class="col s12 m4 l8">
-                <form method="POST" enctype="multipart/form-data"
-                      action="{{ route("admin.auditoria.relatorios.filtrar") }}">
-                    @includeIf('_layouts._auditoria._filtro-auditoria')
-                </form>
-            </div>
-
-            <div class="row">
-                @includeIf('_layouts._auditoria._tabela-auditoria')
-            </div>
-        </div>
-    </div>
-@endif
 @if(isset($usuarios))
     <!-- Modal Structure -->
     <div id="modal2" class="modal">
@@ -149,7 +105,7 @@
                             <td>
                                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
                                    data-tooltip="Gerar relatório" target="_blank"
-                                   href="{{route('admin.auditoria.relatorios.registros.usuario', $usuario->id)}}"><i
+                                   href="{{route ('admin.auditoria.relatorios.registro.individual', $usuario->id)}}"><i
                                             class="small material-icons">chrome_reader_mode</i></a>
                             </td>
                         </tr>
@@ -172,11 +128,6 @@
 
 
 @section('modal')
-    @if(isset($modal1))
-        $(document).ready(function(){
-        $('#modal1').modal('open');
-        });
-    @endif
     @if(isset($modal2))
         $(document).ready(function(){
         $('#modal2').modal('open');
