@@ -4,7 +4,7 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
 
     Route::get('admin/home', ['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
-    require_once('auditoria/auditoria.php');
+    require_once('audit/audit.php');
 
     require_once('aluno/aluno.php');
 

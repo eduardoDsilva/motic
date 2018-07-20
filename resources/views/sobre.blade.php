@@ -12,7 +12,9 @@
 
     <div class="container">
         <div class="card-panel">
-            {!! $sobre->sobre !!}
+            @if(isset($sobre))
+                {!! $sobre->sobre !!}
+            @endif
         </div>
     </div>
 

@@ -3,9 +3,9 @@
         <select name="tipo" drequired>
             <option value="" disabled selected>Filtrar por...</option>
             <option value="id">ID</option>
+            <option value="evento">Evento</option>
             <option value="tipo">Tipo</option>
-            <option value="objeto">Objeto</option>
-            <option value="user">Usuário responsável</option>
+            <option value="user">Usuário</option>
         </select>
         <label>Filtros</label>
     </div>

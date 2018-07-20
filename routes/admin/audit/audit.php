@@ -1,12 +1,12 @@
 <?php
 
-Route::group(['prefix' => 'admin/auditoria', 'namespace' => 'Admin\Auditoria'], function () {
+Route::group(['prefix' => 'admin/auditoria', 'namespace' => 'Audit'], function () {
 
-    Route::get('/', ['as' => 'admin.auditoria', 'uses' => 'AdminAuditoriaController@index']);
+    Route::get('/', ['as' => 'admin.auditoria', 'uses' => 'AuditController@index']);
 
-    Route::post('filtrar', ['as' => 'admin.auditoria.filtrar', 'uses' => 'AdminAuditoriaController@filtrar']);
+    Route::post('filtrar', ['as' => 'admin.auditoria.filtrar', 'uses' => 'AuditController@filtrar']);
 
-    Route::post('filtrar/relatorios/registros', ['as' => 'admin.auditoria.relatorios.filtrar', 'uses' => 'AdminAuditoriaRelatorioController@filtrar']);
+    /*Route::post('filtrar/relatorios/registros', ['as' => 'admin.auditoria.relatorios.filtrar', 'uses' => 'AdminAuditoriaRelatorioController@filtrar']);
 
     Route::post('filtrar/relatorios/usuarios', ['as' => 'admin.auditoria.relatorios.user.filtrar', 'uses' => 'AdminAuditoriaRelatorioController@filtrarUsuarios']);
 
@@ -20,5 +20,5 @@ Route::group(['prefix' => 'admin/auditoria', 'namespace' => 'Admin\Auditoria'], 
 
     Route::get('relatorios/registros-usuario/{id}', ['as' => 'admin.auditoria.relatorios.registros.usuario', 'uses' => 'AdminAuditoriaRelatorioController@registrosUsuario']);
 
-
+*/
 });

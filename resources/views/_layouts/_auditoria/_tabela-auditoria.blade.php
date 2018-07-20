@@ -2,21 +2,22 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Tipo</th>
+        <th>Evento</th>
         <th>Descricao</th>
-        <th>Objeto</th>
-        <th>Usuário</th>
-        <th>Data</th>
+        <th>Tipo</th>
+        <th>Responsável</th>
+        <th>Data/hora</th>
     </tr>
     </thead>
     <tbody>
     @forelse ($auditorias as $auditoria)
         <tr>
             <td>{{$auditoria->id}}</td>
-            <td>{{$auditoria->tipo}}</td>
-            <td width="70%">{{str_limit($auditoria->descricao), 80, ' (...)'}}</td>
-            <td>{{$auditoria->objeto}}</td>
-            <td width="20%">{{$auditoria->nome_usuario}}</td>
+            <td>{{$auditoria->event}}</td>
+            <td width="70%">@if($auditoria->new_values == '[]') {{str_replace(',',', ', $auditoria->old_values)}}
+                @else{{str_replace(',',', ', $auditoria->new_values)}}@endif</td>
+            <td width="20%">{{$auditoria->auditable_type}}</td>
+            <td width="20%">{{\App\User::find($auditoria->user_id)->username}}</td>
             <td width="15%">{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>
         </tr>
     @empty
