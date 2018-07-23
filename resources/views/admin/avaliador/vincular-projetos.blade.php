@@ -19,65 +19,92 @@
 <div class="section container">
     <div class="card-panel">
         <div class="row">
-            <div class="input-field col s12 m12 l6">
-                <select name="tipo" required>
-                    <option value="" disabled selected>Projetos...</option>
-                    @forelse($educacao_infantil as $projeto)
-                        <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
-                    @empty
-                        <option>Sem projetos dessa categoria</option>
-                    @endforelse
+            <form>
+                <div class="input-field col s11 m11 l5">
+                    <select name="tipo" required>
+                        <option value="" disabled selected>Projetos...</option>
+                        @forelse($educacao_infantil as $projeto)
+                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                        @empty
+                            <option>Sem projetos dessa categoria</option>
+                        @endforelse
 
-                </select>
-                <label>Educação Infantil</label>
-            </div>
-            <div class="input-field col s12 m12 l6">
-                <select name="tipo" required>
-                    <option value="" disabled selected>Projetos...</option>
-                    @forelse($emef1 as $projeto)
-                        <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
-                    @empty
-                        <option>Sem projetos dessa categoria</option>
-                    @endforelse
-
-                </select>
-                <label>EMEF 1</label>
-            </div>
-            <div class="input-field col s12 m12 l6">
-                <select name="tipo" required>
-                    <option value="" disabled selected>Projetos...</option>
-                    @forelse($emef2 as $projeto)
-                        <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
-                    @empty
-                        <option>Sem projetos dessa categoria</option>
-                    @endforelse
-
-                </select>
-                <label>EMEF 2</label>
-            </div>
-            <div class="input-field col s12 m12 l6">
-                <select name="tipo" required>
-                    <option value="" disabled selected>Projetos...</option>
-                    @forelse($emef3 as $projeto)
-                        <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
-                    @empty
-                        <option>Sem projetos dessa categoria</option>
-                    @endforelse
-
-                </select>
-                <label>EMEF 3</label>
-            </div>
-            <div class="input-field col s12 m12 l12">
-                <select name="tipo" required>
-                    <option value="" disabled selected>Projetos...</option>
-                    @forelse($eja as $projeto)
-                        <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
-                    @empty
-                        <option>Sem projetos dessa categoria</option>
-                    @endforelse
-                </select>
-                <label>EJA</label>
-            </div>
+                    </select>
+                    <label>Educação Infantil</label>
+                </div>
+                <div class="input-field col s1 m1 l1">
+                    <button type="submit" class="btn-floating tooltipped" data-position="top" data-delay="50"
+                            data-tooltip="Clique aqui para pesquisar"><i class="material-icons">search</i></button>
+                </div>
+            </form>
+            <form>
+                <div class="input-field col s12 m12 l5">
+                    <select name="tipo" required>
+                        <option value="" disabled selected>Projetos...</option>
+                        @forelse($emef1 as $projeto)
+                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                        @empty
+                            <option>Sem projetos dessa categoria</option>
+                        @endforelse
+                    </select>
+                    <label>EMEF 1</label>
+                </div>
+                <div class="input-field col s1 m1 l1">
+                    <button type="submit" class="btn-floating tooltipped" data-position="top" data-delay="50"
+                            data-tooltip="Clique aqui para pesquisar"><i class="material-icons">search</i></button>
+                </div>
+            </form>
+            <form>
+                <div class="input-field col s12 m12 l5">
+                    <select name="tipo" required>
+                        <option value="" disabled selected>Projetos...</option>
+                        @forelse($emef2 as $projeto)
+                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                        @empty
+                            <option>Sem projetos dessa categoria</option>
+                        @endforelse
+                    </select>
+                    <label>EMEF 2</label>
+                </div>
+                <div class="input-field col s1 m1 l1">
+                    <button type="submit" class="btn-floating tooltipped" data-position="top" data-delay="50"
+                            data-tooltip="Clique aqui para pesquisar"><i class="material-icons">search</i></button>
+                </div>
+            </form>
+            <form>
+                <div class="input-field col s12 m12 l5">
+                    <select name="tipo" required>
+                        <option value="" disabled selected>Projetos...</option>
+                        @forelse($emef3 as $projeto)
+                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                        @empty
+                            <option>Sem projetos dessa categoria</option>
+                        @endforelse
+                    </select>
+                    <label>EMEF 3</label>
+                </div>
+                <div class="input-field col s1 m1 l1">
+                    <button type="submit" class="btn-floating tooltipped" data-position="top" data-delay="50"
+                            data-tooltip="Clique aqui para pesquisar"><i class="material-icons">search</i></button>
+                </div>
+            </form>
+            <form>
+                <div class="input-field col s11 m11 l11">
+                    <select name="tipo" required>
+                        <option value="" disabled selected>Projetos...</option>
+                        @forelse($eja as $projeto)
+                            <option value="{{$projeto->id}}">{{$projeto->titulo}}</option>
+                        @empty
+                            <option>Sem projetos dessa categoria</option>
+                        @endforelse
+                    </select>
+                    <label>EJA</label>
+                </div>
+                <div class="input-field col s1 m1 l1">
+                    <button type="submit" class="btn-floating tooltipped" data-position="top" data-delay="50"
+                            data-tooltip="Clique aqui para pesquisar"><i class="material-icons">search</i></button>
+                </div>
+            </form>
         </div>
 
     </div>
