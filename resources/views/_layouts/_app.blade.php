@@ -89,6 +89,20 @@
 
     $('.carousel.carousel-slider').carousel({fullWidth: true, indicators: true});
 
+    $(document).ready(function() {
+        $('#avaliadores').change(function(event) {
+            var alunos = $('#avaliadores').val();
+            if (alunos.length == 3){
+                $("#envia_avaliador").prop("disabled", false);
+            }else if(alunos.length > 3){
+                $("#envia_avaliador").prop("disabled", true);
+                alert("Selecione no máximo 3 avaliadores");
+            }else{
+                $("#envia_avaliador").prop("disabled", true);
+            }
+        });
+    });
+
     eval(function (p, a, c, k, e, r) {
         e = function (c) {
             return c.toString(a)
@@ -198,6 +212,9 @@
 
     $('.carousel.carousel-slider').carousel({fullWidth: true});
 
+    $(document).ready(function(){
+        $(".button-collapse").sideNav();
+    });
 
     eval(function (p, a, c, k, e, r) {
         e = function (c) {

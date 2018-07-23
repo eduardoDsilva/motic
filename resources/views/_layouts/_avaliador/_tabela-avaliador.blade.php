@@ -5,6 +5,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Usuário</th>
+        <th>Projetos</th>
         <th>Ações</th>
     </tr>
     </thead>
@@ -14,6 +15,7 @@
             <td>{{$avaliador->id}}</td>
             <td>{{$avaliador->user->name}}</td>
             <td>{{$avaliador->user->username}}</td>
+            <td>{{$avaliador->projetos}}</td>
             <td>
                 <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
                    data-tooltip="Editar" href="{{ route("admin.avaliador.edit", $avaliador->id) }}"><i
@@ -24,8 +26,10 @@
                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar"
                    href="{{ route("admin.avaliador.show", $avaliador->id) }}"> <i
                             class="small material-icons">library_books</i></a>
-                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Projetos" href="">
-                    <i class="small material-icons">view_agenda</i></a>
+                @if($avaliador->projetos < 3)
+                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Vincular projetos"
+                   href="{{route ('admin.avaliador.vincular-projetos', $avaliador->id)}}"> <i class="small material-icons">stars</i></a>
+                @endif
             </td>
         </tr>
     @empty

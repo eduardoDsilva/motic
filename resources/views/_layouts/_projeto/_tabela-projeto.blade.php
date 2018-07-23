@@ -3,10 +3,10 @@
     <tr>
         <th>ID</th>
         <th>Título</th>
-        <th>Área</th>
         <th>Categoria</th>
         @if(Auth::user()->tipoUser == 'admin')
         <th>Escola</th>
+        <th>Avaliadores</th>
         @endif
         <th>Ações</th>
     </tr>
@@ -16,10 +16,10 @@
         <tr>
             <td>{{$projeto->id}}</td>
             <td>{{$projeto->titulo}}</td>
-            <td>{{$projeto->area}}</td>
             <td>{{$projeto->categoria->categoria}}</td>
             @if(Auth::user()->tipoUser == 'admin')
             <td>{{$projeto->escola->name}}</td>
+            <td>{{$projeto->avaliadores}}</td>
             @endif
             <td>
                 @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
@@ -41,6 +41,10 @@
                        data-tooltip="Rebaixar a projeto suplente"
                        href="{{ route("admin.projeto.rebaixa", $projeto->id) }}"> <i
                                 class="small material-icons">arrow_downward</i></a>
+                        @if($projeto->avaliadores < 3)
+                            <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Vincular avaliadores"
+                               href="{{route ('admin.projeto.vincular-avaliadores', $projeto->id)}}"> <i class="small material-icons">stars</i></a>
+                        @endif
                 @endif
             </td>
         </tr>

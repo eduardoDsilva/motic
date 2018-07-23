@@ -34,6 +34,7 @@ class EscolaSuplenteController extends Controller
         try {
             $projetos = Projeto::where('ano', '=', '2018')
                 ->where('tipo', '=', 'suplente')
+                ->where('escola_id', '=', Auth::user()->escola->id)
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
 

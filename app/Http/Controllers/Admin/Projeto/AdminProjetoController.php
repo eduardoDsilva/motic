@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Projeto;
 
 use App\Aluno;
+use App\Avaliador;
 use App\Disciplina;
 use App\Escola;
 use App\Http\Controllers\Controller;
@@ -134,6 +135,27 @@ class AdminProjetoController extends Controller
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
+    }
+
+    public function vincularAvaliador($id){
+        $avaliadores = Avaliador::orderBy('name','asc')->where('projetos', '<', '3')->get();
+        $projeto = Projeto::find($id);
+        return view('admin.projeto.vincular-avaliador', compact('avaliadores', 'projeto'));
+    }
+
+    public function vincula(Request $request){
+        $dataForm = $request->all();
+        foreach($dataForm['avaliadores'] as $id){
+            $avaliador = Avaliador::find($id);
+            $avaliador->projeto()->attach(Session::get('id'));
+            $tamanho = $avaliador->projetos;
+            $avaliador->projetos = $tamanho + 1;
+            $avaliador->save();
+        }
+        $tamanho = count($dataForm['avaliadores']);
+        $projeto = Projeto::find(Session::get('id'));
+        $projeto->avaliadores = $tamanho;
+        $projeto->save();
     }
 
     public function categorias()

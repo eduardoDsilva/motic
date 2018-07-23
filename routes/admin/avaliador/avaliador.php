@@ -20,4 +20,6 @@ Route::group(['prefix' => 'admin/avaliador', 'namespace' => 'Admin\Avaliador'], 
 
     Route::get('relatorios', ['as' => 'admin.avaliador.relatorios', 'uses' => 'AdminAvaliadorRelatorioController@index']);
 
+    Route::get('vincular-projetos/{id}', ['as' => 'admin.avaliador.vincular-projetos', 'uses' => 'AdminAvaliadorController@vincularProjetos']);
+
 });

@@ -138,6 +138,8 @@ class AdminAvaliadorController extends Controller
             } else if ($dataForm['tipo'] == 'sexo') {
                 $filtro = '%' . $dataForm['search'] . '%';
                 $avaliadores = Avaliador::where('sexo', 'like', $filtro)->paginate(10);
+            } else if ($dataForm['tipo'] == 'projetos') {
+                $avaliadores = Avaliador::where('projetos', '=', $dataForm['search'])->paginate(10);
             }
             return view('admin.avaliador.home', compact('avaliadores'));
         } catch (\Exception $e) {
@@ -183,10 +185,35 @@ class AdminAvaliadorController extends Controller
             $qnt = $projeto->avaliadores + 1;
             $projeto->update(['avaliadores' => $qnt]);
 
-            return view('admin/avaliador/atribuir');
+            return view('admin.avaliador.atribuir');
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
+    }
+
+    public function vincularProjetos($id){
+        $avaliador = Avaliador::find($id);
+        $educacao_infantil = Projeto::all()
+            ->where('categoria_id', '=', '1')
+            ->where('avaliadores', '<', '3')
+            ->where('tipo', '=', 'normal');
+        $emef1 = Projeto::all()
+            ->where('categoria_id', '=', '2')
+            ->where('avaliadores', '<', '3')
+            ->where('tipo', '=', 'normal');
+        $emef2 = Projeto::all()
+            ->where('categoria_id', '=', '3')
+            ->where('avaliadores', '<', '3')
+            ->where('tipo', '=', 'normal');
+        $emef3 = Projeto::all()
+            ->where('categoria_id', '=', '4')
+            ->where('avaliadores', '<', '3')
+            ->where('tipo', '=', 'normal');
+        $eja = Projeto::all()
+            ->where('categoria_id', '=', '5')
+            ->where('avaliadores', '<', '3')
+            ->where('tipo', '=', 'normal');
+        return view('admin.avaliador.vincular-projetos', compact('avaliador', 'educacao_infantil', 'emef1', 'emef2', 'emef3', 'eja'));
     }
 
 }
