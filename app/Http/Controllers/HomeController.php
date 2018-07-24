@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contato;
-use App\Sobre;
+use App\Conteudo;
 
 class HomeController extends Controller
 {
@@ -33,13 +32,13 @@ class HomeController extends Controller
 
     public function contato()
     {
-        $contato = Contato::latest()->first();
-        return view('contato', compact('contato'));
+        $conteudo = Conteudo::latest()->first();
+        return view('contato', compact('conteudo'));
     }
 
     public function sobre()
     {
-        $sobre = Sobre::latest()->first();
-        return view('sobre', compact('sobre'));
+        $conteudo = Conteudo::latest()->first();
+        return view('sobre', compact('conteudo'));
     }
 }

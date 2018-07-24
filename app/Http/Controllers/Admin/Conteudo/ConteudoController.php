@@ -8,9 +8,8 @@
 
 namespace App\Http\Controllers\Admin\Conteudo;
 
-use App\Contato;
+use App\Conteudo;
 use App\Http\Controllers\Controller;
-use App\Sobre;
 use Illuminate\Http\Request;
 
 class ConteudoController extends Controller
@@ -24,29 +23,30 @@ class ConteudoController extends Controller
 
     public function index()
     {
-
         return view('admin.config.pagina-inicial');
     }
 
     public function sobre()
     {
-        $sobre = Sobre::latest()->first();
+        $conteudo = Conteudo::latest()->first();
 
-        return view('admin.config.gerenciar-sobre', compact('sobre'));
+        return view('admin.config.gerenciar-sobre', compact('conteudo'));
     }
 
     public function contato()
     {
-        $contato = Contato::latest()->first();
+        $conteudo = Conteudo::latest()->first();
 
-        return view('admin.config.gerenciar-contato', compact('contato'));
+        return view('admin.config.gerenciar-contato', compact('conteudo'));
     }
 
     public function sobreStore(Request $request)
     {
         try {
             $dataForm = $request->all();
-            $sobre = Sobre::create($dataForm);
+            $conteudo = Conteudo::latest()->first();
+            $conteudo->sobre = $dataForm['sobre'];
+            $conteudo->save();
 
             $response = array(
                 'status' => 'success',
@@ -63,7 +63,9 @@ class ConteudoController extends Controller
     {
         try {
             $dataForm = $request->all();
-            $contato = Contato::create($dataForm);
+            $conteudo = Conteudo::latest()->first();
+            $conteudo->contato = $dataForm['contato'];
+            $conteudo->save();
 
             $response = array(
                 'status' => 'success',

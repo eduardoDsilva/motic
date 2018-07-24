@@ -30,6 +30,10 @@
                 <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Vincular projetos"
                    href="{{route ('admin.avaliador.vincular-projetos', $avaliador->id)}}"> <i class="small material-icons">stars</i></a>
                 @endif
+                @if($avaliador->projetos > 0)
+                    <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Desvincular projetos"
+                       href="{{route ('admin.avaliador.desvincular-projetos', $avaliador->id)}}"> <i class="small material-icons">remove_circle</i></a>
+                @endif
             </td>
         </tr>
     @empty

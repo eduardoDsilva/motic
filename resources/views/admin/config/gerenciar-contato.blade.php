@@ -27,8 +27,8 @@
                 <div id="toolbar-container"></div>
 
                 <div id="editor">
-                    @if(isset($contato))
-                        {!! $contato->contato !!}
+                    @if(isset($conteudo))
+                        {!! $conteudo->contato !!}
                     @endif
                 </div>
                 <br>

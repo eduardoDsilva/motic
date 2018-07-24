@@ -27,8 +27,8 @@
                 <div id="toolbar-container"></div>
 
                 <div id="editor">
-                    @if(isset($sobre))
-                        {!! $sobre->sobre !!}
+                    @if(isset($conteudo))
+                        {!! $conteudo->sobre !!}
                     @endif
                 </div>
                 <br>

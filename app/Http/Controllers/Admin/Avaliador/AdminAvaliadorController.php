@@ -176,7 +176,6 @@ class AdminAvaliadorController extends Controller
 
     public function atribui(Request $request)
     {
-        dd('batata');
         $dataForm = $request->all();
         try {
             $projeto = Projeto::find($dataForm['projeto_id']);
@@ -214,6 +213,38 @@ class AdminAvaliadorController extends Controller
             ->where('avaliadores', '<', '3')
             ->where('tipo', '=', 'normal');
         return view('admin.avaliador.vincular-projetos', compact('avaliador', 'educacao_infantil', 'emef1', 'emef2', 'emef3', 'eja'));
+    }
+
+    public function desvincularProjetos($id){
+        $avaliador = Avaliador::find($id);
+        return view('admin.avaliador.desvincular-projetos', compact('avaliador'));
+    }
+
+    public function desvinculaProjetos($id){
+        $avaliador = Avaliador::find(Session::get('id'));
+        $projeto = Projeto::find($id);
+        $avaliador->projeto()->detach($id);
+        $tamanho = $avaliador->projetos;
+        $avaliador->projetos = $tamanho - 1;
+        $avaliador->save();
+        $tamanho = $projeto->avaliadores;
+        $projeto->avaliadores = $tamanho - 1;
+        $projeto->save();
+        return redirect()->route("admin.avaliador");
+    }
+
+    public function vinculaProjetos(Request $request){
+        $dataForm = $request->all();
+        $avaliador = Avaliador::find(Session::get('id'));
+        $avaliador->projeto()->attach($dataForm['projeto']);
+        $tamanho = $avaliador->projetos;
+        $avaliador->projetos = $tamanho + 1;
+        $avaliador->save();
+        $projeto = Projeto::find($dataForm['projeto']);
+        $tamanho = $projeto->avaliadores;
+        $projeto->avaliadores = $tamanho + 1;
+        $projeto->save();
+        return redirect()->route("admin.avaliador");
     }
 
 }

@@ -12,8 +12,8 @@
 
     <div class="container">
         <div class="card-panel">
-            @if(isset($sobre))
-                {!! $sobre->sobre !!}
+            @if(isset($conteudo))
+                {!! $conteudo->sobre !!}
             @endif
         </div>
     </div>

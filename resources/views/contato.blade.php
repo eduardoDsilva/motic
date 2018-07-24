@@ -12,8 +12,8 @@
 
     <div class="container">
         <div class="card-panel">
-            @if(isset($contato))
-                {!! $contato->contato !!}
+            @if(isset($conteudo))
+                {!! $conteudo->contato !!}
             @endif
         </div>
     </div>

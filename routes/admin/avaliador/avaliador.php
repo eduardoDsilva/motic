@@ -22,4 +22,10 @@ Route::group(['prefix' => 'admin/avaliador', 'namespace' => 'Admin\Avaliador'], 
 
     Route::get('vincular-projetos/{id}', ['as' => 'admin.avaliador.vincular-projetos', 'uses' => 'AdminAvaliadorController@vincularProjetos']);
 
+    Route::get('desvincular-projetos/{id}', ['as' => 'admin.avaliador.desvincular-projetos', 'uses' => 'AdminAvaliadorController@desvincularProjetos']);
+
+    Route::get('vincula-projetos/{id}', ['as' => 'admin.avaliador.desvincula-projetos', 'uses' => 'AdminAvaliadorController@desvinculaProjetos']);
+
+    Route::post('vincula-projetos', ['as' => 'admin.avaliador.vincula-projetos', 'uses' => 'AdminAvaliadorController@vinculaProjetos']);
+
 });
