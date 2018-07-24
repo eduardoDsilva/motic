@@ -67,6 +67,15 @@
                         </ul>
                         <ul class="collection with-header col s12 m12 l12">
                             <li class="collection-header"><h4 class="center-align">Projetos</h4></li>
+                            @forelse ($avaliador->projeto as $projeto)
+                                <li class="collection-item">
+                                    Projeto: {{$projeto->titulo}}
+                                </li>
+                            @empty
+                                <li class="collection-item">
+                                    Avaliador sem projetos vinculados.
+                                </li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>

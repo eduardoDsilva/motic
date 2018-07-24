@@ -156,6 +156,7 @@ class AdminProjetoController extends Controller
         $projeto = Projeto::find(Session::get('id'));
         $projeto->avaliadores = $tamanho;
         $projeto->save();
+        return redirect()->route("admin.projeto");
     }
 
     public function categorias()

@@ -13,11 +13,11 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class InvoicesExport implements FromCollection, ShouldAutoSize, WithHeadings
+class InvoicesExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Audit::all();
+        return Audit::latest();
     }
 
     public function headings(): array

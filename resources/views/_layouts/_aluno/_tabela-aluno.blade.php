@@ -24,8 +24,7 @@
             @endif
             <td>{{$aluno->turma}}</td>
             <td>{{($aluno->projeto_id == null ? ($aluno->suplente_id == null ? "Aluno sem projeto" : $aluno->suplente->titulo) : $aluno->projeto->titulo)}}</td>
-            <td>
-
+            <td width="20%">
                 @can('view', $inscricao = \App\Inscricao::orderBy('id', 'desc')->first())
                     <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
                        data-tooltip="Editar"
