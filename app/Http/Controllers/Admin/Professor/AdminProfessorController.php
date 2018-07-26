@@ -50,6 +50,7 @@ class AdminProfessorController extends Controller
         try {
             $dataForm = $request->all() + ['tipoUser' => 'professor'];
             $this->professorController->store($dataForm);
+
             return redirect()->route("admin.professor");
         } catch (\Exception $e) {
             return "Erro " . $e->getMessage();

@@ -81,11 +81,11 @@ class ProfessorController extends Controller
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
 
-            $professor = Professor::create($dataForm + ['user_id' => $user->id]);
+            Professor::create($dataForm + ['user_id' => $user->id]);
 
-            $endereco = Endereco::create($dataForm + ['user_id' => $user->id]);
+            Endereco::create($dataForm + ['user_id' => $user->id]);
 
-            Session::put('mensagem', "O professor " . $professor->name . " foi criado com sucesso!");
+            Session::put('mensagem', "O professor " . $user->name . " foi criado com sucesso!");
 
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -104,13 +104,14 @@ class ProfessorController extends Controller
                 'tipoUser' => $dataForm['tipoUser'],
             ]);
 
+
             $professor = $user->professor;
             $professor->update($dataForm);
 
             $endereco = $user->endereco;
             $endereco->update($dataForm);
 
-            Session::put('mensagem', "O professor " . $professor->name . " foi editado com sucesso!");
+            Session::put('mensagem', "O professor " . $user->name . " foi editado com sucesso!");
 
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
