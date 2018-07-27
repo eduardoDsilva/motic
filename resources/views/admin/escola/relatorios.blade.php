@@ -10,10 +10,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
     @section('titulo-header', 'Relatórios escolas')
 
     @section('conteudo-header', 'Esses são os relatórios das escolas disponíveis no sistema!')

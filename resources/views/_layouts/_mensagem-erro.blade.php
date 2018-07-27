@@ -1,7 +1,10 @@
-<div class="center-align">
-    <div class="chip green">
-        {{Session::get('mensagem')}}
-        <i class="close material-icons">close</i>
+@if( isset($errors) && count($errors) > 0 )
+    <div class="center-align">
+        @foreach( $errors->all() as $error )
+            <div class="chip red">
+                {{$error}}
+                <i class="close material-icons">close</i>
+            </div>
+        @endforeach
     </div>
-</div>
-{{Session::forget('mensagem')}}
+@endif

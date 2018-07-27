@@ -10,10 +10,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
     @section('titulo-header', 'Cadastrar projeto suplente')
 
     @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório e deve-se selecionar exatamente 3 alunos.")
@@ -23,6 +19,7 @@
     <section class="section container">
         <div class="card-panel">
             <div class="row">
+                @include('_layouts._mensagem-erro')
                 <article class="col s12">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('admin.suplente.store') }}">
 

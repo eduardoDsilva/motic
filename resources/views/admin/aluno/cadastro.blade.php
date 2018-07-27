@@ -39,26 +39,25 @@
     </div>
 @endsection
 
-@section('form')
-
-    class="col s12" method="POST" enctype="multipart/form-data"
-    action="@if(isset($aluno)){{ route('admin.aluno.update', $aluno->id) }}
-    @else {{ route('admin.aluno.store') }}@endif"
-
-@endsection
-
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
+@section('titulo-header', 'Cadastrar aluno')
 
-    @section('titulo-header', 'Cadastrar aluno')
+@section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório.")
 
-    @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório.")
+@includeIf('_layouts._sub-titulo')
 
-    @includeIf('_layouts._sub-titulo')
-
-    @include('_layouts._aluno._form-aluno')
+<div class="container section">
+    <div class="card-panel">
+        <div class="row">
+            @includeIf('_layouts._mensagem-erro')
+            <form class="col s12" method="POST" enctype="multipart/form-data"
+                  action="@if(isset($aluno)){{route('admin.aluno.update',$aluno->id)}}@else{{route('admin.aluno.store')}}">
+                {{csrf_field()}}
+                @include('_layouts._aluno._form-aluno')
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection

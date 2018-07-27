@@ -1,19 +1,4 @@
-@if( isset($errors) && count($errors) > 0 )
-    <div class="center-align">
-        @foreach( $errors->all() as $error )
-            <div class="chip red">
-                {{$error}}
-                <i class="close material-icons">close</i>
-            </div>
-        @endforeach
-    </div>
-@endif
 
-<section class="section container">
-    <div class="card-panel">
-        <div class="row">
-            <article class="col s12">
-                <form @yield('form') >
                     {{csrf_field()}}
 
                     <h5>Dados básicos</h5>
@@ -242,9 +227,3 @@
                         </button>
                     </div>
 
-                </form>
-
-            </article>
-        </div>
-    </div>
-</section>

@@ -8,9 +8,6 @@
 @endsection
 
 @section('content')
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
 
 @section('titulo-header', "PDF's")
 

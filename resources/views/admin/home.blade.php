@@ -7,11 +7,7 @@
 @endsection
 
 @section('content')
-
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
+    
 @section('titulo-header', 'Administrador')
 
 @section('conteudo-header', 'Bem vindo, '.Auth::user()->name)

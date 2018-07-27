@@ -10,10 +10,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
     @section('titulo-header', 'Relatórios projetos suplentes')
 
     @section('conteudo-header', 'Esses são os relatórios dos projetos suplentes disponíveis no sistema!')
@@ -22,6 +18,7 @@
 
     <div class="section container col s12 m4 l8">
         <div class="card-panel">
+            @include('_layouts._mensagem-sucesso')
             <div class="row">
                 <div class="col s12 m12 l6">
                     <div class="card small red darken-4 hoverable">

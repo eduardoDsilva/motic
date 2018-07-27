@@ -8,9 +8,6 @@
 @endsection
 
 @section('content')
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
 
 @section('titulo-header', 'Inscrições')
 
@@ -21,10 +18,14 @@
 <div class="section container">
     <div class="card-panel">
         <div class="col s12 m4 l8">
-
+            @if(Session::get('mensagem'))
+                @include('_layouts._mensagem-sucesso')
+            @endif
             <blockquote>Atenção! Assim que o período de inscrições indicado nos campos abaixo acabar, as escolas não
-            terão mais acesso ao cadastro de professores, alunos e projetos. Você pode postergar essa data ou reabrir
-            o período de inscrições a qualquer momento.</blockquote>
+                terão mais acesso ao cadastro de professores, alunos e projetos. Você pode postergar essa data ou
+                reabrir
+                o período de inscrições a qualquer momento.
+            </blockquote>
 
             <form method="POST" enctype="multipart/form-data"
                   action="{{ route("admin.config.inscricoes.store") }}">

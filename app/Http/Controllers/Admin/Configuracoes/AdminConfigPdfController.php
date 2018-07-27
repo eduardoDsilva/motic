@@ -69,7 +69,6 @@ class AdminConfigPdfController extends Controller
                 $texto = 'O usuário '.Auth::user()->username.' fez o upload do pdf regulamento-motic.';
                 return redirect()->back();
             }
-
         } catch (\Exception $e) {
             return "Erro " . $e->getMessage();
         }

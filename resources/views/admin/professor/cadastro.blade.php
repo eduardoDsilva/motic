@@ -33,25 +33,25 @@
 
 @endsection
 
-@section('form')
-
-    method="POST" enctype="multipart/form-data"
-    action="@if(isset($professor)){{ route("admin.professor.update", $professor->user->id) }} @else {{ route('admin.professor.store') }} @endif"
-
-@endsection
-
 @section('content')
-
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
 
 @section('titulo-header', 'Cadastrar escola')
 
 @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório")
 
 @includeIf('_layouts._sub-titulo')
-
-@includeIf('_layouts._professor._form-professor')
+<section class="section container">
+    <div class="card-panel">
+        @include('_layouts._mensagem-erro')
+        <div class="row">
+            <article class="col s12">
+                <form method="POST" enctype="multipart/form-data"
+                      action="@if(isset($professor)){{ route("admin.professor.update", $professor->user->id) }} @else {{ route('admin.professor.store') }} @endif">
+                    @includeIf('_layouts._professor._form-professor')
+                </form>
+            </article>
+        </div>
+    </div>
+</section>
 
 @endsection

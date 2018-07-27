@@ -36,26 +36,28 @@
     </div>
 @endsection
 
-@section('form')
-
-    class="col s12" method="post" enctype="multipart/form-data"
-    action="@if(isset($aluno)){{ route('escola.aluno.update', $aluno->id) }}
-    @else {{ route('escola.aluno.store') }}@endif"
-
-@endsection
-
 @section('content')
-
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
 
 @section('titulo-header', 'Cadastrar aluno')
 
 @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório.")
 
 @includeIf('_layouts._sub-titulo')
-
-    @include('_layouts._aluno._form-aluno')
+<div class="container section">
+    <div class="card-panel">
+        @if(Session::get('mensagem'))
+            @include('_layouts._mensagem-sucesso')
+        @endif
+        <div class="row">
+            @includeIf('_layouts._mensagem-erro')
+            <form class="col s12" method="post" enctype="multipart/form-data"
+                  action="@if(isset($aluno)){{ route('escola.aluno.update', $aluno->id) }}
+                  @else {{ route('escola.aluno.store') }}@endif">
+                {{csrf_field()}}
+                @include('_layouts._aluno._form-aluno')
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection

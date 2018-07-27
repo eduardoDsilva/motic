@@ -10,20 +10,13 @@
 
 @section('content')
 
-    @if( isset($errors) && count($errors) > 0 )
-        <div class="center-align">
-            @foreach( $errors->all() as $error )
-                <div class="chip red">
-                    {{$error}}
-                    <i class="close material-icons">close</i>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
     <section class="section container">
         <div class="card-panel">
             <div class="row">
+                @if(Session::get('mensagem'))
+                    @include('_layouts._mensagem-sucesso')
+                @endif
+                @include('_layouts._mensagem-erro')
                 <h3 class="center-align">Editar Disciplina</h3>
                 <article class="col s12">
                     <form method="POST" enctype="multipart/form-data"

@@ -10,10 +10,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
 @section('titulo-header', 'Relatórios auditorias')
 
 @section('conteudo-header', 'Esses são os relatórios de auditoria disponíveis no sistema!')
@@ -125,7 +121,6 @@
     </div>
 @endif
 @endsection
-
 
 @section('modal')
     @if(isset($modal2))

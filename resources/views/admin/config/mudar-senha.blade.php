@@ -22,7 +22,8 @@
         @endif
         <div class="col s12 m4 l8">
 
-            <blockquote>Atenção! Para alterar a sua senha, você deve ter em mãos a senha atual. Caso não consiga acessar após mudar a senha, tente utilizar o mecanismo
+            <blockquote>Atenção! Para alterar a sua senha, você deve ter em mãos a senha atual. Caso não consiga acessar
+                após mudar a senha, tente utilizar o mecanismo
                 de
                 'esqueci minha senha' na tela de login. Quaisquer dúvidas entre em contato com a gerencia da MOTIC.
             </blockquote>

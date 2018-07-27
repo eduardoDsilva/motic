@@ -10,16 +10,12 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
 @section('titulo-header', $aluno->name)
 
 @section('conteudo-header', 'Esses são todos os dados do aluno '.$aluno->name)
 
 @includeIf('_layouts._sub-titulo')
 
-    @includeIf('_layouts._aluno._show-aluno')
+@includeIf('_layouts._aluno._show-aluno')
 
 @endsection

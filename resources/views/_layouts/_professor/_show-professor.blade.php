@@ -1,13 +1,7 @@
+@includeIf('_layouts._mensagem-erro')
 @if(Session::get('mensagem'))
-    <div class="center-align">
-        <div class="chip green">
-            {{Session::get('mensagem')}}
-            <i class="close material-icons">close</i>
-        </div>
-    </div>
-    {{Session::forget('mensagem')}}
+    @include('_layouts._mensagem-sucesso')
 @endif
-
 <div class="container">
 
     <div class="col s12 m12 l12">

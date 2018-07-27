@@ -8,9 +8,6 @@
 @endsection
 
 @section('content')
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
 
 @section('titulo-header', 'Inscrições')
 
@@ -21,10 +18,14 @@
 <div class="section container">
     <div class="card-panel">
         <div class="col s12 m4 l8">
-
-            <blockquote>Atenção! Assim que o período de avaliações indicado nos campos abaixo acabar, os avaliadores não poderão mais
+            @if(Session::get('mensagem'))
+                @include('_layouts._mensagem-sucesso')
+            @endif
+            <blockquote>Atenção! Assim que o período de avaliações indicado nos campos abaixo acabar, os avaliadores não
+                poderão mais
                 ver os projetos designados a eles e dar as notas. Você pode postergar essa data ou reabrir
-                o período de avaliações a qualquer momento. </blockquote>
+                o período de avaliações a qualquer momento.
+            </blockquote>
 
             <form method="POST" enctype="multipart/form-data"
                   action="{{ route("admin.config.avaliacoes.store") }}">
@@ -53,7 +54,7 @@
 
                     <div class="input-field col s12 m6 l6">
                         <i class="material-icons prefix">access_time</i>
-                        <input type="text" class="timepicker"name="hora_fim" required
+                        <input type="text" class="timepicker" name="hora_fim" required
                                value="{{$datas->hora_fim or old('hora_fim')}}">
                         <label for="nascimento">Hora do fim das avaliações</label>
                     </div>

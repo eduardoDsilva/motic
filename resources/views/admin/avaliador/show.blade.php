@@ -10,16 +10,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        <div class="center-align">
-            <div class="chip green">
-                {{Session::get('mensagem')}}
-                <i class="close material-icons">close</i>
-            </div>
-        </div>
-        {{Session::forget('mensagem')}}
-    @endif
-
     <div class="section container">
         <div class="card-panel">
             <h1 class="header center orange-text">{{$avaliador->name}}</h1>

@@ -9,10 +9,6 @@
 
 @section('content')
 
-    @if(session('success'))
-        {{session('success')}}
-    @endif
-
     @section('titulo-header', 'Auditoria')
 
     @section('conteudo-header', 'Essas são os registros do sistema!')
@@ -22,9 +18,6 @@
     <div class="section container">
         <div class="card-panel">
             <div class="col s12 m4 l8">
-                @if(Session::get('mensagem'))
-                    @include('_layouts._mensagem-erro')
-                @endif
                 <form method="POST" enctype="multipart/form-data" action="{{ route("admin.auditoria.filtrar") }}">
                     @includeIf('_layouts._auditoria._filtro-auditoria')
                 </form>

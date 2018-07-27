@@ -10,10 +10,6 @@
 
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
-
 @section('titulo-header', $projeto->titulo)
 
 @section('conteudo-header', 'Esses são todos os dados do projeto'.$projeto->titulo)

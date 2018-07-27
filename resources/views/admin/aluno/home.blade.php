@@ -19,7 +19,7 @@
     <div class="card-panel">
         <div class="col s12 m4 l8">
             @if(Session::get('mensagem'))
-                @include('_layouts._mensagem-erro')
+                @include('_layouts._mensagem-sucesso')
             @endif
             <form method="POST" enctype="multipart/form-data" action="{{ route('admin.aluno.filtrar') }}">
                 @includeIf('_layouts._aluno._filtro-aluno')
@@ -29,13 +29,11 @@
             @includeIf('_layouts._aluno._tabela-aluno')
         </div>
         <div class="fixed-action-btn">
-
             <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="top"
                data-delay="50" data-tooltip="Adicionar aluno"
                href="{{route ('admin.aluno.create')}}">
                 <i class="material-icons">add</i></a>
         </div>
-
     </div>
 </div>
 

@@ -9,9 +9,6 @@
 @endsection
 
 @section('content')
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
 
 @section('titulo-header', 'Gerenciar')
 
@@ -23,7 +20,6 @@
     <div class="card-panel">
         <div class="col s12 m4 l8">
             <div class="row">
-
                 <div id="toolbar-container"></div>
 
                 <div id="editor">
