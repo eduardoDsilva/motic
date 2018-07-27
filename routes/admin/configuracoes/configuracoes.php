@@ -28,6 +28,10 @@ Route::group(['prefix' => 'admin/config', 'namespace' => 'Admin\Configuracoes'],
 
     Route::post('ficha-de-avaliacao/carrega', ['as' => 'admin.config.ficha-de-avaliacao', 'uses' => 'AdminConfigPdfController@carregaFichaDeAvaliacao']);
 
+    Route::get('alterar-senha', ['as' => 'admin.config.alterar-senha', 'uses' => 'AdminConfigController@alterarSenha']);
+
+    Route::post('altera-senha', ['as' => 'admin.config.altera-senha', 'uses' => 'AdminConfigController@alteraSenha']);
+
 
 });
 

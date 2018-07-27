@@ -14,11 +14,21 @@
         <tr>
             <td>{{$auditoria->id}}</td>
             <td>{{$auditoria->event}}</td>
-            <td width="70%">@if($auditoria->new_values == '[]') {!! str_limit(str_replace(',',', ', $auditoria->old_values), 100) !!}
-                @else{{str_limit(str_replace(',',', ', $auditoria->new_values), 300)}}@endif</td>
-            <td width="20%">{{$auditoria->auditable_type}}</td>
-            <td width="20%">{{\App\User::find($auditoria->user_id)->username}}</td>
-            <td width="15%">{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>
+            <td>
+                @if($auditoria->new_values == '[]')
+                    @if(starts_with($auditoria->old_values, '{"password"'))
+                        {{ str_limit(str_replace(',',', ', $auditoria->old_values), 30) }}
+                    @else{{ str_limit(str_replace(',',', ', $auditoria->old_values), 200) }}
+                    @endif
+                @else
+                    @if(starts_with($auditoria->new_values, '{"password"'))
+                        {{str_limit(str_replace(',',', ', $auditoria->new_values), 30)}}
+                    @else{{ str_limit(str_replace(',',', ', $auditoria->new_values), 200) }}
+                    @endif
+                @endif</td>
+            <td>{{$auditoria->auditable_type}}</td>
+            <td>{{\App\User::find($auditoria->user_id)->username}}</td>
+            <td>{{ date('d-m-Y H:i:s', strtotime($auditoria->created_at)) }}</td>
         </tr>
     @empty
         <tr>
