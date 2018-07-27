@@ -16,12 +16,12 @@
             <td>{{$auditoria->event}}</td>
             <td>
                 @if($auditoria->new_values == '[]')
-                    @if(starts_with($auditoria->old_values, '{"password"'))
+                    @if(starts_with($auditoria->old_values, '{"password"') || starts_with($auditoria->old_values, '{"remember_token"'))
                         {{ str_limit(str_replace(',',', ', $auditoria->old_values), 30) }}
                     @else{{ str_limit(str_replace(',',', ', $auditoria->old_values), 200) }}
                     @endif
                 @else
-                    @if(starts_with($auditoria->new_values, '{"password"'))
+                    @if(starts_with($auditoria->new_values, '{"password"') || starts_with($auditoria->old_values, '{"remember_token"'))
                         {{str_limit(str_replace(',',', ', $auditoria->new_values), 30)}}
                     @else{{ str_limit(str_replace(',',', ', $auditoria->new_values), 200) }}
                     @endif

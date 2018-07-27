@@ -54,17 +54,14 @@
         <div class="row">
             <div class="col l9 s9 m9">
                 <h5 class="white-text">Prefeitura Municipal de São Leopoldo</h5>
-                <p class="grey-text text-lighten-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                <p class="grey-text text-lighten-4">Secretaria Municipal de Educação - SMED
                 </p>
             </div>
             <div class="col l3 s3 m3">
-                <h5 class="white-text">Sobre</h5>
+                <h5 class="white-text">Redes Sociais</h5>
                 <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
+                    <li><a class="white-text" href="https://www.facebook.com/MOTICSAOLEO">Facebook MOTIC</a></li>
+                    <li><a class="white-text" href="https://www.facebook.com/smedsaoleopoldo">Facebook SMED</a></li>
                 </ul>
             </div>
         </div>
@@ -83,7 +80,7 @@
 
 <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
 
-<link rel="shortcut icon" href="{{ url('images/motic-favicon.ico') }}">
+<link rel="shortcut icon" href="{{ url('images/motic-faviconnn.ico') }}">
 
 <script type="text/javascript">
 

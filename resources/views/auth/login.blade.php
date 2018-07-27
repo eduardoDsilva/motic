@@ -18,6 +18,9 @@
     <div class="container">
         <div class="section">
             <div class="col s12 z-depth-4 card-panel">
+                @if(Session::get('mensagem'))
+                    @include('_layouts._mensagem-erro')
+                @endif
                 <div class="row">
                     <form class="" action="{{route('login')}}" method="post">
                         <div class="input-field">
