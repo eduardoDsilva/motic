@@ -72,7 +72,7 @@ class AdminProjetoController extends Controller
     public function show($id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $alunos = Aluno::all()
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()->where('projeto_id', '=', $projeto->id);
@@ -96,7 +96,7 @@ class AdminProjetoController extends Controller
     public function edit($id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar projeto: ' . $projeto->titulo;
             return view("admin.projeto.editar", compact('projeto', 'titulo', 'disciplinas'));
@@ -128,7 +128,7 @@ class AdminProjetoController extends Controller
     public function rebaixaSuplente($id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $projeto->update(['tipo' => 'suplente']);
             Session::put('mensagem', 'O projeto '.$projeto->titulo.' foi rebaixado para suplente com sucesso!');
             return redirect()->route("admin.projeto");
@@ -139,21 +139,21 @@ class AdminProjetoController extends Controller
 
     public function vincularAvaliador($id){
         $avaliadores = Avaliador::orderBy('name','asc')->where('projetos', '<', '3')->get();
-        $projeto = Projeto::find($id);
+        $projeto = Projeto::findOrFail($id);
         return view('admin.projeto.vincular-avaliador', compact('avaliadores', 'projeto'));
     }
 
     public function vincula(Request $request){
         $dataForm = $request->all();
         foreach($dataForm['avaliadores'] as $id){
-            $avaliador = Avaliador::find($id);
+            $avaliador = Avaliador::findOrFail($id);
             $avaliador->projeto()->attach(Session::get('id'));
             $tamanho = $avaliador->projetos;
             $avaliador->projetos = $tamanho + 1;
             $avaliador->save();
         }
         $tamanho = count($dataForm['avaliadores']);
-        $projeto = Projeto::find(Session::get('id'));
+        $projeto = Projeto::findOrFail(Session::get('id'));
         $projeto->avaliadores = $tamanho;
         $projeto->save();
         return redirect()->route("admin.projeto");
@@ -164,7 +164,7 @@ class AdminProjetoController extends Controller
         try {
             $escola_id = Input::get('escola_id');
             Session::put('escola_id', $escola_id);
-            $escola = $this->escola->find($escola_id);
+            $escola = $this->escola->findOrFail($escola_id);
             $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->where('tipo', '=', 'normal')->get();
             $categoria_id = [];
             foreach ($projetos as $projeto) {

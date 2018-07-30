@@ -59,7 +59,7 @@ class AdminAlunoRelatorioController
 
     public function alunoIndividual($id)
     {
-        $aluno = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
         return \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
             ->loadView('pdf.aluno.aluno-individual', compact('aluno'))
             ->stream('aluno-' . $aluno->name . '-' . date('Y') . '.pdf');

@@ -58,7 +58,7 @@ class AdminConfigController extends Controller
                 Session::put('mensagem', "Senha incorreta!");
                 return redirect()->route('admin.config.alterar-senha')->withErrors(['password' => 'Senha atual está incorreta'])->withInput();
             }
-            $user = User::find(Auth::user()->id);
+            $user = User::findOrFail(Auth::user()->id);
             $user->password = (bcrypt($dataForm['password']));
             $user->save();
             Session::put('mensagem', "Senha atualizada!");

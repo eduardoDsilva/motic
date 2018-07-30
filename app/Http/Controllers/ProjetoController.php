@@ -31,7 +31,7 @@ class ProjetoController extends Controller
     public function store($dataForm)
     {
         try {
-            $escola = Escola::find($dataForm['escola_id']);
+            $escola = Escola::findOrFail($dataForm['escola_id']);
             $projeto = Projeto::all()
                 ->where('escola_id', '=', $escola->id);
             if (count($projeto) >= $escola->projetos) {
@@ -43,20 +43,20 @@ class ProjetoController extends Controller
             }
             $alunos = [];
             foreach ($dataForm['aluno_id'] as $aluno_id) {
-                $alunos[] = Aluno::find($aluno_id);
+                $alunos[] = Aluno::findOrFail($aluno_id);
             }
             foreach ($alunos as $aluno) {
                 $aluno->projeto_id = $projeto->id;
                 $aluno->save();
             }
 
-            $orientador = Professor::find($dataForm['orientador']);
+            $orientador = Professor::findOrFail($dataForm['orientador']);
             $orientador->projeto_id = $projeto->id;
             $orientador->tipo = 'orientador';
             $orientador->save();
 
             if (isset($dataForm['coorientador'])) {
-                $coorientador = Professor::find($dataForm['coorientador']);
+                $coorientador = Professor::findOrFail($dataForm['coorientador']);
                 $coorientador->projeto_id = $projeto->id;
                 $coorientador->tipo = 'coorientador';
                 $coorientador->save();
@@ -102,7 +102,7 @@ class ProjetoController extends Controller
     public function update($dataForm, $id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $projeto->update($dataForm);
             $projeto->disciplina()->detach();
             foreach ($dataForm['disciplina_id'] as $disciplina) {
@@ -121,7 +121,7 @@ class ProjetoController extends Controller
         try {
             DB::update('update alunos set projeto_id = ? where projeto_id = ?', [null, $id]);
             DB::update('update professores set projeto_id = ? where projeto_id = ?', [null, $id]);
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $projeto->delete($id);
 
             Session::put('mensagem', "O projeto ".$projeto->titulo." foi deletado com sucesso!");

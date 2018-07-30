@@ -75,7 +75,7 @@ class AlunoController extends Controller
         try {
             $dataForm += ['categoria_id' => $this->categoriaAluno($dataForm['etapa'])];
 
-            $aluno = Aluno::find($id);
+            $aluno = Aluno::findOrFail($id);
             $aluno->update($dataForm);
 
             Session::put('mensagem', "O aluno " . $aluno->name . " foi editado com sucesso!");
@@ -89,7 +89,7 @@ class AlunoController extends Controller
     public function destroy($id)
     {
         try {
-            $aluno = Aluno::find($id);
+            $aluno = Aluno::findOrFail($id);
             $aluno->delete($id);
 
             Session::put('mensagem', "O aluno " . $aluno->name . " foi deletado com sucesso!");

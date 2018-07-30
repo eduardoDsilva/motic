@@ -24,18 +24,9 @@
 
 @endsection
 
-@section('form')
-
-    method="POST" enctype="multipart/form-data"
-    action="@if(isset($professor)){{ route("escola.professor.update", $professor->user->id) }} @else {{ route('escola.professor.store') }} @endif"
-
-@endsection
-
 @section('content')
 
-    @if(Session::get('mensagem'))
-        @include('_layouts._mensagem-erro')
-    @endif
+    @includeIf('_layouts._mensagem-erro')
 
 @section('titulo-header', 'Cadastrar professor')
 
@@ -43,6 +34,18 @@
 
 @includeIf('_layouts._sub-titulo')
 
-    @includeIf('_layouts._professor._form-professor')
+<section class="section container">
+    <div class="card-panel">
+        @include('_layouts._mensagem-erro')
+        <div class="row">
+            <article class="col s12">
+                <form method="POST" enctype="multipart/form-data"
+                      action="@if(isset($professor)){{ route("escola.professor.update", $professor->user->id) }} @else {{ route('escola.professor.store') }} @endif">
+                    @includeIf('_layouts._professor._form-professor')
+                </form>
+            </article>
+        </div>
+    </div>
+</section>
 
 @endsection

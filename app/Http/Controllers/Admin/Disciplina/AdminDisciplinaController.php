@@ -65,7 +65,7 @@ class AdminDisciplinaController extends Controller
     public function edit($id)
     {
         try {
-            $disciplina = disciplina::find($id);
+            $disciplina = disciplina::findOrFail($id);
             return view("admin.disciplinas.editar", compact('disciplina'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -76,7 +76,7 @@ class AdminDisciplinaController extends Controller
     {
         $dataForm = $request->all();
         try {
-            $disciplinas = Disciplina::find($id);
+            $disciplinas = Disciplina::findOrFail($id);
             $disciplinas->update($dataForm);
 
             Session::put('mensagem', 'A disciplina '.$disciplinas->name.' foi editada com sucesso!');
@@ -90,7 +90,7 @@ class AdminDisciplinaController extends Controller
     public function destroy($id)
     {
         try {
-            $disciplina = Disciplina::find($id);
+            $disciplina = Disciplina::findOrFail($id);
             $disciplina->delete($id);
             Session::put('mensagem', 'A disciplina '.$disciplina->name.' foi deletada com sucesso!');
 

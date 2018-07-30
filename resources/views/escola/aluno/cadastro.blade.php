@@ -45,9 +45,7 @@
 @includeIf('_layouts._sub-titulo')
 <div class="container section">
     <div class="card-panel">
-        @if(Session::get('mensagem'))
-            @include('_layouts._mensagem-sucesso')
-        @endif
+        @includeIf('_layouts._mensagem-erro')
         <div class="row">
             @includeIf('_layouts._mensagem-erro')
             <form class="col s12" method="post" enctype="multipart/form-data"

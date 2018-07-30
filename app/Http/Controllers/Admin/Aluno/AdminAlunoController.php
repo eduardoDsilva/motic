@@ -58,7 +58,7 @@ class AdminAlunoController extends Controller
     public function show($id)
     {
         try {
-            $aluno = Aluno::find($id);
+            $aluno = Aluno::findOrFail($id);
             return view('admin.aluno.show', compact('aluno'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -79,7 +79,7 @@ class AdminAlunoController extends Controller
     public function edit($id)
     {
         try {
-            $aluno = Aluno::find($id);
+            $aluno = Aluno::findOrFail($id);
             $titulo = "Editar aluno: " . $aluno->name;
             $escolas = Escola::all();
             return view("admin.aluno.cadastro", compact('aluno', 'titulo', 'escolas'));
@@ -112,7 +112,7 @@ class AdminAlunoController extends Controller
     {
         try {
             $escola_id = Input::get('escola_id');
-            $escola = Escola::find($escola_id);
+            $escola = Escola::findOrFail($escola_id);
             $categorias = $escola->categoria;
             $ano = [];
             foreach ($categorias as $categoria) {

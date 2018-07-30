@@ -66,7 +66,7 @@ class AdminAvaliadorController extends Controller
     public function show($id)
     {
         try {
-            $avaliador = Avaliador::find($id);
+            $avaliador = Avaliador::findOrFail($id);
             return view("admin.avaliador.show", compact('avaliador'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -86,7 +86,7 @@ class AdminAvaliadorController extends Controller
     public function edit($id)
     {
         try {
-            $avaliador = Avaliador::find($id);
+            $avaliador = Avaliador::findOrFail($id);
             $titulo = 'Editar avaliador: ' . $avaliador->name;
 
             return view("admin.avaliador.cadastro", compact('avaliador', 'titulo'));
@@ -99,7 +99,7 @@ class AdminAvaliadorController extends Controller
     {
         $dataForm = $request->all() + ['tipoUser' => 'avaliador'];
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $user->update([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
@@ -150,7 +150,7 @@ class AdminAvaliadorController extends Controller
     public function destroy($id)
     {
         try {
-            $avaliador = Avaliador::find($id);
+            $avaliador = Avaliador::findOrFail($id);
             $avaliador->user()->delete($id);
 
             Session::put('mensagem', "O avaliador " . $avaliador->name . " foi deletado com sucesso!");
@@ -166,7 +166,7 @@ class AdminAvaliadorController extends Controller
                 ->where('tipo', '=', 'normal')
                 ->where('avaliadores', '<', '3')
                 ->paginate(10);
-            $avaliador = Avaliador::find($id);
+            $avaliador = Avaliador::findOrFail($id);
 
             return view('admin.avaliador.atribuir', compact('projetos', 'avaliador'));
         } catch (\Exception $e) {
@@ -178,8 +178,8 @@ class AdminAvaliadorController extends Controller
     {
         $dataForm = $request->all();
         try {
-            $projeto = Projeto::find($dataForm['projeto_id']);
-            $avaliador = Avaliador::find($dataForm['avaliador_id']);
+            $projeto = Projeto::findOrFail($dataForm['projeto_id']);
+            $avaliador = Avaliador::findOrFail($dataForm['avaliador_id']);
             $avaliador->projeto()->attach($projeto->id);
             $qnt = $projeto->avaliadores + 1;
             $projeto->update(['avaliadores' => $qnt]);
@@ -191,7 +191,7 @@ class AdminAvaliadorController extends Controller
     }
 
     public function vincularProjetos($id){
-        $avaliador = Avaliador::find($id);
+        $avaliador = Avaliador::findOrFail($id);
         $educacao_infantil = Projeto::all()
             ->where('categoria_id', '=', '1')
             ->where('avaliadores', '<', '3')
@@ -216,13 +216,13 @@ class AdminAvaliadorController extends Controller
     }
 
     public function desvincularProjetos($id){
-        $avaliador = Avaliador::find($id);
+        $avaliador = Avaliador::findOrFail($id);
         return view('admin.avaliador.desvincular-projetos', compact('avaliador'));
     }
 
     public function desvinculaProjetos($id){
-        $avaliador = Avaliador::find(Session::get('id'));
-        $projeto = Projeto::find($id);
+        $avaliador = Avaliador::findOrFail(Session::get('id'));
+        $projeto = Projeto::findOrFail($id);
         $avaliador->projeto()->detach($id);
         $tamanho = $avaliador->projetos;
         $avaliador->projetos = $tamanho - 1;
@@ -235,12 +235,12 @@ class AdminAvaliadorController extends Controller
 
     public function vinculaProjetos(Request $request){
         $dataForm = $request->all();
-        $avaliador = Avaliador::find(Session::get('id'));
+        $avaliador = Avaliador::findOrFail(Session::get('id'));
         $avaliador->projeto()->attach($dataForm['projeto']);
         $tamanho = $avaliador->projetos;
         $avaliador->projetos = $tamanho + 1;
         $avaliador->save();
-        $projeto = Projeto::find($dataForm['projeto']);
+        $projeto = Projeto::findOrFail($dataForm['projeto']);
         $tamanho = $projeto->avaliadores;
         $projeto->avaliadores = $tamanho + 1;
         $projeto->save();

@@ -39,7 +39,7 @@ class EscolaProfessorController extends Controller
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
         try {
-            $escola = Escola::find(Auth::user()->escola->id);
+            $escola = Escola::findOrFail(Auth::user()->escola->id);
             return view('escola.professor.cadastro', compact('escola'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -62,7 +62,7 @@ class EscolaProfessorController extends Controller
     public function show($id)
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
-        $professor = Professor::find($id);
+        $professor = Professor::findOrFail($id);
         $this->authorize('view', $inscricao);
         $this->authorize('show', $professor);
         try {
@@ -75,11 +75,11 @@ class EscolaProfessorController extends Controller
     public function edit($id)
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
-        $professor = Professor::find($id);
+        $professor = Professor::findOrFail($id);
         $this->authorize('view', $inscricao);
         $this->authorize('edit', $professor);
         try {
-            $escola = Escola::find(Auth::user()->escola->id);
+            $escola = Escola::findOrFail(Auth::user()->escola->id);
             $titulo = 'Editar professor: ' . $professor->name;
             return view("escola.professor.cadastro", compact('professor', 'titulo', 'escola'));
         } catch (\Exception $e) {
@@ -115,7 +115,7 @@ class EscolaProfessorController extends Controller
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
-        $professor = Professor::find($id);
+        $professor = Professor::findOrFail($id);
         $this->authorize('delete', $professor);
         try {
             $this->professorController->destroy($id);

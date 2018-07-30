@@ -42,7 +42,7 @@ class EscolaAlunoController extends Controller
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
         try {
-            $escola = Escola::find(Auth::user()->escola->id);
+            $escola = Escola::findOrFail(Auth::user()->escola->id);
             $categorias = $escola->categoria;
             $ano = [];
             foreach ($categorias as $categoria) {
@@ -85,7 +85,7 @@ class EscolaAlunoController extends Controller
 
     public function show($id)
     {
-        $aluno = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
         $this->authorize('show', $aluno);
         try {
             return view('escola.aluno.show', compact('aluno'));
@@ -96,13 +96,13 @@ class EscolaAlunoController extends Controller
 
     public function edit($id)
     {
-        $aluno = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
         $this->authorize('edit', $aluno);
         try {
-            $aluno = Aluno::find($id);
-            $escola = Escola::find(Auth::user()->escola->id);
+            $aluno = Aluno::findOrFail($id);
+            $escola = Escola::findOrFail(Auth::user()->escola->id);
             $categorias = $escola->categoria;
             foreach ($categorias as $categoria) {
                 if ($categoria->id == 1) {
@@ -156,7 +156,7 @@ class EscolaAlunoController extends Controller
     public function destroy($id)
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
-        $aluno = Aluno::find($id);
+        $aluno = Aluno::findOrFail($id);
         $this->authorize('view', $inscricao);
         $this->authorize('delete', $aluno);
         try {
@@ -170,7 +170,7 @@ class EscolaAlunoController extends Controller
     {
         try {
             $escola_id = Input::get('escola_id');
-            $escola = Escola::find($escola_id);
+            $escola = Escola::findOrFail($escola_id);
             $categorias = $escola->categoria;
             $ano = [];
             foreach ($categorias as $categoria) {

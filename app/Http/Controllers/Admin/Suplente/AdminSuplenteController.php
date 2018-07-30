@@ -82,7 +82,7 @@ class AdminSuplenteController extends Controller
     public function show($id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $alunos = Aluno::all()
                 ->where('projeto_id', '=', $projeto->id);
             $professores = Professor::all()
@@ -96,7 +96,7 @@ class AdminSuplenteController extends Controller
     public function edit($id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $disciplinas = Disciplina::all();
             $titulo = 'Editar suplente: ' . $projeto->titulo;
             return view("admin.suplente.editar", compact('projeto', 'titulo', 'disciplinas'));
@@ -128,7 +128,7 @@ class AdminSuplenteController extends Controller
     public function promoveSuplente($id)
     {
         try {
-            $projeto = Projeto::find($id);
+            $projeto = Projeto::findOrFail($id);
             $projeto->update(['tipo' => 'normal']);
             Session::put('mensagem', 'O projeto '.$projeto->titulo.' foi promovido para titular com sucesso!');
             return redirect()->route("admin.suplente");
@@ -142,7 +142,7 @@ class AdminSuplenteController extends Controller
         try {
             $escola_id = Input::get('escola_id');
             Session::put('escola_id', $escola_id);
-            $escola = $this->escola->find($escola_id);
+            $escola = $this->escola->findOrFail($escola_id);
             $projetos = DB::table('projetos')
                 ->select('categoria_id')
                 ->where('escola_id', '=', $escola->id)

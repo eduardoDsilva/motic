@@ -95,7 +95,7 @@ class ProfessorController extends Controller
     public function update($dataForm, $id)
     {
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $user->update([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
@@ -121,7 +121,7 @@ class ProfessorController extends Controller
     public function destroy($id)
     {
         try {
-            $professor = Professor::find($id);
+            $professor = Professor::findOrFail($id);
             $professor->user()->delete($id);
             Session::put('mensagem', "O professor ".$professor->name." foi deletado com sucesso!");
         } catch (\Exception $e) {

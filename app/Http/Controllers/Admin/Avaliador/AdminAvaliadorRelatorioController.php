@@ -42,7 +42,7 @@ class AdminAvaliadorRelatorioController
         public function alunoPdf(Request $request)
         {
             $dataForm = $request->all();
-            $aluno = Aluno::find($dataForm['id']);
+            $aluno = Aluno::findOrFail($dataForm['id']);
             return  \PDF::setOptions(['dpi' => 325, 'defaultFont' => 'sans-serif'])
                 ->loadView('pdf.aluno.aluno-individual', compact('aluno'))
                 ->stream('aluno-'.$aluno->name.'-'.date('Y').'.pdf');

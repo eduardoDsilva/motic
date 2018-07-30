@@ -50,7 +50,7 @@ class EscolaSuplenteController extends Controller
         $this->authorize('view', $inscricao);
         try {
             $disciplinas = Disciplina::all();
-            $escola = Escola::find(Auth::user()->escola->id);
+            $escola = Escola::findOrFail(Auth::user()->escola->id);
 
             $projetos = DB::table('projetos')
                 ->select('categoria_id')
@@ -88,7 +88,7 @@ class EscolaSuplenteController extends Controller
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
-        $projeto = Projeto::find($id);
+        $projeto = Projeto::findOrFail($id);
         $this->authorize('show', $projeto);
         try {
             $alunos = Aluno::all()
@@ -105,7 +105,7 @@ class EscolaSuplenteController extends Controller
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
-        $projeto = Projeto::find($id);
+        $projeto = Projeto::findOrFail($id);
         $this->authorize('edit', $projeto);
         try {
             $disciplinas = Disciplina::all();
@@ -144,7 +144,7 @@ class EscolaSuplenteController extends Controller
     {
         $inscricao = \App\Inscricao::orderBy('id', 'desc')->first();
         $this->authorize('view', $inscricao);
-        $projeto = Projeto::find($id);
+        $projeto = Projeto::findOrFail($id);
         $this->authorize('delete', $projeto);
         try {
             $this->projetoController->destroy($id);
@@ -158,7 +158,7 @@ class EscolaSuplenteController extends Controller
         try {
             $escola_id = Input::get('escola_id');
             Session::put('escola_id', $escola_id);
-            $escola = $this->escola->find($escola_id);
+            $escola = $this->escola->findOrFail($escola_id);
             $projetos = DB::table('projetos')->select('categoria_id')->where('escola_id', '=', $escola->id)->get();
             $categoria_id = [];
             foreach ($projetos as $projeto) {

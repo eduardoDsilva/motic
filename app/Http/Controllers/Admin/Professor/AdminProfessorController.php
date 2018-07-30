@@ -60,7 +60,7 @@ class AdminProfessorController extends Controller
     public function show($id)
     {
         try {
-            $professor = Professor::find($id);
+            $professor = Professor::findOrFail($id);
             return view("admin.professor.show", compact('professor'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
@@ -81,7 +81,7 @@ class AdminProfessorController extends Controller
     public function edit($id)
     {
         try {
-            $professor = Professor::find($id);
+            $professor = Professor::findOrFail($id);
             $escolas = Escola::all();
             $titulo = 'Editar professor: ' . $professor->name;
 

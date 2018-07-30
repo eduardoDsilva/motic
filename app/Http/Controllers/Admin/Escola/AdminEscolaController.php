@@ -51,7 +51,7 @@ class AdminEscolaController extends Controller
     public function show($id)
     {
         try {
-            $escola = Escola::find($id);
+            $escola = Escola::findOrFail($id);
             $alunos = Aluno::where('escola_id', '=', $escola->id)->paginate(6);
             $professores = Professor::where('escola_id', '=', $escola->id)->paginate(6);
             $projetos = Projeto::where('escola_id', '=', $escola->id)->paginate(6);
@@ -75,7 +75,7 @@ class AdminEscolaController extends Controller
     public function edit($id)
     {
         try {
-            $escola = Escola::find($id);
+            $escola = Escola::findOrFail($id);
             $categorias = Categoria::all();
             $titulo = 'Editar avalaidor: ' . $escola->name;
             foreach ($escola->categoria as $id) {

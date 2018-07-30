@@ -79,7 +79,7 @@ class EscolaController extends Controller
     {
         $qntProjetos = $dataForm['categoria_id'];
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $user->update([
                 'name' => $dataForm['name'],
                 'username' => $dataForm['username'],
@@ -110,7 +110,7 @@ class EscolaController extends Controller
     public function destroy($id)
     {
         try {
-            $escola = Escola::find($id);
+            $escola = Escola::findOrFail($id);
             $escola->user()->delete($id);
 
             Session::put('mensagem', "A escola " . $escola->name . " foi deletada com sucesso!");
