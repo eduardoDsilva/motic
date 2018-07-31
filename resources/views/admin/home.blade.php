@@ -113,18 +113,6 @@
                     </div>
                 </div>
             </a>
-            <a href="{{{ route('logout') }}}">
-                <div class="col s12 m6 l4">
-                    <div class="card hoverable grey darken-4">
-                        <div class="card-content black-text center-align">
-                            <i class="large material-icons">exit_to_app</i>
-                        </div>
-                        <div class="card-action white-text">
-                            <span class="card-title">Logout</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
         </div>
     </div>
