@@ -18,7 +18,7 @@
 <div class="section container">
     <div class="card-panel">
         @if(Session::get('mensagem'))
-            @include('_layouts._mensagem-erro')
+            @include('_layouts._mensagem-sucesso')
         @endif
         <div class="col s12 m4 l8">
 

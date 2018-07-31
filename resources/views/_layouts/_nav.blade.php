@@ -5,18 +5,18 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <a href="{{route ('home')}}" class="brand-logo center">MOTIC</a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="{{ route('sobre') }}">Sobre</a></li>
-                <li><a href="{{ route('contato') }}">Contato</a></li>
+                <li><a href="{{route('sobre') }}">Sobre</a></li>
+                <li><a href="{{route('contato') }}">Contato</a></li>
             </ul>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{route ('regulamento')}}">Regulamento</a></li>
-                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{route('login') }}">Login</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{route ('home')}}">Home</a></li>
-                <li><a href="badges.html">Sobre</a></li>
-                <li><a href="collapsible.html">Contato</a></li>
-                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{route('sobre') }}">Sobre</a></li>
+                <li><a href="{{route('contato') }}">Contato</a></li>
+                <li><a href="{{route('login') }}">Login</a></li>
             </ul>
         </div>
     </nav>

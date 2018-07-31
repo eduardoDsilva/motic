@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="google-site-verification" content="jHZgQo9bBpcGI8AndZkEn6Nn6TnRsTmPwdb-tJQCYEQ" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo asset('css/materialize.css')?>" type="text/css">
     <link type="text/css" rel="stylesheet"
@@ -8,33 +9,15 @@
           media="screen,projection"/>
 
     @if(Auth::guest())
-        <link rel="stylesheet" href="<?php echo asset('css/teste.css')?>" type="text/css">
-        <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-        </style>
+        <link rel="stylesheet" href="<?php echo asset('css/home.css')?>" type="text/css">
     @else
         <link rel="stylesheet" href="<?php echo asset('css/motic.css')?>" type="text/css">
+        <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/translations/pt-br.js"></script>
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/ckeditor.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/translations/pt-br.js"></script>
 
     <title>@yield('titulo')</title>
 </head>
@@ -73,9 +56,8 @@
     </div>
 </footer>
 
-<!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 <script src="<?php echo asset('js/projeto_ajax.js')?>" type="text/javascript"></script>
@@ -118,9 +100,7 @@
         while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
         return p
     }('$(b).9(\'d\',\'#f\',h(){$(\'#4\').1(\'\');$(\'#4\').2($(3).0(\'a\'));$(\'#5\').1(\'\');$(\'#5\').2($(3).0(\'c\'));$(\'#6\').1(\'\');$(\'#6\').2($(3).0(\'e\'));$(\'#7\').1(\'\');$(\'#7\').2($(3).0(\'g\'));$(\'#8\').1(\'\');$(\'#8\').2($(3).0(\'i\'))});', 19, 19, 'data|html|append|this|id_auditoria|tipo_auditoria|descricao_auditoria|usuario_auditoria|responsavel_auditoria|on|id|document|tipo|click|descricao|auditoria|user_id|function|nome_usuario'.split('|'), 0, {}))
-</script>
 
-<script type="text/javascript">
     eval(function (p, a, c, k, e, r) {
         e = function (c) {
             return c.toString(a)
@@ -202,12 +182,6 @@
             });
         }
     });
-</script>
-
-<script type="text/javascript">
-
-
-    $('.carousel.carousel-slider').carousel({fullWidth: true});
 
     $(document).ready(function(){
         $(".button-collapse").sideNav();

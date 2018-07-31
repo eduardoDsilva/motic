@@ -82,15 +82,15 @@
     <ul>
         <li class="show-on-medium-and-down waves-effect waves-light"><a href="#!" class="tooltipped" data-position="top"
                                                                         data-delay="50"
-                                                                        data-tooltip="Ajuda geral">Geral</a></li>
-        <li class="hide-on-med-and-down waves-effect waves-light"><a href="#!" class="tooltipped" data-position="top"
+                                                                        data-tooltip="Tutoriais">Tutoriais -></a></li>
+        <li class="hide-on-med-and-down waves-effect waves-light"><a target="_blank" href="" class="tooltipped" data-position="top"
                                                                      data-delay="50"
-                                                                     data-tooltip="Ajuda geral">Geral</a></li>
-        <li class="waves-effect waves-light"><a href="#!" class="tooltipped" data-position="top" data-delay="50"
+                                                                     data-tooltip="Tutoriais">Tutoriais -></a></li>
+        <li class="waves-effect waves-light"><a target="_blank" href="{{url('storage/tutoriais/Manual de utilização do sistema da MOTIC das funções de alunos.pdf')}}" class="tooltipped" data-position="top" data-delay="50"
                                                 data-tooltip="Ajuda com alunos">Alunos</a></li>
-        <li class="waves-effect waves-light"><a href="#!" class="tooltipped" data-position="top" data-delay="50"
+        <li class="waves-effect waves-light"><a target="_blank" href="{{url('storage/tutoriais/Manual de utilização do sistema da MOTIC das funções de professores.pdf')}}" class="tooltipped" data-position="top" data-delay="50"
                                                 data-tooltip="Ajuda com professores">Professores</a></li>
-        <li class="waves-effect waves-light"><a href="#!" class="tooltipped" data-position="top" data-delay="50"
+        <li class="waves-effect waves-light"><a target="_blank" href="{{url('storage/tutoriais/Manual de utilização do sistema da MOTIC das funções de projetos.pdf')}}" class="tooltipped" data-position="top" data-delay="50"
                                                 data-tooltip="Ajuda com projetos">Projetos</a></li>
     </ul>
 </div>

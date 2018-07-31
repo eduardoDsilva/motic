@@ -26,8 +26,6 @@
 
 @section('content')
 
-    @includeIf('_layouts._mensagem-erro')
-
 @section('titulo-header', 'Cadastrar professor')
 
 @section('conteudo-header', "- Os campos com ' * ' são de preenchimento obrigatório")

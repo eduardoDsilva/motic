@@ -8,9 +8,6 @@
 
 @section('content')
 
-    <div class="carousel carousel-slider center" data-indicators="true">
-        <a class="carousel-item" href="#one!"><img src="{{url('images/motic-home.png')}}"></a>
-    </div>
-
+    <img class="responsive-img" src="{{url('images/motic-home.png')}}">
 
 @endsection

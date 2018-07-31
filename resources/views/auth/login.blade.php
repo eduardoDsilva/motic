@@ -28,7 +28,7 @@
                 {{Session::forget('mensagem')}}
                 @endif
                 <div class="row">
-                    <form class="" action="{{route('login')}}" method="post">
+                    <form action="{{route('login')}}" method="post">
                         <div class="input-field">
                             <i class="material-icons prefix">person</i>
                             <input type="text" name="email">
@@ -40,19 +40,19 @@
                             <label>Senha</label>
                         </div>
                         {{csrf_field()}}
-
                         <div class="row">
                             <div class="input-field col s12">
                                 <button type="submit" class="btn waves-effect waves-light col s12 green">Login</button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12 m12 l12">
-                                <p class="margin center-align medium-small"><a href="">Esqueceu sua senha?</a></p>
-                            </div>
-                        </div>
-
                     </form>
+
+                    <div class="row">
+                        <div class="input-field col s12 m12 l12">
+                            <p class="margin center-align medium-small"><a href="">Esqueceu sua senha?</a></p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
