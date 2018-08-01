@@ -48,7 +48,6 @@
         </div>
     </div>
 </div>
-</div>
 
 @if(isset($usuarios))
     <!-- Modal Structure -->
@@ -61,11 +60,11 @@
                       action="{{ route("admin.auditoria.relatorios.user.filtrar") }}">
                     <div class="row">
                         <div class="input-field col s4">
-                            <select name="tipo" drequired>
+                            <select name="tipo" required>
                                 <option value="" disabled selected>Filtrar por...</option>
                                 <option value="id">ID</option>
-                                <option value="tipo">Nome</option>
-                                <option value="objeto">Username</option>
+                                <option value="name">Nome</option>
+                                <option value="username">Username</option>
                             </select>
                             <label>Filtros</label>
                         </div>

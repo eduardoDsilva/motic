@@ -12,6 +12,7 @@ use App\Audit;
 use App\Exports\InvoicesExport;
 use App\Exports\InvoicesExportByUser;
 use App\User;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AuditController
@@ -44,7 +45,7 @@ class AuditController
         try {
             if ($dataForm['tipo'] == 'id') {
                 $usuarios = User::where('id', '=', $dataForm['search'])->paginate(10);
-            } else if ($dataForm['tipo'] == 'nome') {
+            } else if ($dataForm['tipo'] == 'name') {
                 $filtro = '%' . $dataForm['search'] . '%';
                 $usuarios = User::where('name', 'like', $filtro)->paginate(10);
             } else if ($dataForm['tipo'] == 'username') {
