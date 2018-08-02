@@ -2,8 +2,9 @@
 
 Route::group(['prefix' => 'admin/auditoria', 'namespace' => 'Audit'], function () {
 
-
     Route::get('/', ['as' => 'admin.auditoria', 'uses' => 'AuditController@index']);
+
+    Route::get('/usuarios', ['as' => 'admin.auditoria.usuarios', 'uses' => 'AuditController@usuarios']);
 
     Route::post('filtrar', ['as' => 'admin.auditoria.filtrar', 'uses' => 'AuditController@filtrar']);
 

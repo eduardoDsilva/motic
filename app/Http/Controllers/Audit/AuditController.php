@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Audit;
 
+use App\Access;
 use App\Audit;
 use App\Exports\InvoicesExport;
 use App\Exports\InvoicesExportByUser;
@@ -21,6 +22,11 @@ class AuditController
     public function index(){
         $auditorias = Audit::latest()->paginate(10);
         return view('admin.auditoria.home', compact('auditorias'));
+    }
+
+    public function usuarios(){
+        $accesses = Access::latest()->paginate(10);
+        return view('admin.auditoria.usuarios', compact('accesses'));
     }
 
     public function relatorios(){
