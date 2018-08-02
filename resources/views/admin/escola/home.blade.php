@@ -25,7 +25,12 @@
                     @includeIf('_layouts._escola._filtro-escola')
                 </form>
             </div>
-
+            <div class="center-align">
+                <div class="chip">
+                    Atualmente, existem {{$quantidade}} escolas cadastradas no sistema.
+                    <i class="close material-icons">close</i>
+                </div>
+            </div>
             <div class="row">
                 @includeIf('_layouts._escola._tabela-escola')
             </div>

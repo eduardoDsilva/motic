@@ -28,7 +28,8 @@ class AdminAlunoController extends Controller
     {
         try {
             $alunos = Aluno::orderBy('name', 'asc')->paginate(10);
-            return view('admin.aluno.home', compact('alunos'));
+            $quantidade = count(Aluno::all());
+            return view('admin.aluno.home', compact('alunos', 'quantidade'));
         } catch (\Exception $e) {
             return "Erro " . $e->getMessage();
         }

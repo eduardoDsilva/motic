@@ -40,8 +40,8 @@ class AdminProjetoController extends Controller
                 ->where('tipo', '=', 'normal')
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
-
-            return view('admin.projeto.home', compact('projetos'));
+            $quantidade = count(Projeto::all()->where('tipo', '=', 'normal'));
+            return view('admin.projeto.home', compact('projetos', 'quantidade'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

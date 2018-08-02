@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta name="google-site-verification" content="jHZgQo9bBpcGI8AndZkEn6Nn6TnRsTmPwdb-tJQCYEQ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo asset('css/materialize.css')?>" type="text/css">
     <link type="text/css" rel="stylesheet"
@@ -15,9 +17,7 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/ckeditor.js"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/translations/pt-br.js"></script>
     @endif
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>@yield('titulo')</title>
 </head>

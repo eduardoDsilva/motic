@@ -26,7 +26,8 @@ class AdminEscolaController extends Controller
     public function index()
     {
         $escolas = Escola::orderBy('name', 'asc')->paginate(10);
-        return view("admin.escola.home", compact('escolas'));
+        $quantidade = count(Escola::all());
+        return view("admin.escola.home", compact('escolas', 'quantidade'));
     }
 
     public function create()

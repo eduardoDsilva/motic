@@ -25,6 +25,14 @@
                 @includeIf('_layouts._suplente._filtro-suplente')
             </form>
         </div>
+
+        <div class="center-align">
+            <div class="chip">
+                Atualmente, existem {{$quantidade}} projetos suplentes cadastrados no sistema.
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+
         <div class="row">
             @includeIf('_layouts._suplente._tabela-suplente')
         </div>

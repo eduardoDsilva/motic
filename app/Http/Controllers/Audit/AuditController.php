@@ -58,7 +58,7 @@ class AuditController
         }
     }
 
-    public function filtrar(\Illuminate\Http\Request $request)
+    public function filtrar(Request $request)
     {
         try {
             $dataForm = $request->all();

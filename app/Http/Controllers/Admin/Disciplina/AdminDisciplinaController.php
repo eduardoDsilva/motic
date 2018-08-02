@@ -30,7 +30,8 @@ class AdminDisciplinaController extends Controller
     public function index()
     {
         $disciplinas = Disciplina::orderBy('name', 'asc')->paginate(10);
-        return view('admin.disciplinas.home', compact('disciplinas'));
+        $quantidade = count(Disciplina::all());
+        return view('admin.disciplinas.home', compact('disciplinas', 'quantidade'));
     }
 
     public function store(DisciplinaCreateFormRequest $request)

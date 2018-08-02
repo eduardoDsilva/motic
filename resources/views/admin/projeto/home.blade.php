@@ -26,6 +26,13 @@
                 </form>
             </div>
 
+            <div class="center-align">
+                <div class="chip">
+                    Atualmente, existem {{$quantidade}} projetos cadastrados no sistema.
+                    <i class="close material-icons">close</i>
+                </div>
+            </div>
+
             <div class="row">
                 @includeIf('_layouts._projeto._tabela-projeto')
             </div>

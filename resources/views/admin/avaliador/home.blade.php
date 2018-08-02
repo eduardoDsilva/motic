@@ -25,7 +25,12 @@
                 @includeIf('_layouts._avaliador._filtro-avaliador')
             </form>
         </div>
-
+        <div class="center-align">
+            <div class="chip">
+                Atualmente, existem {{$quantidade}} avaliadores cadastradas no sistema.
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
         <div class="row">
             @includeIf('_layouts._avaliador._tabela-avaliador')
         </div>

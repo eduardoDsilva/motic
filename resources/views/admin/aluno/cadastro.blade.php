@@ -52,7 +52,7 @@
         <div class="row">
             @includeIf('_layouts._mensagem-erro')
             <form class="col s12" method="POST" enctype="multipart/form-data"
-                  action="@if(isset($aluno)){{route('admin.aluno.update',$aluno->id)}}@else{{route('admin.aluno.store')}}">
+                  action="@if(isset($aluno)){{route('admin.aluno.update',$aluno->id)}}@else{{route('admin.aluno.store')}}"@endif>
                 {{csrf_field()}}
                 @include('_layouts._aluno._form-aluno')
             </form>

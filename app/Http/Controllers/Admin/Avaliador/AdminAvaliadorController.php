@@ -30,7 +30,8 @@ class AdminAvaliadorController extends Controller
     {
         $avaliadores = Avaliador::orderBy('name', 'asc')
             ->paginate(10);
-        return view("admin.avaliador.home", compact('avaliadores'));
+        $quantidade = count(Avaliador::all());
+        return view("admin.avaliador.home", compact('avaliadores', 'quantidade'));
     }
 
     public function create()

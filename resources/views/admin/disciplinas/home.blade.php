@@ -45,6 +45,14 @@
                 </div>
             </form>
         </div>
+
+        <div class="center-align">
+            <div class="chip">
+                Atualmente, existem {{$quantidade}} disciplinas cadastradas no sistema.
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
+
         <table class="centered responsive-table highlight bordered">
             <thead>
             <tr>

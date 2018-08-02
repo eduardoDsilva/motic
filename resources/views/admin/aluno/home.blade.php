@@ -25,6 +25,12 @@
                 @includeIf('_layouts._aluno._filtro-aluno')
             </form>
         </div>
+        <div class="center-align">
+            <div class="chip">
+                Atualmente, existem {{$quantidade}} alunos cadastrados no sistema.
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
         <div class="row">
             @includeIf('_layouts._aluno._tabela-aluno')
         </div>

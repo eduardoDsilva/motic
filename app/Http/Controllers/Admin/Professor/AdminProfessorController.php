@@ -27,7 +27,8 @@ class AdminProfessorController extends Controller
     {
         try {
             $professores = Professor::orderBy('name', 'asc')->paginate(10);
-            return view("admin.professor.home", compact('professores'));
+            $quantidade = count(Professor::all());
+            return view("admin.professor.home", compact('professores', 'quantidade'));
         } catch (\Exception $e) {
             return "Erro " . $e->getMessage();
         }

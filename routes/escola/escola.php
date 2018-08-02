@@ -8,6 +8,8 @@ Route::middleware(['auth', 'check.escola'])->group(function () {
 
     require_once('configuracoes/configuracoes.php');
 
+    require_once('documentos/documentos.php');
+
     require_once('professor/professor.php');
 
     require_once('projeto/projeto.php');

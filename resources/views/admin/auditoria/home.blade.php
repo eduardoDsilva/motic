@@ -22,7 +22,6 @@
                     @includeIf('_layouts._auditoria._filtro-auditoria')
                 </form>
             </div>
-
             <div class="row">
                 @includeIf('_layouts._auditoria._tabela-auditoria')
             </div>

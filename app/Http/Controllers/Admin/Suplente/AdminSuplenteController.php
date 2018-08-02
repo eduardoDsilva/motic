@@ -38,7 +38,8 @@ class AdminSuplenteController extends Controller
                 ->where('tipo', '=', 'suplente')
                 ->orderBy('titulo', 'asc')
                 ->paginate(10);
-            return view('admin.suplente.home', compact('projetos'));
+            $quantidade = count(Projeto::all()->where('tipo', '=', 'suplente'));
+            return view('admin.suplente.home', compact('projetos', 'quantidade'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
