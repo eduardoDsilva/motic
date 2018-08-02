@@ -67,7 +67,8 @@ class AdminEscolaController extends Controller
         try {
             $dataForm = $request->all();
             $escolas = $this->escolaController->filtro($dataForm);
-            return view('admin.escola.home', compact('escolas'));
+            $quantidade = count(Escola::all());
+            return view('admin.escola.home', compact('escolas', 'quantidade'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

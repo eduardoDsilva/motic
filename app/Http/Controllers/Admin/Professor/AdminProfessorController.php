@@ -73,7 +73,8 @@ class AdminProfessorController extends Controller
         try {
             $dataForm = $request->all();
             $professores = $this->professorController->filtro($dataForm);
-            return view('admin.professor.home', compact('professores'));
+            $quantidade = count(Professor::all());
+            return view('admin.professor.home', compact('professores', 'quantidade'));
         } catch (\Exception $e) {
             return "Erro " . $e->getMessage();
         }

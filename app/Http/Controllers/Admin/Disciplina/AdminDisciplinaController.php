@@ -57,7 +57,8 @@ class AdminDisciplinaController extends Controller
                 $filtro = '%' . $dataForm['search'] . '%';
                 $disciplinas = Disciplina::where('name', 'like', $filtro)->paginate(10);
             }
-            return view("admin.disciplinas.home", compact('disciplinas'));
+            $quantidade = count(Disciplina::all());
+            return view("admin.disciplinas.home", compact('disciplinas', 'quantidade'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

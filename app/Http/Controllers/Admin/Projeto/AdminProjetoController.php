@@ -87,7 +87,8 @@ class AdminProjetoController extends Controller
         $dataForm = $request->all();
         try {
             $projetos = $this->projetoController->filtrar($dataForm);
-            return view('admin.projeto.home', compact('projetos'));
+            $quantidade = count(Projeto::all()->where('tipo', '=', 'normal'));
+            return view('admin.projeto.home', compact('projetos', 'quantidade'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }

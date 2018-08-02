@@ -142,7 +142,8 @@ class AdminAvaliadorController extends Controller
             } else if ($dataForm['tipo'] == 'projetos') {
                 $avaliadores = Avaliador::where('projetos', '=', $dataForm['search'])->paginate(10);
             }
-            return view('admin.avaliador.home', compact('avaliadores'));
+            $quantidade = count(Avaliador::all());
+            return view('admin.avaliador.home', compact('avaliadores', 'quantidade'));
         } catch (\Exception $e) {
             return "ERRO: " . $e->getMessage();
         }
