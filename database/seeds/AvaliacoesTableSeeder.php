@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProfessoresTableSeeder extends Seeder
+class AvaliacoesTableSeeder extends Seeder
 {
 
     /**
@@ -14,7 +14,7 @@ class ProfessoresTableSeeder extends Seeder
     {
         
 
-        \DB::table('professores')->delete();
+        \DB::table('avaliacoes')->delete();
         
         
         

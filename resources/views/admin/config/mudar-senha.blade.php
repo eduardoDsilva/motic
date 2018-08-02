@@ -11,7 +11,7 @@
 
 @section('titulo-header', 'Alterar senha')
 
-@section('conteudo-header', 'Aqui você pode alterar a senha da sua conta de escola.')
+@section('conteudo-header', 'Aqui você pode alterar a senha da sua conta de administrador.')
 
 @includeIf('_layouts._sub-titulo')
 
