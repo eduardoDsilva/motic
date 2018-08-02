@@ -7,6 +7,11 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
+
+    protected $subscribe = [
+        'App\Listeners\UserEventSubscriber',
+    ];
+
     /**
      * The event listener mappings for the application.
      *
