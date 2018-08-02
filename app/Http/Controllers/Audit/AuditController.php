@@ -29,6 +29,13 @@ class AuditController
         return view('admin.auditoria.usuarios', compact('accesses'));
     }
 
+    public function usuariosFiltrar(Request $request){
+        $dataForm = $request->all();
+        $usuario = User::where('username', '=', $dataForm['search'])->first();
+        $accesses = Access::where('user_id', '=', $usuario->id)->paginate(10);
+        return view('admin.auditoria.usuarios', compact('accesses'));
+    }
+
     public function relatorios(){
         $usuarios = User::paginate(10);
         return view('admin.auditoria.relatorios', compact('usuarios'));

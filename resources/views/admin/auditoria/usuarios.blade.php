@@ -19,8 +19,8 @@
 <div class="section container">
     <div class="card-panel">
         <div class="col s12 m4 l8">
-            <form method="POST" enctype="multipart/form-data" action="{{ route("admin.auditoria.filtrar") }}">
-                @includeIf('_layouts._auditoria._filtro-auditoria')
+            <form method="POST" enctype="multipart/form-data" action="{{ route("admin.auditoria.usuarios.filtrar") }}">
+                @includeIf('_layouts._auditoria._filtro-auditoria-usuarios')
             </form>
         </div>
         <div class="row">
