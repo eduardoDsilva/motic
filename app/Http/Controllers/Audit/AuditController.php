@@ -84,7 +84,8 @@ class AuditController
                 $filtro = '%' . $dataForm['search'] . '%';
                 $auditorias = Audit::where('event', 'like', $filtro)->paginate(10);
             } else if ($dataForm['tipo'] == 'user') {
-                $user = User::where('username', '=', $dataForm['search'])->first();
+                $filtro = '%' . $dataForm['search'] . '%';
+                $user = User::where('username', 'like', $filtro)->firstOrFail();
                 $auditorias = Audit::where('user_id', 'like', $user->id)->paginate(10);
             }
             return view('admin.auditoria.home', compact('auditorias'));
