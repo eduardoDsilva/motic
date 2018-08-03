@@ -17,6 +17,11 @@ class Aluno extends Model implements Auditable
         return $this->belongsTo(Projeto::class);
     }
 
+    public function etapa()
+    {
+        return $this->belongsTo(Etapa::class);
+    }
+
     public function escola()
     {
         return $this->belongsTo(Escola::class, 'escola_id', 'id');

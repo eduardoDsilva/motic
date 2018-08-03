@@ -12,6 +12,7 @@ class EscolasTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
         \DB::table('escolas')->delete();
         
@@ -255,6 +256,126 @@ class EscolasTableSeeder extends Seeder
                 'user_id' => 59,
                 'created_at' => '2018-08-01 11:52:34',
                 'updated_at' => '2018-08-01 11:52:34',
+            ),
+            24 => 
+            array (
+                'id' => 27,
+                'name' => 'EMEF Barão do Rio Branco',
+                'telefone' => '5135542976',
+                'projetos' => 4,
+                'user_id' => 61,
+                'created_at' => '2018-08-03 08:50:47',
+                'updated_at' => '2018-08-03 08:50:47',
+            ),
+            25 => 
+            array (
+                'id' => 28,
+                'name' => 'EMEF Clodomir Vianna Moog',
+                'telefone' => '5135661018',
+                'projetos' => 4,
+                'user_id' => 62,
+                'created_at' => '2018-08-03 08:55:44',
+                'updated_at' => '2018-08-03 08:55:44',
+            ),
+            26 => 
+            array (
+                'id' => 29,
+                'name' => 'EMEF Dr Borges de Medeiros',
+                'telefone' => '5122000881',
+                'projetos' => 3,
+                'user_id' => 63,
+                'created_at' => '2018-08-03 09:01:44',
+                'updated_at' => '2018-08-03 09:01:44',
+            ),
+            27 => 
+            array (
+                'id' => 30,
+                'name' => 'EMEF Dr Jorge Germano Sperb',
+                'telefone' => '51993620531',
+                'projetos' => 4,
+                'user_id' => 64,
+                'created_at' => '2018-08-03 09:06:34',
+                'updated_at' => '2018-08-03 09:06:34',
+            ),
+            28 => 
+            array (
+                'id' => 31,
+                'name' => 'EMEF Dr Osvaldo Aranha',
+                'telefone' => '5135752417',
+                'projetos' => 3,
+                'user_id' => 65,
+                'created_at' => '2018-08-03 09:12:51',
+                'updated_at' => '2018-08-03 09:12:51',
+            ),
+            29 => 
+            array (
+                'id' => 32,
+                'name' => 'EMEF Dr Paulo da Silva Couto',
+                'telefone' => '5135684535',
+                'projetos' => 4,
+                'user_id' => 66,
+                'created_at' => '2018-08-03 09:18:29',
+                'updated_at' => '2018-08-03 09:18:29',
+            ),
+            30 => 
+            array (
+                'id' => 33,
+                'name' => 'EMEF Franz Louis Weinmann',
+                'telefone' => '5135884412',
+                'projetos' => 3,
+                'user_id' => 67,
+                'created_at' => '2018-08-03 09:25:30',
+                'updated_at' => '2018-08-03 09:25:30',
+            ),
+            31 => 
+            array (
+                'id' => 34,
+                'name' => 'EMEF Francisco Cândido Xavier',
+                'telefone' => '51993267456',
+                'projetos' => 4,
+                'user_id' => 68,
+                'created_at' => '2018-08-03 09:37:42',
+                'updated_at' => '2018-08-03 09:37:42',
+            ),
+            32 => 
+            array (
+                'id' => 35,
+                'name' => 'EMEF General Mário Fonseca',
+                'telefone' => '5135685105',
+                'projetos' => 3,
+                'user_id' => 69,
+                'created_at' => '2018-08-03 10:28:13',
+                'updated_at' => '2018-08-03 10:28:13',
+            ),
+            33 => 
+            array (
+                'id' => 36,
+                'name' => 'EMEF João Belchior Marques Goulart',
+                'telefone' => '5135684050',
+                'projetos' => 5,
+                'user_id' => 70,
+                'created_at' => '2018-08-03 10:33:21',
+                'updated_at' => '2018-08-03 10:33:21',
+            ),
+            34 => 
+            array (
+                'id' => 37,
+                'name' => 'EMEF Maria Emília de Paula',
+                'telefone' => '5135684954',
+                'projetos' => 4,
+                'user_id' => 71,
+                'created_at' => '2018-08-03 10:37:33',
+                'updated_at' => '2018-08-03 10:37:33',
+            ),
+            35 => 
+            array (
+                'id' => 38,
+                'name' => 'EMEF Olímpio Vianna Albrecht',
+                'telefone' => '5135754592',
+                'projetos' => 5,
+                'user_id' => 72,
+                'created_at' => '2018-08-03 10:58:37',
+                'updated_at' => '2018-08-03 10:58:37',
             ),
         ));
         

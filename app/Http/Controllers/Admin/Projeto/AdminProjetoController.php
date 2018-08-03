@@ -172,6 +172,7 @@ class AdminProjetoController extends Controller
                 $categoria_id[] = $projeto->categoria_id;
             }
             $categoria = $escola->categoria->whereNotIn('id', $categoria_id);
+            //dd($categoria);
 
             return response()->json($categoria);
         } catch (\Exception $e) {

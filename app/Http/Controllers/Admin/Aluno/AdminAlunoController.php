@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Aluno;
 use App\Aluno;
 use App\Dado;
 use App\Escola;
+use App\Etapa;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Aluno\AlunoCreateFormRequest;
@@ -115,26 +116,10 @@ class AdminAlunoController extends Controller
         try {
             $escola_id = Input::get('escola_id');
             $escola = Escola::findOrFail($escola_id);
-            $categorias = $escola->categoria;
             $ano = [];
-            foreach ($categorias as $categoria) {
-                if ($categoria->id == 1) {
-                    $ano[] = 'Educação Infantil';
-                } else if ($categoria->id == 2) {
-                    $ano[] = '1° ANO';
-                    $ano[] = '2° ANO';
-                    $ano[] = '3° ANO';
-                } else if ($categoria->id == 3) {
-                    $ano[] = '4° ANO';
-                    $ano[] = '5° ANO';
-                    $ano[] = '6° ANO';
-                } else if ($categoria->id == 4) {
-                    $ano[] = '7° ANO';
-                    $ano[] = '8° ANO';
-                    $ano[] = '9° ANO';
-                } else if ($categoria->id == 5) {
-                    $ano[] = 'EJA';
-                } else {
+            foreach($escola->categoria as $categoria){
+                foreach($categoria->etapa as $etapa){
+                    $ano[] = $etapa->etapa;
                 }
             }
             return response()->json($ano);

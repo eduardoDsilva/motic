@@ -8,6 +8,10 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
 
     require_once('aluno/aluno.php');
 
+    require_once('etapa/etapa.php');
+
+    require_once('categoria/categoria.php');
+
     require_once('professor/professor.php');
 
     require_once('configuracoes/configuracoes.php');

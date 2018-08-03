@@ -22,6 +22,11 @@ class Categoria extends Model implements Auditable
         return $this->hasMany(Aluno::class, 'aluno_id', 'id');
     }
 
+    public function etapa()
+    {
+        return $this->hasMany(Etapa::class);
+    }
+
     public function projeto()
     {
         return $this->hasMany(Projeto::class);

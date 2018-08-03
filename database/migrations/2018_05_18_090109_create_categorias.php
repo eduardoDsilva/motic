@@ -15,8 +15,8 @@ class CreateCategorias extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('categoria', ['Educação Infantil', 'EMEF 1', 'EMEF 2', 'EMEF 3', 'EJA', 'Sem categoria'])->default('Sem categoria');
-            $table->string('descricao', 100);
+            $table->string('categoria');
+            $table->string('descricao', 240);
 
             $table->timestamps();
         });
