@@ -33,6 +33,11 @@ class Projeto extends Model implements Auditable
         return $this->hasMany(Professor::class);
     }
 
+    public function nota()
+    {
+        return $this->hasMany(Nota::class);
+    }
+
     public function escola()
     {
         return $this->belongsTo(Escola::class);

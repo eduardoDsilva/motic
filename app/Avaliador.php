@@ -25,6 +25,11 @@ class Avaliador extends Model implements Auditable
         return $this->belongsToMany(Projeto::class, 'avaliadores_projetos');
     }
 
+    public function nota()
+    {
+        return $this->hasMany(Nota::class);
+    }
+
     public function generateTags(): array
     {
         return [

@@ -18,8 +18,9 @@ class CreateNotas extends Migration
             $table->double('notaUm',5,4);
             $table->double('notaDois',5,4);
             $table->double('notaTres',5,4);
-            $table->double('notaQuatro',5,4);
+            $table->double('notaQuatro',5,4 );
             $table->double('notaCinco',5,4);
+            $table->double('notaFinal',5,4);
             $table->unsignedInteger('projeto_id');
             $table->foreign('projeto_id')->references('id')->on('projetos')->onDelete('cascade');
             $table->unsignedInteger('avaliador_id');

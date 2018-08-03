@@ -12,7 +12,6 @@ class EscolasTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
         \DB::table('escolas')->delete();
         
