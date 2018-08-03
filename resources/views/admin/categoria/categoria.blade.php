@@ -42,7 +42,7 @@
                     <td>{{$categoria->descricao}}</td>
                     <td>
                         <a class="modal-trigger tooltipped" data-position="top" data-delay="50"
-                           data-tooltip="Editar" href=""><i class="small material-icons">edit</i></a>
+                           data-tooltip="Editar" href="{{route ('admin.categoria.edit', $categoria->id)}}"><i class="small material-icons">edit</i></a>
                     </td>
                 </tr>
             @empty

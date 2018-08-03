@@ -69,7 +69,8 @@ class AdminEtapaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $etapa = Etapa::find($id);
+        return view('admin.etapa.editar', compact('etapa'));
     }
 
     /**
@@ -85,10 +86,9 @@ class AdminEtapaController extends Controller
             $dataForm = $request->all();
             $etapa = Etapa::find($id);
             $etapa->etapa = $dataForm['etapa'];
-            $etapa->categoria_id = $dataForm['categoria_id'];
             $etapa->save();
             Session::put('mensagem', "A etapa " . $etapa->etapa . " foi editada com sucesso!");
-            return route('admin.etapa');
+            return redirect()->route('admin.etapa');
         }catch (\Exception $e){
             abort(404);
         }
@@ -106,7 +106,7 @@ class AdminEtapaController extends Controller
             $etapa = Etapa::find($id);
             $etapa->delete($id);
             Session::put('mensagem', "A etapa " . $etapa->etapa . " foi deletada com sucesso!");
-            return route('admin.etapa');
+            return redirect()->route('admin.etapa');
         }catch (\Exception $e){
             abort(404);
         }

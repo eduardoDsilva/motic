@@ -67,7 +67,8 @@ class AdminCategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        return view('admin.categoria.editar', compact('categoria'));
     }
 
     /**
@@ -83,9 +84,10 @@ class AdminCategoriaController extends Controller
             $dataForm = $request->all();
             $categoria = Categoria::find($id);
             $categoria->categoria = $dataForm['categoria'];
+            $categoria->descricao = $dataForm['descricao'];
             $categoria->save();
             Session::put('mensagem', "A categoria " . $categoria->categoria . " foi editada com sucesso!");
-            return route('admin.categoria');
+            return redirect()->route('admin.categoria');
         }catch (\Exception $e){
             abort(404);
         }
