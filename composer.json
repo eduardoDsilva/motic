@@ -6,13 +6,15 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "arcanedev/no-captcha": "5.*",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "copam/phpjasper": "^1.4",
-        "laravel/framework": "5.5.*",
+        "laravel/framework": "5.5.4",
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "^3.0",
         "orangehill/iseed": "dev-master",
-        "owen-it/laravel-auditing": "^7.0"
+        "owen-it/laravel-auditing": "^7.0",
+        "laravelcollective/html": "~5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
