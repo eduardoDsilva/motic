@@ -167,6 +167,8 @@ return [
         OwenIt\Auditing\AuditingServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Lubusin\Decomposer\DecomposerServiceProvider::class,
 
         /*
          * Package Service Providers...
