@@ -4,7 +4,7 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
 
     Route::get('admin/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-    Route::get('admin/decompose','\Lubusin\Decomposer\Controllers\DecomposerController@index');
+    Route::get('admin/decomposer','\Lubusin\Decomposer\Controllers\DecomposerController@index');
 
     Route::get('admin/home', ['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
 
