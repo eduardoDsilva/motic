@@ -41,20 +41,19 @@
                             <label>Senha</label>
                         </div>
                         {{csrf_field()}}
-                        <div class="input-field">
-                            {!! Form::captcha() !!}
-                        </div>
                         <div class="row">
-                            <div class="input-field col s12">
-                                <button type="submit" class="btn waves-effect waves-light col s12 green">Login</button>
+                            <div class="input-field col s12 m4 l4">
+                                {!! Form::captcha() !!}
+                            </div>
+                            <div class="input-field col s12 m8 l8">
+                                <div class="row">
+                                    <button type="submit" class="btn waves-effect waves-light col s12 green">Login
+                                    </button>
+                                    <p class="margin center-align medium-small"><a href="">Esqueceu sua senha?</a></p>
+                                </div>
                             </div>
                         </div>
                     </form>
-                    <div class="row">
-                        <div class="input-field col s12 m12 l12">
-                            <p class="margin center-align medium-small"><a href="">Esqueceu sua senha?</a></p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
