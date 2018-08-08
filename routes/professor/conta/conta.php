@@ -2,6 +2,8 @@
 
 Route::group(['prefix' => 'professor/conta', 'namespace' => 'Professor\Conta'], function () {
 
-    Route::get('/', ['as' => 'professor.conta', 'uses' => 'ProfessorContaController@index']);
+    Route::get('alterar-senha', ['as' => 'admin.config.alterar-senha', 'uses' => 'ProfessorContaController@alterarSenha']);
+
+    Route::post('altera-senha', ['as' => 'admin.config.altera-senha', 'uses' => 'ProfessorContaController@alteraSenha']);
 
 });

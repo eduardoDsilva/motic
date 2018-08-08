@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('professor.conta')}}">
+                <a href="{{route ('admin.config.alterar-senha')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable pink darken-4">
                             <div class="card-content black-text center-align">
