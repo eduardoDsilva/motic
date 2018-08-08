@@ -57,13 +57,13 @@ class AuditController
         $modal2 = true;
         try {
             if ($dataForm['tipo'] == 'id') {
-                $usuarios = User::where('id', '=', $dataForm['search'])->paginate(10);
+                $usuarios = User::where('id', '=', $dataForm['search'])->get();
             } else if ($dataForm['tipo'] == 'name') {
                 $filtro = '%' . $dataForm['search'] . '%';
-                $usuarios = User::where('name', 'like', $filtro)->paginate(10);
+                $usuarios = User::where('name', 'like', $filtro)->get();
             } else if ($dataForm['tipo'] == 'username') {
                 $filtro = '%' . $dataForm['search'] . '%';
-                $usuarios = User::where('username', '=', $filtro)->paginate(10);
+                $usuarios = User::where('username', '=', $filtro)->get();
             }
             return view('admin.auditoria.relatorios', compact('usuarios', 'modal2'));
         } catch (\Exception $e) {
@@ -76,17 +76,17 @@ class AuditController
         try {
             $dataForm = $request->all();
             if ($dataForm['tipo'] == 'id') {
-                $auditorias = Audit::where('id', '=', $dataForm['search'])->paginate(10);
+                $auditorias = Audit::where('id', '=', $dataForm['search'])->paginate(5000);
             } else if ($dataForm['tipo'] == 'tipo') {
                 $filtro = '%' . $dataForm['search'] . '%';
-                $auditorias = Audit::where('auditable_type', 'like', $filtro)->paginate(10);
+                $auditorias = Audit::where('auditable_type', 'like', $filtro)->paginate(5000);
             } else if ($dataForm['tipo'] == 'evento') {
                 $filtro = '%' . $dataForm['search'] . '%';
-                $auditorias = Audit::where('event', 'like', $filtro)->paginate(10);
+                $auditorias = Audit::where('event', 'like', $filtro)->paginate(5000);
             } else if ($dataForm['tipo'] == 'user') {
                 $filtro = '%' . $dataForm['search'] . '%';
                 $user = User::where('username', 'like', $filtro)->firstOrFail();
-                $auditorias = Audit::where('user_id', 'like', $user->id)->paginate(10);
+                $auditorias = Audit::where('user_id', 'like', $user->id)->paginate(5000);
             }
             return view('admin.auditoria.home', compact('auditorias'));
         } catch (\Exception $e) {

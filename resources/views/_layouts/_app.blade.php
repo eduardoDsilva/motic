@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="google-site-verification" content="jHZgQo9bBpcGI8AndZkEn6Nn6TnRsTmPwdb-tJQCYEQ" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,7 +9,7 @@
     <link type="text/css" rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
           media="screen,projection"/>
-
+    <html lang="pt-BR">
     @if(Auth::guest())
         <link rel="stylesheet" href="<?php echo asset('css/home.css')?>" type="text/css">
     @else

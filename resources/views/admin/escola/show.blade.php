@@ -53,6 +53,16 @@
                         </ul>
                         <ul class="collection with-header col s12 m12 l12">
                             <li class="collection-header"><h4 class="center-align">Projetos</h4></li>
+                            @foreach($escola->projeto as $projeto)
+                                <li class="collection-header"><h5 class="center-align">{{$projeto->titulo}}</h5></li>
+                                @foreach($projeto->aluno as $alunos)
+                                <li class="collection-item">Alunos: {{$alunos->name}}</li>
+                                @endforeach
+                                @foreach($projeto->professor as $professor)
+                                <li class="collection-item">Professor: {{$professor->name}} - {{$professor->tipo}}</li>
+                                @endforeach
+                                <li class="collection-item">Categoria: {{$projeto->categoria->categoria}}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

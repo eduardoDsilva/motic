@@ -42,4 +42,3 @@
     @endforelse
     </tbody>
 </table>
-{{$auditorias->links()}}
