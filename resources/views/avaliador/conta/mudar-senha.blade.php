@@ -3,15 +3,15 @@
 @section('titulo','Motic Admin')
 
 @section('breadcrumb')
-    <a href="{{route ('admin')}}" class="breadcrumb">Home</a>
-    <a href="{{route ('admin.config.alterarr-senha')}}" class="breadcrumb">Alterar senha</a>
+    <a href="{{route ('avaliador')}}" class="breadcrumb">Home</a>
+    <a href="{{route ('avaliador.config.alterar-senha')}}" class="breadcrumb">Alterar senha</a>
 @endsection
 
 @section('content')
 
 @section('titulo-header', 'Alterar senha')
 
-@section('conteudo-header', 'Aqui você pode alterar a senha da sua conta de administrador.')
+@section('conteudo-header', 'Aqui você pode alterar a senha da sua conta de professor.')
 
 @includeIf('_layouts._sub-titulo')
 
@@ -20,6 +20,7 @@
         @if(Session::get('mensagem'))
             @include('_layouts._mensagem-sucesso')
         @endif
+        @includeIf('_layouts._mensagem-erro')
         <div class="col s12 m4 l8">
 
             <blockquote>Atenção! Para alterar a sua senha, você deve ter em mãos a senha atual. Caso não consiga acessar
@@ -29,7 +30,7 @@
             </blockquote>
 
             <form method="POST" enctype="multipart/form-data"
-                  action="{{route ('admin.config.alterarr-senha')}}">
+                  action="{{route ('avaliador.config.altera-senha')}}">
                 {{csrf_field()}}
                 <div class="row">
                     <div class="input-field col s12 m12 l12">

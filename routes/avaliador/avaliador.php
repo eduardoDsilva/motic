@@ -2,7 +2,7 @@
 
 Route::middleware(['auth', 'check.avaliador'])->group(function () {
 
-    Route::get('avaliador/home', 'Avaliador\AvaliadorController@index')->name('avaliador/home');
+    Route::get('avaliador/home', ['as' => 'avaliador', 'uses' => 'Avaliador\AvaliadorController@index']);
 
     require_once('projeto/projeto.php');
 

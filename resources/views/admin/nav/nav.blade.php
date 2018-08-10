@@ -185,7 +185,7 @@
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.config.gerencia.pagina-inicial')}}"><i
                                     class="material-icons">insert_drive_file</i>Gerenciar home-page</a></li>
                     <li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.alterar-senha')}}"><i
+                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.alterarr-senha')}}"><i
                                     class="material-icons">lock_outline</i>Mudar senha</a></li>
                     <div class="divider"></div>
                     </li>

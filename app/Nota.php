@@ -10,7 +10,7 @@ class Nota extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
-        'notaUm', 'notaDois', 'notaTres', 'notaQuatro', 'notaCinco', 'id_avaliador', 'id_projeto',
+        'notaUm', 'notaDois', 'notaTres', 'notaQuatro', 'notaCinco', 'notaFinal', 'observacacoes', 'id_avaliador', 'id_projeto',
     ];
 
     public function projeto()

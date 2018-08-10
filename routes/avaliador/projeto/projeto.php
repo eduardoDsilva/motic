@@ -1,6 +1,10 @@
 <?php
 
-Route::prefix('professor/projeto')->group(function () {
+Route::group(['prefix' => 'avaliador/projeto', 'namespace' => 'Avaliador\Projeto'], function () {
 
-    Route::get('/home', 'Avaliador\Projeto\AvaliadorProjetoController@index')->name('avaliador/projeto/home');
+    Route::get('/projeto', ['as' => 'avaliador.projeto', 'uses' => 'AvaliadorProjetoController@index']);
+
+    Route::get('/projeto/avaliar/{id}', ['as' => 'avaliador.projeto.avaliar', 'uses' => 'AvaliadorProjetoController@avaliar']);
+
+
 });

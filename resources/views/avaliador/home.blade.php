@@ -3,7 +3,7 @@
 @section('titulo','Motic Avaliador')
 
 @section('breadcrumb')
-    <a href="{{{route ('professor/home')}}}" class="breadcrumb">Home</a>
+    <a href="{{{route ('avaliador')}}}" class="breadcrumb">Home</a>
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
     <div class="section container col s12 m6 l8">
         <div class="card-panel">
             <div class="row">
-                <a href="{{route ('avaliador/projeto/home')}}">
+                <a href="{{route ('avaliador.projeto')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable blue darken-4">
                             <div class="card-content black-text center-align">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route ('avaliador/conta/home')}}">
+                <a href="{{route ('avaliador.config.alterar-senha')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable pink darken-4">
                             <div class="card-content black-text center-align">

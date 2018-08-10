@@ -50,19 +50,19 @@ class AdminConfigController extends Controller
 
             ]);
             if ($validator->fails()) {
-                return redirect()->route('admin.config.alterar-senha')
+                return redirect()->route('admin.config.alterarr-senha')
                     ->withErrors($validator)
                     ->withInput();
             }
             if(!(Hash::check($dataForm['senha_atual'], Auth::user()->password))){
                 Session::put('mensagem', "Senha incorreta!");
-                return redirect()->route('admin.config.alterar-senha')->withErrors(['password' => 'Senha atual está incorreta'])->withInput();
+                return redirect()->route('admin.config.alterarr-senha')->withErrors(['password' => 'Senha atual está incorreta'])->withInput();
             }
             $user = User::findOrFail(Auth::user()->id);
             $user->password = (bcrypt($dataForm['password']));
             $user->save();
             Session::put('mensagem', "Senha atualizada!");
-            return redirect()->route('admin.config.alterar-senha');
+            return redirect()->route('admin.config.alterarr-senha');
         } catch(\Exception $e) {
             return "Erro " . $e->getMessage();
         }

@@ -26,7 +26,7 @@
             <article class="col s12">
                 @include('_layouts._mensagem-erro')
                 <form method="POST" enctype="multipart/form-data"
-                      action="@if(isset($avaliador)) {{ route("admin.avaliador.update", $avaliador->user->id) }} @else {{ route('admin.avaliador.store') }}" @endif>
+                      action="@if(isset($avaliador)) {{ route("admin.avaliador.update", $avaliador->user->id) }}" @else {{ route('admin.avaliador.store') }}" @endif>
                     {{csrf_field()}}
 
                     <h5>Dados básicos</h5>
