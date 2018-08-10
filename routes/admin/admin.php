@@ -31,5 +31,7 @@ Route::middleware(['auth', 'check.admin'])->group(function () {
 
     require_once('disciplinas/disciplinas.php');
 
+    require_once('user/user.php');
+
 });
 

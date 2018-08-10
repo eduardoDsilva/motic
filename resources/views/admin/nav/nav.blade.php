@@ -74,7 +74,7 @@
                 <ul>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.disciplina')}}"><i
                                     class="material-icons">list</i>Listar disciplinas</a></li>
-                        <div class="divider"></div>
+                    <div class="divider"></div>
                     </li>
                 </ul>
             </div>
@@ -189,7 +189,7 @@
                                     class="material-icons">lock_outline</i>Mudar senha</a></li>
                     <div class="divider"></div>
                     </li>
-                        <div class="divider"></div>
+                    <div class="divider"></div>
                     </li>
                 </ul>
             </div>
@@ -228,12 +228,47 @@
         </li>
     </ul>
 </li>
+@if(Illuminate\Support\Facades\Auth::user()->id == 1)
+    <li class="white">
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">note</i>Usuários<i
+                            class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="{{route('admin.user')}}"><i
+                                        class="material-icons">list</i>Gerenciar usuários</a></li>
+                        <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li class="white">
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">note</i>ETC<i
+                            class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a class="waves-effect waves-blue" href="{{url('admin/logs')}}"><i
+                                        class="material-icons">list</i>Logs</a></li>
+                        <li><a class="waves-effect waves-blue" href="{{url('admin/decomposer')}}"><i
+                                        class="material-icons">list</i>Decomposer</a></li>
+                        <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+@endif
 <li class="white">
     <a class="collapsible-header" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"> <i
                 class="small material-icons">exit_to_app</i>Sair
     </a>
-
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>

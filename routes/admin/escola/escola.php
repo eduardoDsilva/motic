@@ -1,6 +1,5 @@
 <?php
 
-
 Route::group(['prefix' => 'admin/escola', 'namespace' => 'Admin\Escola'], function () {
 
     Route::get('/', ['as' => 'admin.escola', 'uses' => 'AdminEscolaController@index']);
