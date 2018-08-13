@@ -21,6 +21,7 @@
     <div class="section container col s12 m6 l8">
         <div class="card-panel">
             <div class="row">
+                @can('view', $avaliacao = \App\Avaliacao::orderBy('id', 'desc')->first())
                 <a href="{{route ('avaliador.projeto')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable blue darken-4">
@@ -33,6 +34,7 @@
                         </div>
                     </div>
                 </a>
+                @endcan
                 <a href="{{route ('avaliador.config.alterar-senha')}}">
                     <div class="col s12 m6">
                         <div class="card hoverable pink darken-4">

@@ -1,9 +1,11 @@
 <li class="white">
     <a class="collapsible-header" href="{{route ('avaliador')}}"><i class="small material-icons">home</i>Home</a>
 </li>
+@can('view', $avaliacao = \App\Avaliacao::orderBy('id', 'desc')->first())
 <li class="white">
     <a class="collapsible-header" href="{{route ('avaliador.projeto')}}"><i class="small material-icons">home</i>Projetos</a>
 </li>
+@endcan
 <li class="white">
     <a class="collapsible-header" href="{{route ('avaliador.config.alterar-senha')}}"><i class="small material-icons">home</i>Conta</a>
 </li>

@@ -113,6 +113,45 @@
                     </div>
                 </div>
             </a>
+            @if(Illuminate\Support\Facades\Auth::user()->id == 1)
+            <a href="{{route ('admin.user')}}">
+                <div class="col s12 m6 l4">
+                    <div class="card hoverable cyan darken-4">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">people_outline</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Usuários</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{url('admin/logs')}}">
+                <div class="col s12 m6 l4">
+                    <div class="card hoverable light-blue darken-4">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">info</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Logs</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{url('admin/decomposer')}}">
+                <div class="col s12 m6 l4">
+                    <div class="card hoverable light-green darken-4">
+                        <div class="card-content black-text center-align">
+                            <i class="large material-icons">info_outline</i>
+                        </div>
+                        <div class="card-action white-text">
+                            <span class="card-title">Decomposer</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+                @endif
 
         </div>
     </div>

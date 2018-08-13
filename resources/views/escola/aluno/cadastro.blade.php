@@ -47,7 +47,6 @@
     <div class="card-panel">
         @includeIf('_layouts._mensagem-erro')
         <div class="row">
-            @includeIf('_layouts._mensagem-erro')
             <form class="col s12" method="post" enctype="multipart/form-data"
                   action="@if(isset($aluno)){{ route('escola.aluno.update', $aluno->id) }}
                   @else {{ route('escola.aluno.store') }}@endif">

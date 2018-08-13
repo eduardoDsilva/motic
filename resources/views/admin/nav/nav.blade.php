@@ -183,9 +183,9 @@
                                     class="material-icons">insert_drive_file</i>PDF's</a></li>
                     <li>
                     <li><a class="waves-effect waves-blue" href="{{route ('admin.config.gerencia.pagina-inicial')}}"><i
-                                    class="material-icons">insert_drive_file</i>Gerenciar home-page</a></li>
+                                    class="material-icons">perm_media</i>Gerenciar home-page</a></li>
                     <li>
-                    <li><a class="waves-effect waves-blue" href="{{route ('admin.config.alterarr-senha')}}"><i
+                    <li><a class="waves-effect waves-blue" href="{{url ('admin/config/alterar-senha')}}"><i
                                     class="material-icons">lock_outline</i>Mudar senha</a></li>
                     <div class="divider"></div>
                     </li>
@@ -232,12 +232,12 @@
     <li class="white">
         <ul class="collapsible collapsible-accordion">
             <li>
-                <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">note</i>Usuários<i
+                <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">people</i>Usuários<i
                             class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                     <ul>
                         <li><a class="waves-effect waves-blue" href="{{route('admin.user')}}"><i
-                                        class="material-icons">list</i>Gerenciar usuários</a></li>
+                                        class="material-icons">people_outline</i>Gerenciar usuários</a></li>
                         <div class="divider"></div>
                         </li>
                     </ul>
@@ -248,14 +248,17 @@
     <li class="white">
         <ul class="collapsible collapsible-accordion">
             <li>
-                <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">note</i>ETC<i
+                <a class="collapsible-header waves-effect waves-blue"><i class="small material-icons">info</i>Info. do
+                    Sistema<i
                             class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                     <ul>
                         <li><a class="waves-effect waves-blue" href="{{url('admin/logs')}}"><i
-                                        class="material-icons">list</i>Logs</a></li>
+                                        class="material-icons">info_outline
+                                </i>Logs</a></li>
                         <li><a class="waves-effect waves-blue" href="{{url('admin/decomposer')}}"><i
-                                        class="material-icons">list</i>Decomposer</a></li>
+                                        class="material-icons">info_outline
+                                </i>Decomposer</a></li>
                         <div class="divider"></div>
                         </li>
                     </ul>

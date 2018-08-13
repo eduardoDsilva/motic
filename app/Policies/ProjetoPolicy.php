@@ -23,6 +23,26 @@ class ProjetoPolicy
     }
 
     /**
+     * Determine whether the user can to evaluete the projeto.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Projeto  $projeto
+     * @return mixed
+     */
+    public function avaliar(User $user, Projeto $projeto)
+    {
+        $array = [];
+        foreach($projeto->avaliador as $avaliador){
+            $array[] = $avaliador->id;
+        }
+        if(in_array($user->avaliador->id, $array)){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Determine whether the user can show the projeto.
      *
      * @param  \App\User  $user

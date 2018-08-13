@@ -18,14 +18,29 @@ class AvaliadorProjetoController extends Controller
 
     public function index()
     {
-        $avaliador = Avaliador::find(Auth::user()->avaliador->id);
-        $projetos = $avaliador->projeto;
-        return view('avaliador/projeto/home', compact('projetos'));
+        $avaliacao = \App\Avaliacao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $avaliacao);
+        try{
+            $avaliador = Avaliador::find(Auth::user()->avaliador->id);
+            $projetos = $avaliador->projeto;
+            return view('avaliador/projeto/home', compact('projetos'));
+        }catch (\Exception $e){
+            return "ERRO: " . $e->getMessage();
+        }
     }
+
     public function avaliar($id)
     {
+        $avaliacao = \App\Avaliacao::orderBy('id', 'desc')->first();
+        $this->authorize('view', $avaliacao);
         $projeto = Projeto::find($id);
-        return view('avaliador/projeto/ficha-de-avaliacao', compact('projeto'));
+        $this->authorize('avaliar', $projeto);
+        try {
+            $projeto = Projeto::find($id);
+            return view('avaliador/projeto/ficha-de-avaliacao', compact('projeto'));
+        } catch (\Exception $e) {
+            return "ERRO: " . $e->getMessage();
+        }
     }
 
 }

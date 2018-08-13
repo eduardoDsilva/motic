@@ -25,7 +25,7 @@
                 <a data-target="modal1" class="modal-trigger tooltipped" data-position="top" data-delay="50"
                    data-tooltip="Deletar" href="#modal1" data-id="{{$user->id}}"
                    data-name="{{$user->name}}" data-tipo="user"> <i class="small material-icons">delete</i></a>
-                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Alterar senha"
+                <a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Resetar senha"
                    href="{{ route("admin.user.mudar-senha", $user->id) }}"> <i
                             class="small material-icons">lock</i></a>
             </td>

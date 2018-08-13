@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Projeto;
 use App\User;
 use App\Avaliador;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -17,9 +18,17 @@ class AvaliadorPolicy
      * @param  \App\Avaliador  $avaliador
      * @return mixed
      */
-    public function view(User $user, Avaliador $avaliador)
+    public function view(User $user, Projeto $projeto)
     {
-        //
+        $array = [];
+        foreach($projeto->avaliador as $avaliador){
+            $array[] = $avaliador->id;
+        }
+        if(in_array($user->avaliador->id, $array)){
+            return true;
+        }
+
+        return false;
     }
 
     /**

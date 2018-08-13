@@ -20,6 +20,12 @@
 
 <div class="section container col s12 m6 l8">
     <div class="card-panel">
+        <div class="center-align">
+            <div class="chip red">
+                Atenção! O cadastro de projetos terminará no dia: {{date('d-m-Y', strtotime($dia->data_fim))}}
+                <i class="close material-icons">close</i>
+            </div>
+        </div>
         <div class="row">
             <a href="{{route ('escola.projeto')}}">
                 <div class="col s12 m6 l6">
